@@ -7,12 +7,26 @@
 
   &--nav
     display: flex
+    justify-content: space-between
     position: relative
     z-index: 2
 
     a
       color: white
       margin-right: $baseline
+
+    &-left,
+    &-right
+      display: flex
+
+    &-link-twitter
+      svg
+        display: inline-block
+        vertical-align: middle
+        width: $baseline
+
+        path
+          fill: #1da1f2
 
   &::after
     +script
