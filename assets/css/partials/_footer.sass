@@ -1,0 +1,30 @@
+.footer
+  background: $color-black
+  margin: 0 -6em
+  overflow: hidden
+  padding: 6em
+  position: relative
+
+  &--nav
+    display: flex
+    position: relative
+    z-index: 2
+
+    a
+      color: white
+      margin-right: $baseline
+
+  &::after
+    +script
+
+    bottom: -.25em
+    color: darken($color-black, 2.5%)
+    content: 'made in southsea'
+    font-size: 19vw
+    left: 50%
+    pointer-events: none
+    position: absolute
+    text-align: center
+    transform: translateX(-38.75%) scaleX(.75) rotate(-2deg)
+    white-space: nowrap
+    z-index: 1

@@ -1,0 +1,15 @@
+extends /layout
+
+block vars
+  - var bodyClass = 'page--blog'
+
+block content
+  section.intro
+    a(href='/')
+      include /icons/_logo.svg
+
+    h1= post.title
+
+  section.post
+    article.post--content
+      block article

@@ -1,0 +1,49 @@
+.page--projects
+  .projects
+    padding: 6em 0
+
+    &--filter
+      margin-bottom: $baseline
+
+      a
+        margin-right: $baseline
+
+        &.active
+          color: $color-red
+          font-weight: 600
+
+    &--list
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+
+      &-item
+        border: 1px solid rgba($color-black, .1)
+        flex: 0 0 100%
+        font-size: .75em
+        line-height: $baseline
+        margin: 0 0 $baseline
+        padding: .75em
+
+        @media (min-width: 48em)
+          flex: 0 0 calc(50% - #{(1 / 2) * $baseline})
+
+        @media (min-width: 72em)
+          flex: 0 0 calc(33.33333333% - #{(2 / 3) * $baseline})
+
+        [data-description]
+          height: #{$baseline * 2}
+
+        &-meta
+          align-items: center
+          display: flex
+
+          > span
+            align-items: center
+            display: flex
+            margin-right: $baseline
+
+          &-icon
+            align-items: center
+            display: flex
+            margin-right: #{($baseline / 4)}

@@ -1,0 +1,42 @@
+extends layout
+
+block vars
+  - var bodyClass = 'page--projects'
+
+block content
+  section.intro
+    a(href='/')
+      include /icons/_logo.svg
+
+    h1 Open Source
+
+  section.projects
+    nav.projects--filter
+      a.active(href='#' data-target='all') All
+      a(href='#' data-target='Shell') ZSH
+      a(href='#' data-target='PHP') PHP
+      a(href='#' data-target='Crystal') Crystal
+      a(href='#' data-target='CoffeeScript') CoffeeScript
+      a(href='#' data-target='JavaScript') JavaScript
+
+    nav.projects--list
+      - var projects = ['zulu-zsh/zulu', 'molovo/zunit', 'molovo/crash', 'molovo/zlint', 'molovo/filthy', 'molovo/lumberjack', 'molovo/revolver', 'philliphq/phillip', 'molovo/graphite', 'molovo/interrogate', 'molovo/accidents', 'molovo/amnesia', 'molovo/traffic', 'pugphp/pug', 'molovo/roots-image-pipeline', 'molovo/crayon', 'molovo/validator']
+      - for (var i = 0; i < projects.length; i++)
+        a(href="https://github.com/"+projects[i] class="projects--list-item" data-repo=projects[i] target="_blank")
+          h4
+            span(data-owner)
+            span /
+            span(data-name)
+          p(data-description)
+          div.projects--list-item-meta
+            span.projects--list-item-meta_language
+              span.projects--list-item-meta-icon ●
+              span(data-language)
+            span.projects--list-item-meta_stars
+              span.projects--list-item-meta-icon
+                include /icons/_star.svg
+              span(data-stars)
+            span.projects--list-item-meta_forks
+              span.projects--list-item-meta-icon
+                include /icons/_fork.svg
+              span(data-forks)

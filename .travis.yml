@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+- node
+branches:
+  only:
+  - master
+install:
+- npm install
+- npm install -g roots
+before_script:
+- git config --global user.email "hi@molovo.co"
+- git config --global user.name "James Dinsdale"
+script:
+- roots compile
+after_success:
+- rm -rf .git
+- cd public
+- git init
+- git remote add origin https://molovo:${GH_TOKEN}@github.com/molovo/molovo.github.io.git
+- git add .
+- git commit -m 'Deploy compiled site'
+- git push --force origin master >/dev/null 2>&1
+env:
+  global:
+    secure: C9SuXL1N+8dFwrJ3KDSHqx4QJfXGMpoXioEyHm0SuIVHFgf482LU6FFRomcD+pAGN7TTO5o3mSmYQHZZPejPraVmmgjkYeDWCfdYOgihd2NO49bMZkCGjV0yiV9vPkrCgO8z/v/jlety7F1j4W9KHxal8FM+QBNuSyprTPPwkczeAHheWRVpEfuO9F8ITWO6/FPxhgyZYi+CHTKAsOcX2LKh7bTyqA/L0FfcZDJ5xk/tT04rKw7DptP2x6KKcCA7dymewZRgU1LChi9MXKkOZfD3l9i3mNAZXQheHhfqkuMJBu8c2H1MeIa4XmC8nnAUeskwTqD3CQ6SlNDCWdUM8DPU6wPK8ITjQgncic5/4UwWB765hhfqyGjfyFXRaL2Xjq+9Ua9ytb1yWEG5c+VwTGgxEjMQD/MJIaClSx+wcpnnHvAXs3xzFTIJPTHcJrsWeCKHU070PJvKlqbm8oUPQ8H+7a9kCQXszwtW5L+y2IihQidKzBIZVfknIKrPFj6FgrWT41oEOZTs4RV/eiumKexniQXfxQjt6OlFS4v26/s3mRAg15Ik8KjoBK/Pg7oxMxkQRtFsKyYNs9mA4Fd/bWrbhvRe5gIsS8jOVYAgkm+djoWI/T0SgoJU2iJxQhiVc0Zms+N/uQNEyzfzlZSVQNKJ64lzHc0mLPM+dzqIOdc=

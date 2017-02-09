@@ -1,0 +1,180 @@
+$baseline: 1.5em
+$font-primary: 'adelle-sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+$font-monospace: 'Fira Code', 'Fira Mono', 'Courier', monospace
+$font-script: 'flood-std'
+
+=script
+  font-family: $font-script
+  letter-spacing: -.1em
+  line-height: .75em
+  transform: scaleX(.75) rotate(-5deg)
+  transform-origin: 0 0
+
+html
+  font: 300 100%/#{$baseline} $font-primary
+
+body
+  color: $color-black
+  line-height: $baseline
+  height: 100%
+  position: relative
+
+  @media (max-width: 24em)
+    font-size: .875em
+
+  @media (min-width: 42em)
+    font-size: 1.125em
+
+  @media (min-width: 60em)
+    font-size: 1.3125em
+
+h1, h2, h3, h4, h5, h6
+  font:
+    family: $font-primary
+    weight: 600
+
+h1
+  font-size: 3em
+  line-height: #{(1 / 1.5) * $baseline}
+  margin-bottom: #{(.5 / 1.5) * $baseline}
+
+h2
+  font-size: 2.25em
+  line-height: #{(1.35 / 1.5) * $baseline}
+  margin-bottom: #{(.6666666666666667 / 1.5) * $baseline}
+
+h3
+  font-size: 1.5em
+  line-height: #{(1 / 1.5) * $baseline}
+  margin-bottom: #{(1 / 1.5) * $baseline}
+
+h4
+  font-size: 1.3125em
+  line-height: #{(1.142857142857143 / 1.5) * $baseline}
+  margin-bottom: #{(1.142857142857143 / 1.5) * $baseline}
+
+h5
+  font-size: 1.125em
+  line-height: #{(1.35 / 1.5) * $baseline}
+  margin-bottom: #{(1.333333333333333 / 1.5) * $baseline}
+
+h6
+  font-size: 1em
+  line-height: $baseline
+  margin-bottom: $baseline
+
+p
+  &.lead
+    font-size: 1.5em
+
+p, ul, ol, dl, blockquote
+  margin-bottom: $baseline
+
+ul
+  list-style: disc inside
+
+ol
+  list-style: decimal inside
+
+ul, ol
+  ul
+    list-style: circle inside
+    margin:
+      bottom: 0
+      left: $baseline
+
+  ol
+    list-style: lower-roman inside
+    margin:
+      bottom: 0
+      left: $baseline
+
+em
+  font-style: italic
+
+strong
+  font-weight: 700
+
+small
+  font-size: .75em
+  line-height: .5em
+
+hr
+  height: 0
+  margin: calc(#{$baseline * 2} - 1px) auto #{$baseline * 2}
+  border: solid $color-black
+    width: 0 0 1px
+
+a
+  color: $color-blue
+  text-decoration: none
+
+  &:hover
+    text-
+
+blockquote, figcaption
+  display: block
+
+  cite
+    display: block
+    font:
+      family: $font-primary
+      weight: 600
+      style: normal
+
+  p:last-of-type
+    margin: 0
+
+blockquote
+  font-style: italic
+  margin: 0 0 $baseline
+
+  @media (min-width: 42em)
+    margin: 0 0 $baseline #{($baseline * -1)}
+
+  @media (min-width: 64em)
+    margin: 0 0 $baseline #{($baseline * -2)}
+
+  p
+    font-size: 2.25em
+    line-height: #{(1.35 / 1.5) * $baseline}
+    margin-bottom: #{(.6666666666666667 / 1.5) * $baseline}
+
+figure
+  max-width: 100%
+
+  img
+    display: block
+    margin: 0 0 $baseline #{($baseline * -1)}
+    width: calc(100% + #{$baseline})
+
+    @media (min-width: 42em)
+      margin: 0 0 $baseline #{$baseline * -2}
+      width: calc(100% + #{($baseline * 2)})
+
+    @media (min-width: 64em)
+      margin: 0 0 $baseline #{$baseline * -4}
+      width: calc(100% + #{($baseline * 4)})
+
+  figcaption
+    font-style: italic
+    font-size: .75em
+
+pre
+  background: $color-black
+  color: $color-white
+  display: block
+  font-size: .75em
+  margin: 0 0 $baseline
+  padding: $baseline
+  width: 100%
+
+  @media (min-width: 42em)
+    margin: 0 0 $baseline #{$baseline * -1}
+    width: calc(100% + #{($baseline * 1)})
+
+code
+  font-family: $font-monospace
+
+  // Line height should be inherited, but for inline code blocks where it isn't, this maintains the baseline
+  line-height: 0

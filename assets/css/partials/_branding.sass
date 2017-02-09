@@ -1,0 +1,33 @@
+.logo
+  margin-bottom: $baseline
+  width: #{($baseline * 2)}
+
+  .page--home &
+    margin-bottom: #{(2 / 3) * $baseline}
+    width: #{(2 / 3) * ($baseline * 2)}
+
+  &--frame,
+  &--lens
+    transition: fill .5s
+
+  &--frame
+    fill: $color-red
+
+  &:hover
+    .logo--lens
+      fill: $color-black
+
+  &--lens
+    fill: transparent
+
+  .page--home &,
+  .footer &
+    &--frame
+      fill: white
+
+    &:hover
+      .logo--lens-left
+        fill: $color-blue
+
+      .logo--lens-right
+        fill: $color-red
