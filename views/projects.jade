@@ -21,9 +21,8 @@ block content
       a(href='#' data-target='JavaScript') JavaScript
 
     nav.projects--list
-      - var projects = ['zulu-zsh/zulu', 'molovo/zunit', 'molovo/crash', 'molovo/zlint', 'molovo/filthy', 'molovo/lumberjack', 'molovo/revolver', 'philliphq/phillip', 'molovo/graphite', 'molovo/interrogate', 'molovo/accidents', 'molovo/amnesia', 'molovo/traffic', 'pugphp/pug', 'molovo/roots-image-pipeline', 'molovo/crayon', 'molovo/validator']
-      - for (var i = 0; i < projects.length; i++)
-        a(href="https://github.com/"+projects[i] class="projects--list-item" data-repo=projects[i] target="_blank")
+      each project in projects
+        a(href="https://github.com/"+project class="projects--list-item" data-repo=project target="_blank")
           h4
             span(data-owner)
             span /
