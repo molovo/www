@@ -2,8 +2,9 @@ language: node_js
 node_js:
 - node
 
-apt:
-  packages:
+addons:
+  apt:
+    packages:
     - graphicsmagick
 
 branches:
