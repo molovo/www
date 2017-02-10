@@ -9,7 +9,10 @@ html
     meta(name='description', content='The home of developer James Dinsdale')
     meta(name='author', content= "James Dinsdale")
     meta(name="viewport" content="width=device-width, initial-scale=1")
-    title= typeof post !== 'undefined' ? post.title + ' | molovo' : (title || _path)
+    - var title = typeof post !== 'undefined' ? post.title + ' | molovo' : (title || _path)
+    title= title
+
+    script var pageTitle = '#{title}'
 
     != css('/')
 
