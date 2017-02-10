@@ -1,10 +1,24 @@
 module.exports = class Title
   constructor: () ->
-    console.log 'Create title object'
+    ###*
+     * The page title as it is when the page loads
+     *
+     * @type {String}
+    ###
     @original = window.pageTitle
+
+    ###*
+     * A replacement title to use when the page is hidden
+     *
+     * @type {String}
+    ###
     @replacement = 'I Miss You! ❤'
 
-    # A map of events to their respective titles
+    ###*
+     * A map of events to their respective titles
+     *
+     * @type {Object}
+    ###
     @evtMap =
       focus: @original
       focusin: @original
@@ -13,13 +27,16 @@ module.exports = class Title
       focusout: @replacement
       pagehide: @replacement
 
+    # Register the visibility change listeners
     @registerListeners()
 
+  ###*
+   * Update the page's title based on its visibility
+   *
+   * @param  {Event} evt The visibility change event
+  ###
   updatePageTitle: (evt) =>
-    console.log 'Update titles'
     evt = evt or window.event
-
-    console.log evt.type
 
     # If the event type exists in the map, set the right title
     if @evtMap[evt.type]?
@@ -31,8 +48,12 @@ module.exports = class Title
       else
         document.title = @original
 
+  ###*
+   * Register listeners for changes in page visibility.
+   * There are lots, but hopefully this means it will work
+   * in all browsers.
+  ###
   registerListeners: () =>
-    console.log 'Registering listeners'
     # This sets the appropriate listeners so that everything works cross browser
     hidden = 'hidden'
 
