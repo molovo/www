@@ -1,16 +1,111 @@
-axis         = require 'axis'
-rupture      = require 'rupture'
-autoprefixer = require 'autoprefixer-stylus'
-js_pipeline  = require 'js-pipeline'
-css_pipeline = require 'css-pipeline'
+RootsUtil       = require 'roots-util'
+js_pipeline     = require 'js-pipeline'
+css_pipeline    = require 'css-pipeline'
+dynamic_content = require 'dynamic-content'
+browserify      = require 'roots-browserify'
+image_pipeline  = require 'roots-image-pipeline'
+statica         = require 'statica'
+autoprefixer    = require 'autoprefixer'
+dateFormat      = require 'date_format'
+jade            = require 'jade'
+fs              = require 'fs'
+marked          = require 'marked'
+moment          = require 'moment'
+highlight       = require 'highlight.js'
+
+marked.setOptions
+  gfm: true
+  tables: true
+  breaks: true
+  pedantic: false
+  sanitize: true
+  smartLists: true
+  smartypants: true
+  highlight: (code) ->
+    highlight.highlightAuto(code).value
+
+dateFormat.extendPrototype()
 
 module.exports =
-  ignores: ['readme.md', '**/layout.*', '**/_*', '.gitignore', 'ship.*conf']
-
-  extensions: [
-    js_pipeline(files: 'assets/js/*.coffee', out: 'js/build.js', minify: true, hash: true),
-    css_pipeline(files: 'assets/css/*.styl', out: 'css/build.css', minify: true, hash: true)
+  ignores: [
+    'readme.md'
+    '**/layout.*'
+    '**/_*/*'
+    '**/_*/**/*'
+    '**/_*'
+    '.gitignore'
+    '**/drafts/**/*'
+    'ship.*conf'
+    '.travis.yml'
+    'yarn.lock'
   ]
 
-  stylus:
-    use: [axis(), rupture(), autoprefixer()]
+  browser:
+    open: false
+
+  before: (roots) ->
+    helpers = new RootsUtil.Helpers
+    helpers.project.remove_folders(roots.config.output)
+
+  extensions: [
+    image_pipeline(
+      files: 'assets/img/**'
+      compress: true
+      resize: true
+      output_webp: true
+    )
+    js_pipeline(files: 'assets/js/**/*.{js,coffee}')
+    css_pipeline(files: 'assets/css/main.sass', postcss: true)
+    dynamic_content()
+    statica()
+    browserify(
+      files: 'assets/js/main.coffee'
+      out: 'js/main.js'
+      minify: false
+      sourceMap: true
+    )
+  ]
+
+  scss:
+    sourcemap: true
+    minify: true
+    indentedSyntax: true
+
+  postcss:
+    use: [autoprefixer(browsers: ['last 3 versions'])]
+
+  'coffee-script':
+    sourcemap: true
+
+  locals:
+    render: fs.readFileSync
+    md: marked
+    projects: [
+      'zulu-zsh/zulu'
+      'molovo/zunit'
+      'molovo/crash'
+      'molovo/zlint'
+      'molovo/filthy'
+      'molovo/lumberjack'
+      'molovo/revolver'
+      'philliphq/phillip'
+      'molovo/graphite'
+      'molovo/interrogate'
+      'molovo/accidents'
+      'molovo/amnesia'
+      'molovo/traffic'
+      'pugphp/pug'
+      'molovo/roots-image-pipeline'
+      'molovo/crayon'
+      'molovo/validator'
+      'molovo/tipz'
+    ]
+    date: (date) ->
+      moment(date, 'YYYY-MM-DD hh:mm:ss').format('dddd Do MMMM YYYY')
+    sort: (posts) ->
+      posts.sort (a, b) ->
+        moment(b.date, 'YYYY-MM-DD hh:mm:ss').unix() - moment(a.date, 'YYYY-MM-DD hh:mm:ss').unix()
+
+  jade:
+    pretty: true
+    basedir: "#{__dirname}/views"

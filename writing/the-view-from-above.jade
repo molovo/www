@@ -7,7 +7,7 @@ extends /layouts/_article
 
 block article
   figure
-    != image('articles/the-view-from-above/forth-vean.png')
+    != image('articles/the-view-from-above/forth-vean.png', {sizes: [{media: '(min-width: 40em)', width: 1024}, {width: 700}, {media: 'fallback', width: 1024}]})
 
   :marked
     This is a satellite image of the house where I grew up.

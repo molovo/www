@@ -36,20 +36,22 @@ module.exports =
     '.gitignore'
     '**/drafts/**/*'
     'ship.*conf'
+    '.travis.yml'
+    'yarn.lock'
   ]
 
   browser:
     open: false
 
-  # before: (roots) ->
-  #   helpers = new RootsUtil.Helpers
-  #   helpers.project.remove_folders(roots.config.output)
+  before: (roots) ->
+    helpers = new RootsUtil.Helpers
+    helpers.project.remove_folders(roots.config.output)
 
   extensions: [
     image_pipeline(
       files: 'assets/img/**'
-      compress: true
-      resize: true
+      compress: false
+      resize: false
       output_webp: false
     )
     js_pipeline(files: 'assets/js/**/*.{js,coffee}')
@@ -78,6 +80,26 @@ module.exports =
   locals:
     render: fs.readFileSync
     md: marked
+    projects: [
+      'zulu-zsh/zulu'
+      'molovo/zunit'
+      'molovo/crash'
+      'molovo/zlint'
+      'molovo/filthy'
+      'molovo/lumberjack'
+      'molovo/revolver'
+      'philliphq/phillip'
+      'molovo/graphite'
+      'molovo/interrogate'
+      'molovo/accidents'
+      'molovo/amnesia'
+      'molovo/traffic'
+      'pugphp/pug'
+      'molovo/roots-image-pipeline'
+      'molovo/crayon'
+      'molovo/validator'
+      'molovo/tipz'
+    ]
     date: (date) ->
       moment(date, 'YYYY-MM-DD hh:mm:ss').format('dddd Do MMMM YYYY')
     sort: (posts) ->
