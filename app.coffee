@@ -42,6 +42,8 @@ module.exports =
     'coffeelint.json'
     'Gemfile'
     'Gemfile.lock'
+    'vendor'
+    '.bundle'
   ]
 
   browser:

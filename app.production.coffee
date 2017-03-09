@@ -40,6 +40,10 @@ module.exports =
     'yarn.lock'
     '.sass-lint.yml'
     'coffeelint.json'
+    'Gemfile'
+    'Gemfile.lock'
+    'vendor'
+    '.bundle'
   ]
 
   browser:
