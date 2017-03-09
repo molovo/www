@@ -14,10 +14,7 @@ cache:
 before_install:
 - rvm install ruby-2.3.1
 - rvm use 2.3.1
-
-install:
 - bundle install
-- yarn
 
 before_script:
 - export PATH="$(yarn bin):$PATH"
