@@ -11,9 +11,10 @@ cache:
   yarn: true
 
 before_install:
-- gem install html-proofer
+- rvm use 2.3.1
 
 install:
+- gem install html-proofer
 - yarn
 
 before_script:
