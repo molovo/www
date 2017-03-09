@@ -1,8 +1,8 @@
-Github = require './_github'
-OpenSource = require './_open-source'
-Title = require './_title'
+Github   = require './_github'
+Projects = require './_projects'
+Title    = require './_title'
 
-window.addEventListener 'DOMContentLoaded', () =>
+window.addEventListener 'DOMContentLoaded', () ->
   new Github
-  new OpenSource
+  new Projects
   new Title
