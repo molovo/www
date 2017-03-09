@@ -9,14 +9,18 @@ addons:
 
 install:
 - npm install
-- npm install -g roots
+- npm install -g roots jsonlint sass-lint coffeelint
+- gem install html-proofer
 
 before_script:
 - git config --global user.email "hi@molovo.co"
 - git config --global user.name "James Dinsdale"
 
 script:
+- coffeelint assets/js/**/*.coffee
+- sass-lint --verbose --no-exit
 - roots compile --env production
+- htmlproofer ./public --check-favicon --check-html --check-external-hash --check-html --check-img-http --check-opengraph
 
 deploy:
   provider: pages
