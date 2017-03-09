@@ -20,7 +20,7 @@ before_script:
 - export PATH="$(yarn bin):$PATH"
 
 script:
-- coffeelint assets/js/**/*.coffee
+- coffeelint assets/js/
 - sass-lint --verbose --no-exit
 - roots compile --env production
 - bundle exec htmlproofer ./public --check-favicon --check-html --check-external-hash --check-html --check-img-http --check-opengraph
