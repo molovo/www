@@ -7,10 +7,15 @@ addons:
     packages:
     - graphicsmagick
 
-install:
-- npm install
-- npm install -g roots jsonlint sass-lint coffeelint
+cache:
+  yarn: true
+
+before_install:
+- yarn global add roots jsonlint sass-lint coffeelint
 - gem install html-proofer
+
+install:
+- yarn
 
 before_script:
 - git config --global user.email "hi@molovo.co"
