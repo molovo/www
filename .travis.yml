@@ -8,13 +8,15 @@ addons:
     - graphicsmagick
 
 cache:
-  yarn: true
+- bundler
+- yarn
 
 before_install:
+- rvm install ruby-2.3.1
 - rvm use 2.3.1
 
 install:
-- gem install html-proofer
+- bundle install
 - yarn
 
 before_script:
@@ -24,7 +26,7 @@ script:
 - coffeelint assets/js/**/*.coffee
 - sass-lint --verbose --no-exit
 - roots compile --env production
-- htmlproofer ./public --check-favicon --check-html --check-external-hash --check-html --check-img-http --check-opengraph
+- bundle exec htmlproofer ./public --check-favicon --check-html --check-external-hash --check-html --check-img-http --check-opengraph
 
 deploy:
   provider: pages
