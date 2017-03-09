@@ -8,8 +8,12 @@ addons:
     - graphicsmagick
 
 cache:
-- bundler
-- yarn
+  bundler: true
+  yarn: true
+  directories:
+  - node_modules
+  - vendor/bundle
+  - $HOME/.rvm/user/installs
 
 before_install:
 - rvm install ruby-2.3.1
