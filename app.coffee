@@ -38,6 +38,8 @@ module.exports =
     'ship.*conf'
     '.travis.yml'
     'yarn.lock'
+    '.sass-lint.yml'
+    'coffeelint.json'
   ]
 
   browser:
@@ -72,7 +74,7 @@ module.exports =
     indentedSyntax: true
 
   postcss:
-    use: [autoprefixer(browsers: ['last 3 versions'])]
+    use: [autoprefixer(browsers: ['last 3 version'])]
 
   'coffee-script':
     sourcemap: true
@@ -105,7 +107,10 @@ module.exports =
       moment(date, 'YYYY-MM-DD hh:mm:ss').format('dddd Do MMMM YYYY')
     sort: (posts) ->
       posts.sort (a, b) ->
-        moment(b.date, 'YYYY-MM-DD hh:mm:ss').unix() - moment(a.date, 'YYYY-MM-DD hh:mm:ss').unix()
+        aDate = moment(a.date, 'YYYY-MM-DD hh:mm:ss').unix()
+        bDate = moment(b.date, 'YYYY-MM-DD hh:mm:ss').unix()
+
+        bDate - aDate
 
   jade:
     pretty: true
