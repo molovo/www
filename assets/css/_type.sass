@@ -11,12 +11,12 @@ $font-script: 'flood-std'
   transform-origin: 0 0
 
 html
-  font: 300 100%/#{$baseline} $font-primary
+  font: 300 100% / #{$baseline} $font-primary
 
 body
   color: $color-black
-  line-height: $baseline
   height: 100%
+  line-height: $baseline
   position: relative
 
   @media (max-width: 24em)
@@ -100,17 +100,17 @@ small
   line-height: .5em
 
 hr
+  border: solid $color-black
+  border-width: 0 0 1px
   height: 0
   margin: calc(#{$baseline * 2} - 1px) auto #{$baseline * 2}
-  border: solid $color-black
-    width: 0 0 1px
 
 a
   color: $color-blue
   text-decoration: none
 
   &:hover
-    text-
+    text-decoration: underline
 
 blockquote, figcaption
   display: block
@@ -119,11 +119,12 @@ blockquote, figcaption
     display: block
     font:
       family: $font-primary
-      weight: 600
       style: normal
+      weight: 600
 
-  p:last-of-type
-    margin: 0
+  p
+    &:last-of-type
+      margin: 0
 
 blockquote
   font-style: italic
@@ -157,8 +158,8 @@ figure
       width: calc(100% + #{($baseline * 4)})
 
   figcaption
-    font-style: italic
     font-size: .75em
+    font-style: italic
 
 pre
   background: $color-black
