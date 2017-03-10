@@ -175,7 +175,11 @@ pre
     width: calc(100% + #{($baseline * 1)})
 
 code
-  font-family: $font-monospace
+  background: rgba($color-black, .1)
+  font:
+    family: $font-monospace
+    size: .75em
+  padding: .25em
 
   // Line height should be inherited, but for inline code blocks where it isn't, this maintains the baseline
   line-height: 0
