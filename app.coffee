@@ -88,9 +88,11 @@ module.exports =
     md: marked
     projects: [
       'zulu-zsh/zulu'
+      'zulu-zsh/www'
       'molovo/zunit'
       'molovo/zvm'
       'molovo/crash'
+      'icefox/git-hooks'
       'molovo/revolver'
       'molovo/filthy'
       'molovo/lumberjack'

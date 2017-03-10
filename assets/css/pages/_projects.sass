@@ -25,6 +25,23 @@
     margin: 0 0 $baseline
     padding: .75em
 
+    svg
+      path
+        fill: $color-red
+
+    &:hover
+      background: $color-red
+      border-color: $color-red
+      color: $color-white
+      text-decoration: none
+
+      svg
+        path
+          fill: $color-white
+
+      .projects--list-item-meta-icon
+        color: $color-white
+
     @media (min-width: 48em)
       flex: 0 0 calc(50% - #{(1 / 2) * $baseline})
 
@@ -45,5 +62,6 @@
 
       &-icon
         align-items: center
+        color: $color-red
         display: flex
         margin-right: #{($baseline / 4)}
