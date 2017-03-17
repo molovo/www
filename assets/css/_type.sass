@@ -1,6 +1,8 @@
 $baseline: 1.5em
-$font-primary: 'adelle-sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
-$font-monospace: 'Fira Code', 'Fira Mono', 'Courier', monospace
+$font-primary: 'skolar-sans-latin', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+$font-head: $font-primary
+$font-copy: 'skolar-latin', 'Georgia', serif
+$font-monospace: 'Operator Mono Book', 'Operator Mono', 'Fira Code', 'Fira Mono', 'Courier', monospace
 $font-script: 'flood-std'
 
 =script
@@ -30,8 +32,9 @@ body
 
 h1, h2, h3, h4, h5, h6
   font:
-    family: $font-primary
+    family: $font-head
     weight: 600
+  letter-spacing: -.025em
 
 h1
   font-size: 3em
