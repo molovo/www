@@ -22,7 +22,8 @@
     "roots-browserify": "^0.5.0",
     "roots-image-pipeline": "^0.3.0",
     "sass-lint": "^1.10.2",
-    "statica": "0.0.1"
+    "statica": "0.0.1",
+    "turbolinks": "^5.0.0"
   },
   "version": "0.3.0",
   "scripts": {
