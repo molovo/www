@@ -10,8 +10,20 @@ block content
       include /icons/_logo.svg
 
   section.posts
-    ul.posts--list
+    .posts--list
       - for article in sort(site.writing)
-        li.posts--list-item
-          a(href=article._url)
-            h2= article.title
+        article.posts--list-item
+          header
+            //- a(href=article._url)
+            h1= article.title
+            date= date(article.date)
+
+          != article.content
+
+          footer.posts--list-share
+            a(href='http://twitter.com/share?text=I just read this article on molovo.co and you should too :: &url=https://molovo.co#{article._url}' title='Share on Twitter' target='_blank')
+              include /icons/_twitter.svg
+              | Share on Twitter
+
+        hr.posts--list-break
+

@@ -11,6 +11,10 @@ $font-script: 'flood-std'
   transform: scaleX(.75) rotate(-5deg)
   transform-origin: 0 0
 
+.screenreader-text
+  position: absolute
+  top: -1000em
+
 html
   font: 300 100% / #{$baseline} $font-primary
 
@@ -99,11 +103,18 @@ small
   font-size: .75em
   line-height: .5em
 
-hr
+hr:not(.posts--list-break)
   border: solid $color-black
   border-width: 0 0 1px
   height: 0
   margin: calc(#{$baseline * 2} - 1px) auto #{$baseline * 2}
+
+hr.posts--list-break
+  border: 0
+  background: url('/img/icons/logo.svg') center / contain no-repeat
+  display: block
+  height: 1em
+  margin: #{$baseline * 4} 0
 
 a
   color: $color-blue
@@ -196,3 +207,9 @@ code
 
   // Line height should be inherited, but for inline code blocks where it isn't, this maintains the baseline
   line-height: 0
+
+date
+  display: block
+  color: $color-red
+  font-weight: 700
+  margin: 0 0 $baseline

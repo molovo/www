@@ -16,9 +16,9 @@ highlight       = require 'highlight.js'
 marked.setOptions
   gfm: true
   tables: true
-  breaks: true
+  breaks: false
   pedantic: false
-  sanitize: true
+  sanitize: false
   smartLists: true
   smartypants: true
   highlight: (code) ->

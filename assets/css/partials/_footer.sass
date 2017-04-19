@@ -6,22 +6,28 @@
   position: relative
 
   &--nav
-    align-items: center
-    display: flex
-    justify-content: flex-start
     margin: 0 0 $baseline
     position: relative
     z-index: 2
 
+    ul
+      align-items: center
+      display: flex
+      justify-content: flex-start
+      list-style: none
+      width: 100%
+
     @media (max-width: 42em)
       flex-wrap: wrap
 
-    a
-      color: $color-white
+    li
       margin-right: $baseline
 
       &:first-of-type
         line-height: 1em
+
+    a
+      color: $color-white
 
     &-link-twitter
       @media (max-width: 42em)
