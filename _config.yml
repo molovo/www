@@ -46,7 +46,7 @@ collections:
     output: true
     permalink: /writing/:name/
   studies:
-    output: false
+    output: true
     permalink: /studies/:name/
 defaults:
 - scope:
