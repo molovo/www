@@ -117,6 +117,7 @@ blockquote
   font:
     style: italic
     weight: 300
+  font-feature-settings: 'kern', 'liga', 'clig', 'dlig', 'calt', 'onum'
   margin: 0 0 $baseline
 
   &.pull
@@ -139,10 +140,32 @@ blockquote
       margin: 0 #{($baseline * -5)} $baseline #{$baseline * 1}
       max-width: #{8 * $baseline}
 
+  &.full-width
+    +font-secondary
+    font-style: normal
+    font-weight: 300
+    text-align: center
+
+    @media (min-width: 42em)
+      margin: 0 #{$baseline * -3} $baseline
+
+    p
+      font-size: 2.25em
+      line-height: #{(1.35 / 1.5) * $baseline}
+
+      @media (min-width: 42em)
+        font-size: 3em
+        line-height: #{(1 / 1.5) * $baseline}
+
   p
     color: $color-blue
-    font-feature-settings: 'kern', 'liga', 'clig', 'dlig', 'calt', 'onum'
+    quotes: '“' '”' '‘' '’'
 
+    &::before
+      content: open-quote
+
+    &::after
+      content: close-quote
 
     &:last-of-type
       margin: 0

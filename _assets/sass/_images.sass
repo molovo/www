@@ -2,7 +2,7 @@
   align-items: flex-start
   display: flex
   flex-wrap: wrap
-  margin: 0 0 $baseline
+  margin: #{$baseline * 2} 0
   position: relative
 
   .post__content &
@@ -60,7 +60,7 @@
         content: ''
         display: inline-block
         height: 9em
-        left: between(39em, 43.5em, 42em, 80em)
+        left: between(40em, 44.5em, 42em, 80em)
         right: 0
         pointer-events: none
         position: absolute
@@ -195,6 +195,7 @@
     strong
       +font-primary
       font-style: normal
+      font-feature-settings: "tnum"
 
 picture
   overflow: hidden

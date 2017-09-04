@@ -19,6 +19,17 @@ $vixen-fitness-white: #fff
       .study__icon path
         fill: $vixen-fitness-pink
 
+    .image--slideshow
+      > .swiper-container
+        .swiper-button-next,
+        .swiper-button-prev
+          g
+            stroke: $vixen-fitness-pink
+
+    .study__feature-list
+      li::before
+        color: $vixen-fitness-pink
+
     &.study__section--intro
       background: $vixen-fitness-plum
 
@@ -73,6 +84,10 @@ $vixen-fitness-white: #fff
           &::after
             background: linear-gradient(to top, rgba($vixen-fitness-plum, 0), $vixen-fitness-plum 66.66%, $vixen-fitness-plum)
 
+      blockquote
+        p
+          color: $vixen-fitness-yellow
+
       .post__social
         &__link
           svg
@@ -81,6 +96,30 @@ $vixen-fitness-white: #fff
 
         &__likes
           color: $color-white
+
+.study__type-sample
+  &--montserrat
+    span
+      color: $vixen-fitness-yellow
+      font-family: 'Montserrat'
+      font-size: 5vw
+      font-weight: 700
+      line-height: 1em
+      text-transform: uppercase
+
+    .study__type-sample__font-name
+      color: $vixen-fitness-pink
+
+.study__type-sample
+  &--have-heart-one
+    span
+      color: $vixen-fitness-pink
+      font-family: 'Have Heart One'
+      font-size: 10vw
+      line-height: 1em
+
+    .study__type-sample__font-name
+      color: $vixen-fitness-yellow
 
 .studies__item--vixen-fitness
   .studies__image

@@ -116,3 +116,60 @@
 
     @media (min-width: 80em)
       padding: 0 6em 6em
+
+  &__type-sample
+    background: $color-white
+    left: 50vw
+    margin: #{$baseline * 2} 0 #{$baseline * 2} -1.5em
+    text-align: center
+    transform: translateX(-50%)
+    position: relative
+    width: 125vw
+    z-index: 1001
+
+    @media (min-width: 42em)
+      margin-left: between(-1.5em, -6em, 42em, 80em)
+
+    @media (min-width: 80em)
+      margin-left: -6em
+
+    @media (min-width: 42em)
+      &::after,
+      &::before
+        content: ''
+        display: inline-block
+        height: 9em
+        left: between(40em, 44.5em, 42em, 80em)
+        margin-left: 12.5vw
+        right: 0
+        pointer-events: none
+        position: absolute
+
+      &::before
+        background: linear-gradient(to bottom, rgba($color-white, 0), $color-white 66.66%, $color-white)
+        bottom: 100%
+
+      &::after
+        background: linear-gradient(to top, rgba($color-white, 0), $color-white 66.66%, $color-white)
+        top: 100%
+
+  &__feature-list
+    list-style: none
+
+    li
+      margin: 0 #{$baseline * 3}
+      padding: $baseline 0 $baseline #{$baseline * 3}
+      position: relative
+
+      @for $var from 1 through 10
+        &:nth-of-type(#{$var})
+          &::before
+            content: '#{$var}. '
+            display: inline-block
+            float: left
+            font-size: 3em
+            left: 0
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            +font-script

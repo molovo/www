@@ -3,29 +3,5 @@ layout: base
 ---
 
 <article class="study study--{{ page.slug }}">
-  <section class="study__section study__section--{{ page.slug }} study__section--intro">
-    {% include study/intro.html title=page.title slug=page.slug client=page.client %}
-
-    <div class="study__content">
-      <div class="post__content">
-        {{ page.content | improve }}
-      </div>
-
-      {% include social.html post=page %}
-    </div>
-  </section>
-
-  {% for section in page.sections %}
-    <section class="study__section study__section--{{ page.slug }} study__section--{{ section.type }}">
-        {% include study/intro.html title=section.title slug=page.slug client=page.client %}
-    
-        <div class="study__content">
-          <div class="post__content">
-            {{ section.content | markdownify | improve }}
-          </div>
-
-          {% include social.html post=page %}
-        </div>
-    </section>
-  {% endfor %}
+  {{ content }}
 </article>
