@@ -75,8 +75,8 @@
   pointer-events: none
   right: 0
   top: 0
-  transition: opacity .25s
-  z-index: 999
+  transition: opacity .5s
+  z-index: 9999
 
   @media (min-width: 42em)
     padding: 6em between(1.5em, 6em, 42em, 80em)
@@ -98,7 +98,11 @@
   &__item
     flex: 0 0 100%
     margin: 0 0 #{$baseline / 2}
+    opacity: 0
     order: 1
+    position: relative
+    transition: opacity .375s .5s, transform .375s .5s
+    transform: translateY(50%)
 
     @media (min-width: 42em)
       flex: 0 0 50%
@@ -107,6 +111,14 @@
       flex: 0 0 100%
       margin: 0 0 #{$baseline * 4}
       order: 0
+
+    .nav--open &
+      opacity: 1
+      transform: translateY(0)
+
+      @for $i from 1 through 6
+        &:nth-child(#{$i})
+          transition: opacity .375s #{$i * .075s}, transform .375s #{$i * .075s}
 
     @media (min-width: 42em)
       &--case-studies,

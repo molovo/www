@@ -112,8 +112,6 @@
       margin-left: 6em
 
     .swiper-slide
-      box-shadow: 0px 3px 8px rgba(0,0,0,.1)
-
       // For some reason images within the slideshow have
       // a wierd margin around them. Removing the line-height
       // fixes it though
@@ -123,6 +121,7 @@
       > picture,
       > picture > source,
       > svg
+        box-shadow: 0px 3px 8px rgba(0,0,0,.1)
         width: 100%
 
     .swiper-button-next,
@@ -156,7 +155,7 @@
       right: -10.5em
 
   &__caption
-    +font-secondary
+    +font-primary
     flex: 0 0 100%
     font-style: italic
     margin-top: $baseline
@@ -196,6 +195,13 @@
       +font-primary
       font-style: normal
       font-feature-settings: "tnum"
+
+  &__pair
+    align-items: stretch
+    display: flex
+
+    img, picture
+      max-width: 50%
 
 picture
   overflow: hidden

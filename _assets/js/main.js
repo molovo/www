@@ -9,7 +9,6 @@ import Likes from './likes'
 import Images from './images'
 import Github from './github'
 import Turbolinks from 'turbolinks'
-polyfill()
 
 document.addEventListener('turbolinks:load', () => {
   new Github()
@@ -21,4 +20,5 @@ document.addEventListener('turbolinks:load', () => {
   new Images()
 })
 
+polyfill()
 Turbolinks.start()

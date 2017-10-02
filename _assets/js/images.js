@@ -1,6 +1,5 @@
 import Swiper from 'swiper'
 import { bind } from 'decko'
-import zoom from 'medium-zoom'
 
 /**
  * This class deals with lazy loading of images
@@ -41,7 +40,6 @@ export default class Images {
     // Setup swiper instances
     this.setupSwipers()
     this.lazyLoadImages()
-    zoom(this.zoomImages)
   }
 
   /**
@@ -100,8 +98,8 @@ export default class Images {
     const base = parseInt(window.getComputedStyle(document.body).fontSize.replace('px', '')) * 1.5
 
     const swiper = new Swiper('.swiper-container', {
-      loop: false,
       grabCursor: true,
+      loop: false,
       nextButton: '.swiper-button-next',
       prevButton: '.swiper-button-prev',
       spaceBetween: base * 2,

@@ -117,6 +117,9 @@
     @media (min-width: 80em)
       padding: 0 6em 6em
 
+    .post__content
+      flex: initial
+
   &__type-sample
     background: $color-white
     left: 50vw
@@ -157,19 +160,28 @@
     list-style: none
 
     li
-      margin: 0 #{$baseline * 3}
-      padding: $baseline 0 $baseline #{$baseline * 3}
+      padding: $baseline 0 $baseline #{$baseline * 2}
       position: relative
+
+      @media (min-width: 42em)
+        margin: 0 #{$baseline * 3}
+        padding: $baseline 0 $baseline #{$baseline * 3}
+
+      &::before
+        display: inline-block
+        float: left
+        left: .25em
+        font-size: 3em
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        +font-script
+
+        @media (min-width: 42em)
+          font-size: 4.5em
+          left: 0
 
       @for $var from 1 through 10
         &:nth-of-type(#{$var})
           &::before
             content: '#{$var}. '
-            display: inline-block
-            float: left
-            font-size: 4.5em
-            left: 0
-            position: absolute
-            top: 50%
-            transform: translateY(-50%)
-            +font-script

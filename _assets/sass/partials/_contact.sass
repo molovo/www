@@ -1,10 +1,18 @@
 .contact
   background: $color-black
   color: $color-white
-  margin: 0 -6em
-  padding: 6em 6em 0
+  margin: 0 -1.5em
+  padding: 6em 1.5em 0
   position: relative
   z-index: 1
+
+  @media (min-width: 42em)
+    margin: 0 between(-1.5em, -6em, 42em, 80em)
+    padding: 6em between(1.5em, 6em, 42em, 80em) 0
+
+  @media (min-width: 80em)
+    margin: 0 -6em
+    padding: 6em 6em 0
 
   &__email
     +font-secondary
