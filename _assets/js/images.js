@@ -1,5 +1,6 @@
 import Swiper from 'swiper'
 import { bind } from 'decko'
+import zoom from 'medium-zoom'
 
 /**
  * This class deals with lazy loading of images
@@ -13,6 +14,13 @@ export default class Images {
    * @type {NodeList}
    */
   images = document.querySelectorAll('img[data-src], picture source[data-srcset]')
+
+  /**
+   * The images to have zoom functionality
+   *
+   * @type {NodeList}
+   */
+  zoomImages = document.querySelectorAll('img[data-action="zoom"], picture source[data-action="zoom"]')
 
   /**
    * The IntersectionObserver config
@@ -33,6 +41,7 @@ export default class Images {
     // Setup swiper instances
     this.setupSwipers()
     this.lazyLoadImages()
+    zoom(this.zoomImages)
   }
 
   /**
