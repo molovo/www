@@ -15,13 +15,6 @@ export default class Images {
   images = document.querySelectorAll('img[data-src], picture source[data-srcset]')
 
   /**
-   * The images to have zoom functionality
-   *
-   * @type {NodeList}
-   */
-  zoomImages = document.querySelectorAll('img[data-action="zoom"], picture source[data-action="zoom"]')
-
-  /**
    * The IntersectionObserver config
    *
    * @type {object}

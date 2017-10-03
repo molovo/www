@@ -17,18 +17,15 @@
     <source type="image/webp"
             srcset="{{ smallest.dirname }}/{{ smallest.filename }}.webp"
             data-srcset="{{ srcset-webp | strip_newlines }}"
-            data-action="zoom"
             alt="{{ alt }}"
             sizes="{{ sizes }}"
             onerror="this.parentNode.removeChild(this);" />
     <source srcset="/{{ smallest.path }}"
             data-srcset="{{ srcset | strip_newlines }}"
-            data-action="zoom"
             alt="{{ alt }}"
             sizes="{{ sizes }}" />
     <img src="/{{ smallest.path }}"
          data-src="/{{ largest.path }}"
-         data-action="zoom"
          alt="{{ alt }}" />
 </picture>
 
