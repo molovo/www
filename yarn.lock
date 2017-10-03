@@ -3530,6 +3530,14 @@ gulp-autoprefixer@^3.1.1:
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
 
+gulp-changed@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/gulp-changed/-/gulp-changed-3.1.0.tgz#87cd1593a0bb4a5129dc2f229bece6d9488c272a"
+  dependencies:
+    gulp-util "^3.0.0"
+    pify "^2.3.0"
+    through2 "^2.0.0"
+
 gulp-coffeelint@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/gulp-coffeelint/-/gulp-coffeelint-0.6.0.tgz#b4706849c5e3b057658bf638ccfa5dee7351023b"

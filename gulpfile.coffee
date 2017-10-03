@@ -6,6 +6,7 @@ gutil        = require 'gulp-util'
 rename       = require 'gulp-rename'
 livereload   = require 'gulp-livereload'
 spawn        = require('child_process').spawn
+changed      = require 'gulp-changed'
 
 # Dependencies for compiling coffeescript
 uglify       = require 'gulp-uglify'
@@ -74,7 +75,7 @@ gulp.task 'lint:js', () ->
 ###*
  * Compilation tasks
 ###
-gulp.task 'compile', ['compile:html', 'compile:sass', 'compile:js']
+gulp.task 'compile', ['compile:html', 'compile:sass', 'compile:js', 'compile:images']
 
 gulp.task 'compile:sass', () ->
   gulp.src entries.sass
@@ -128,23 +129,23 @@ gulp.task 'compile:critical', () ->
     .pipe gulp.dest('_site')
 
 gulp.task 'compile:images', () ->
-  if gutil.env.env is 'production'
-    gulp.src sources.images
-      .pipe imagemin([
-        imagemin.gifsicle interlaced: true
-        mozJpeg(
-          progressive: true
-          quality: 72
-        )
-        imagemin.optipng optimizationLevel: 5
-        imagemin.svgo plugins: [removeViewBox: true]
-      ])
-      .pipe webp(method: 6)
-      .pipe gulp.dest('_site/img/')
-  else
-    gulp.src sources.images
-      .pipe gulp.dest('_site/img/')
-      .pipe livereload()
+  gulp.src sources.images
+    .pipe changed('_site/img/')
+    .pipe imagemin([
+      imagemin.gifsicle(
+        interlaced: true
+        optimizationLevel: 3
+      )
+      mozJpeg(
+        progressive: true
+        quality: 72
+      )
+      imagemin.optipng optimizationLevel: 5
+      imagemin.svgo plugins: [removeViewBox: true]
+    ])
+    .pipe webp(method: 6)
+    .pipe gulp.dest('_site/img/')
+    .pipe livereload()
 
 gulp.task 'compile:html', () ->
   args = [
