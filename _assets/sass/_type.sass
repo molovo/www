@@ -1,4 +1,6 @@
 $baseline: 1.5em
+$fontWeightNormal: 300
+$fontWeightBold: 700
 
 @function between($from, $to, $fromWidth, $toWidth)
   $slope: ($from - $to) / ($fromWidth - $toWidth)
@@ -11,7 +13,7 @@ $baseline: 1.5em
   top: -99999em
 
 html
-  font: 300 100% / #{$baseline} $fontStackPrimary
+  font: $fontWeightNormal 100% / #{$baseline} $fontStackPrimary
   font-feature-settings: 'kern', 'liga', 'onum'
 
 body
@@ -29,13 +31,13 @@ body
     font-size: 1.3125em
 
 h1, h2, h3, h4, h5, h6
-  font-weight: 600
+  font-weight: $fontWeightBold
   letter-spacing: -.0125em
 
 h1, h2
   +fontSecondary
   font-size: 2.25em
-  font-weight: 700
+  font-weight: $fontWeightBold
   letter-spacing: -.025em
   line-height: #{(1.35 / 1.5) * $baseline}
   margin-bottom: #{(.6666666666666667 / 1.5) * $baseline}
@@ -97,7 +99,7 @@ em
   font-style: italic
 
 strong
-  font-weight: 600
+  font-weight: $fontWeightBold
 
 small
   font-size: .75em
@@ -111,7 +113,7 @@ hr
 
 a
   color: inherit
-  font-weight: 600
+  font-weight: $fontWeightBold
   text-decoration: underline
   text-decoration-skip: ink
   transition: color .5s, text-decoration-color .5s
@@ -126,7 +128,7 @@ blockquote
   display: inline-block
   font:
     style: italic
-    weight: 300
+    weight: $fontWeightNormal
   font-feature-settings: 'kern', 'liga', 'clig', 'dlig', 'calt', 'onum'
   margin: $baseline 0
 
@@ -164,7 +166,7 @@ blockquote
     font:
       size: .75em
       style: normal
-      weight: 300
+      weight: $fontWeightNormal
 
     &::before
       content: '\2014'
