@@ -44,23 +44,24 @@ $hfTransparentOrange2: rgba($hfOrange3, .3)
         +studyIcons
           fill: $white
 
-      .image--full-width
-        @media (min-width: 42em)
-          &::before
-            background: linear-gradient(to bottom, $hfTransparentOrange, $hfOrange3 66.66%, $hfOrange3)
+      .image--full-width,
+      .image--slideshow
+        background-image: linear-gradient(to bottom, transparentize($hfOrange3, 1), $hfOrange3 15%, $hfOrange3), linear-gradient(to top, transparentize($hfOrange3, 1), $hfOrange3 15%, $hfOrange3)
 
-          &::after
-            background: linear-gradient(to top, $hfTransparentOrange, $hfOrange3 66.66%, $hfOrange3)
+        .slideshow__button
+          g
+            stroke: $hfYellow
+
+        .slideshow__slide
+          box-shadow: none
+          flex: 0 0 75%
+          margin-right: #{$baseline * 3}
+
+          @media (min-width: 42em)
+            flex-basis: 15em
 
       .image__caption
-        @media (min-width: 64em)
-          background: $hfOrange3
-
-          &::before
-            background: linear-gradient(to bottom, $hfTransparentOrange, $hfOrange3 66.66%, $hfOrange3)
-
-          &::after
-            background: linear-gradient(to top, $hfTransparentOrange, $hfOrange3 66.66%, $hfOrange3)
+        color: $hfWhite
 
       .social
         &__link
