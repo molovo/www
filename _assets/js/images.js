@@ -84,7 +84,12 @@ export default class Images {
       requestAnimationFrame(() => {
         image.removeAttribute('data-src')
         image.removeAttribute('data-srcset')
+        image.removeAttribute('data-type')
       })
+    }
+
+    if (image.dataset.type) {
+      image.type = image.dataset.type
     }
 
     if (image.dataset.srcset) {

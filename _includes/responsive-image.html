@@ -14,17 +14,17 @@
 {% assign largest = resized | sort: 'width' | last %}
 
 <picture>
-    <source type="image/webp"
-            srcset="{{ smallest.dirname }}/{{ smallest.filename }}.webp"
+    <source srcset="{{ smallest.dirname }}/{{ smallest.filename }}-traced.svg"
             data-srcset="{{ srcset-webp | strip_newlines }}"
+            data-type="image/webp"
             alt="{{ alt }}"
             sizes="{{ sizes }}"
             onerror="this.parentNode.removeChild(this);" />
-    <source srcset="/{{ smallest.path }}"
+    <source srcset="{{ smallest.dirname }}/{{ smallest.filename }}-traced.svg"
             data-srcset="{{ srcset | strip_newlines }}"
             alt="{{ alt }}"
             sizes="{{ sizes }}" />
-    <img src="/{{ smallest.path }}"
+    <img src="{{ smallest.dirname }}/{{ smallest.filename }}-traced.svg"
          data-src="/{{ largest.path }}"
          alt="{{ alt }}" />
 </picture>

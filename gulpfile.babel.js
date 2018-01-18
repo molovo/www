@@ -11,6 +11,9 @@ import changed       from 'gulp-changed'
 import clone         from 'gulp-clone'
 import runSequence   from 'run-sequence'
 import es            from 'event-stream'
+import through       from 'through2'
+import fs            from 'fs'
+import filter        from 'gulp-filter'
 
 // Dependencies for compiling coffeescript
 import sourcemaps from 'gulp-sourcemaps'
@@ -28,9 +31,11 @@ import autoprefixer           from 'gulp-autoprefixer'
 import { stream as critical } from 'critical'
 
 // Dependencies for compressing images
-import imagemin from 'gulp-imagemin'
-import mozJpeg  from 'imagemin-mozjpeg'
-import webp     from 'gulp-webp'
+import imagemin  from 'gulp-imagemin'
+import mozJpeg   from 'imagemin-mozjpeg'
+import webp      from 'gulp-webp'
+import potrace   from 'potrace'
+import sharp     from 'sharp'
 
 // Dependencies for compressing HTML
 import htmlmin  from 'gulp-htmlmin'
@@ -40,8 +45,8 @@ const sources = {
   sass: '_assets/sass/**/*.s+(a|c)ss',
   js: '_assets/js/**/*.js',
   images: [
-    '_assets/img/**/*',
-    '_site/img/**/resized/**/*'
+    '_assets/img/**/*.{jpg,jpeg,gif,png,svg}',
+    '_site/img/**/resized/**/*.{jpg,jpeg,gif,png,svg}'
   ],
   views: [
     '*.{html,md,markdown,svg}',
@@ -180,6 +185,31 @@ gulp.task('compile:critical', () => {
     .pipe(gulp.dest('_site'))
 })
 
+function trace () {
+  return through.obj(function (file, encoding, callback) {
+    if (!file.path.match(/\.(jpg|jpeg|png)$/)) {
+      callback()
+      return
+    }
+
+    potrace.trace(file.contents, {
+      color: 'lightgray',
+      optTolerance: 0.4,
+      turdSize: 100,
+      turnPolicy: potrace.Potrace.TURNPOLICY_MAJORITY,
+    }, (err, svg) => {
+      if (err) {
+        throw err
+      }
+
+      file.path = file.path.replace(/\..+$/, '-traced.svg')
+      file.contents = Buffer.from(svg)
+      this.push(file)
+      callback()
+    })
+  })
+}
+
 gulp.task('compile:images', () => {
   const images = gulp.src(sources.images)
     .pipe(changed('_site/img/'))
@@ -209,7 +239,12 @@ gulp.task('compile:images', () => {
       optimizationLevel: 6
     }))
 
-  return es.merge(images, webpImages)
+  const tracedImages = images.pipe(clone())
+    // .pipe(filter('*.{jpg,jpeg,png}'))
+    // .pipe(sharp().resize(200))
+    .pipe(trace())
+
+  return es.merge(images, webpImages, tracedImages)
     .pipe(gulp.dest('_site/img/'))
     .pipe(livereload())
 })
