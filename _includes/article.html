@@ -15,11 +15,13 @@
   <header class="post__header">
     <div class="post__header-wrapper">
       {% if include.post.image %}
-        {% responsive_image_block %}
-          path: {{ include.post.image }}
-          alt: {{ include.post.imageAltText }}
-          sizes: '(min-width: 42em) 36em, 100vw'
-        {% endresponsive_image_block %}
+        <figure class="post__header-image">
+          {% responsive_image_block %}
+            path: {{ include.post.image }}
+            alt: {{ include.post.imageAltText }}
+            sizes: 100vw
+          {% endresponsive_image_block %}
+        </figure>
       {% endif %}
 
       {% if include.listing == 'true' %}

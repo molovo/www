@@ -1,9 +1,5 @@
 .page--the-view-from-above
-  background-color: #1b1c1d
-  background-image: linear-gradient(to bottom, rgba(#1b1c1d, .3) 0%, rgba(#1b1c1d, .3) 40%, rgba(#1b1c1d, 1) 90%, rgba(#1b1c1d, 1) 100%), url(/img/articles/the-view-from-above/tom-sodoge-84368.jpg)
-  background-position: top center, top center
-  background-repeat: no-repeat
-  background-size: 100% 67vw, 100%
+  background: #1b1c1d
   color: $white
 
   .header:not(.header--sticky)
@@ -27,6 +23,32 @@
       order: -1
       position: relative
       transform: translateX(-50%)
+
+    &__header-image
+      background: #1b1c1d
+      bottom: 0
+      // height: 100%
+      left: 0
+      position: fixed
+      right: 0
+      top: 0
+      // width: 100%
+      z-index: -1
+
+      &::after
+        background: linear-gradient(to bottom, rgba(#1b1c1d, .3) 0%, rgba(#1b1c1d, .3) 40%, rgba(#1b1c1d, 1) 90%, rgba(#1b1c1d, 1) 100%)
+        bottom: calc(100% - 67vw)
+        content: ''
+        left: 0
+        position: absolute
+        right: 0
+        top: 0
+
+      > picture
+        height: 100%
+        object-fit: cover
+        object-position: center
+        width: 100%
 
   .contact
     background: $white

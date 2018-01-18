@@ -9,6 +9,8 @@ tags:
 categories:
 - featured
 featured_order: 1
+image: _assets/img/articles/the-view-from-above/tom-sodoge-84368.jpg
+imageAltText: A man's feet, looking down from the top of a building
 ---
 
 <figure class="image image--pull-left">
