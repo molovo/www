@@ -20,7 +20,7 @@ export default class Images {
    * @type {object}
    */
   config = {
-    rootMargin: '-50px 0px',
+    rootMargin: '-150px -150px',
     threshold: 0.01
   }
 

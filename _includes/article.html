@@ -15,7 +15,7 @@
   <header class="post__header">
     <div class="post__header-wrapper">
       {% if include.post.image %}
-        <figure class="post__header-image">
+        <figure class="image post__header-image">
           {% responsive_image_block %}
             path: {{ include.post.image }}
             alt: {{ include.post.imageAltText }}
