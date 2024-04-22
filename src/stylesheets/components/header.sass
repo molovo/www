@@ -1,0 +1,21 @@
+.header
+  +gutters
+  align-items: center
+  color: $red
+  display: flex
+  justify-content: space-between
+  padding-block: ($baseline * .5)
+  position: fixed
+  top: 0
+  transition: color .5s ease, transform .5s ease
+  width: 100%
+  z-index: 9
+
+  &[aria-hidden="true"]
+    transform: translateY(-100%)
+
+  &--white
+    color: $white
+
+  &--black
+    color: $black

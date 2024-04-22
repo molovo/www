@@ -1,0 +1,49 @@
+.type-sample
+  left: 50%
+  margin: 0 0 $baseline
+  padding: ($gutterMin) 0
+  overflow: hidden
+  position: relative
+  transform: translateX(-50%)
+  width: 100vw
+
+  &__wrapper
+    align-items: center
+    color: var(--accent-color-two)
+    display: flex
+    flex-direction: column
+    font-size: 4vw
+    justify-content: center
+    left: 50%
+    line-height: $baseline
+    position: relative
+    text-align: center
+    transform: translateX(-50%)
+    width: 120vw
+
+  &__line
+    white-space: nowrap
+
+  &__font-name
+    color: var(--accent-color)
+    flex: 0 0 auto
+    font-size: 1.5em
+    line-height: .666em
+    position: relative
+    white-space: nowrap
+
+    &::before,
+    &::after
+      color: var(--accent-color-two)
+      font-size: .666em
+      position: absolute
+
+    &::before
+      content: attr(data-content-before)
+      margin-right: 1ch
+      right: 100%
+
+    &::after
+      content: attr(data-content-after)
+      left: 100%
+      margin-left: 1ch

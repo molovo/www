@@ -1,0 +1,54 @@
+import { colors } from '../index.mdx'
+
+import ContentImage from '@/components/content-image'
+import SyncedScroll from '@/components/synced-scroll'
+
+import backgroundImage from '@/images/studies/joonbyrd/thumbnail.svg'
+import webOne from '@/images/studies/joonbyrd/web1.png'
+
+import littleLove from '@/images/studies/joonbyrd/little-love.png'
+import daydreamer from '@/images/studies/joonbyrd/daydreamer.png'
+import violetHaze from '@/images/studies/joonbyrd/violet-haze.png'
+
+export const metadata = {
+  title: 'Stirring a _feeling_',
+  backgroundImage,
+  headerStyle: 'black',
+  headerColor: colors.blue,
+  accentColor: colors.maroon,
+  accentColorTwo: colors.blue,
+  titleSwashCharacter: 'F',
+
+  styles: {
+    title: {
+      color: colors.maroon,
+      marginTop: '1.5rem',
+      maxWidth: '2.6em'
+    },
+
+    main: {
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundColor: colors.lilac,
+      color: colors.blue
+    }
+  }
+}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod     tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At     vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,     no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+<ContentImage
+  src={webOne}
+  alt="The homepage of joonbyrd.com"
+/>
+
+<SyncedScroll
+  images={[
+    littleLove,
+    daydreamer,
+    violetHaze
+  ]}
+  caption="Some examples of article templates used on redistributemag.com"
+  size="container-width"
+/>
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod     tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At     vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,     no sea takimata sanctus est Lorem ipsum dolor sit amet.

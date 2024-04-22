@@ -1,0 +1,50 @@
+.footer
+  +gutters
+  background: $red
+  color: $white
+  padding-bottom: $baseline
+  padding-top: $gutterMax
+  position: relative
+  z-index: 2
+
+  &__contact-trigger
+    +unbutton
+    @extend h2
+    color: $gray
+    display: inline-block
+    transition: color .5s ease
+
+    &:hover
+      color: $black
+
+    @extend .swash
+    &::before
+      color: inherit
+      content: 'Y'
+      transform: translate(-50%, -85%) rotate(2deg) scale(2, 1)
+
+  &__bottom
+    align-items: center
+    display: flex
+    font-size: .75em
+    justify-content: space-between
+    padding-top: $gutterMax
+
+  &__nav
+    align-items: center
+    display: flex
+    gap: $baseline
+    justify-content: flex-start
+
+    &-link
+      color: inherit
+      font-weight: $weight-medium
+      opacity: .5
+      text-decoration: none
+      transition: opacity .5s ease
+
+      &:hover
+        opacity: 1
+
+  &__attribution
+    opacity: .5

@@ -1,0 +1,89 @@
+.writing
+  +gutters
+  padding-top: $gutterMax
+
+  &__content
+    +spacing
+    margin: 0 auto
+    max-width: $contentWidth
+
+  &__title
+    +scriptTitle
+    margin: 0 auto .5em
+
+    @media (min-width: 1px)
+      font-size: 12vw
+
+  &__post
+    list-style: none
+    margin: 0 0 $gutterMax
+
+    &-header
+      align-items: baseline
+      display: flex
+      gap: $baseline
+      margin: 0
+
+    &-link
+      text-decoration: none
+
+    &-title
+      @extend h1
+      color: $black
+      margin: 0
+      transition: color .5s ease
+
+      &:hover
+        color: $red
+
+    &-tags
+      display: flex
+      flex: 0 0 100%
+      margin: ($baseline / 2) 0
+
+    &-tag
+      color: $red
+      font-size: .75em
+      font-weight: $weight-medium
+      list-style: none
+      text-transform: capitalize
+
+      &:not(:last-child)
+        &::after
+          content: '|'
+          margin: 0 ($baseline / 2)
+
+      a
+        +hoverUnderline($red)
+        color: inherit
+
+    &-image,
+    &-image-placeholder
+      aspect-ratio: 1.5
+      flex: 0 0 auto
+      position: relative
+      width: 4.5em
+
+    &-image-img
+      display: block
+      height: auto !important
+      left: 50%
+      object-fit: cover
+      position: absolute
+      top: 50%
+      transform: translate(-50%, calc(-50% + .125em))
+      width: 100%
+
+    &-image-placeholder
+      border: 1px solid rgba($black, .3)
+      overflow: hidden
+      padding-left: $baseline
+      padding-top: .1em
+
+      &::after
+        content: attr(data-title)
+        display: inline-block
+        font-weight: $weight-medium
+        font-size: 1.35em
+        line-height: 1
+        width: 4em

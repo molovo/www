@@ -1,0 +1,81 @@
+import { colors } from '../index.mdx'
+
+import ImageWall from '@/components/image-wall'
+import ContentImage from '@/components/content-image'
+import SyncedScroll from '@/components/synced-scroll'
+
+import backgroundImage from '@/images/studies/redistribute/mask.png'
+
+import articleTwo from '@/images/studies/redistribute/web-article-2.png'
+import articleThree from '@/images/studies/redistribute/web-article-3.png'
+import nav from '@/images/studies/redistribute/web-nav.png'
+import watermarkOne from '@/images/studies/redistribute/watermarked-1.jpg'
+import watermarkTwo from '@/images/studies/redistribute/watermarked-2.jpg'
+import watermarkThree from '@/images/studies/redistribute/watermarked-3.jpg'
+import paywall from '@/images/studies/redistribute/paywall.png'
+
+export const metadata = {
+  title: 'Content comes _first_',
+  backgroundImage,
+  accentColor: colors.purple,
+  accentColorTwo: colors.yellow,
+  titleSwashCharacter: 'F',
+
+  styles: {
+    main: {
+      backgroundColor: colors.gray
+    },
+
+    image: {
+      mixBlendMode: 'multiply',
+      opacity: .2,
+    },
+
+    title: {
+      color: colors.purple
+    }
+  }
+}
+
+Redistribute's biggest feature is its content. I designed an article layout which puts it front and center, and added the ability for editors to add media and contextual asides right alongside the article.
+
+<SyncedScroll
+  images={[
+    articleTwo,
+    articleThree
+  ]}
+  caption="Some examples of article templates used on redistributemag.com"
+  size="container-width"
+/>
+
+The navigation menu I designed makes it easy for readers to find content, with different article types neatly categorised.
+
+<ContentImage
+  src={nav}
+  alt="The main navigation on redistributemag.com"
+/>
+
+The site is full of hand-built custom components, used for featuring articles, displaying media and promoting premium content.
+
+<ImageWall
+  images={[
+    watermarkTwo,
+    watermarkOne
+  ]}
+  stagger={false}
+  layout="contain"
+  style={{ gridTemplateColumns: '100%' }}
+  caption="The custom icons I created are used to great effect to watermark premium and media content."
+/>
+
+As an independent magazine who want to keep advertising to a minimum, premium content is the biggest income stream for Redistribute. I built a custom membership system using Netlify Identity and Stripe Subscriptions, which is all handled on-site. A custom paywall was also built to encourage readers to become members.
+
+<ContentImage
+  src={watermarkThree}
+  alt="Membership call to action component."
+/>
+
+<ContentImage
+  src={paywall}
+  alt="The paywall as it appears to non-members."
+/>

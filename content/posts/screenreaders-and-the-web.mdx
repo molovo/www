@@ -1,0 +1,26 @@
+export const metadata = {
+  date: '2013-03-02',
+  title: 'Screenreaders and the web',
+  description: 'An idea to improve the audio output of screenreaders',
+  tags: ['a11y', 'html', 'screenreaders', 'web']
+}
+
+Mention `alt` text to a room of web developers and you'll likely start an argument. Should they be ignored for decorative images? Should they ever be left blank? And is anyone brave enough to say `alt=" "`?
+
+Everyone has their own methods for implementing accessibility. Some are innovative, some are better than others, some are downright lazy. All however, are less than ideal, as every screenreader reads assets, code and content differently.
+
+An `alt` attribute on an image is a prime example. If empty, some screenreaders will announce "Image" and nothing else. Some will announce the filename. Some will announce the `title` if one is present. Some will ignore the image altogether. And when included, an `alt` attribute is often a cop-out, an afterthought thrown in to please those who get angry about this sort of thing. Take a look at the below image:
+
+![Portrait of James Dinsdale](/img/me.jpg)
+
+Those of you readers who are blessed with sight have just been treated to the pretty face of yours truly. However those users without sight simply heard "Portrait of James Dinsdale". Where is the additional context that sighted readers enjoy? Where is the description, telling those who cannot deduce it by looking my age, race, approximate height, eye colour, hair colour, clothes, facial expression, surroundings. All these things are detected by sighted users in a matter of seconds, but for a user using a screenreader they will never be privy to this information, as `alt` text never goes into as much detail.
+
+For textual content also, the mechanical, impersonal voices employed by screenreaders do little to convey the tone, emphasis and thought lovingly put into the article by the author. Where is the long pause after that poignant sentence? Where is the different voices and accents that we readers imagine when reading a written conversation? Where is the correct pronunciation when reading a name, or a word in a different language slipped into a paragraph?
+
+In other forms of media, additional context is readily provided. Many books and magazines have audiobook counterparts for those users with poor or no sight; audible descriptions are provided for films and television programs; transcripts are provided for video and podcasts to assist the hard of hearing, but the web falls a long way behind these forms when it comes to providing a totally immersive experience for all, regardless of ability. Great steps have been made, no doubt, but more could be done.
+
+What the web needs, is an `audio` attribute for images and content. The value of this attribute would be the path to an audio file, in which an image is described in detail by a real person, or an article is read aloud by the author, in exactly the context intended. Image `alt` attributes would still have a place, providing a short description allowing the user to then make a decision as to whether or not they would like to hear the full description. If they decide to hear more information, the audio file is downloaded and played in the background.
+
+Yes, creating audio files for every body of text or image on a website would be a lot of work, but not every item would require it. An address, for example, does not need quite the same _joie de vivre_ as an enthusiastic, thought-provoking article. But for important elements within a web page this would provide a much more personal experience to non-sighted users, something which is currently lacking.
+
+_If anyone knows where I can go to recommend this sort of thing be implemented into accessibility specifications I'd love to know about it._

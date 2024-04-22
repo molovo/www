@@ -1,0 +1,187 @@
+.menu
+  +spacing
+  align-items: center
+  background: $red
+  color: $white
+  display: flex
+  justify-content: space-between
+  height: 100vh
+  overflow: hidden
+  padding-bottom: $baseline
+  position: fixed
+  top: 0
+  transition: opacity .5s ease
+  width: 100%
+  z-index: 8
+
+  &[aria-hidden="true"]
+    opacity: 0
+    pointer-events: none
+
+  @media (min-width: $breakpoint-tablet)
+    padding-bottom: ($baseline * 2)
+
+  &__main
+    +gutters
+    display: flex
+    flex: 0 0 100%
+    flex-direction: column
+    height: 100%
+    margin: 0
+    position: relative
+    transition: transform .5s ease
+
+    &[aria-hidden="true"]
+      transform: translateX(-100%)
+
+  &__items
+    list-style: none
+    margin: auto 0
+
+  &__link
+    +script
+    color: inherit
+    font-size: 7.5vmax
+    line-height: 1.25em
+    text-decoration: none
+    transition: color .5s ease
+
+    &:hover
+      color: $black
+
+  &__secondary
+    align-items: center
+    display: flex
+    gap: $baseline
+    list-style: none
+    margin: 0
+
+    &-link
+      color: inherit
+      font-size: .875em
+      font-weight: $weight-medium
+      text-decoration: none
+      transition: color .5s ease
+
+      &:hover
+        color: $black
+
+  &__studies
+    +gutters
+    align-items: flex-start
+    display: flex
+    flex: 0 0 100%
+    flex-direction: column
+    height: 100%
+    position: relative
+    transform: translateX(-50vw)
+    transition: transform .5s ease
+    width: 100%
+
+    &[aria-hidden="false"]
+      transform: translateX(-100%)
+
+      .menu__studies-list
+        overflow-x: auto
+
+      .menu__studies-item
+        opacity: 1
+
+      .menu__studies-progress
+        opacity: 1
+        pointer-events: all
+
+    &[aria-hidden="true"]
+      .menu__studies-item
+        &:first-child
+          @extend %case-study-item-hover
+
+    &-list
+      +gutters
+      +hideScrollbars
+      +scrollGutters
+      display: flex
+      flex: 1 1
+      gap: ($baseline * 2)
+      left: 50%
+      margin-block: ($baseline * -1)
+      overflow-x: hidden
+      padding-block: ($baseline * 2)
+      position: relative
+      scroll-snap-type: x proximity
+      transform: translateX(-50%)
+      width: 100vw
+
+      &--scrolling
+        .menu__studies-item
+          pointer-events: none
+
+    &-progress
+      appearance: none
+      background: 0
+      cursor: grab
+      font-size: 1em
+      height: 1.5em
+      opacity: 0
+      pointer-events: none
+      position: absolute
+      right: var(--gutter)
+      top: calc(100% - 1.4em)
+      transition: opacity .5s ease
+      width: calc(100% - (var(--gutter) * 2) - 12em)
+
+      &:active
+        cursor: grabbing
+
+      @each $suffix in -webkit-slider-track, -moz-range-track, -ms-track
+        &::#{$suffix}
+          appearance: none
+          background: rgba($black, .3)
+          border: 0
+          border-radius: 0
+          cursor: pointer
+          height: 3px
+          margin: 0
+          width: 100%
+
+      @each $suffix in -webkit-slider-thumb, -moz-range-thumb, -ms-thumb
+        &::#{$suffix}
+          appearance: none
+          background: $white
+          border: 0
+          border-radius: 0
+          height: 3px
+          margin: 0
+          width: 1em
+
+    &-title,
+    &-trigger
+      flex: 0 0 auto
+
+    &-title
+      font-family: $font-secondary
+      font-size: 1.5em
+      font-weight: $weight-bold
+      margin: 0
+
+    &-trigger
+      +unbutton
+      font-family: $font-primary
+      font-size: .875em
+      font-weight: $weight-medium
+      transition: color .5s ease
+      z-index: 3
+
+      &:hover
+        color: $black
+
+    &-item
+      scroll-snap-align: start
+      scroll-snap-stop: normal
+      transition: opacity .5s ease
+
+      &:not(:first-child)
+        opacity: 0
+
+//       &:hover
+//         opacity: 1 !important

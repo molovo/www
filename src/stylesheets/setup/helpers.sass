@@ -1,0 +1,86 @@
+@function between($from, $to, $fromWidth, $toWidth, $axis: x)
+  $multiplier: if($axis == x, 100vw, 100vh)
+  $slope: (($from - $to) / ($fromWidth - $toWidth))
+  $base: $to - $slope * $toWidth
+
+  @return calc(#{$base} + #{$multiplier * $slope})
+
+=cover($offset: 0)
+  bottom: $offset
+  left: $offset
+  position: absolute
+  right: $offset
+  top: $offset
+
+=hideScrollbars
+  -ms-overflow-style: none // IE and Edge
+  scrollbar-width: none // Firefox
+
+  &::-webkit-scrollbar
+    display: none
+
+=noise
+  -webkit-mask-clip: no-clip
+  mask-clip: no-clip
+  mask-image: url('/knockout.png')
+  mask-position: center
+  mask-repeat: repeat
+  mask-size: 100%
+  mask-mode: alpha
+
+=noiseTransparent
+  +noise
+  mask-image: url(/knockout-transparent.png)
+
+=gutters
+  padding-inline: var(--gutter)
+
+=scrollGutters
+  scroll-padding-inline: var(--gutter)
+
+=spacing
+  padding-block: var(--gutter)
+
+=unbutton
+  appearance: none
+  border: 0
+  background: none
+  color: inherit
+  cursor: pointer
+  font-family: inherit
+  font-size: inherit
+  line-height: inherit
+  padding: 0
+
+=hoverUnderline($color: currentColor)
+  text-decoration: underline transparent
+  text-underline-offset: 2px
+  text-decoration-thickness: 2px
+  transition: text-decoration-color .5s ease
+
+  &:hover
+    text-decoration-color: $color
+
+=slideshow($axis: x, $align: start, $type: proximity, $snap: normal)
+  @if $axis == x
+    overflow: auto hidden
+  @else
+    overflow: hidden auto
+
+  -webkit-overflow-scrolling: touch
+  scroll-behavior: smooth
+
+  scrollbar-width: none
+  -ms-overflow-style: none
+
+  &::-webkit-scrollbar
+    display: none
+
+  scroll-snap-type: $axis mandatory
+
+  @if $align == center
+    scroll-padding: 50%
+
+  > *
+    scroll-snap-align: $align
+    scroll-snap-stop: $snap

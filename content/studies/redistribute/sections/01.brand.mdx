@@ -1,0 +1,82 @@
+import { colors } from '../index.mdx'
+import ContentImage from '@/components/content-image'
+import ImageWall from '@/components/image-wall'
+
+import logoR from '@/images/studies/redistribute/r.svg'
+import logoRPlus from '@/images/studies/redistribute/r-plus.svg'
+import logoRTV from '@/images/studies/redistribute/r-tv.svg'
+
+import branding from '@/images/studies/redistribute/branding.jpg'
+
+import backgroundImage from '@/images/studies/redistribute/mask.png'
+
+export const metadata = {
+  title: 'Read all about it',
+  backgroundImage,
+  accentColor: colors.purple,
+  accentColorTwo: colors.white,
+
+  styles: {
+    main: {
+      backgroundColor: colors.yellow,
+    },
+
+    content: {
+      paddingBottom: '0'
+    },
+
+    image: {
+      mixBlendMode: 'multiply',
+      opacity: .2,
+    },
+
+    title: {
+      color: colors.purple,
+    }
+  }
+}
+
+Launched in 2020, Redistribute Magazine is an online music magazine focusing on the electronic music genre. Publishing music reviews, interviews, industry news and playlists, Redistribute set out to build a modern and inclusive home to share music and music culture.
+
+As a newcomer in the world of music journalism, Redistribute relies heavily on word-of-mouth and social sharing to reach new audiences. In a fast-paced world of Instagram and Facebook feeds, consistency and iconic imagery are key to a successful campaign. They needed a flexible and memorable brand that would make posts easily recognisable without overshadowing the content.
+
+At the heart of the branding package I created is the 'R', a strong, reversed lettermark that can be rendered in multiple colourways across Redistribute's identity.
+
+<ImageWall
+  images={[
+    undefined,
+    logoR
+  ]}
+  layout="contain"
+  stagger={false}
+  caption="The 'R'"
+  style={{
+    gridTemplateColumns: '50% 50%',
+    gridTemplateRows: '12em'
+  }}
+/>
+
+With the 'R' in place, I was able to expand on this starting point and create a full brand identity that was both visually and functionally unique. The 'R' was expanded to include embellishments to represent Redistribute Plus, the magazine's membership offering, and Redistribute TV, their video platform.
+
+<ImageWall
+  images={[
+    logoRPlus,
+    logoRTV
+  ]}
+  layout="contain"
+  stagger={false}
+  caption="The 'R' with embellishments for Redistribute's sister brands."
+  style={{
+    gridTemplateColumns: '45% 55%',
+    gridTemplateRows: '12em'
+  }}
+/>
+
+<ContentImage
+  src={branding}
+  alt=""
+  size="full-width"
+  style={{
+    marginBottom: '0'
+  }}
+/>

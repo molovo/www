@@ -1,0 +1,48 @@
+.menu-toggle
+  // +noise
+  +unbutton
+  color: inherit
+  font-family: $font-tertiary
+  font-size: 4em
+  font-weight: normal
+  line-height: 1em
+  margin-right: .2em
+  mask-size: 500%
+  transform: scaleX(1.5) translateY(.125em)
+  transform-origin: left center
+  transition: transform .5s ease
+
+  &__line
+    transition: opacity .5s .25s ease
+
+  &::before,
+  &::after
+    color: inherit
+    content: '-'
+    display: block
+    left: 50%
+    line-height: 1
+    position: absolute
+    top: 50%
+    transition: color .5s ease, transform .5s ease
+
+  &::before
+    transform: translate(calc(-50% + .025em), calc(-50% - .125em))
+
+  &::after
+    transform: translate(calc(-50% + .05em), calc(-50% - .075em)) rotate(-180deg)
+
+  &[aria-expanded="true"]
+    transform: scale(1.5) translate(.05em, .125em)
+    transition: transform .5s ease
+
+    .menu-toggle__line
+      opacity: 0
+      transition: opacity .5s ease
+
+    &::before
+      transform: translate(calc(-50% - .1em), calc(-50% - .05em)) rotate(45deg) scaleX(1.25)
+
+    &::after
+      transform: translate(calc(-50% - .1em), calc(-50% - .175em)) rotate(-225deg) scaleX(1.25)
+

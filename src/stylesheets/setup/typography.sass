@@ -1,0 +1,248 @@
+html
+  font: 300 100% #{'/'} $baseline $font-primary
+
+body
+  font-feature-settings: "kern" 1, "liga" 1, "dlig" 1
+  font-size: clamp(1em, 2.5vw, 1.3125em)
+  font-variant: common-ligatures discretionary-ligatures
+  line-height: $baseline
+
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-smooth: always
+
+h1, h2, h3, h4, h5, h6
+  display: block
+
+h2
+  font-family: $font-secondary
+  font-size: 2.25em
+  font-weight: $weight-bold
+  letter-spacing: -.05em
+  line-height: (1.125 / 1.5) * $baseline
+  margin-bottom: (.6666666666666667 / 1.5) * $baseline
+
+h1
+  @extend h2
+
+  @media (min-width: $breakpoint-tablet)
+    font-size: 3em
+    line-height: (1 / 1.5) * $baseline
+    margin-bottom: (.5 / 1.5) * $baseline
+
+h3
+  font-family: $font-secondary
+  font-size: 1.5em
+  font-weight: $weight-bold
+  letter-spacing: -.05em
+  line-height: (1 / 1.5) * $baseline
+  margin-bottom: (1 / 1.5) * $baseline
+
+h4
+  font-size: 1em
+  font-weight: 900
+  line-height: $baseline
+  margin-bottom: $baseline
+
+h5
+  font-size: .75em
+  font-weight: $weight-medium
+  letter-spacing: .05em
+  line-height: ($baseline / .875)
+  margin-bottom: ($baseline / .875)
+  text-transform uppercase
+
+h6
+  font-size: 1em
+  line-height: $baseline
+  margin-bottom: $baseline
+
+p, ul, ol, dl, blockquote
+  margin-bottom: $baseline
+
+ul
+  list-style: disc inside
+
+ol
+  list-style: decimal inside
+
+ul, ol
+  ul
+    list-style: circle inside
+    margin:
+      bottom: 0
+      left: $baseline
+
+  ol
+    list-style: lower-roman inside
+    margin:
+      bottom: 0
+      left: $baseline
+
+em
+  font-style: italic
+
+strong
+  font-weight: $weight-bold
+
+small
+  font-size: .75em
+  line-height: .5em
+
+.quote
+  line-height: ($baseline * 1.5)
+  position: relative
+
+  &::before
+    content: '›'
+    font-size: 3em
+    font-weight: $weight-bold
+    line-height: .5em
+    margin-right: .25em
+    position: absolute
+    right: 100%
+    top: 0
+
+  p
+    color: $red
+    font-family: $font-secondary
+    font-size: 2.25em
+    font-style: italic
+    font-weight: $weight-bold
+    letter-spacing: -.025em
+    margin: 0 0 .22222222em
+
+  cite
+    display: inline
+
+  &__footer
+    @extend h5
+    color: $gray2
+    text-align: right
+
+    &::before
+      content: '—'
+      margin-right: .5ch
+
+    .quote__tweet
+      font-size: 1em
+
+.screenreader-text
+  position: absolute
+  top: -9999vh
+  left: 0
+
+.swash
+  display: inline-block
+  position: relative
+
+  &::before
+    color: $gray
+    content: "B"
+    font-family: $font-swash
+    font-size: 2.25em
+    font-weight: $weight-normal
+    left: 50%
+    position: absolute
+    top: 100%
+    transform: translate(-50%, -95%) rotate(2deg)
+    z-index: -1
+
+  &[data-character]
+    &::before
+      content: attr(data-character)
+
+.script
+  font-family: $font-tertiary
+
+:root
+  --deckgo-highlight-code-font-family: $font-mono
+  --deckgo-highlight-code-font-size: .875em
+
+=script
+  // +noise
+  font-family: $font-tertiary
+  letter-spacing: normal
+  line-height: .75em
+  font-weight: $weight-normal
+  margin: 0 auto .125em
+
+  .swash,
+  em
+    &::before
+      font-size: 1.5em
+      transform: translate(-50%, -110%) rotate(2deg)
+
+=scriptTitle
+  +script
+  font-size: 24vw
+  max-width: 3em
+  position: relative
+  text-align: center
+  transform: rotate(-5deg)
+
+  @media (min-width: $breakpoint-tablet)
+    font-size: 18vw
+
+blockquote
+  align-items: center
+  display: flex
+  flex-direction: column
+  justify-content: center
+  left: 50%
+  margin: $gutterMax 0
+  position: relative
+  text-align: center
+  transform: translateX(-50%)
+  width: 100%
+
+  @media (min-width: $breakpoint-desktop)
+    width: calc(100% + #{$gutterMax * 2})
+
+  p
+    +script
+    color: $red
+    // font-family: $font-secondary
+    font-size: 3em
+    line-height: 1em
+    font-size: 8vw
+    margin: 0
+    transform: rotate(-2.5deg)
+    quotes: '“' '”'
+
+    &:first-of-type::before
+      content: open-quote
+
+    &:last-of-type::after
+      content: close-quote
+
+  cite
+    font-weight: $weight-medium
+
+    &::before
+      background: url('../../images/icons/pencil.svg') center / contain no-repeat
+      content: ''
+      display: inline-block
+      height: $baseline
+      margin-right: .5ch
+      vertical-align: middle
+      width: $baseline
+
+%lead
+  font-family: $font-secondary
+  font-size: between(1.25em, 1.5em, $breakpoint-largeMobile, $breakpoint-largeDesktop)
+  line-height: 1.25em
+
+.content
+  a
+    +hoverUnderline($red)
+    color: inherit
+    font-family: $font-primary
+    font-variant: small-caps
+    font-weight: $weight-medium
+    text-transform: lowercase
+
+section:first-of-type
+  .content
+    > p:first-of-type
+      @extend %lead

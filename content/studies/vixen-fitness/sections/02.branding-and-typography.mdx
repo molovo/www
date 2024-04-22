@@ -1,0 +1,85 @@
+import { colors, sourceWords } from '../index.mdx'
+import TypeSample from '@/components/type-sample'
+import { montserrat } from '@/fonts'
+import ImageWall from '@/components/image-wall'
+import Slideshow from '@/components/slideshow'
+
+import logoWhite from '@/images/studies/vixen-fitness/vixen-vertical-white-bg.png'
+import logoYellow from '@/images/studies/vixen-fitness/vixen-vertical-yellow-bg.png'
+import logoPlum from '@/images/studies/vixen-fitness/vixen-vertical-plum-bg.png'
+
+import postcardOne from '@/images/studies/vixen-fitness/ante-natal-flyer-front.png'
+import postcardTwo from '@/images/studies/vixen-fitness/ante-natal-flyer-back.png'
+import postcardThree from '@/images/studies/vixen-fitness/post-natal-flyer-front.png'
+import postcardFour from '@/images/studies/vixen-fitness/post-natal-flyer-back.png'
+
+import businessCards from '@/images/studies/vixen-fitness/business-cards.jpg'
+import placeCards from '@/images/studies/vixen-fitness/place-cards.jpg'
+
+export const metadata = {
+  name: 'Branding & Typography',
+  client: 'Vixen Fitness',
+  title: 'Strength & _femininity_',
+  headerStyle: 'red',
+  accentColor: colors.pink,
+  accentColorTwo: colors.yellow,
+
+  logos: [
+    logoWhite,
+    logoYellow,
+    logoPlum
+  ],
+
+  postcards: [
+    postcardOne,
+    postcardTwo,
+    postcardThree,
+    postcardFour
+  ],
+
+  collateral: [
+    businessCards,
+    placeCards
+  ],
+
+  styles: {
+    main: {
+      backgroundColor: colors.white,
+      color: colors.plum
+    },
+
+    title: {
+      color: colors.pink
+    }
+  }
+}
+
+With a name, it was time to move on and start putting together a branding package that would inform Gemma's marketing efforts.
+
+#### 1. Logo
+
+For the Vixen Fitness logo, I used a simple icon of a vixen, with a long, flowing curve to symbolise its tail. Used with a bold, all-caps logotype, it really nailed the balance of strength and femininity that we were looking for.
+
+<ImageWall images={metadata.logos} stagger={false} size="container-width" caption="The Vixen Fitness logo in a variety of colorways" />
+
+#### 2. Typography
+
+The strong, unapologetic boldness of Montserrat was so effective as a logotype that I decided to use it as the primary font for the website and Gemma’s marketing materials. Using multiple weights meant I could strike a nice balance between huge, bold headings and a cleaner, lighter weight for more readable body copy.
+
+<TypeSample fontName="Montserrat Bold" fontClass={montserrat.className} sourceWords={sourceWords} style={{ textTransform: 'uppercase' }} />
+
+To counter Montserrat’s strength I used Have Heart One to add a touch of femininity to headings and other brand assets.
+
+<TypeSample fontName="Have Heart One" fontClass="use-have-heart-one-font" sourceWords={sourceWords} style={{ fontSize: '8vw', lineHeight: '1em' }} />
+
+#### 3. Printed materials
+
+Gemma meets most of her clients face to face, but handing over a business card doesn’t really convey everything that she has to offer. To help her make a good impression, I designed a series of postcards to give to clients and hand out at events; each one providing more information about particular services she provides, allowing her to put the right information in front of prospective clients from the outset, and hopefully win their business.
+
+<Slideshow images={metadata.postcards} caption="A series of postcards advertising Gemma's services" />
+
+The rest of Gemma’s branding collateral followed a similiar theme, keeping the bold headings, bright colours and white border; a combination which formed the basis for the website design.
+
+<ImageWall images={metadata.collateral} stagger={false} size="standard" style={{ alignItems: 'stretch' }} caption="Left: Gemma's business cards<br />Right: A series of place cards used for circuit training" />
+
+

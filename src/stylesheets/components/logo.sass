@@ -1,0 +1,59 @@
+.logo
+  align-items: center
+  color: inherit
+  display: flex
+  gap: ($baseline * .5)
+  text-decoration: none
+
+  &__image
+    width: ($baseline * 2)
+
+    img, svg
+      width: 100%
+
+    img
+      transform: scale(1.1)
+      transform-origin: top center
+
+      .header--red &
+        filter: brightness(0) saturate(100%) invert(27%) sepia(100%) saturate(2313%) hue-rotate(335deg) brightness(78%) contrast(108%)
+
+    .logo-image
+      &__frame
+        fill: currentColor
+
+      &__lens
+        fill: transparent
+        transition: fill .5s ease
+
+  &__separator
+    font-family: $font-tertiary
+    font-size: 2em
+    line-height: 0
+    margin-top: .25em
+    transform: scale(1.75)
+    transform-origin: center
+
+  &__client
+    svg
+      height: 1.5em
+      max-width: 7em
+      width: auto
+
+      path,
+      rect
+        fill: currentColor
+
+  &:hover
+    .header--white &
+      .logo-image__lens
+        &--left
+          fill: #990033
+
+        &--right
+          fill: #330099
+
+    .header--black &,
+    .header--red &
+      .logo-image__lens
+        fill: rgba($black, .3)

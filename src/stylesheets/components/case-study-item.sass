@@ -1,0 +1,117 @@
+%case-study-item-hover
+  .case-study-item__inner-background,
+  .case-study-item__content
+    opacity: 1
+
+.case-study-item
+  aspect-ratio: .75
+  box-shadow: 0 0 3px rgba($black, .3)
+  color: $white
+  display: flex
+  flex: 0 0 auto
+  flex-direction: column
+  height: 100%
+  position: relative
+  text-decoration: none
+
+  &:hover
+    @extend %case-study-item-hover
+
+  &__background
+    +cover(-10%)
+    width: 120%
+    z-index: 1
+
+    &-wrapper
+      +cover
+      overflow: hidden
+      z-index: 1
+
+    img
+      height: 100%
+      object-fit: cover
+      object-position: center
+      width: 100%
+
+  &__inner
+    flex: 1 1
+    padding: between($baseline * .5, $baseline, 30em, 50em, y)
+    position: relative
+    z-index: 2
+
+    &-background
+      +cover
+      opacity: 0
+      transition: opacity .5s ease
+      z-index: -1
+
+  &__content
+    +cover
+    align-items: stretch
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    opacity: 0
+    padding: between($baseline * .5, $baseline, 30em, 50em, y)
+    transition: opacity .5s ease
+
+    > :first-child
+      margin-bottom: auto
+
+  &__title
+    +script
+    font-size: 22vh
+    margin: 0
+    transform: rotate(-5deg)
+    z-index: 0
+    width: 130%
+
+    @media (max-height: 50em)
+      transform: scale(.75)
+      transform-origin: bottom left
+
+  &__client,
+  &__role
+    z-index: 1
+
+  &__client
+    @extend h3
+    margin: 0
+
+.case-study-cta
+  +unbutton
+  align-items: flex-start
+  background: $red2
+  display: flex
+  flex-direction: column
+  height: 100%
+  justify-content: flex-end
+  padding: $baseline
+  text-align: left
+  transition: background .5s ease
+
+  &__title
+    margin: auto 0 0
+
+    &::after
+      @extend %script-arrow
+      display: inline-block
+      font-size: 1.5em
+      margin-left: .5ch
+      opacity: 0
+      transition: opacity .5s ease, transform .5s ease
+
+  &:hover
+    background: darken($red2, 3.5)
+
+    .case-study-cta__title::after
+      opacity: 1
+      transform: translateX(.25em)
+
+  &__button
+    +unbutton
+    font-weight: $weight-medium
+    text-decoration: underline
+    text-decoration-color: $gray
+    text-decoration-thickness: 3px
+    text-underline-offset: .1em

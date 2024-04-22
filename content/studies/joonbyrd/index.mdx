@@ -1,0 +1,34 @@
+import thumbnail from '@/images/studies/joonbyrd/thumbnail.svg'
+
+export const colors = {
+  blue: '#333366',
+  black: '#03043a',
+  lilac: '#e6e1fe',
+  maroon: '#660033',
+  pink: '#ffd6f7',
+  purple: '#9a0070',
+  white: '#fffbf1',
+  yellow: '#fffaa5',
+}
+
+export const metadata = {
+  superrb: true,
+  order: 1,
+  client: 'Joonbyrd',
+  role: 'Full-stack development',
+  title: 'Feel the joy',
+  thumbnail,
+
+  styles: {
+    thumbnail: {
+      color: colors.blue,
+      backgroundColor: colors.lilac
+    },
+
+    thumbnailTitle: {
+      color: colors.maroon,
+      fontSize: '25vh',
+      maxWidth: '1.9em'
+    }
+  }
+}

@@ -1,0 +1,37 @@
+import ContentImage from '@/components/content-image'
+import homepageBefore from '@/images/articles/getting-it-wrong/homepage-before.jpg'
+import projectsBefore from '@/images/articles/getting-it-wrong/projects-before.jpg'
+import homepageNow from '@/images/articles/getting-it-wrong/homepage-now.jpg'
+
+export const metadata = {
+  date: '2017-04-26',
+  title: 'Getting it wrong',
+  description: 'A heartfelt apology to users with accessibility needs.',
+  tags: ['web', 'a11y', 'screenreaders'],
+  categories: ['featured'],
+  order: 3,
+}
+
+I had hoped that my first blog post in two years would be about something a little sunnier than this, yet here I find myself offering my readers a heartfelt apology, and a promise to do better.
+
+Historically, this website has always been my test bed; a place to try out new techniques and optimisations. As such it has usually been hyper-focused on performance and accessibility. Since I wrapped up work with my last freelance client and moved into an agency two years ago this website hasn't received much love, sitting abandoned as I concentrate on other things.
+
+That said, when I decided recently to redesign it, I pushed on with the task quickly. I dropped the case studies section of the site---trying and failing to write case studies has led to the death of no less than four redesigns---hoping that once I had the base of the site live, it might free my mind to concentrate on actually writing the content.
+
+In my haste to do this, I failed to do it properly. Last week, a full two months after launching the site, I opened it up in the text-only web browser [lynx](<https://en.m.wikipedia.org/wiki/Lynx_(web_browser)> 'lynx - a text-only web browser') on a whim, and was greeted with the following page.
+
+<ContentImage src={homepageBefore} alt="The homepage of this website as viewed through a text browser, before accessibility optimisations." />
+
+There is no obvious navigation, as it is so obscure and unreadable. There are no headings. There are no links to the location of the content or the top of the page. I was disappointed in myself to say the least, a feeling that only grew when I navigated to the Projects page.
+
+<ContentImage src={projectsBefore} alt="The projects page of this website as viewed through a text browser, before accessibility optimisations." />
+
+Oh. Shit.
+
+Immediately, I felt a wave of empathy. Empathy and guilt towards those who may have tried to browse my site with a text browser or screenreader in the time it had been like this. I have spent my career advocating accessible design on behalf of users, and yet here was obvious proof that my standards had slipped unforgivably.
+
+I've just finished rebuilding this site again---from the ground up---in an effort to right this wrong and I'm pleased to say that things are a lot better. Although it looks nearly identical, behind the scenes I've switched from using [Roots](http://roots.cx 'Roots') back to my old friend [Jekyll](http://jekyllrb.com 'Jekyll'), as the accessibility aids it provides are far better. As well as this, I've completely restructured the HTML to ensure that it's semantically correct, and properly annotated for screenreaders.
+
+<ContentImage src={homepageNow} alt="The homepage of this website, as viewed through a text browser at time of writing." />
+
+I'll be tweaking further over the next few weeks as I start to add more content, but I'm a lot happier with the way things are now.

@@ -1,0 +1,65 @@
+.content-figure
+  align-items: flex-start
+  display: flex
+  flex-wrap: wrap
+  gap: $baseline
+  left: 50%
+  margin: ($baseline * 2) 0
+  position: relative
+  transform: translateX(-50%)
+  width: 100%
+
+  @media (min-width: $breakpoint-desktop)
+    flex-wrap: nowrap
+    width: calc(100% + #{$gutterMax * 3})
+
+    &--container-width
+      width: $containerWidth
+
+  &--full-width
+    width: 100vw
+
+    .content-figure__image
+      flex-basis: 100%
+
+    @media (min-width: $breakpoint-desktop)
+      .content-figure__caption
+        position: absolute
+        right: var(--gutter)
+        top: calc(100% + #{$baseline * 2})
+        width: calc(50vw - #{$contentWidth * .5} - #{$baseline} - var(--gutter))
+
+  &--with-padding
+    +gutters
+
+  &__image
+    flex: 1 1
+    width: 100%
+
+  &__caption
+    border-left: 2px solid transparent
+    flex: 0 0 100%
+    padding-left: ($baseline * .5)
+    position: relative
+
+    @media (min-width: $breakpoint-desktop)
+      flex: 0 0 auto
+      position: sticky
+      top: ($baseline * 4)
+      width: calc(#{$gutterMax * 1.5} - #{$baseline})
+
+    span
+      display: block
+      font-size: .75em
+      line-height: 1.5em
+
+    strong
+      display: block
+
+    &::after
+      +cover
+      border-left: 2px solid currentColor
+      content: ''
+      display: block
+      opacity: .3
+      pointer-events: none
