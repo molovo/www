@@ -17,3 +17,8 @@ export const nitti = localFont({
   src: './fonts/Nitti Grotesk Light.otf',
   display: 'swap',
 })
+
+export const haveHeart = localFont({
+  src: './fonts/Have Heart One.woff2',
+  display: 'swap',
+})

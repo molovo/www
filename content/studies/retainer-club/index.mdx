@@ -1,0 +1,35 @@
+import thumbnail from '@/images/studies/retainer-club/thumbnail.jpg'
+
+export const colors = {
+  blue: '#314e9b',
+  darkBlue: '#203774',
+  lightBlue: '#f3f6fb',
+  white: '#ffffff'
+}
+
+export const metadata = {
+  title: 'Lorem ipsum',
+  client: 'Retainer Club',
+  role: 'Bespoke E-commerce development',
+  thumbnail,
+
+  styles: {
+    thumbnail: {
+      backgroundColor: colors.lightBlue,
+      color: colors.blue
+    },
+
+    thumbnailBackgroundImage: {
+      objectPosition: 'right center'
+    },
+
+    thumbnailContent: {
+      backgroundColor: colors.blue,
+      color: colors.white
+    },
+
+    thumbnailTitle: {
+      color: colors.darkBlue
+    }
+  }
+}

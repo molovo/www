@@ -11,25 +11,30 @@ import daydreamer from '@/images/studies/joonbyrd/daydreamer.png'
 import violetHaze from '@/images/studies/joonbyrd/violet-haze.png'
 
 export const metadata = {
-  title: 'Stirring a _feeling_',
+  title: 'Emotive & _Interactive_',
   backgroundImage,
   headerStyle: 'black',
   headerColor: colors.blue,
   accentColor: colors.maroon,
   accentColorTwo: colors.blue,
-  titleSwashCharacter: 'F',
+  titleSwashCharacter: 'A',
 
   styles: {
     title: {
       color: colors.maroon,
       marginTop: '1.5rem',
-      maxWidth: '2.6em'
+      maxWidth: '2.6em',
+      transform: 'rotate(2deg)'
     },
 
     main: {
       backgroundImage: `url(${backgroundImage})`,
       backgroundColor: colors.lilac,
       color: colors.blue
+    },
+
+    titleSwash: {
+      transform: 'rotate(-3deg)'
     }
   }
 }

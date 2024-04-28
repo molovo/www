@@ -36,9 +36,19 @@
       &:hover
         color: $red
 
-    &-tags
+    &-meta
+      align-items: center
       display: flex
       flex: 0 0 100%
+      gap: $baseline
+
+    &-date
+      font-size: .75em
+      opacity: .75
+
+    &-tags
+      display: flex
+      flex: 1 1
       margin: ($baseline / 2) 0
 
     &-tag
@@ -87,3 +97,22 @@
         font-size: 1.35em
         line-height: 1
         width: 4em
+
+  &__tags
+    align-items: center
+    display: flex
+    justify-content: flex-start
+    gap: ($baseline)
+    list-style: none
+
+  &__tag
+    a
+      @extend .writing__post-tag
+      opacity: .5
+      text-decoration: none
+
+      &[aria-current="page"]
+        opacity: 1
+
+      &::after
+        content: none !important

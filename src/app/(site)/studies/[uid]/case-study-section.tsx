@@ -6,7 +6,7 @@ import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
 import Logo from '@/components/logo'
 import useHeaderStyle from '@/hooks/use-header-style'
 import swash from '@/utils/swash'
-import SuperrbLink from '@/components/images/superrb-logo'
+import SuperrbLink from '@/components/superrb-link'
 import useTheme from '@/hooks/use-theme'
 
 const CaseStudySection = ({
@@ -78,7 +78,11 @@ const CaseStudySection = ({
               className="case-study__section-title"
               style={section.styles?.title}
               dangerouslySetInnerHTML={{
-                __html: swash(section.title, section.titleSwashCharacter),
+                __html: swash(
+                  section.title,
+                  section.titleSwashCharacter,
+                  section.styles?.titleSwash,
+                ),
               }}
             />
           </div>

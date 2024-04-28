@@ -4,7 +4,7 @@ import LogoImage from '@/components/images/icons/logo'
 import ClientLogo, { ClientSlug } from './client-logo'
 import useClientStore from '@/store/client'
 import useLoadingStore from '@/store/loading'
-import { useEffect } from 'react'
+import { CSSProperties, useEffect } from 'react'
 import Link from 'next/link'
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { usePathname } from 'next/navigation'
@@ -13,9 +13,11 @@ import useNavStateStore from '@/store/nav-state'
 const Logo = ({
   client,
   asLink = false,
+  style = {},
 }: {
   client?: ClientSlug
   asLink?: boolean
+  style?: Partial<CSSProperties>
 }) => {
   const { close } = useNavStateStore()
   const { client: storedClient } = useClientStore()
@@ -48,8 +50,10 @@ const Logo = ({
     <>
       <div className="logo__image">
         {asLink && loading ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img src="/glasses-animated.png" alt="" />
+          <div
+            className="logo__image--mask"
+            style={{ maskImage: 'url(/glasses-animated.png)' }}
+          />
         ) : (
           <LogoImage />
         )}
@@ -68,13 +72,17 @@ const Logo = ({
 
   if (asLink) {
     return (
-      <Link href="/" className="logo" onClick={close}>
+      <Link href="/" className="logo" onClick={close} style={style}>
         {inner}
       </Link>
     )
   }
 
-  return <div className="logo">{inner}</div>
+  return (
+    <div className="logo" style={style}>
+      {inner}
+    </div>
+  )
 }
 
 export default Logo

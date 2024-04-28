@@ -8,6 +8,11 @@
     position: relative
     transition: background .5s ease, color .5s ease
 
+    &:first-of-type
+      .case-study__section-header-content
+        min-height: 100vmin
+        padding-top: 15vw
+
     &-background
       +cover
       height: 100%
@@ -26,9 +31,8 @@
         display: flex
         flex-direction: column
         justify-content: flex-end
-        min-height: 100vmin
         padding-bottom: $gutterMin
-        padding-top: 25vw
+        padding-top: $gutterMax
         position: relative
         text-align: center
         transition: background .5s ease
@@ -36,7 +40,7 @@
 
       .logo
         justify-content: center
-        margin: 0 0 $baseline
+        margin: 0 0 ($baseline * 2)
 
     &-name
       &::before
@@ -67,6 +71,7 @@
 
     &-superrb
       align-items: center
+      color: inherit
       display: inline-flex
       font-size: .875em
       font-weight: bold
@@ -74,6 +79,7 @@
       padding: ($baseline * .125) ($baseline * .5)
       pointer-events: none
       position: relative
+      transition: color .5s ease
 
       &::before
         +cover
@@ -83,10 +89,15 @@
         display: block
         opacity: .25
         pointer-events: none
-        transition: opacity 1s ease
+        transition: background .5s ease, border-color .5s ease, opacity 1s ease
+        z-index: -1
 
       &:has(a:hover)
+        color: $white !important
+
         &::before
+          background: $red
+          border-color: $red
           opacity: 1
 
       a
@@ -149,7 +160,7 @@
         margin-bottom: 0
 
       &::before
-        color: var(--accent-color)
+        color: var(--accent-color-two)
         content: '0' counter(features) '.'
         display: inline-block
         flex: 0 0 auto

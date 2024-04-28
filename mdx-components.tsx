@@ -6,8 +6,5 @@ import { ComponentProps } from 'react'
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-
-    img: (props: ComponentProps<typeof Image>) => <ContentImage {...props} />,
   }
 }
-

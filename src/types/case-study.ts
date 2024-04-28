@@ -1,5 +1,6 @@
 import { HeaderColor, HeaderStyle } from '@/store/header-style'
 import { Color } from '@/store/theme'
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import { CSSProperties } from 'react'
 
 export interface CaseStudySectionType {
@@ -7,27 +8,33 @@ export interface CaseStudySectionType {
   name: string
   title: string
   intro?: string
-  superrb?: boolean
   color: Color
   backgroundColor: Color
   headerStyle?: HeaderStyle
   headerColor?: HeaderColor
-  backgroundImage: string
+  backgroundImage: string | StaticImport
   accentColor?: CSSProperties['color']
   accentColorTwo?: CSSProperties['color']
+  titleSwashCharacter?: string
 
   styles?: {
     content?: Partial<CSSProperties>
     image?: Partial<CSSProperties>
     main?: Partial<CSSProperties>
     title?: Partial<CSSProperties>
+    titleSwash?: Partial<CSSProperties>
   }
 }
 
 export default interface CaseStudyType {
   slug: string
-  client: string
   title: string
+  description: string
+  client: string
+  thumbnail: string | StaticImport
+  order?: number
+  draft?: boolean
+  superrb?: boolean
 
   styles?: {
     thumbnail?: Partial<CSSProperties>
@@ -36,4 +43,6 @@ export default interface CaseStudyType {
   }
 
   sections: CaseStudySectionType[]
+
+  Content: React.FC<CaseStudyType>
 }

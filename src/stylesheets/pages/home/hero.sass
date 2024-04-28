@@ -1,7 +1,11 @@
 .hero
   +gutters
   color: $red
-  padding-block: calc(var(--gutter) * 2) var(--gutter)
+  padding-bottom: var(--gutter)
+  padding-top: $gutterMax
+
+  @media (min-width: $breakpoint-desktop)
+    padding-top: calc(var(--gutter) * 2)
 
   &__title
     +scriptTitle

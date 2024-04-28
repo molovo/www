@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section className="hero" ref={setRef}>
       <h1 className="hero__title">
-        Hi, I'm James.
+        Hi, I&apos;m James.
         <br />I make websites.
       </h1>
     </section>

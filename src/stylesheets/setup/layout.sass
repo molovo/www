@@ -1,7 +1,27 @@
-main
+.transition-group
+  min-height: 100vh
+  position: relative
+
+.main
   background: $white
   color: $black
   overflow-x: clip
   position: relative
   transition: color .5s ease, background .5s ease
   z-index: 2
+
+  &.fade-exit
+    opacity: 1
+
+  &.fade-exit-active
+    opacity: 0
+
+  &.fade-enter
+    opacity: 0
+
+  &.fade-enter-active
+    opacity: 1
+
+  &.fade-enter-active,
+  &.fade-exit-active
+    transition: opacity .5s ease

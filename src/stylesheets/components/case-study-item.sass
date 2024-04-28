@@ -1,4 +1,4 @@
-%case-study-item-hover
+=case-study-item-hover
   .case-study-item__inner-background,
   .case-study-item__content
     opacity: 1
@@ -15,7 +15,7 @@
   text-decoration: none
 
   &:hover
-    @extend %case-study-item-hover
+    +case-study-item-hover
 
   &__background
     +cover(-10%)
@@ -60,7 +60,7 @@
 
   &__title
     +script
-    font-size: 22vh
+    font-size: between(7em, 9em, $breakpoint-largeMobile, $breakpoint-desktop)
     margin: 0
     transform: rotate(-5deg)
     z-index: 0
@@ -77,6 +77,21 @@
   &__client
     @extend h3
     margin: 0
+
+.cta-title
+  font-weight: normal
+
+  .swash
+    z-index: 0
+
+    &::before
+      color: $black
+      font-size: 3em
+
+  button:hover &
+    .swash
+      &::before
+        color: $red2
 
 .case-study-cta
   +unbutton
@@ -104,9 +119,15 @@
   &:hover
     background: darken($red2, 3.5)
 
-    .case-study-cta__title::after
-      opacity: 1
-      transform: translateX(.25em)
+    .case-study-cta__title
+      &::after
+        opacity: 1
+        transform: translateX(.25em)
+
+    .cta-title
+      .swash
+        &::before
+          color: $red
 
   &__button
     +unbutton

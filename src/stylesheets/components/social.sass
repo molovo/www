@@ -1,0 +1,29 @@
+.social
+  &__icons
+    align-items: center
+    display: flex
+    gap: ($baseline * .5)
+    list-style: none
+    transition: opacity .5s ease
+
+    &:hover
+      .social__icon
+        opacity: .2
+
+  &__icon
+    flex: 0 0 auto
+    transition: opacity .5s ease
+
+    &.social__icon:hover
+      opacity: 1
+
+    svg
+      color: inherit
+      height: auto
+      width: ($baseline * .75)
+
+      path
+        fill: currentColor
+
+  &__link
+    color: inherit

@@ -8,7 +8,7 @@ import useNavStateStore from '@/store/nav-state'
 type CaseStudy = { [key: string]: any }
 
 const CaseStudyItem = ({
-  study: { slug, client, role, title, thumbnail, styles },
+  study: { draft: isDraft, slug, client, role, title, thumbnail, styles },
   className,
 }: {
   study: CaseStudy
@@ -19,7 +19,9 @@ const CaseStudyItem = ({
   return (
     <Link
       href={`/studies/${slug}`}
-      className={`case-study-item ${className}`}
+      className={`case-study-item ${
+        isDraft ? 'case-study-item--draft' : ''
+      } ${className}`}
       style={styles?.thumbnail}
       onClick={close}
     >

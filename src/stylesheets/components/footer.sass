@@ -2,31 +2,56 @@
   +gutters
   background: $red
   color: $white
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
   padding-bottom: $baseline
   padding-top: $gutterMax
   position: relative
   z-index: 2
+
+  .logo
+    margin: 0 0 $baseline
+
+  &__left
+    flex: 0 0 100%
+
+    @media (min-width: $breakpoint-desktop)
+      flex: 1 1
+
+  &__right
+    flex: 0 0 auto
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+
+    @media (min-width: $breakpoint-desktop)
+      align-items: flex-end
 
   &__contact-trigger
     +unbutton
     @extend h2
     color: $gray
     display: inline-block
+    font-weight: normal
+    max-width: 10em
+    text-align: left
     transition: color .5s ease
 
     &:hover
       color: $black
 
-    @extend .swash
-    &::before
-      color: inherit
-      content: 'Y'
-      transform: translate(-50%, -85%) rotate(2deg) scale(2, 1)
+      .swash
+        &::before
+          color: $red2
 
   &__bottom
     align-items: center
     display: flex
+    flex: 0 0 100%
+    flex-wrap: wrap
     font-size: .75em
+    gap: ($baseline * .5) ($baseline * 2)
     justify-content: space-between
     padding-top: $gutterMax
 

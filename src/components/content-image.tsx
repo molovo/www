@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import { ComponentProps, ImgHTMLAttributes } from 'react'
+import { ComponentProps, DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 import ContentFigure, { ContentFigureProps } from './content-figure'
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 
 interface Props extends ComponentProps<typeof Image> {
   size?: ContentFigureProps['size']

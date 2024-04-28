@@ -1,0 +1,37 @@
+.mentions
+  margin: 0 auto
+  max-width: 40em
+  padding-bottom: var(--gutter)
+
+  &__items
+    display: flex
+    flex-direction: column
+    gap: ($baseline * .5)
+    list-style: none
+
+  &__item
+    align-items: center
+    display: flex
+    flex-wrap: wrap
+    gap: 0 ($baseline * .5)
+
+  &__image
+    $size: ($baseline * 1.25)
+    border-radius: 100vw
+    flex: 0 0 $size
+    height: $size
+    width: $size
+
+  p
+    $fontSize: .875
+    font-size: #{$fontSize}em
+    line-height: $baseline
+    margin: 0
+    opacity: .75
+
+    &:last-child:not(:only-of-type)
+      flex: 0 0 100%
+      padding-left: (($baseline * 1.75) / $fontSize)
+
+    a
+      color: inherit

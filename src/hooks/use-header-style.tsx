@@ -2,7 +2,7 @@ import useThemeStore, { HeaderStyle as Style, Color } from '@/store/theme'
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { useCallback, useEffect, useState } from 'react'
 
-const useHeaderStyle = (style: Style, color: Color) => {
+const useHeaderStyle = (style?: Style, color?: Color) => {
   const [ref, setRef] = useState<HTMLElement | null>(null)
   const setHeaderStyle = useThemeStore((state) => state.setHeaderStyle)
   const setHeaderColor = useThemeStore((state) => state.setHeaderColor)
@@ -20,7 +20,7 @@ const useHeaderStyle = (style: Style, color: Color) => {
 
   useEffect(() => {
     handleScroll()
-  }, [handleScroll])
+  }, [handleScroll, setHeaderStyle, setHeaderColor])
 
   useEventListener('scroll', handleScroll, { passive: true })
 

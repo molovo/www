@@ -1,3 +1,23 @@
+import { getPosts as getAllPosts } from '@/app/(site)/writing/data'
+
+const getProjects = async () => {}
+
+const getPosts = async () => {
+  const allPosts = await getAllPosts()
+  return allPosts
+    .filter(({ metadata }) => metadata.featured)
+    .sort(
+      (a, b) =>
+        new Date(b.metadata?.date).getTime() -
+        new Date(a.metadata?.date).getTime(),
+    )
+    .map(({ slug, metadata }) => ({
+      url: `/writing/${slug}`,
+      name: metadata.title,
+      text: metadata.description,
+    }))
+}
+
 export const metadata = {
   title: 'Hi, I&apos;m James.<br />I make websites.',
 
@@ -9,73 +29,68 @@ export const metadata = {
           url: '/studies/retainer-club',
           client: 'retainer-club',
           name: 'Retainer Club',
-          text: 'Lorem ipsum dolor sit amet.'
-        }, {
+          text: 'Lorem ipsum dolor sit amet.',
+        },
+        {
           url: '/studies/anglepoise',
           client: 'anglepoise',
           name: 'Anglepoise',
-          text: 'Putting the spotlight on an iconic British brand.'
-        }
-      ]
-    }, {
+          text: 'Putting the spotlight on an iconic British brand.',
+        },
+      ],
+    },
+    {
       text: 'Prior to that, I worked as a freelance designer and developer, helping small businesses realise their potential online.',
       items: [
         {
           url: '/studies/redistribute',
           client: 'redistribute',
           name: 'Redistribute',
-          text: 'Lorem ipsum dolor sit amet.'
-        }, {
+          text: 'Lorem ipsum dolor sit amet.',
+        },
+        {
           url: '/studies/vixen-fitness',
           client: 'vixen-fitness',
           name: 'Vixen Fitness',
-          text: 'Lorem ipsum dolor sit amet.'
-        }, {
+          text: 'Lorem ipsum dolor sit amet.',
+        },
+        {
           url: '/studies/matte',
           client: 'matte',
           name: 'MATTE!',
-          text: 'Lorem ipsum dolor sit amet.'
-        }, {
+          text: 'Lorem ipsum dolor sit amet.',
+        },
+        {
           url: '/studies/haresfoot',
           client: 'haresfoot',
           name: 'Haresfoot Craft Beer',
-          text: 'Lorem ipsum dolor sit amet.'
-        }
-      ]
-    }, {
+          text: 'Lorem ipsum dolor sit amet.',
+        },
+      ],
+    },
+    {
       text: 'I build open source software, for fun and for profit. Here are a few project you might find useful.',
       items: [
         {
           url: 'https://zulu.molovo.co',
           name: 'Zulu',
           text: 'A ZSH plugin and environment manager',
-        }, {
+        },
+        {
           url: 'https://github.com/molovo/consumer',
           name: 'Consumer',
-          text: 'An ORM-like Rest API consumer for JavaScript projects'
-        }, {
+          text: 'An ORM-like Rest API consumer for JavaScript projects',
+        },
+        {
           url: 'zunit.xyz',
           name: 'ZUnit',
-          text: 'A powerful testing framework for ZSH projects'
-        }
-      ]
-    }, {
+          text: 'A powerful testing framework for ZSH projects',
+        },
+      ],
+    },
+    {
       text: 'I write about design, development, and the web. Here are a few of my favourite articles.',
-      items: [
-        {
-          url: '/writing/the-view-from-above',
-          name: 'The View From Above',
-          text: 'Pondering a fond childhood memory'
-        }, {
-          url: '/writing/selling-yourself',
-          name: 'Selling Yourself',
-          text: 'Why there are no examples of my work on this site',
-        }, {
-          url: '/writing/getting-it-wrong',
-          name: 'Getting it Wrong',
-          text: 'A heartfelt apology to users with accessibility needs'
-        }
-      ]
-    }
-  ]
+      items: await getPosts(),
+    },
+  ],
 }

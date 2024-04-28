@@ -8,15 +8,20 @@
   &__image
     width: ($baseline * 2)
 
+    &--mask
+      aspect-ratio: 12/6
+      background-color: currentColor
+      mask-position: bottom center
+      mask-repeat: no-repeat
+      mask-size: contain
+      mask-type: alpha
+
     img, svg
       width: 100%
 
     img
       transform: scale(1.1)
       transform-origin: top center
-
-      .header--red &
-        filter: brightness(0) saturate(100%) invert(27%) sepia(100%) saturate(2313%) hue-rotate(335deg) brightness(78%) contrast(108%)
 
     .logo-image
       &__frame
@@ -45,7 +50,8 @@
         fill: currentColor
 
   &:hover
-    .header--white &
+    .header--white &,
+    .footer &
       .logo-image__lens
         &--left
           fill: #990033

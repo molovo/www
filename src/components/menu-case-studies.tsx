@@ -1,6 +1,5 @@
 'use client'
 
-import CaseStudy from '@/app/studies/[uid]/case-study'
 import CaseStudyItem from '@/components/case-study-item'
 import CaseStudy from '@/types/case-study'
 import { useEventListener } from '@superrb/react-addons/hooks'
@@ -9,15 +8,20 @@ import { useState } from 'reinspect'
 import Logo from './logo'
 import useContactFormStateStore from '@/store/contact-form-state'
 import useNavStateStore from '@/store/nav-state'
+import translations from '../../content/translations'
 
-const getStudies = async (clients: string[] = []) => {
+const getStudies = async (): Promise<CaseStudy[]> => {
   const response = await fetch(`http://localhost:3000/api/content/studies`)
   return response.json()
 }
 
-type CaseStudy = { slug: string; metadata: { [key: string]: any } }
-
-const MenuCaseStudies = ({ visible = false }: { visible: boolean }) => {
+const MenuCaseStudies = ({
+  visible = false,
+  filter = () => true,
+}: {
+  visible: boolean
+  filter?: (study: CaseStudy) => boolean
+}) => {
   const [studies, setStudies] = useState<CaseStudy[]>([], 'Studies')
   const container =
     useRef<HTMLUListElement>() as MutableRefObject<HTMLUListElement>
@@ -50,6 +54,9 @@ const MenuCaseStudies = ({ visible = false }: { visible: boolean }) => {
       return
     }
     setScrolling(true)
+    scrollTimer.current = setTimeout(() => {
+      setScrolling(false)
+    }, 100)
 
     const progressInput = progress.current
     if (progressInput) {
@@ -63,18 +70,31 @@ const MenuCaseStudies = ({ visible = false }: { visible: boolean }) => {
     const width = container.current?.clientWidth
     const items = container.current?.querySelectorAll('.menu__studies-item')
     items.forEach((item) => {
+      item.removeAttribute('aria-current')
       const { left } = item.getBoundingClientRect()
       const pos = 5 - (left / width) * 20
-      const image = item.querySelector('.case-study-item__background img')
+      const image = item.querySelector('.case-study-item__background img') as
+        | HTMLImageElement
+        | undefined
 
       if (image) {
         image.style.transform = `translateX(${pos}%)`
       }
     })
 
-    scrollTimer.current = setTimeout(() => {
-      setScrolling(false)
-    }, 100)
+    if (!items) {
+      return
+    }
+
+    for (const child of items) {
+      const { left } = child.getBoundingClientRect()
+      if (left < 0) {
+        continue
+      }
+
+      child.setAttribute('aria-current', 'true')
+      break
+    }
   }
 
   useEventListener(
@@ -87,7 +107,7 @@ const MenuCaseStudies = ({ visible = false }: { visible: boolean }) => {
 
   useEffect(() => {
     handleScroll()
-  }, [container.current])
+  }, [visible])
 
   const handleInput = () => {
     const value = parseFloat(progress.current?.value)
@@ -124,10 +144,10 @@ const MenuCaseStudies = ({ visible = false }: { visible: boolean }) => {
         }`}
         ref={container}
       >
-        {studies.map(({ slug, metadata: study }) => (
+        {studies.filter(filter).map((study) => (
           <CaseStudyItem
             study={study}
-            key={slug}
+            key={study.slug}
             className="menu__studies-item"
           />
         ))}
@@ -143,9 +163,9 @@ const MenuCaseStudies = ({ visible = false }: { visible: boolean }) => {
             <Logo client="you" />
 
             <h2 className="case-study-cta__title">
-              Need help?
+              {translations.contact.cta.title}
               <br />
-              Let's work together.
+              <translations.contact.cta.link />
             </h2>
 
             {/* <button */}
@@ -174,7 +194,12 @@ const MenuCaseStudies = ({ visible = false }: { visible: boolean }) => {
           }
         `}
       </style>
-      <input type="range" className="menu__studies-progress" ref={progress} />
+      <input
+        type="range"
+        className="menu__studies-progress"
+        ref={progress}
+        role="none"
+      />
     </>
   )
 }
