@@ -1,5 +1,3 @@
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import { ClientSlug } from './client-logo'
 import Image from 'next/image'
 import Logo from './logo'
 import '@/stylesheets/main.sass'

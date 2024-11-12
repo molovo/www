@@ -1,17 +1,104 @@
 .hero
-  +gutters
-  color: $red
-  padding-bottom: var(--gutter)
-  padding-top: $gutterMax
+  align-items: stretch
+  display: grid
+  grid-template-columns: 100%
+  position: relative
+  z-index: -1
 
   @media (min-width: $breakpoint-desktop)
-    padding-top: calc(var(--gutter) * 2)
+    grid-template-columns: 45% 55%
+
+  &__detail
+    padding: $baseline
+
+  &__content
+    background: $red
+    color: $white
+
+    &-inner
+      +gutters
+      +spacing
+      align-items: stretch
+      display: flex
+      flex-direction: column
+      height: 100vh
+      justify-content: flex-end
+      position: sticky
+      top: 0
 
   &__title
-    +scriptTitle
-    margin: 0
-    max-width: 5em
+    +script
+    color: $gray
+    font-size: 7vw
+    font-weight: normal
+    margin: 0 0 .25em
+    max-width: none
     text-align: left
 
-    @media (min-width: 1px)
-      font-size: 15vw
+    .swash
+      &::before
+        color: $red2
+
+  &__text,
+  &__list
+    max-width: 43em
+
+  &__text
+    p
+      @extend %lead
+
+    a
+      color: inherit
+
+    svg
+      color: inherit
+      display: inline
+      height: 1em
+      margin-bottom: -.125em
+      width: auto
+
+      path
+        fill: currentColor
+
+  &__list
+    align-items: flex-start
+    display: flex
+    flex-wrap: wrap
+    gap: $baseline ($baseline * 2)
+    justify-content: space-between
+
+  &__item
+    flex: 0 0 100%
+    list-style: none
+
+    @media (min-width: $breakpoint-desktop)
+      flex: 0 0 calc(50% - #{$baseline})
+
+    &-link
+      color: $red
+      text-decoration: none
+
+    &-title
+      margin: .25em 0
+
+    &-text
+      margin: 0
+
+  &__studies
+    display: grid
+    gap: $baseline
+    grid-template-columns: 1fr 1fr
+    list-style: none
+
+    .case-study-item
+      &:nth-child(2n)
+        transform: translateY(6em)
+
+    .case-study-item__title
+      line-height: .649122807em
+
+      &-inner
+        font-size: .865497076em
+
+    .case-study-cta__title
+      font-size: 2em

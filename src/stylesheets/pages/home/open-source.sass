@@ -1,0 +1,19 @@
+.open-source
+  background: $black
+  color: $white
+
+  &__projects
+    align-items: stretch
+    display: grid
+    grid-template-columns: 100%
+    padding-top: $baseline
+
+    @media (min-width: $breakpoint-desktop)
+      grid-template-columns: repeat(3, 1fr)
+      gap: $baseline
+
+    pre
+      font-size: .75em
+      height: 100%
+      line-height: 1.5em
+      padding: $baseline !important

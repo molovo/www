@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react'
 import { create } from 'zustand'
 
-export type HeaderStyle = 'black' | 'white' | 'red' | undefined
+export type HeaderStyle = 'black' | 'white' | 'red' | 'white-black' | 'white-red' | undefined
 export type Color = CSSProperties['color'] | undefined
 
 const useThemeStore = create<{

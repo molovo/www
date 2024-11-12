@@ -6,17 +6,31 @@
   justify-content: space-between
   padding-bottom: ($baseline * .5)
   padding-top: between(($baseline * .25), ($baseline * .5), $breakpoint-largeMobile, $breakpoint-tablet)
+  pointer-events: none
   position: fixed
   top: 0
   transition: color .5s ease, transform .5s ease
   width: 100%
   z-index: 9
 
+  > *
+    pointer-events: auto
+
   &[aria-hidden="true"]
     transform: translateY(-100%)
 
-  &--white
+  &--white,
+  &--white-black,
+  &--white-red
     color: $white
 
   &--black
     color: $black
+
+  &--white-black
+    .menu-toggle
+      color: $black
+
+  &--white-red
+    .menu-toggle
+      color: $red

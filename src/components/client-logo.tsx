@@ -7,6 +7,7 @@ import SuperrbLogo from '@/components/images/icons/superrb'
 import You from '@/components/images/icons/you'
 import VixenFitnessLogo from './images/icons/vixen-fitness'
 import MatteLogo from './images/icons/matte'
+import OctaevoLogo from './images/icons/octaevo'
 import Joonbyrd from './images/icons/joonbyrd'
 import RetainerClubLogo from './images/icons/retainer-club'
 
@@ -17,6 +18,7 @@ export const logoMap: { [key: string]: FC<{ style: Partial<CSSProperties> }> } =
     haresfoot: HaresfootLogo,
     joonbyrd: Joonbyrd,
     matte: MatteLogo,
+    octaevo: OctaevoLogo,
     redistribute: RedistributeLogo,
     'retainer-club': RetainerClubLogo,
     superrb: SuperrbLogo,

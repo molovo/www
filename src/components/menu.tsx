@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import useNavStateStore from '@/store/nav-state'
 import { useEffect } from 'react'
 import { useLockBodyScroll } from '@superrb/react-addons/hooks'
+import { usePathname } from 'next/navigation'
 
 const MenuCaseStudies = dynamic(
   () => import('@/components/menu-case-studies'),
@@ -17,7 +18,7 @@ const MenuCaseStudies = dynamic(
 
 const navigationItems = {
   '/writing': 'Writing',
-  '/projects': 'Projects',
+  '/open-source': 'Open source',
   'https://twitter.com/molovo': 'Follow me',
 }
 
@@ -32,6 +33,13 @@ const Menu = () => {
     false,
     'Case studies visible',
   )
+
+  const location = usePathname()
+  useEffect(() => {
+    setTimeout(() => {
+      close()
+    }, 150)
+  }, [location, close])
 
   useEffect(() => {
     setTimeout(() => {
@@ -50,7 +58,6 @@ const Menu = () => {
               <Link
                 className="menu__link"
                 href={path}
-                onClick={close}
                 target={path.startsWith('/') ? undefined : '_blank'}
                 rel={path.startsWith('/') ? undefined : 'noopener'}
               >
@@ -63,11 +70,7 @@ const Menu = () => {
         <ul className="menu__secondary">
           {Object.entries(secondaryNavigationItems).map(([path, label]) => (
             <li className="menu__secondary-item" key={path}>
-              <Link
-                className="menu__secondary-link"
-                href={path}
-                onClick={close}
-              >
+              <Link className="menu__secondary-link" href={path}>
                 {label}
               </Link>
             </li>

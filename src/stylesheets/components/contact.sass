@@ -5,6 +5,7 @@
   bottom: 0
   color: $white
   height: 100vh
+  overflow: hidden
   position: sticky
   width: 100%
   z-index: 0
@@ -13,6 +14,10 @@
     margin-top: -100vh
     opacity: 0
     pointer-events: none
+
+    .contact__form
+      opacity: 0
+      transform: translateY(10%)
 
   &__inner
     align-items: center
@@ -29,6 +34,7 @@
     height: 100%
     max-width: $contentWidth
     padding-top: $gutterMid
+    transition: opacity .5s ease-out, transform .5s ease-out
     width: 100%
 
     &:valid

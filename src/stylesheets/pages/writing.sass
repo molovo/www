@@ -31,10 +31,23 @@
       @extend h1
       color: $black
       margin: 0
+      position: relative
       transition: color .5s ease
 
       &:hover
         color: $red
+
+      .swash
+        display: block
+        font-family: $font-primary
+        font-weight: $weight-medium
+        font-size: .4em
+        letter-spacing: normal
+        position: absolute
+        bottom: 100%
+
+        &::before
+          content: none
 
     &-meta
       align-items: center

@@ -5,7 +5,7 @@ const getPost = async (slug: string) => {
   'use server'
 
   const { metadata, default: Content } = await import(
-    `/content/posts/${slug}.mdx`
+    `content/posts/${slug}.mdx`
   )
 
   return { Content, slug, metadata }

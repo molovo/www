@@ -1,21 +1,36 @@
 =case-study-item-hover
+  z-index: 9
+
   .case-study-item__inner-background,
   .case-study-item__content
     opacity: 1
 
 .case-study-item
   aspect-ratio: .75
-  box-shadow: 0 0 3px rgba($black, .3)
   color: $white
-  display: flex
   flex: 0 0 auto
-  flex-direction: column
   height: 100%
   position: relative
   text-decoration: none
 
-  &:hover
-    +case-study-item-hover
+  .menu-case-studies &
+    box-shadow: 0 0 3px rgba($black, .3)
+
+  &__link
+    +cover
+    color: inherit
+    display: flex
+    flex-direction: column
+    text-decoration: none
+    transition: transform .5s ease
+
+    &:active,
+    &:visited
+      color: inherit
+
+    &:hover
+      +case-study-item-hover
+      transform: scale(1.05)
 
   &__background
     +cover(-10%)
@@ -103,7 +118,7 @@
   justify-content: flex-end
   padding: $baseline
   text-align: left
-  transition: background .5s ease
+  transition: background .5s ease, transform .5s ease
 
   &__title
     margin: auto 0 0
@@ -118,6 +133,7 @@
 
   &:hover
     background: darken($red2, 3.5)
+    transform: scale(1.05)
 
     .case-study-cta__title
       &::after

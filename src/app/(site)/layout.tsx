@@ -25,8 +25,8 @@ export default function RootLayout({ children }: PropsWithChildren<{}>) {
       <body>
         <Header />
         <Menu />
-        {/*<Main>{children}</Main>*/}
-        {children}
+        <Main>{children}</Main>
+        {/* <main>{children}</main> */}
         <Footer />
         <Contact />
       </body>

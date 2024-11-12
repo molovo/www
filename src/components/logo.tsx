@@ -12,10 +12,12 @@ import useNavStateStore from '@/store/nav-state'
 
 const Logo = ({
   client,
+  noClient = false,
   asLink = false,
   style = {},
 }: {
   client?: ClientSlug
+  noClient?: boolean
   asLink?: boolean
   style?: Partial<CSSProperties>
 }) => {
@@ -59,7 +61,7 @@ const Logo = ({
         )}
       </div>
 
-      {displayClient && (
+      {displayClient && !noClient && (
         <>
           <span className="logo__separator">+</span>
           <div className="logo__client">

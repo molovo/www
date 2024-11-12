@@ -1,46 +1,21 @@
 .homepage-section
   +gutters
-  padding-bottom: $gutterMax
+  +spacing
 
-  &__text,
-  &__list
-    max-width: 43em
+  &__pre-title
+    @extend h1
+    +script
+    color: $red
+    font-size: 4.5vmax
+    margin: 0 0 1rem
+    max-width: 7em
+    text-wrap: balance
 
-  &__text
-    p
-      @extend %lead
+    .swash
+      &::before
+        color: $gray2
 
-    svg
-      display: inline
-      height: 1em
-      margin-bottom: -.125em
-      width: auto
-
-  &__list
-    align-items: flex-start
-    display: flex
-    flex-wrap: wrap
-    gap: $baseline ($baseline * 2)
-    justify-content: space-between
-
-  &__item
-    flex: 0 0 100%
-    list-style: none
-
-    @media (min-width: $breakpoint-desktop)
-      flex: 0 0 calc(50% - #{$baseline})
-
-    &-link
-      color: $red
-      text-decoration: none
-
-    &-title
-      margin: .25em 0
-
-    &-text
-      margin: 0
-
-  .menu__studies-list
-    align-items: stretch
-    height: 40em
-    overflow-x: auto
+  &__title
+    @extend h2
+    max-width: 24em
+    text-wrap: balance

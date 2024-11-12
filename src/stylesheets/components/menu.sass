@@ -6,7 +6,7 @@
   flex-direction: column
   justify-content: space-between
   height: 100vh
-  overflow-y: auto
+  overflow: clip auto
   padding-bottom: $baseline
   padding-top: ($baseline * 4)
   position: fixed
@@ -18,6 +18,11 @@
   &[aria-hidden="true"]
     opacity: 0
     pointer-events: none
+
+  &[aria-hidden="false"]
+    .menu__link,
+    .menu__secondary-link
+      pointer-events: auto
 
   @media (orientation: landscape)
     flex-direction: row
@@ -47,6 +52,12 @@
   &__items
     list-style: none
     margin: auto 0
+    pointer-events: none
+
+    &:hover
+      .menu__link:not(:hover)
+        // color: #cc6a73
+        color: $red2
 
   &__link
     +script
@@ -57,15 +68,17 @@
     text-decoration: none
     transition: color .5s ease
 
-    &:hover
-      color: $black
-
   &__secondary
     align-items: flex-start
     display: flex
     flex-direction: column
     list-style: none
     margin: 0
+    pointer-events: none
+
+    &:hover
+      .menu__secondary-link:not(:hover)
+        color: $red2
 
     @media (orientation: landscape)
       align-items: center
@@ -73,14 +86,11 @@
       gap: $baseline
 
     &-link
+      +hoverUnderline($white)
       color: inherit
       font-size: .875em
       font-weight: $weight-medium
-      text-decoration: none
-      transition: color .5s ease
-
-      &:hover
-        color: $black
+      transition: color .5s ease, text-decoration-color .5s ease
 
   &__studies
     +gutters
@@ -122,12 +132,14 @@
       flex: 1 1
       gap: between($gutterMin, ($baseline * 2), $breakpoint-largeMobile, $breakpoint-desktop)
       left: 50%
+      list-style: none
       overflow-x: auto
       margin-block: ($baseline * -1)
       padding-block: ($baseline * 2)
       position: relative
       scroll-snap-type: x proximity
       transform: translateX(-50%)
+      transition: scroll-snap-type 0s .5s linear
       width: 100vw
 
       @media (orientation: landscape)
@@ -136,6 +148,12 @@
       &--scrolling
         .menu__studies-item
           pointer-events: none
+
+    &:has(.menu__studies-progress:active)
+      .menu__studies-list
+        scroll-behavior: smooth
+        scroll-snap-type: none
+        transition: none
 
     &-progress
       appearance: none
@@ -157,7 +175,7 @@
       @each $suffix in -webkit-slider-track, -moz-range-track, -ms-track
         &::#{$suffix}
           appearance: none
-          background: rgba($black, .3)
+          background: $red2
           border: 0
           border-radius: 0
           cursor: pointer

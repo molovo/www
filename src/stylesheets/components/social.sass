@@ -7,15 +7,12 @@
     transition: opacity .5s ease
 
     &:hover
-      .social__icon
-        opacity: .2
+      .social__icon:not(:hover)
+        color: $red2
 
   &__icon
     flex: 0 0 auto
-    transition: opacity .5s ease
-
-    &.social__icon:hover
-      opacity: 1
+    transition: color .5s ease
 
     svg
       color: inherit

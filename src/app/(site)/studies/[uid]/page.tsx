@@ -34,7 +34,7 @@ export const getPost = async (slug: string): Promise<CaseStudyType> => {
   'use server'
 
   try {
-    const { metadata } = await import(`/content/studies/${slug}/index.mdx`)
+    const { metadata } = await import(`content/studies/${slug}/index.mdx`)
     const sections = await getSections(slug)
 
     return { ...metadata, slug: slug, sections }

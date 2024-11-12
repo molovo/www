@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 import Link from 'next/link'
 import useHeaderStyle from '@/hooks/use-header-style'
 import ArticleType from '@/types/article'
+import swash from '@/utils/swash'
 
 interface Props {
   posts: ArticleType[]
@@ -18,7 +19,10 @@ const Listing = ({ posts }: Props) => {
       <div className="writing__content">
         <ul className="writing__posts">
           {posts.map(
-            ({ slug, metadata: { title, image, tags, date, description } }) => (
+            ({
+              slug,
+              metadata: { title, image, tags, date, description, ...post },
+            }) => (
               <li key={slug} className="writing__post">
                 <div className="writing__post-header">
                   {image ? (
@@ -34,14 +38,19 @@ const Listing = ({ posts }: Props) => {
                   ) : (
                     <div
                       className="writing__post-image-placeholder"
-                      data-title={title}
+                      data-title={title.replace('_', '')}
                     />
                   )}
                   <Link
                     href={`/writing/${slug}`}
                     className="writing__post-link"
                   >
-                    <h2 className="writing__post-title">{title}</h2>
+                    <h2
+                      className="writing__post-title"
+                      dangerouslySetInnerHTML={{
+                        __html: swash(title),
+                      }}
+                    />
                   </Link>
                 </div>
 

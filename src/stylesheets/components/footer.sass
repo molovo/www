@@ -62,11 +62,11 @@
     justify-content: flex-start
 
     &-link
+      +hoverUnderline($white)
       color: inherit
       font-weight: $weight-medium
       opacity: .5
-      text-decoration: none
-      transition: opacity .5s ease
+      transition: text-decoration-color .5s ease, opacity .5s ease
 
       &:hover
         opacity: 1

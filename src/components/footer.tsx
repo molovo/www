@@ -3,7 +3,7 @@
 import useHeaderStyle from '@/hooks/use-header-style'
 import useContactFormStateStore from '@/store/contact-form-state'
 import Link from 'next/link'
-import translations from '../../content/translations'
+import translations from 'content/translations'
 import Logo from './logo'
 import Social from './social'
 
@@ -24,7 +24,7 @@ const Footer = () => {
       </div>
 
       <div className="footer__right">
-        <Logo asLink={true} />
+        <Logo asLink={true} noClient={true} />
         <Social />
       </div>
 

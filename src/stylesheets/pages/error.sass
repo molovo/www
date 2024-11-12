@@ -1,0 +1,28 @@
+.error
+  align-items: stretch
+  display: flex
+  justify-content: center
+
+  &__content,
+  &__image
+    flex: 0 0 100%
+
+    @media (min-width: $breakpoint-tablet)
+      flex: 0 0 50%
+
+  &__content
+    +spacing
+    align-items: center
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+  &__image
+    img
+      height: 100%
+      object-fit: cover
+      object-position: center
+      width: 100%
+
+  &__title
+    +scriptTitle

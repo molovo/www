@@ -12,16 +12,28 @@ interface Item {
   client?: string
   superrb?: boolean
 }
-const HomepageSection = ({ text, items }: { text: string; items: Item[] }) => {
-  const setRef = useHeaderStyle('red')
+const HomepageSection = ({
+  title,
+  text,
+  items,
+}: {
+  title: string
+  text: string
+  items: Item[]
+}) => {
+  const setRef = useHeaderStyle('white-red')
 
   return (
     <section className="homepage-section" ref={setRef}>
-      <div className="homepage-section__inner">
-        <div className="homepage-section__text">
-          <p dangerouslySetInnerHTML={{ __html: text }} />
+      <div className="homepage-section__content">
+        <div className="homepage-section__content-inner">
+          <div className="homepage-section__text">
+            <p dangerouslySetInnerHTML={{ __html: text }} />
+          </div>
         </div>
+      </div>
 
+      <div className="homepage-section__detail">
         {items[0].client ? (
           <MenuCaseStudies
             visible={true}
@@ -47,5 +59,7 @@ const HomepageSection = ({ text, items }: { text: string; items: Item[] }) => {
     </section>
   )
 }
+
+export type { Item as HomepageSectionItem }
 
 export default HomepageSection

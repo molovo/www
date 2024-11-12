@@ -8,10 +8,12 @@ import { useState } from 'reinspect'
 import Logo from './logo'
 import useContactFormStateStore from '@/store/contact-form-state'
 import useNavStateStore from '@/store/nav-state'
-import translations from '../../content/translations'
+import translations from 'content/translations'
+import { useLiveNodeList } from 'live-node-list/hooks'
+import CaseStudyCta from './case-study-cta'
 
-const getStudies = async (): Promise<CaseStudy[]> => {
-  const response = await fetch(`http://localhost:3000/api/content/studies`)
+export const getStudies = async (): Promise<CaseStudy[]> => {
+  const response = await fetch(`/api/content/studies`)
   return response.json()
 }
 
@@ -25,14 +27,17 @@ const MenuCaseStudies = ({
   const [studies, setStudies] = useState<CaseStudy[]>([], 'Studies')
   const container =
     useRef<HTMLUListElement>() as MutableRefObject<HTMLUListElement>
-  const [scrolling, setScrolling] = useState(false, 'Scrolling')
+  const [scrolling, setScrolling] = useState<boolean>(false, 'Scrolling')
   const scrollTimer =
     useRef<NodeJS.Timeout>() as MutableRefObject<NodeJS.Timeout>
   const progress =
     useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
+  const [dragging, setDragging] = useState<boolean>(false, 'Dragging')
 
-  const { open: openContactForm } = useContactFormStateStore()
-  const { close: closeNav } = useNavStateStore()
+  const studiesElements = useLiveNodeList('.menu__studies-item')
+  studiesElements?.on('update', (newItems, oldItems) => {
+    console.log(newItems, oldItems)
+  })
 
   useEffect(() => {
     ;(async () => {
@@ -58,13 +63,15 @@ const MenuCaseStudies = ({
       setScrolling(false)
     }, 100)
 
-    const progressInput = progress.current
-    if (progressInput) {
-      progressInput.value = `${
-        (container.current?.scrollLeft /
-          (container.current?.scrollWidth - container.current?.clientWidth)) *
-        100
-      }`
+    if (!dragging) {
+      const progressInput = progress.current
+      if (progressInput) {
+        progressInput.value = `${
+          (container.current?.scrollLeft /
+            (container.current?.scrollWidth - container.current?.clientWidth)) *
+          100
+        }`
+      }
     }
 
     const width = container.current?.clientWidth
@@ -102,6 +109,26 @@ const MenuCaseStudies = ({
     handleScroll,
     { passive: true },
     container.current,
+    !!studies.length,
+  )
+
+  useEventListener(
+    'pointerdown',
+    () => {
+      setDragging(true)
+    },
+    undefined,
+    progress.current,
+    !!studies.length,
+  )
+
+  useEventListener(
+    'pointerup',
+    () => {
+      setDragging(false)
+    },
+    undefined,
+    progress.current,
     !!studies.length,
   )
 
@@ -152,33 +179,7 @@ const MenuCaseStudies = ({
           />
         ))}
 
-        <li className="case-study-item menu__studies-item">
-          <button
-            className="case-study-cta"
-            onClick={() => {
-              closeNav()
-              openContactForm()
-            }}
-          >
-            <Logo client="you" />
-
-            <h2 className="case-study-cta__title">
-              {translations.contact.cta.title}
-              <br />
-              <translations.contact.cta.link />
-            </h2>
-
-            {/* <button */}
-            {/*   className="case-study-cta__button text-link" */}
-            {/*   onClick={() => { */}
-            {/*     closeNav() */}
-            {/*     openContactForm() */}
-            {/*   }} */}
-            {/* > */}
-            {/*   Get in touch */}
-            {/* </button> */}
-          </button>
-        </li>
+        <CaseStudyCta className="menu__studies-item" />
       </ul>
 
       <style>
