@@ -1,6 +1,8 @@
 .writing
   +gutters
-  padding-top: $gutterMax
+
+  .main > &
+    padding-top: $gutterMax
 
   &__content
     +spacing
@@ -18,19 +20,27 @@
     list-style: none
     margin: 0 0 $gutterMax
 
+    &:last-child
+      margin-bottom: 0
+
     &-header
-      align-items: baseline
-      display: flex
-      gap: $baseline
-      margin: 0
+      align-items: flex-start
+      display: grid
+      grid-template-rows: 1.25em auto
+      gap: 0 $baseline
+      margin: 0 0 $baseline
+
+      @media (min-width: $breakpoint-tablet)
+        grid-template-columns: auto 1fr
 
     &-link
+      margin-top: .65em
       text-decoration: none
 
     &-title
       @extend h1
       color: $black
-      margin: 0
+      margin: 0 0 -.2625em
       position: relative
       transition: color .5s ease
 
@@ -53,21 +63,37 @@
       align-items: center
       display: flex
       flex: 0 0 100%
-      gap: $baseline
+      flex-wrap: wrap
+      gap: 0 $baseline
+      grid-column: 1 / span 1
+      grid-row: 3 / span 1
+
+      @media (max-width: $breakpoint-tablet)
+        margin-top: ($baseline * .5)
+
+      @media (min-width: $breakpoint-tablet)
+        flex-wrap: nowrap
+        grid-column: 2 / span 1
+        grid-row: 1 / span 1
 
     &-date
+      color: $gray3
       font-size: .75em
-      opacity: .75
+      line-height: 1.5em
 
     &-tags
       display: flex
-      flex: 1 1
-      margin: ($baseline / 2) 0
+      flex: 0 0 100%
+      margin: 0
+
+      @media (min-width: $breakpoint-tablet)
+        flex: 1 1
 
     &-tag
       color: $red
       font-size: .75em
       font-weight: $weight-medium
+      line-height: 1.5em
       list-style: none
       text-transform: capitalize
 
@@ -83,22 +109,26 @@
     &-image,
     &-image-placeholder
       aspect-ratio: 1.5
+      border: 1px solid $gray2
       flex: 0 0 auto
+      grid-row: 1 / span 2
+      margin: .25em 0 0
       position: relative
-      width: 4.5em
+      width: 6em
 
     &-image-img
       display: block
-      height: auto !important
-      left: 50%
+      height: 100%
+      // height: auto !important
+      // left: 50%
       object-fit: cover
-      position: absolute
-      top: 50%
-      transform: translate(-50%, calc(-50% + .125em))
+      object-position: center
+      // position: absolute
+      // top: 50%
+      // transform: translate(-50%, calc(-50% + .125em))
       width: 100%
 
     &-image-placeholder
-      border: 1px solid rgba($black, .3)
       overflow: hidden
       padding-left: $baseline
       padding-top: .1em
@@ -107,7 +137,7 @@
         content: attr(data-title)
         display: inline-block
         font-weight: $weight-medium
-        font-size: 1.35em
+        font-size: 1.8em
         line-height: 1
         width: 4em
 

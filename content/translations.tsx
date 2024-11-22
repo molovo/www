@@ -8,7 +8,7 @@ const translations = {
           <span className="swash" data-character="F">
             great
           </span>{' '}
-          {'together'}
+          {'together.'}
         </span>
       ),
     },

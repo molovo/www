@@ -1,19 +1,66 @@
+$code-background: #2b303b
+$code-comment: #65737e
+$code-string: #a3be8c
+
 .open-source
   background: $black
   color: $white
 
-  &__projects
-    align-items: stretch
-    display: grid
-    grid-template-columns: 100%
-    padding-top: $baseline
+  .homepage-section__link
+    @extend .button--alt
 
-    @media (min-width: $breakpoint-desktop)
-      grid-template-columns: repeat(3, 1fr)
-      gap: $baseline
+  &__projects
+    +gutters
+    +scrollGutters
+    +slideshow
+    align-items: stretch
+    display: flex
+    gap: $baseline
+    left: 50%
+    padding-top: $baseline
+    position: relative
+    transform: translateX(-50%)
+    width: 100vw
+
+  &__project
+    background: $code-background
+    display: flex
+    flex: 0 0 28em
+    flex-direction: column
+    max-width: calc(100vw - (var(--gutter) * 3))
+    padding: $baseline
+    position: relative
 
     pre
+      flex: 1 1
       font-size: .75em
-      height: 100%
       line-height: 1.5em
-      padding: $baseline !important
+      padding: 0 !important
+
+      span[style="color: rgb(101, 115, 126);"],
+      span[style="color:#65737e"]
+        font-style: italic
+
+      &.open-source__project-intro
+        color: $code-comment
+        flex: 0 0 auto
+        font-family: $font-mono
+        font-style: italic
+        height: auto
+
+        a
+          color: $code-string
+          font-style: normal
+          text-decoration: underline
+
+  &__logo
+    display: block
+    height: $baseline
+    position: absolute
+    right: $baseline
+    top: $baseline
+    width: $baseline
+
+    svg
+      height: 100%
+      width: 100%

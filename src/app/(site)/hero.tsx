@@ -2,23 +2,39 @@
 
 import SuperrbLink from '@/components/superrb-link'
 import useHeaderStyle from '@/hooks/use-header-style'
-import { HomepageSectionItem } from './homepage-section'
 import CaseStudyItem from '@/components/case-study-item'
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import {
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import CaseStudyType from '@/types/case-study'
-import { getStudies } from '@/components/menu-case-studies'
 import Hand from '@/components/images/icons/hand.svg'
-import { useEventListener, useIsInViewport } from '@superrb/react-addons/hooks'
+import {
+  useEventListener,
+  useIsInViewport,
+  useIsMobile,
+} from '@superrb/react-addons/hooks'
 import CaseStudyCta from '@/components/case-study-cta'
 import swash from '@/utils/swash'
+import { useLiveNodeList } from 'live-node-list/hooks'
 
-const Hero = ({ items }: { items: string[] }) => {
+const Hero = ({
+  title,
+  studies,
+}: {
+  title: string
+  studies: CaseStudyType[]
+}) => {
   const [scrolled, setScrolled] = useState<boolean>(false)
-  const setHeaderStyleRef = useHeaderStyle(scrolled ? 'white' : 'white-red')
-  const [studies, setStudies] = useState<CaseStudyType[]>([])
+  const isMobile = useIsMobile(false, '64em')
+  const setHeaderStyleRef = useHeaderStyle(
+    isMobile || scrolled ? 'white' : 'white-red',
+  )
   const [pos, setPos] = useState<number>(6)
-  const containerRef =
-    useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  const container = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
   const { isInViewport, setRef: setIsInViewportRef } = useIsInViewport(false)
 
   const setRef = (ref: HTMLElement) => {
@@ -26,26 +42,48 @@ const Hero = ({ items }: { items: string[] }) => {
     setIsInViewportRef(ref)
   }
 
+  const studiesElements = useLiveNodeList(
+    '.hero .case-study-item',
+    container.current,
+  )
+
+  const handleScroll = () => {
+    if (!isMobile) {
+      const y = window.scrollY - container.current.offsetTop
+      const height = container.current.clientHeight
+      const scrollHeight = window.innerHeight
+
+      setPos(Math.max(0, 6 - (y / scrollHeight) * 6))
+      setScrolled(y > 45)
+
+      studiesElements?.forEach((item) => {
+        item.removeAttribute('aria-current')
+        const top = (item as HTMLElement).offsetTop - y
+        const pos = 5 - (top / height) * 20
+        const image = item.querySelector('.case-study-item__background img') as
+          | HTMLImageElement
+          | undefined
+
+        if (image) {
+          image.style.transform = `translateY(${pos}%)`
+        }
+      })
+    }
+  }
+
+  useEventListener(
+    'scroll',
+    handleScroll,
+    { passive: true },
+    typeof window !== 'undefined' ? window : undefined,
+    isInViewport && !isMobile,
+  )
+
   useEffect(() => {
-    ;(async () => {
-      const studies = await getStudies()
-      setStudies(
-        studies
-          .filter(({ slug }) => items.includes(slug))
-          .sort((a, b) => items.indexOf(a.slug) - items.indexOf(b.slug)),
-      )
-    })()
-  }, [items])
-
-  useEventListener('scroll', () => {
-    const y = window.scrollY
-    const height = containerRef.current.clientHeight - window.innerHeight
-
-    setPos(Math.max(0, 6.5 - (y / height) * 6.5))
-    setScrolled(y > 45)
+    handleScroll()
   })
 
-  if (!items || !studies) {
+  if (!studies) {
     return null
   }
 
@@ -53,39 +91,42 @@ const Hero = ({ items }: { items: string[] }) => {
     <section className="hero" ref={setRef}>
       <div className="hero__content">
         <div className="hero__content-inner">
-          <h1 className="hero__title">
-            Hi, I&apos;m James.
-            <br />
-            <span
-              dangerouslySetInnerHTML={{
-                __html: swash('_I make websites_.', 'M'),
-              }}
-            />
-          </h1>
+          <h1
+            className="hero__title"
+            dangerouslySetInnerHTML={{
+              __html: swash(title, 'M'),
+            }}
+          />
 
           <div className="hero__text">
             <p>
-              I&apos;m currently leading the talented dev team at{' '}
-              <SuperrbLink /> where I build awesome websites and interactive
-              experiences like these <Hand />
+              Iʼm currently leading the talented dev team at <SuperrbLink />{' '}
+              where I build awesome websites and interactive experiences like
+              these <Hand />
             </p>
           </div>
         </div>
       </div>
 
-      <div className="hero__detail" ref={containerRef}>
+      <div className="hero__detail" ref={container}>
         <div className="hero__studies">
           {studies.map((study, i) => (
             <CaseStudyItem
               key={study.client}
               study={study}
               style={
-                i % 2 === 1 ? { transform: `translate3d(0, ${pos}em, 0)` } : {}
+                !isMobile && i % 2 === 1
+                  ? { transform: `translate3d(0, ${pos}em, 0)` }
+                  : {}
               }
             />
           ))}
 
-          <CaseStudyCta style={{ transform: `translate3d(0, ${pos}em, 0)` }} />
+          <CaseStudyCta
+            style={
+              !isMobile ? { transform: `translate3d(0, ${pos}em, 0)` } : {}
+            }
+          />
         </div>
       </div>
     </section>

@@ -1,0 +1,18 @@
+const magicRoundabout = new MagicRoundabout(
+  '#your-element',
+  {
+    auto: false,
+    buttons: true,
+    center: false,
+    click: true,
+    delay: 10000,
+    draggable: false,
+    keys: true,
+    limit: true,
+    loop: true,
+    onChange: (slideshow) => {},
+    touch: true,
+    scroll: true,
+    vertical: false
+  }
+)

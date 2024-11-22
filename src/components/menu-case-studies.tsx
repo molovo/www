@@ -1,30 +1,20 @@
 'use client'
 
-import CaseStudyItem from '@/components/case-study-item'
-import CaseStudy from '@/types/case-study'
 import { useEventListener } from '@superrb/react-addons/hooks'
-import { MutableRefObject, useEffect, useRef } from 'react'
+import { MutableRefObject, useCallback, useEffect, useRef } from 'react'
 import { useState } from 'reinspect'
-import Logo from './logo'
-import useContactFormStateStore from '@/store/contact-form-state'
-import useNavStateStore from '@/store/nav-state'
-import translations from 'content/translations'
 import { useLiveNodeList } from 'live-node-list/hooks'
 import CaseStudyCta from './case-study-cta'
-
-export const getStudies = async (): Promise<CaseStudy[]> => {
-  const response = await fetch(`/api/content/studies`)
-  return response.json()
-}
+import CaseStudyItem from './case-study-item'
+import CaseStudyType from '@/types/case-study'
 
 const MenuCaseStudies = ({
+  studies = [],
   visible = false,
-  filter = () => true,
 }: {
+  studies: CaseStudyType[]
   visible: boolean
-  filter?: (study: CaseStudy) => boolean
 }) => {
-  const [studies, setStudies] = useState<CaseStudy[]>([], 'Studies')
   const container =
     useRef<HTMLUListElement>() as MutableRefObject<HTMLUListElement>
   const [scrolling, setScrolling] = useState<boolean>(false, 'Scrolling')
@@ -34,30 +24,18 @@ const MenuCaseStudies = ({
     useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
   const [dragging, setDragging] = useState<boolean>(false, 'Dragging')
 
-  const studiesElements = useLiveNodeList('.menu__studies-item')
-  studiesElements?.on('update', (newItems, oldItems) => {
-    console.log(newItems, oldItems)
-  })
+  const studiesElements = useLiveNodeList(
+    '.menu .case-study-item',
+    container.current,
+  )
 
-  useEffect(() => {
-    ;(async () => {
-      const studies = await getStudies()
-      setStudies(studies)
-    })()
-  }, [setStudies])
-
-  useEffect(() => {
-    if (!visible) {
-      container.current?.scrollTo({ left: 0, behavior: 'smooth' })
-    }
-  }, [visible])
-
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     clearTimeout(scrollTimer.current)
 
     if (!container.current) {
       return
     }
+
     setScrolling(true)
     scrollTimer.current = setTimeout(() => {
       setScrolling(false)
@@ -75,10 +53,10 @@ const MenuCaseStudies = ({
     }
 
     const width = container.current?.clientWidth
-    const items = container.current?.querySelectorAll('.menu__studies-item')
-    items.forEach((item) => {
+    const x = container.current?.scrollLeft
+    studiesElements?.forEach((item) => {
       item.removeAttribute('aria-current')
-      const { left } = item.getBoundingClientRect()
+      const left = (item as HTMLElement).offsetLeft - x
       const pos = 5 - (left / width) * 20
       const image = item.querySelector('.case-study-item__background img') as
         | HTMLImageElement
@@ -89,11 +67,7 @@ const MenuCaseStudies = ({
       }
     })
 
-    if (!items) {
-      return
-    }
-
-    for (const child of items) {
+    for (const child of studiesElements || []) {
       const { left } = child.getBoundingClientRect()
       if (left < 0) {
         continue
@@ -102,39 +76,28 @@ const MenuCaseStudies = ({
       child.setAttribute('aria-current', 'true')
       break
     }
-  }
+  }, [dragging, studiesElements])
 
-  useEventListener(
-    'scroll',
-    handleScroll,
-    { passive: true },
-    container.current,
-    !!studies.length,
-  )
+  useEffect(() => {
+    container.current?.scrollTo({ left: 0, behavior: 'smooth' })
+    handleScroll()
+  }, [visible, handleScroll])
+
+  useEventListener('scroll', handleScroll, { passive: true }, container.current)
 
   useEventListener(
     'pointerdown',
-    () => {
-      setDragging(true)
-    },
+    () => setDragging(true),
     undefined,
     progress.current,
-    !!studies.length,
   )
 
   useEventListener(
     'pointerup',
-    () => {
-      setDragging(false)
-    },
+    () => setDragging(false),
     undefined,
     progress.current,
-    !!studies.length,
   )
-
-  useEffect(() => {
-    handleScroll()
-  }, [visible])
 
   const handleInput = () => {
     const value = parseFloat(progress.current?.value)
@@ -147,17 +110,7 @@ const MenuCaseStudies = ({
     }
   }
 
-  useEventListener(
-    'input',
-    handleInput,
-    undefined,
-    progress.current,
-    !!studies.length,
-  )
-
-  if (!studies.length) {
-    return null
-  }
+  useEventListener('input', handleInput, undefined, progress.current)
 
   const sliderWidth = `${
     (container.current?.clientWidth / container.current?.scrollWidth) * 100
@@ -170,16 +123,18 @@ const MenuCaseStudies = ({
           scrolling ? 'menu__studies-list--scrolling' : ''
         }`}
         ref={container}
+        {...(!visible ? { tabIndex: -1 } : {})}
       >
-        {studies.filter(filter).map((study) => (
+        {studies.map((study: CaseStudyType) => (
           <CaseStudyItem
             study={study}
             key={study.slug}
             className="menu__studies-item"
+            visible={visible}
           />
         ))}
 
-        <CaseStudyCta className="menu__studies-item" />
+        <CaseStudyCta className="menu__studies-item" visible={visible} />
       </ul>
 
       <style>

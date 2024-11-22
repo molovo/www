@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 
-const Logo = ({ style = {} }: { style: Partial<CSSProperties> }) => (
+const Logo = ({ style = {} }: { style?: Partial<CSSProperties> }) => (
   <svg version="1.1" className="logo-image" viewBox="0 -8.5 100 42">
     <path
       className="logo-image__frame"

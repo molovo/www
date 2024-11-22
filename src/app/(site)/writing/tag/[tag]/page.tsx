@@ -1,6 +1,6 @@
 'use server'
 
-import { getPosts } from '../../data'
+import { getPosts } from '@/data/posts'
 import Listing from '../../listing'
 
 const Page = async ({ params: { tag } }: { params: { tag: string } }) => {
@@ -8,7 +8,13 @@ const Page = async ({ params: { tag } }: { params: { tag: string } }) => {
     metadata.tags?.includes(tag),
   )
 
-  return <Listing posts={posts} />
+  return (
+    <section className="writing">
+      <div className="writing__content">
+        <Listing posts={posts} />
+      </div>
+    </section>
+  )
 }
 
 export default Page

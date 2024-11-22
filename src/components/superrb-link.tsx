@@ -1,10 +1,11 @@
-import SuperrbLogo from '@/components/images/icons/superrb'
+import SuperrbLogo from '@/components/images/icons/clients/superrb'
+import Link from '@/components/link'
 
 const SuperrbLink = () => (
-  <a href="https://www.superrb.com" target="_blank" rel="noopener">
+  <Link href="https://www.superrb.com">
     <SuperrbLogo />
     <span className="screenreader-text">Superrb</span>
-  </a>
+  </Link>
 )
 
 export default SuperrbLink

@@ -2,20 +2,31 @@
 
 import Image from 'next/image'
 import Logo from './logo'
-import Link from 'next/link'
+import Link from '@/components/link'
 import useNavStateStore from '@/store/nav-state'
 import { CSSProperties } from 'react'
 
 type CaseStudy = { [key: string]: any }
 
 const CaseStudyItem = ({
-  study: { draft: isDraft, slug, client, role, title, thumbnail, styles },
+  study: {
+    draft: isDraft,
+    slug,
+    client,
+    role,
+    title,
+    thumbnail,
+    thumbnailContentBackground,
+    styles,
+  },
   className,
   style = {},
+  visible = true,
 }: {
   study: CaseStudy
   className?: string
   style?: Partial<CSSProperties>
+  visible?: boolean
 }) => {
   const { close } = useNavStateStore()
 
@@ -31,6 +42,7 @@ const CaseStudyItem = ({
         style={styles?.thumbnail}
         onClick={close}
         className="case-study-item__link"
+        {...(!visible ? { tabIndex: -1 } : {})}
       >
         <div className="case-study-item__background-wrapper">
           {thumbnail && (
@@ -52,6 +64,16 @@ const CaseStudyItem = ({
             className="case-study-item__content"
             style={styles?.thumbnailContent}
           >
+            {thumbnailContentBackground && (
+              <figure className="case-study-item__content-background">
+                <Image
+                  src={thumbnailContentBackground}
+                  alt={client as string}
+                  style={styles?.thumbnailContentBackgroundImage}
+                  sizes="56.25vh"
+                />
+              </figure>
+            )}
             <Logo client={slug} />
 
             <h2
@@ -60,8 +82,11 @@ const CaseStudyItem = ({
             >
               <span className="case-study-item__title-inner">{title}</span>
             </h2>
-            <span className="case-study-item__client">{client}</span>
-            <span className="case-study-item__role">{role}</span>
+
+            <div className="case-study-item__meta">
+              <span className="case-study-item__client">{client}</span>
+              <span className="case-study-item__role">{role}</span>
+            </div>
           </div>
         </div>
       </Link>

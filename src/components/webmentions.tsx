@@ -4,6 +4,7 @@ import Image from 'next/image'
 import mediumLogo from '@/images/icons/medium.jpg'
 import { ReactNode, useEffect, useState } from 'react'
 import { format } from 'date-fns'
+import LineBreak from '@/components/line-break'
 
 interface Webmention {
   type: string
@@ -133,52 +134,56 @@ const Webmentions = ({ slug }: { slug: string }) => {
   )
 
   return (
-    <aside className="mentions">
-      <ul className="mentions__items">
-        {mediumPosts.map((mention) => (
-          <WebmentionItem
-            key={mention['wm-id']}
-            image={mediumLogo}
-            name={undefined}
-            text={`<a href="${mention.url}">Posted on medium.com</a> on ${mention['wm-received']}`}
-          />
-        ))}
-        {replies.map((mention) => (
-          <WebmentionItem
-            key={mention['wm-id']}
-            image={mention.author.photo}
-            name={mention.author.name}
-            text={`<a href="${mention.url}">replied</a> on ${mention['wm-received']}`}
-            additionalText={mention.content?.text}
-          />
-        ))}
-        {mentions.map((mention) => (
-          <WebmentionItem
-            key={mention['wm-id']}
-            image={mention.author.photo}
-            name={mention.author.name}
-            text={`<a href="${mention.url}">mentioned</a> on ${mention['wm-received']}`}
-            additionalText={mention.content?.text}
-          />
-        ))}
-        {likes.map((mention) => (
-          <WebmentionItem
-            key={mention['wm-id']}
-            image={mention.author.photo}
-            name={mention.author.name}
-            text={`<a href="${mention.url}">liked</a> on ${mention['wm-received']}`}
-          />
-        ))}
-        {reposts.map((mention) => (
-          <WebmentionItem
-            key={mention['wm-id']}
-            image={mention.author.photo}
-            name={mention.author.name}
-            text={`<a href="${mention.url}">reposted</a> on ${mention['wm-received']}`}
-          />
-        ))}
-      </ul>
-    </aside>
+    <>
+      <LineBreak />
+
+      <aside className="mentions">
+        <ul className="mentions__items">
+          {mediumPosts.map((mention) => (
+            <WebmentionItem
+              key={mention['wm-id']}
+              image={mediumLogo}
+              name={undefined}
+              text={`<a href="${mention.url}" target="_blank" rel="noopener">Posted on medium.com</a> on ${mention['wm-received']}`}
+            />
+          ))}
+          {replies.map((mention) => (
+            <WebmentionItem
+              key={mention['wm-id']}
+              image={mention.author.photo}
+              name={mention.author.name}
+              text={`<a href="${mention.url}" target="_blank" rel="noopener">replied</a> on ${mention['wm-received']}`}
+              additionalText={mention.content?.text}
+            />
+          ))}
+          {mentions.map((mention) => (
+            <WebmentionItem
+              key={mention['wm-id']}
+              image={mention.author.photo}
+              name={mention.author.name}
+              text={`<a href="${mention.url}" target="_blank" rel="noopener">mentioned</a> on ${mention['wm-received']}`}
+              additionalText={mention.content?.text}
+            />
+          ))}
+          {likes.map((mention) => (
+            <WebmentionItem
+              key={mention['wm-id']}
+              image={mention.author.photo}
+              name={mention.author.name}
+              text={`<a href="${mention.url}" target="_blank" rel="noopener">liked</a> on ${mention['wm-received']}`}
+            />
+          ))}
+          {reposts.map((mention) => (
+            <WebmentionItem
+              key={mention['wm-id']}
+              image={mention.author.photo}
+              name={mention.author.name}
+              text={`<a href="${mention.url}" target="_blank" rel="noopener">reposted</a> on ${mention['wm-received']}`}
+            />
+          ))}
+        </ul>
+      </aside>
+    </>
   )
 }
 

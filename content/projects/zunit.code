@@ -1,0 +1,16 @@
+#!/usr/bin/env zunit
+
+@test 'App should run' {
+  run my-app
+
+  assert $state equals 0
+  assert "$output" same_as "It worked!"
+}
+
+@test 'App fails with invalid arg' {
+  run my-app --invalid-arg
+
+  assert $state equals 127
+  assert "$output" same_as "Invalid argument: --invalid-arg"
+}
+

@@ -1,28 +1,33 @@
-import backgroundImage from '@/images/studies/joonbyrd/bg.webp'
+import backgroundImage from '@/images/studies/joonbyrd/bg3.webp'
+import productLineup from '@/images/studies/joonbyrd/serum.gif'
+import ContentImage from '@/components/content-image'
 import { colors } from '../index.mdx'
 
 export const metadata = {
   title: 'Feel _the joy_',
   backgroundImage,
   headerStyle: 'white',
-  headerColor: colors.white,
+  headerColor: colors.maroon,
+  //hideGradient: true,
   accentColor: colors.pink,
   accentColorTwo: colors.white,
 
   styles: {
     title: {
-      color: colors.pink,
+      color: colors.maroon,
       marginTop: '1.5rem',
-      maxWidth: '1.9em'
+      maxWidth: '1.9em',
     },
 
     main: {
-      backgroundColor: colors.maroon,
-      color: colors.white
-    }
+      backgroundColor: colors.pink,
+      color: colors.black,
+    },
   }
 }
 
-Joonbyrd, a new player in the skincare industry, approached us with a clear vision: create a Shopify website to showcase their scientifically-backed skincare products. With a passion for skincare and a commitment to evidence-based products, they were eager to make their mark in the competitive skincare market.
+When JoonByrd came to Superrb, they were just getting started. They had this amazing vision: scientifically-backed skincare with a soulful touch. The founder, who’s deeply passionate about the science behind skin health, wanted a Shopify site that didn’t just sell products but told their story in a way that felt fresh, modern, and, most importantly, true to who they are.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod     tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At     vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,     no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Bringing this vision to life online, the site had to feel clean and professional, with a sense of discovery and personality&mdash;something that stood out but didn’t overwhelm.
+
+<ContentImage size="full-width" src={productLineup} style={{ aspectRatio: '21/9', objectFit: 'cover' }} />

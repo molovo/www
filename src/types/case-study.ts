@@ -16,6 +16,7 @@ export interface CaseStudySectionType {
   accentColor?: CSSProperties['color']
   accentColorTwo?: CSSProperties['color']
   titleSwashCharacter?: string
+  hideGradient?: boolean
 
   styles?: {
     content?: Partial<CSSProperties>
@@ -23,6 +24,7 @@ export interface CaseStudySectionType {
     main?: Partial<CSSProperties>
     title?: Partial<CSSProperties>
     titleSwash?: Partial<CSSProperties>
+    social?: Partial<CSSProperties>
   }
 }
 
@@ -35,6 +37,7 @@ export default interface CaseStudyType {
   order?: number
   draft?: boolean
   superrb?: boolean
+  help?: string[]
 
   styles?: {
     thumbnail?: Partial<CSSProperties>

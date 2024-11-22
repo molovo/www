@@ -31,7 +31,6 @@
 
     &::before
       +script
-      align-self: center
       color: $gray2
       content: '0' counter(awards) "."
       font-size: 3em
@@ -39,15 +38,15 @@
       text-align: left
 
   &__logo
-    align-items: center
-    align-self: center
+    align-items: flex-start
     color: inherit
     display: flex
     justify-content: center
 
     svg
       color: inherit
-      height: 4em
+      height: auto
+      max-height: 3.5em
       width: 5em
 
       path

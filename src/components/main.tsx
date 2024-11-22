@@ -14,7 +14,7 @@ const Main = ({ children }: PropsWithChildren<{}>) => {
   return (
     <>
       <TransitionGroup className="transition-group">
-        <CSSTransition key={location} classNames="fade" timeout={500}>
+        <CSSTransition key={location} classNames="fade" timeout={1000}>
           <main className="main">{children}</main>
         </CSSTransition>
       </TransitionGroup>

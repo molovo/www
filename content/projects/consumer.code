@@ -1,0 +1,19 @@
+import consume from 'api-consumer'
+
+const api = consume('https://api.example.com')
+
+// GET https://api.example.com/users/123/comments
+const userComments = await api.users[123].comments.all()
+
+// POST https://api.example.com/users
+const user = await api.users.create({
+  name: 'Joe Bloggs',
+  email: 'joe@bloggs.com'
+})
+
+// GET https://api.example.com/users/1
+const user = await api.users.find(1)
+user.name = 'Joseph Bloggs'
+
+// PUT https://api.example.com/users/1
+await user.save()

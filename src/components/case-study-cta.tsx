@@ -7,9 +7,11 @@ import { CSSProperties } from 'react'
 const CaseStudyCta = ({
   className = '',
   style = {},
+  visible = true,
 }: {
   className?: string
   style?: Partial<CSSProperties>
+  visible?: boolean
 }) => {
   const { open: openContactForm } = useContactFormStateStore()
   const { close: closeNav } = useNavStateStore()
@@ -22,6 +24,7 @@ const CaseStudyCta = ({
           closeNav()
           openContactForm()
         }}
+        {...(!visible ? { tabIndex: -1 } : {})}
       >
         <Logo client="you" />
 

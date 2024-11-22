@@ -1,3 +1,6 @@
+$transitionDuration: 1s
+$transitionDelay: .25s
+
 .menu
   align-items: center
   background: $red
@@ -7,11 +10,11 @@
   justify-content: space-between
   height: 100vh
   overflow: clip auto
-  padding-bottom: $baseline
+  padding-bottom: var(--spacing)
   padding-top: ($baseline * 4)
   position: fixed
   top: 0
-  transition: opacity .5s ease
+  transition: opacity ($transitionDuration * .5) ease
   width: 100%
   z-index: 8
 
@@ -24,11 +27,22 @@
     .menu__secondary-link
       pointer-events: auto
 
+  // &::before
+  //   +cover
+  //   background: $red2
+  //   content: ''
+  //   display: block
+  //   transform: translateX(100%)
+  //   transition: transform 1s ease
+
+  // &:has(.menu__studies[aria-hidden="false"])
+  //   &::before
+  //     transform: translateX(0)
+
   @media (orientation: landscape)
     flex-direction: row
 
-  @media (min-width: $breakpoint-tablet)
-    padding-bottom: ($baseline * 2)
+  @media (min-width: $breakpoint-tablet) and (min-height: 50em)
     padding-top: ($baseline * 5)
 
   &__main
@@ -37,7 +51,7 @@
     flex-direction: column
     margin: 0 0 ($baseline * 2)
     position: relative
-    transition: transform .5s ease
+    transition: transform $transitionDuration ease
     width: 100%
 
     @media (orientation: landscape)
@@ -46,8 +60,20 @@
       margin: 0
       width: 100%
 
-    &[aria-hidden="true"]
-      transform: translateX(-100%)
+    &[aria-hidden="true"],
+    .menu[aria-hidden="true"] &
+      .menu__item,
+      .menu__secondary
+        opacity: 0
+        transform: translateX(-6em)
+
+      .menu__item
+        @for $i from 1 through 3
+          &:nth-child(#{$i})
+            transition-delay: (($transitionDuration / 10) * (4 - $i))
+
+      .menu__secondary
+        transition-delay: (($transitionDuration / 10) * 0)
 
   &__items
     list-style: none
@@ -56,10 +82,17 @@
 
     &:hover
       .menu__link:not(:hover)
-        // color: #cc6a73
         color: $red2
 
+  &__item
+    transition: opacity ($transitionDuration * .75) ease, transform ($transitionDuration * .75) ease
+
+    @for $i from 1 through 3
+      &:nth-child(#{$i})
+        transition-delay: $transitionDelay + (($transitionDuration / 10) * ($i - 1))
+
   &__link
+    +unbutton
     +script
     color: inherit
     font-size: 7.5vmax
@@ -74,10 +107,12 @@
     flex-direction: column
     list-style: none
     margin: 0
-    pointer-events: none
+    transition: opacity ($transitionDuration * .75) ease, transform ($transitionDuration * .75) ease
+    transition-delay: $transitionDelay + (($transitionDuration / 10) * 4)
 
     &:hover
-      .menu__secondary-link:not(:hover)
+      .menu__secondary-link:not(:hover),
+      .social__label
         color: $red2
 
     @media (orientation: landscape)
@@ -86,28 +121,46 @@
       gap: $baseline
 
     &-link
-      +hoverUnderline($white)
+      +unbutton
       color: inherit
+      display: inline-flex
       font-size: .875em
       font-weight: $weight-medium
-      transition: color .5s ease, text-decoration-color .5s ease
+      gap: .625ch
+      text-decoration: none
+      transition: color .5s ease
+
+      svg
+        color: inherit
+        width: 1em
+
+        path
+          fill: currentColor
 
   &__studies
     +gutters
     align-items: flex-start
     display: flex
-    flex: 0 0 100%
+    flex: 0 0 auto
     flex-direction: column
-    height: 100%
     position: relative
-    transition: transform .5s ease
+    transition: opacity $transitionDuration $transitionDelay ease, transform $transitionDuration $transitionDelay ease
     width: 100%
+
+    @media (min-width: $breakpoint-tablet)
+      flex: 0 0 100%
+      height: 100%
 
     @media (orientation: landscape)
       transform: translateX(-50vw)
 
+      .menu[aria-hidden="true"] &
+        transform: translateX(calc(-50vw + 6em))
+        opacity: 0
+
       .menu &[aria-hidden="false"]
         transform: translateX(-100%)
+        transition-delay: 0
 
         .menu__studies-list
           overflow-x: auto
@@ -130,7 +183,7 @@
       +scrollGutters
       display: flex
       flex: 1 1
-      gap: between($gutterMin, ($baseline * 2), $breakpoint-largeMobile, $breakpoint-desktop)
+      gap: clamp($baseline, 3vw, $baseline * 2)
       left: 50%
       list-style: none
       overflow-x: auto
@@ -208,6 +261,7 @@
       font-family: $font-primary
       font-size: .875em
       font-weight: $weight-medium
+      order: 9
       transition: color .5s ease
       z-index: 3
 
@@ -218,10 +272,13 @@
         display: none
 
     &-item
-      max-width: calc(100% - #{$baseline})
       scroll-snap-align: start
       scroll-snap-stop: normal
       transition: opacity .5s ease
+
+      @media (max-width: $breakpoint-largeMobile)
+        height: auto
+        width: calc(100% - #{$baseline})
 
       &[aria-current="true"]
         @media (max-width: $breakpoint-desktop)

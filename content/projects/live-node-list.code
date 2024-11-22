@@ -1,0 +1,20 @@
+import { LiveNodeList } from 'live-node-list'
+
+const items = new LiveNodeList('.my-selector')
+
+// Attach an event listener to each item
+// in the node list. The listener will automatically
+// be attached to any new elements matching the
+// selector when they are added to the DOM
+items.addEventListener('click', (e) => {
+  alert(`Clicked! ${e.target.id}`)
+})
+
+// Listen for changes to the node list
+// (e.g. when elements are added or removed)
+// and apply updates to the new items
+items.on('update', (newItems, oldItems) => {
+  newItems.forEach((item) => {
+    item.setAttribute('aria-label', 'New item')
+  })
+})

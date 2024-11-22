@@ -61,15 +61,16 @@
     gap: $baseline
     justify-content: flex-start
 
+    &:hover > a:not(:hover)
+      color: $red3
+
     &-link
-      +hoverUnderline($white)
-      color: inherit
-      font-weight: $weight-medium
-      opacity: .5
-      transition: text-decoration-color .5s ease, opacity .5s ease
+      color: rgba($white, .5)
+      text-decoration: none
+      transition: color .5s ease
 
       &:hover
-        opacity: 1
+        color: $white
 
   &__attribution
     opacity: .5

@@ -2,7 +2,7 @@
 
 import useHeaderStyle from '@/hooks/use-header-style'
 import useContactFormStateStore from '@/store/contact-form-state'
-import Link from 'next/link'
+import Link from '@/components/link'
 import translations from 'content/translations'
 import Logo from './logo'
 import Social from './social'

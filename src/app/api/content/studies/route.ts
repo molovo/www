@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getStudies } from './data'
+import { getStudies } from '@/data/studies'
 
 export async function GET(request: NextRequest) {
   const clients =

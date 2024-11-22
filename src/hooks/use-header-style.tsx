@@ -1,28 +1,33 @@
 import useThemeStore, { HeaderStyle as Style, Color } from '@/store/theme'
 import { useEventListener } from '@superrb/react-addons/hooks'
-import { useCallback, useEffect, useState } from 'react'
+import { MutableRefObject, useEffect, useRef } from 'react'
 
 const useHeaderStyle = (style?: Style, color?: Color) => {
-  const [ref, setRef] = useState<HTMLElement | null>(null)
+  const ref =
+    useRef<HTMLElement | null>() as MutableRefObject<HTMLElement | null>
   const setHeaderStyle = useThemeStore((state) => state.setHeaderStyle)
   const setHeaderColor = useThemeStore((state) => state.setHeaderColor)
 
-  const handleScroll = useCallback(() => {
-    if (ref) {
-      const { top, height } = ref.getBoundingClientRect()
+  const setRef = (node: HTMLElement | null) => {
+    ref.current = node
+  }
 
-      if (top < 50 && top + height > 0) {
+  const handler = () => {
+    if (ref.current) {
+      const { top, height } = ref.current?.getBoundingClientRect()
+
+      if (top < 75 && top + height > 0) {
         setHeaderStyle(style)
         setHeaderColor(color)
       }
     }
-  }, [ref, style, color, setHeaderStyle, setHeaderColor])
+  }
 
   useEffect(() => {
-    handleScroll()
-  }, [handleScroll, setHeaderStyle, setHeaderColor])
+    handler()
+  })
 
-  useEventListener('scroll', handleScroll, { passive: true })
+  useEventListener('scroll', handler, { passive: true })
 
   return setRef
 }

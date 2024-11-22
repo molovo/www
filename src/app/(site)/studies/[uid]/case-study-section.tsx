@@ -8,6 +8,8 @@ import useHeaderStyle from '@/hooks/use-header-style'
 import swash from '@/utils/swash'
 import SuperrbLink from '@/components/superrb-link'
 import useTheme from '@/hooks/use-theme'
+import SocialSharing from '@/components/social-sharing'
+import CaseStudyHelp from '@/components/case-study-help'
 
 const CaseStudySection = ({
   index,
@@ -36,6 +38,8 @@ const CaseStudySection = ({
       {(section.accentColor || section.accentColorTwo) && (
         <style>{`
           .case-study__section--${section.slug} {
+            --color: ${section.styles?.main?.color};
+            --background: ${section.styles?.main?.backgroundColor};
             --accent-color: ${section.accentColor};
             --accent-color-two: ${section.accentColorTwo};
           }
@@ -66,7 +70,9 @@ const CaseStudySection = ({
             className="case-study__section-header-content"
             style={{
               ...section.styles?.main,
-              background: `linear-gradient(to bottom, transparent 0%, transparent 25%, ${section.styles?.main?.backgroundColor} 100%)`,
+              background: section.hideGradient
+                ? 'none'
+                : `linear-gradient(to bottom, transparent 0%, transparent 25%, ${section.styles?.main?.backgroundColor} 100%)`,
             }}
           >
             <Logo client={study.slug} />
@@ -92,11 +98,11 @@ const CaseStudySection = ({
           className="case-study__section-content"
           style={section.styles?.content}
         >
+          <SocialSharing style={section.styles?.social} />
+
           <div className="case-study__section-content-inner content">
-            {study.superrb && index === 0 && (
-              <span className="case-study__section-superrb">
-                Made with the team at <SuperrbLink />
-              </span>
+            {study.help && index === 0 && (
+              <CaseStudyHelp helpers={study.help} />
             )}
 
             {content}

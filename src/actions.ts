@@ -4,12 +4,12 @@ import { NextResponse } from 'next/server'
 import { ServerClient } from 'postmark'
 import { MessageSendingResponse } from 'postmark/dist/client/models'
 
-export const contactSubmit = async (formData: FormData) => {
-  const data = {
-    message: formData.get('message') as string,
-    email: formData.get('email') as string,
-  }
+interface FormData {
+  message: string
+  email: string
+}
 
+export const contactSubmit = async (data: FormData) => {
   const client = new ServerClient(process.env.POSTMARK_API_KEY as string)
 
   try {
@@ -21,8 +21,6 @@ export const contactSubmit = async (formData: FormData) => {
       TextBody: data.message,
       MessageStream: 'outbound',
     })
-
-    console.log(response)
   } catch (err) {
     console.error(err)
     return {
@@ -33,6 +31,5 @@ export const contactSubmit = async (formData: FormData) => {
     }
   }
 
-  console.log('Message sent')
   return { success: true, message: 'Message sent' }
 }

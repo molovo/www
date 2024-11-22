@@ -1,0 +1,178 @@
+$size: 2.25em
+
+.social-sharing
+  --social-sharing-background: var(--background)
+  --social-sharing-color: var(--color)
+  --social-sharing-accent: var(--social-sharing-color)
+  --social-sharing-accent-two: var(--social-sharing-background)
+
+  bottom: clamp($gutterMin, 6vw, $gutterMax)
+  left: 0
+  height: $size
+  margin-left: $baseline
+  margin-right: (($size * -1) - $baseline)
+  position: sticky
+  transition: opacity .5s .5s ease
+  width: $size
+  z-index: 9
+
+  &[aria-hidden="true"]
+    opacity: 0
+
+  &__inner
+    background: var(--social-sharing-accent)
+    border-radius: 100vw
+    bottom: 0
+    color: var(--social-sharing-accent-two)
+    display: flex
+    flex-direction: column-reverse
+    left: 0
+    position: absolute
+    transition: color .5s ease, background .5s ease
+    width: $size
+
+    &::before
+      +cover
+      border: 1px solid var(--social-sharing-color)
+      border-radius: 100vw
+      content: ''
+      display: block
+      opacity: 0
+      pointer-events: none
+      transition: background .5s ease, opacity .5s ease
+      z-index: 0
+
+    &::after
+      background: var(--social-sharing-accent)
+      border-radius: 100vw
+      content: ''
+      display: block
+      height: ($size * .75)
+      left: 50%
+      opacity: 0
+      position: absolute
+      top: ($baseline * .215)
+      transform: translate(-50%, 12em)
+      transition: opacity .25s ease-out, transform .25s .25s ease
+      width: ($size * .75)
+      z-index: 0
+
+    @for $i from 1 through 10
+      &:has(.social-sharing__item:nth-child(#{$i}):hover)
+        &::after
+          opacity: 1
+          transform: translate(-50%, (($i - 1) * ($size * .75)))
+          transition: opacity .25s .25s ease-in, transform .25s ease
+
+    &:hover
+      background: var(--social-sharing-background)
+      color: var(--social-sharing-color)
+
+      .social-sharing__items
+        max-height: 20em
+        padding-block: ($baseline * .215)
+
+      .social-sharing__item
+        opacity: 1
+
+      &::before,
+      .social-sharing__trigger::before
+        opacity: .2
+
+  &__trigger
+    +unbutton
+    align-items: center
+    display: flex
+    height: $size
+    justify-content: center
+    position: relative
+    width: $size
+    z-index: 2
+
+    &::before
+      background: var(--social-sharing-color)
+      bottom: 100%
+      content: ''
+      display: block
+      height: 1px
+      left: 50%
+      opacity: 0
+      position: absolute
+      transform: translateX(-50%)
+      transition: opacity .5s ease
+      width: 1.5em
+
+  &__items
+    align-items: center
+    display: inline-flex
+    flex-direction: column
+    flex: 0 0 auto
+    height: auto
+    justify-content: center
+    list-style: none
+    margin: 0
+    max-height: 0
+    overflow: visible clip
+    transition: max-height .5s ease, padding .5s ease
+    width: $size
+    z-index: 2
+
+  &__item
+    flex: 0 0 auto
+    opacity: 0
+    transition: opacity .5s ease
+
+  &__button
+    +unbutton
+    align-items: center
+    background: transparent
+    border-radius: 100vw
+    color: inherit
+    display: flex
+    height: ($size * .75)
+    justify-content: center
+    position: relative
+    transition: color .5s ease, background .5s ease
+    width: ($size * .75)
+
+    &:hover
+      // background: var(--social-sharing-color)
+      color: var(--social-sharing-accent-two)
+
+  svg
+    color: inherit
+    display: block
+    height: ($size * .375)
+    width: ($size * .375)
+
+    path
+      fill: currentColor
+
+  &__tooltip
+    background: var(--social-sharing-color)
+    border-radius: 3px
+    color: var(--social-sharing-background)
+    font-size: .625em
+    left: calc(100% + 1em)
+    line-height: $baseline
+    padding: 0 ($baseline * .25) .1em
+    position: absolute
+    top: 50%
+    transition: opacity .5s ease, transform .5s ease
+    transform: translate(0, -50%)
+    white-space: nowrap
+
+    &::before
+      border: .3em solid
+      border-color: transparent var(--social-sharing-color) transparent transparent
+      content: ''
+      display: block
+      position: absolute
+      right: 100%
+      top: 50%
+      transform: translateY(-50%)
+
+    &[aria-hidden="true"]
+      opacity: 0
+      pointer-events: none
+      transform: translate(-.75em, -50%)

@@ -1,6 +1,8 @@
-import { colors } from '../index.mdx'
+import { colors, sourceWords } from '../index.mdx'
+import { inter } from '@/fonts'
 import ContentImage from '@/components/content-image'
 import ImageWall from '@/components/image-wall'
+import TypeSample from '@/components/type-sample'
 
 import logoR from '@/images/studies/redistribute/r.svg'
 import logoRPlus from '@/images/studies/redistribute/r-plus.svg'
@@ -11,14 +13,15 @@ import branding from '@/images/studies/redistribute/branding.jpg'
 import backgroundImage from '@/images/studies/redistribute/mask.png'
 
 export const metadata = {
-  title: 'Read all about it',
+  title: 'On the Record',
   backgroundImage,
   accentColor: colors.purple,
-  accentColorTwo: colors.white,
+  accentColorTwo: colors.black,
 
   styles: {
     main: {
       backgroundColor: colors.yellow,
+      color: colors.black,
     },
 
     content: {
@@ -44,17 +47,20 @@ At the heart of the branding package I created is the 'R', a strong, reversed le
 
 <ImageWall
   images={[
-    undefined,
     logoR
   ]}
   layout="contain"
   stagger={false}
   caption="The 'R'"
   style={{
-    gridTemplateColumns: '50% 50%',
-    gridTemplateRows: '12em'
+    gridTemplateColumns: '100%',
+    gridTemplateRows: '12em',
+    paddingLeft: 'var(--gutter)'
   }}
+  zoomable={false}
 />
+
+---
 
 With the 'R' in place, I was able to expand on this starting point and create a full brand identity that was both visually and functionally unique. The 'R' was expanded to include embellishments to represent Redistribute Plus, the magazine's membership offering, and Redistribute TV, their video platform.
 
@@ -70,6 +76,7 @@ With the 'R' in place, I was able to expand on this starting point and create a 
     gridTemplateColumns: '45% 55%',
     gridTemplateRows: '12em'
   }}
+  zoomable={false}
 />
 
 <ContentImage
@@ -77,6 +84,6 @@ With the 'R' in place, I was able to expand on this starting point and create a 
   alt=""
   size="full-width"
   style={{
-    marginBottom: '0'
+    marginBottom: 0
   }}
 />

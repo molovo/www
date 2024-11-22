@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import Image from '@/components/image'
 import ContentFigure, { ContentFigureProps } from './content-figure'
 import { CSSProperties, MutableRefObject, useCallback, useRef } from 'react'
 import { useEventListener } from '@superrb/react-addons/hooks'

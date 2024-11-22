@@ -4,6 +4,8 @@ import useHeaderStyle from '@/hooks/use-header-style'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import swash from '@/utils/swash'
+import { ReactFitty } from 'react-fitty'
+import SocialSharing from '@/components/social-sharing'
 
 const Webmentions = dynamic(() => import('@/components/webmentions'), {
   ssr: true,
@@ -32,20 +34,29 @@ const Article = ({ content, metadata, uid }) => {
               style={metadata.styles?.image}
             />
           )}
-          <h1
-            className="article__title"
-            style={metadata.styles?.title}
-            dangerouslySetInnerHTML={{
-              __html: swash(
-                metadata.title,
-                metadata.titleSwashCharacter,
-                metadata.styles?.titleSwash,
-              ),
-            }}
-          />
+          {metadata.fitTitle ? (
+            <h1 className="article__title" style={metadata.styles?.title}>
+              <ReactFitty>{metadata.title}</ReactFitty>
+            </h1>
+          ) : (
+            <h1
+              className="article__title"
+              style={metadata.styles?.title}
+              dangerouslySetInnerHTML={{
+                __html: swash(
+                  metadata.title,
+                  metadata.titleSwashCharacter,
+                  metadata.styles?.titleSwash,
+                ),
+              }}
+            />
+          )}
         </header>
 
-        <div className="content">{content}</div>
+        <div className="content">
+          <SocialSharing />
+          <div className="content__inner">{content}</div>
+        </div>
       </div>
 
       <Webmentions slug={uid as string} />

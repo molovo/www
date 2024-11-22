@@ -1,10 +1,11 @@
-import ContentImage from '@/components/content-image'
+import LineBreak from '@/components/line-break'
 import type { MDXComponents } from 'mdx/types'
-import Image from 'next/image'
 import { ComponentProps } from 'react'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
+
+    hr: (props: ComponentProps<'hr'>) => <LineBreak {...props} />,
   }
 }

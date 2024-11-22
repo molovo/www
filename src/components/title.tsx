@@ -4,8 +4,6 @@ import { useEventListener } from '@superrb/react-addons/hooks'
 import { useEffect } from 'react'
 import { useState } from 'reinspect'
 
-const siteTitle = ' | molovo. Design, Development, Branding'
-
 const Title = () => {
   const [originalTitle, setOriginalTitle] = useState<string>(
     '',
@@ -20,9 +18,7 @@ const Title = () => {
   useEventListener(
     'visibilitychange',
     () => {
-      document.title = document.hidden
-        ? `I miss you ❤️${siteTitle}`
-        : `${originalTitle}${siteTitle}`
+      document.title = document.hidden ? `I miss you ❤️` : `${originalTitle}`
     },
     undefined,
     typeof document !== 'undefined' ? document : undefined,

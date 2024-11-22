@@ -2,28 +2,31 @@
 
 import { contactSubmit } from '@/actions'
 import useHeaderStyle from '@/hooks/use-header-style'
+import Send from '@/components/images/icons/send.svg'
 import useContactFormStateStore from '@/store/contact-form-state'
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { MutableRefObject, useEffect, useRef } from 'react'
-import { useFormStatus } from 'react-dom'
 import { useState } from 'reinspect'
+import { Form } from '@superrb/react-addons/components'
+import * as Yup from 'yup'
 
-const SubmitButton = () => {
-  const { pending } = useFormStatus()
-
-  return (
-    <button className="contact__submit" type="submit" disabled={pending}>
-      Send
-    </button>
-  )
-}
+const schema = Yup.object().shape({
+  message: Yup.string()
+    .meta({ textarea: true, placeholder: "I'd like to hire you to…" })
+    .required('Please enter your message')
+    .label('Dear James,'),
+  email: Yup.string()
+    .email()
+    .required('Please enter your email address')
+    .label('Your email address'),
+})
 
 const Contact = () => {
   const [opening, setOpening] = useState<boolean>(
     false,
     'Contact form opening animation',
   )
-  const ref = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
+  const ref = useRef<HTMLElement | null>() as MutableRefObject<HTMLElement>
   const inputRef =
     useRef<HTMLTextAreaElement>() as MutableRefObject<HTMLTextAreaElement>
   const setRef = useHeaderStyle('white')
@@ -56,16 +59,6 @@ const Contact = () => {
   useEventListener(
     'scroll',
     () => {
-      console.log(
-        window.scrollY,
-        document.documentElement.scrollHeight,
-        ref.current?.clientHeight,
-        document.documentElement.scrollHeight -
-          window.innerHeight -
-          ref.current?.clientHeight -
-          100,
-      )
-
       if (
         window.scrollY <
         document.documentElement.scrollHeight -
@@ -102,29 +95,18 @@ const Contact = () => {
           <span className="screenreader-text">Close form</span>
         </button>
 
-        <form className="contact__form" action={contactSubmit}>
-          <label htmlFor="message" className="contact__label">
-            Dear James,
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            className="contact__message"
-            placeholder="I'd like to hire you to&hellip;"
-            ref={inputRef}
-            required
-          />
-          <div className="contact__footer">
-            <input
-              type="email"
-              name="email"
-              className="contact__email"
-              placeholder="Your email address"
-              required
-            />
-            <SubmitButton />
-          </div>
-        </form>
+        <Form
+          name="contact"
+          className="contact__form"
+          schema={schema}
+          action={contactSubmit}
+          useRecaptcha={false}
+          renderSubmit={() => (
+            <button className="button button--alt" type="submit">
+              Send message
+            </button>
+          )}
+        />
       </div>
     </section>
   )

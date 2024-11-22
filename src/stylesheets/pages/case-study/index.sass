@@ -24,6 +24,7 @@
 
     &-header
       position: relative
+      z-index: 1
 
       &-content
         align-items: center
@@ -32,7 +33,7 @@
         flex-direction: column
         justify-content: flex-end
         padding-bottom: $gutterMin
-        padding-top: $gutterMax
+        padding-top: ($gutterMax * 2)
         position: relative
         text-align: center
         transition: background .5s ease
@@ -57,8 +58,10 @@
 
     &-content
       +gutters
-      padding-bottom: between($gutterMin, $gutterMax, $breakpoint-largeMobile, $breakpoint-largeDesktop)
-      padding-top: between($gutterMin, $gutterMax * .5, $breakpoint-largeMobile, $breakpoint-largeDesktop)
+      align-items: flex-end
+      display: flex
+      justify-content: center
+      padding-block: clamp($gutterMin, 1.5vw, $gutterMax * .5) clamp($gutterMin, 6vw, $gutterMax)
       position: relative
       z-index: 2
 
@@ -66,39 +69,52 @@
         margin: 0 auto
         max-width: $contentWidth
 
-        > .content-figure--full-width:last-child
+        > :last-child
           margin-bottom: 0
 
+        > .content-figure--full-width:last-child
+          margin-bottom: clamp(($gutterMax * -1), calc(6vw * -1), ($gutterMin * -1))
+
     &-superrb
-      align-items: center
       color: inherit
-      display: inline-flex
-      font-size: .875em
-      font-weight: bold
+      display: inline-block
       margin: 0 auto ($baseline * 2)
-      padding: ($baseline * .125) ($baseline * .5)
+      padding: ($baseline * .4) ($baseline * .5) ($baseline * .2)
       pointer-events: none
       position: relative
       transition: color .5s ease
 
+      &-title
+        font-size: 1em
+        margin: 0
+
+      span
+        align-items: center
+        display: flex
+        font-size: .875em
+        gap: .5ch
+
       &::before
         +cover
         border: 1px solid currentColor
-        border-radius: 4px
+        border-radius: 6px
         content: ''
         display: block
-        opacity: .25
+        opacity: .2
         pointer-events: none
         transition: background .5s ease, border-color .5s ease, opacity 1s ease
         z-index: -1
 
       &:has(a:hover)
-        color: $white !important
+        color: $white
 
         &::before
-          background: $red
-          border-color: $red
+          background: #1b1b1d
+          border-color: #1b1b1d
           opacity: 1
+
+        svg
+          color: $white
 
       a
         pointer-events: all
@@ -106,7 +122,6 @@
       svg
         color: inherit
         height: 1.2em
-        margin-left: .5ch
         margin-bottom: .1em
         width: auto
 
@@ -114,41 +129,94 @@
           fill: currentColor
 
     &--testimonial
+      padding-left: 40vw
+
+      .case-study__section-background
+        height: 100%
+        left: 0
+        position: absolute
+        top: 0
+        width: 40vw
+
       .case-study__section-header
         min-height: auto
-        padding-top: $gutterMax
+        padding-block: $gutterMax $gutterMin
+        position: static
 
       .case-study
         &__section
           &-header
             &-content
+              align-items: flex-start
               min-height: auto
-              padding-top: 0
+              padding-block: 0
+              text-align: left
 
+              .logo
+                display: none
+
+          &-header,
           &-content
-            padding-top: 0
+            padding-inline: $gutterMin
+
+            @media (min-width: $breakpoint-tablet)
+              padding-inline: $gutterMid
+
+            @media (min-width: $breakpoint-desktop)
+              padding-inline: $gutterMax
+
+            @media (min-width: $breakpoint-container)
+              padding-right: $gutterLimit
+
+            &-inner
+              margin: 0
+              max-width: none
 
           &-title
             @extend h3
+            color: var(--color)
             font-family: $font-primary
-            font-size: 1.25em
+            font-size: 1em
+            margin: 0
             mask: none
             max-width: none
             transform: none
 
+      .social-sharing
+        display: none
+
       blockquote
-        margin-block: $baseline
+        margin-block: 0
+        position: static
+        transform: none
+        width: 100%
 
         p
-          font-size: between(3em, 4.5em, $breakpoint-largeMobile, $breakpoint-largeDesktop)
+          @extend h2
+          color: var(--accent-color)
           margin: 0 0 .5em
           mask: none
+          position: relative
+          text-align: left
           transform: none
+
+          &::before
+            color: $black
+            content: '‘‘'
+            font-family: 'Helvetica Neue', 'Arial', sans-serif
+            font-size: 3em
+            position: absolute
+            right: 100%
+            top: 0
+            transform: translateY(.0375em)
+
+          &::after
+            display: none
 
   &__feature-list
     counter-reset: features
     list-style: none
-    padding: $baseline between($gutterMin, $gutterMax, $breakpoint-largeMobile, $breakpoint-largeDesktop)
+    padding: $baseline clamp($gutterMin, 4vw, $gutterMax)
 
     li
       align-items: center

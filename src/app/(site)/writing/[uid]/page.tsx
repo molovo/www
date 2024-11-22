@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Article from './article'
 
 const getPost = async (slug: string) => {

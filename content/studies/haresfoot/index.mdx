@@ -1,6 +1,7 @@
-import thumbnail from '@/images/studies/haresfoot/thumbnail.jpg'
+import thumbnail from '@/images/studies/haresfoot/mobile-bg.png'
 
 export const colors = {
+  black: '#1c1e21',
   yellow: '#ffc930',
   orange: '#eba721',
   orangeTwo: '#f3813b',
@@ -15,8 +16,14 @@ export const metadata = {
   thumbnail,
 
   styles: {
+    thumbnail: {
+      '--fontSizeMultiplier': '0.75',
+      backgroundColor: colors.orangeThree,
+      color: colors.white
+    },
+
     thumbnailTitle: {
-      fontSize: '18vh'
+      color: colors.white,
     }
   }
 }

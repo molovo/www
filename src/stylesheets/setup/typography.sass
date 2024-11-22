@@ -3,7 +3,7 @@ html
 
 body
   font-feature-settings: "kern" 1, "liga" 1, "dlig" 1
-  font-size: clamp(1em, 2.5vw, 1.3125em)
+  font-size: clamp(.875em, 1.5vw, 1.3125em)
   font-variant: common-ligatures discretionary-ligatures
   line-height: $baseline
 
@@ -169,6 +169,10 @@ small
   font-weight: $weight-normal
   margin: 0 auto .125em
 
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-smooth: always
+
   .swash,
   em
     &::before
@@ -232,18 +236,24 @@ blockquote
 
 %lead
   font-family: $font-secondary
-  font-size: between(1.25em, 1.5em, $breakpoint-largeMobile, $breakpoint-largeDesktop)
-  line-height: 1.25em
+  font-size: 1.25em
+  line-height: 1.2em
+  margin: 0 0 1.2em
 
-.content,
-.homepage-section__text
+%contentLink
+  +hoverUnderline($red)
+  background: none
+  border: 0
+  color: inherit
+  font-family: $font-primary
+  font-variant: small-caps
+  font-weight: $weight-medium
+  padding: 0
+  text-transform: lowercase
+
+.content
   a
-    +hoverUnderline($red)
-    color: inherit
-    font-family: $font-primary
-    font-variant: small-caps
-    font-weight: $weight-medium
-    text-transform: lowercase
+    @extend %contentLink
 
 section:first-of-type
   .content
@@ -252,3 +262,26 @@ section:first-of-type
 
 code
   font-family: $font-mono
+
+.line-break
+  border: 0 solid currentColor
+  border-width: 0 0 1px
+  color: inherit
+  display: block
+  height: 0
+  max-width: calc($contentWidth - $gutterMax)
+  margin: calc(var(--spacing) * 1.5) auto
+  opacity: .2
+  position: relative
+
+  .logo
+    background: var(--background)
+    content: ''
+    display: flex
+    left: 50%
+    padding: 1em
+    position: absolute
+    top: 50%
+    transform: translate(-50%, -50%) scale(.75)
+    white-space: nowrap
+    width: auto

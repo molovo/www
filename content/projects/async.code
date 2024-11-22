@@ -1,0 +1,20 @@
+<?php
+
+use Superrb\Async\Handler;
+
+// Create the handler process
+$handler = new Handler(function(int $i): bool {
+  $this->send('Hi from process '.$i);
+  return true;
+});
+
+// Launch multiple processes concurrently
+for ($i = 0; $i < 10; $i++) {
+  $handler->run($i);
+}
+
+// Wait for completion, and check output of each process
+$handler->waitAll();
+foreach($handler->getMessages() as $message) {
+  log($message);
+}

@@ -2,17 +2,20 @@ import { colors } from '../index.mdx'
 
 import ImageWall from '@/components/image-wall'
 import ContentImage from '@/components/content-image'
+import ContentVideo from '@/components/content-video'
 import SyncedScroll from '@/components/synced-scroll'
 
 import backgroundImage from '@/images/studies/redistribute/mask.png'
 
 import articleTwo from '@/images/studies/redistribute/web-article-2.png'
 import articleThree from '@/images/studies/redistribute/web-article-3.png'
+import homepage from '@/images/studies/redistribute/homepage.png'
+import listing from '@/images/studies/redistribute/listing.png'
 import nav from '@/images/studies/redistribute/web-nav.png'
+import paywall from '@/images/studies/redistribute/paywall.png'
 import watermarkOne from '@/images/studies/redistribute/watermarked-1.jpg'
 import watermarkTwo from '@/images/studies/redistribute/watermarked-2.jpg'
 import watermarkThree from '@/images/studies/redistribute/watermarked-3.jpg'
-import paywall from '@/images/studies/redistribute/paywall.png'
 
 export const metadata = {
   title: 'Content comes _first_',
@@ -23,7 +26,8 @@ export const metadata = {
 
   styles: {
     main: {
-      backgroundColor: colors.gray
+      backgroundColor: colors.gray,
+      color: colors.black
     },
 
     image: {
@@ -33,6 +37,11 @@ export const metadata = {
 
     title: {
       color: colors.purple
+    },
+
+    social: {
+      '--social-sharing-accent': colors.purple,
+      '--social-sharing-accent-two': colors.white
     }
   }
 }
@@ -44,16 +53,34 @@ Redistribute's biggest feature is its content. I designed an article layout whic
     articleTwo,
     articleThree
   ]}
-  caption="Some examples of article templates used on redistributemag.com"
+  caption="Some examples of article templates used"
   size="container-width"
 />
 
-The navigation menu I designed makes it easy for readers to find content, with different article types neatly categorised.
+---
+
+Second to the reading experience is discoverability, allowing repeat visitors to easily find and consume the latest content. The homepage and listing pages I designed make it easy for readers to find content, with different article types neatly categorised, and the newest content pushed to the front of the pile.
+
+<SyncedScroll
+  images={[
+    homepage,
+    listing
+  ]}
+  caption="The homepage and reviews listing page"
+  size="container-width"
+/>
+
+<ContentVideo
+  caption="The search functionality"
+  url="/video/studies/redistribute/search.mov"
+/>
 
 <ContentImage
   src={nav}
-  alt="The main navigation on redistributemag.com"
+  alt="The main navigation"
 />
+
+---
 
 The site is full of hand-built custom components, used for featuring articles, displaying media and promoting premium content.
 
@@ -67,6 +94,8 @@ The site is full of hand-built custom components, used for featuring articles, d
   style={{ gridTemplateColumns: '100%' }}
   caption="The custom icons I created are used to great effect to watermark premium and media content."
 />
+
+---
 
 As an independent magazine who want to keep advertising to a minimum, premium content is the biggest income stream for Redistribute. I built a custom membership system using Netlify Identity and Stripe Subscriptions, which is all handled on-site. A custom paywall was also built to encourage readers to become members.
 

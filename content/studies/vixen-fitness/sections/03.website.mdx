@@ -1,5 +1,13 @@
 import { colors } from '../index.mdx'
 
+import ContentImage from '@/components/content-image'
+import SyncedScroll from '@/components/synced-scroll'
+
+import homepage from '@/images/studies/vixen-fitness/website-homepage.png'
+import pageOne from '@/images/studies/vixen-fitness/ante-natal-training-page.png'
+import pageTwo from '@/images/studies/vixen-fitness/post-natal-training-page.png'
+import pageThree from '@/images/studies/vixen-fitness/mobile-personal-training-page.png'
+
 export const metadata = {
   client: 'Vixen Fitness',
   title: 'Taking it to the _web_',
@@ -22,4 +30,10 @@ export const metadata = {
 
 With training being a private activity for so many people, we wanted the website to speak directly to visitors. Copy was hugely important here, with friendly, informal prose guiding the user to individual service pages tailored to their situation.
 
+<ContentImage src={homepage} />
+
+---
+
 I built a page for each of Gemma’s services to match the set of postcards I’d designed previously, with each one being able to act as a landing page; both for the links on the postcards themselves, and for targeted online and social media advertising campaigns.
+
+<SyncedScroll images={[pageOne, pageTwo, pageThree]} />

@@ -1,12 +1,18 @@
 'use server'
 
 import Listing from './listing'
-import { getPosts } from './data'
+import { getPosts } from '@/data/posts'
 
 const Page = async () => {
   let posts = await getPosts()
 
-  return <Listing posts={posts} />
+  return (
+    <section className="writing">
+      <div className="writing__content">
+        <Listing posts={posts} />
+      </div>
+    </section>
+  )
 }
 
 export default Page

@@ -18,9 +18,10 @@ const Header = () => {
 
   return (
     <header
-      className={`header header--${isOpen ? 'white' : headerStyle || 'black'}`}
+      className={`header header--${isOpen ? 'white' : headerStyle || 'black'} ${
+        !isOpen && !loading && hidden ? 'header--hidden' : ''
+      }`}
       {...(headerColor && !isOpen && { style: { color: headerColor } })}
-      aria-hidden={!isOpen && !loading && hidden}
     >
       <Logo asLink={true} />
 

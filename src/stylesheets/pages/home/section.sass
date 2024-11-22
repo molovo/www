@@ -2,11 +2,22 @@
   +gutters
   +spacing
 
-  &__pre-title
+  &__header
+    align-items: flex-end
+    display: flex
+    gap: var(--gutter)
+    flex-wrap: wrap
+    justify-content: space-between
+    margin: 0 0 1rem
+
+    @media (min-width: $breakpoint-tablet)
+      flex-wrap: nowrap
+
+  &__title
     @extend h1
     +script
     color: $red
-    font-size: 4.5vmax
+    font-size: 4.5em
     margin: 0 0 1rem
     max-width: 7em
     text-wrap: balance
@@ -15,7 +26,24 @@
       &::before
         color: $gray2
 
-  &__title
+  &__subtitle
     @extend h2
+    margin: 0 0 -.25em
     max-width: 24em
     text-wrap: balance
+
+  &__text
+    a
+      @extend %contentLink
+
+  &__link
+    flex: 0 0 100%
+
+    @media (min-width: $breakpoint-tablet)
+      flex-basis: auto
+
+  &--writing
+    .writing__content
+      padding-bottom: 0
+      padding-top: $gutterMid
+

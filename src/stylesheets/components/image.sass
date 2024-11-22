@@ -1,0 +1,29 @@
+.image-portal
+  background: $gray
+  overflow: hidden
+
+  &--transitioning
+    +hideScrollbars
+
+    .image-portal__close
+      opacity: 0
+      transition: opacity .125s 0s ease
+
+  &__close
+    +unbutton
+    background: $black
+    border-radius: 100vw
+    color: $white
+    height: ($baseline * 2)
+    padding: ($baseline * .25)
+    position: fixed
+    right: $baseline
+    top: $baseline
+    transition: opacity .5s .125s ease
+    width: ($baseline * 2)
+
+    svg
+      color: inherit
+
+      path
+        fill: currentColor

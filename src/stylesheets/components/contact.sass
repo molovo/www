@@ -1,11 +1,11 @@
 .contact
   +gutters
-  +spacing
   background: $red2
   bottom: 0
   color: $white
   height: 100vh
   overflow: hidden
+  padding-block: clamp(($baseline * .25), 2vw, ($baseline * 1.5)) var(--spacing)
   position: sticky
   width: 100%
   z-index: 0
@@ -28,12 +28,13 @@
 
   &__form
     align-items: stretch
-    display: flex
-    flex-direction: column
+    display: grid
+    grid-template-columns: 1fr 9em
+    grid-template-rows: 1fr auto
     gap: ($baseline / 2)
     height: 100%
     max-width: $contentWidth
-    padding-top: $gutterMid
+    padding-top: $gutterMax
     transition: opacity .5s ease-out, transform .5s ease-out
     width: 100%
 
@@ -47,79 +48,94 @@
           background: $white
           color: $red
 
-  &__label
-    +script
-    display: block
-    font-size: max(3.5em, 6vw)
-    margin: 0
-    text-align: left
+  .form__error
+    font-size: .75em
+    font-weight: bold
 
-  &__message
-    background: none
-    border: 0
-    color: $white
-    display: block
-    flex: 1 1
-    font-family: $font-secondary
-    font-size: 1.75em
-    line-height: 1.5em
-    width: 100%
+  .form__group
+    &--message
+      grid-column: 1 / span 2
 
-    &:focus
-      box-shadow: none
-      outline: 0
+      .form__label
+        align-items: stretch
+        display: flex
+        flex-direction: column
+        height: 100%
 
-  &__footer
-    align-items: stretch
-    display: flex
-    flex-wrap: wrap
-    gap: $baseline
-    justify-content: space-between
+      .form__label-text
+        +script
+        display: block
+        font-size: max(3.5em, 6vw)
+        margin: 0
+        text-align: left
 
-    @media (min-width: $breakpoint-largeMobile)
-      flex-wrap: nowrap
+      .form__required-indicator
+        display: none
 
-  &__email
-    background: none
-    background-image: linear-gradient(to top, $white, $white 2px, transparent 2px, transparent), linear-gradient(to top, rgba($white, .3), rgba($white, .3) 2px, transparent 2px, transparent)
-    background-size: 0% 100%, 100% 100%
-    background-position: bottom left
-    background-repeat: no-repeat
-    border: 0
-    color: $white
-    flex: 1 1
-    font: inherit
-    line-height: 3em
-    transition: background-size .5s ease
+      .form__control
+        background: none
+        border: 0
+        color: $white
+        display: block
+        flex: 1 1
+        font-family: $font-secondary
+        font-size: 1.75em
+        line-height: 1.5em
+        width: 100%
 
-    &:focus
-      box-shadow: none
-      outline: 0
-      background-size: 100% 100%, 100% 100%
+        &:focus
+          box-shadow: none
+          outline: 0
 
-  &__submit
-    +unbutton
-    cursor: not-allowed
-    flex: 0 0 100%
-    font: inherit
-    font-weight: $weight-medium
-    opacity: .3
-    padding: ($baseline / 2) ($baseline * 2)
-    text-transform: uppercase
-    transition: background .5s ease, opacity .5s ease
+        &::placeholder
+          color: $white
+          opacity: .5
 
-    @media (min-width: $breakpoint-largeMobile)
-      flex-basis: auto
+    &--email
+      position: relative
+
+      .form__error
+        left: 0
+        position: absolute
+        top: calc(100% + .5em)
+
+      .form__label-text
+        left: 0
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        transform-origin: top left
+        transition: transform .5s ease
+
+      &:has(.form__control:focus),
+      &.form__group--filled
+        .form__label-text
+          transform: translateY(-2em) scale(0.75)
+
+      .form__control
+        background: none
+        background-image: linear-gradient(to top, $white, $white 2px, transparent 2px, transparent), linear-gradient(to top, rgba($white, .3), rgba($white, .3) 2px, transparent 2px, transparent)
+        background-size: 0% 100%, 100% 100%
+        background-position: bottom left
+        background-repeat: no-repeat
+        border: 0
+        color: $white
+        font: inherit
+        line-height: 3em
+        transition: background-size .5s ease
+        width: 100%
+
+        &:focus
+          box-shadow: none
+          outline: 0
+          background-size: 100% 100%, 100% 100%
 
   &__close
     +unbutton
+    top: clamp(($baseline * .25), 2vw, ($baseline * 1.5))
     position: absolute
     right: 0
-    top: 0
     transform: rotate(-90deg)
-
-    @media (min-width: $breakpoint-desktop)
-      top: ($gutterMax * -.5)
 
     &::before
       @extend %script-arrow

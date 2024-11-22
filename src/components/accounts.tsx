@@ -6,6 +6,7 @@ const Accounts = () => (
     <link rel="me" href="https://dribbble.com/molovo" />
     <link rel="me" href="https://instagram.com/molovo" />
     <link rel="me" href="https://mastodon.social/@molovo" />
+    <link rel="me" href="https://bsky.app/@molovo.co" />
     <link rel="me" href="mailto:hi@molovo.co" />
   </>
 )

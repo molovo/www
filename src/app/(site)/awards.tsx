@@ -1,40 +1,40 @@
 'use client'
 
 import ClientLogo from '@/components/client-logo'
-import Awwwards from '@/components/images/icons/awwwards.svg'
-import CreativePool from '@/components/images/icons/creative-pool.svg'
-import CSSDesignAwards from '@/components/images/icons/css-design-awards.svg'
-import Typewolf from '@/components/images/icons/typewolf.svg'
+import Awwwards from '@/components/images/icons/awards/awwwards.svg'
+import CreativePool from '@/components/images/icons/awards/creative-pool.svg'
+import CSSDesignAwards from '@/components/images/icons/awards/css-design-awards.svg'
+import Typewolf from '@/components/images/icons/awards/typewolf.svg'
 import useHeaderStyle from '@/hooks/use-header-style'
-import swash from '@/utils/swash'
+import HomepageSection, { HomepageSectionLink } from './homepage-section'
+import Link from '@/components/link'
 
 const Nominee = () => <span className="awards__nominee">Nominated for</span>
 
-const Awards = () => {
+const Awards = ({
+  title,
+  subtitle,
+  link,
+}: {
+  title: string
+  subtitle: string
+  link?: HomepageSectionLink
+}) => {
   const setRef = useHeaderStyle('red')
 
   return (
-    <section
-      className="homepage-section homepage-section--awards awards"
+    <HomepageSection
+      title={title}
+      subtitle={subtitle}
+      link={link}
+      className="awards"
       ref={setRef}
     >
-      <header className="homepage-section__header">
-        <span
-          className="homepage-section__pre-title"
-          dangerouslySetInnerHTML={{
-            __html: swash('Turns out, the big names have _great taste_.', 'M'),
-          }}
-        />
-        <h2 className="homepage-section__title">
-          My work has been recognised by some of the industry's top players.
-        </h2>
-      </header>
-
       <ol className="awards__items">
         <li className="awards__item">
-          <a href="/studies/joonbyrd" className="awards__logo">
+          <Link href="/studies/joonbyrd" className="awards__logo">
             <ClientLogo client="joonbyrd" />
-          </a>
+          </Link>
 
           <div className="awards__group">
             <h4 className="awards__group-title">
@@ -48,9 +48,9 @@ const Awards = () => {
           </div>
         </li>
         <li className="awards__item">
-          <a href="/studies/octaevo" className="awards__logo">
+          <Link href="/studies/octaevo" className="awards__logo">
             <ClientLogo client="octaevo" />
-          </a>
+          </Link>
 
           <div className="awards__group">
             <h4 className="awards__group-title">
@@ -78,9 +78,9 @@ const Awards = () => {
           </div>
         </li>
         <li className="awards__item">
-          <a href="/studies/superrb" className="awards__logo">
+          <Link href="/studies/superrb" className="awards__logo">
             <ClientLogo client="superrb" />
-          </a>
+          </Link>
 
           <div className="awards__group">
             <h4 className="awards__group-title">
@@ -105,7 +105,9 @@ const Awards = () => {
 
             <ul className="awards__list">
               <li>2019 People's Choice Award</li>
-              <li><Nominee /> 2019 Annual Shortlist</li>
+              <li>
+                <Nominee /> 2019 Annual Shortlist
+              </li>
             </ul>
           </div>
 
@@ -126,7 +128,7 @@ const Awards = () => {
           </div>
         </li>
       </ol>
-    </section>
+    </HomepageSection>
   )
 }
 

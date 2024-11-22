@@ -5,7 +5,7 @@
   display: flex
   justify-content: space-between
   padding-bottom: ($baseline * .5)
-  padding-top: between(($baseline * .25), ($baseline * .5), $breakpoint-largeMobile, $breakpoint-tablet)
+  padding-top: clamp(($baseline * .25), 2vw, ($baseline * 1.5))
   pointer-events: none
   position: fixed
   top: 0
@@ -16,7 +16,7 @@
   > *
     pointer-events: auto
 
-  &[aria-hidden="true"]
+  &--hidden:not(:focus-within)
     transform: translateY(-100%)
 
   &--white,

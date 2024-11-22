@@ -12,7 +12,7 @@ $teal: #17bebb
 $blue: cornflowerblue
 
 $font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif
-$font-primary: 'Nitti Grotesk', 'GT America', $font-stack
+$font-primary: 'GT America', $font-stack
 $font-secondary: 'GauthierFY', Georgia, serif
 $font-tertiary: 'Have Heart'
 $font-quaternary: 'Have Heart Two'
@@ -25,33 +25,36 @@ $weight-bold: 700
 $weight-black: 900
 
 $baseline: 1.5em
-$containerWidth: 72em
-$contentWidth: 40em
-
-$breakpoint-largeMobile: 30em
-$breakpoint-tablet: 45em
-$breakpoint-desktop: 63.75em
-$breakpoint-largeDesktop: 100em
+$containerWidth: 95rem
+$contentWidth: 52rem
 
 $noise: "data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"
 
 $gutterMin: $baseline
 $gutterMid: $baseline * 2
-$gutterMax: $baseline * 4
-$gutterLimit: max(calc(50vw - #{$containerWidth / 2}), $gutterMax)
+$gutterMax: $baseline * 3
+$gutterLimit: calc(50vw - #{$containerWidth / 2})
+
+$breakpoint-largeMobile: 30rem
+$breakpoint-tablet: 42rem
+$breakpoint-desktop: 64rem
+$breakpoint-largeDesktop: 80rem
+$breakpoint-container: calc($containerWidth + ($gutterMax * 2))
 
 #{':root'}
   --gutter: #{$gutterMin}
+  --spacing: #{$gutterMid}
   --color: #{$black}
   --background: #{$white}
   --accent-color: #{$red}
   --accent-color-two: #{$black}
 
-  @media (min-width: $breakpoint-largeMobile)
+  @media (min-width: $breakpoint-largeMobile) and (min-height: 35em)
     --gutter: #{$gutterMid}
 
-  @media (min-width: $breakpoint-desktop)
+  @media (min-width: $breakpoint-largeDesktop) and (min-height: 60em)
     --gutter: #{$gutterMax}
+    --spacing: #{$gutterMax}
 
-  @media (min-width: $containerWidth)
+  @media (min-width: $breakpoint-container)
     --gutter: #{$gutterLimit}

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from '@/components/image'
 import ContentFigure, {
   ContentFigureCaption,
   ContentFigureProps,
@@ -15,6 +15,7 @@ const ImageWall = ({
   stagger = true,
   style = {},
   imageStyle = {},
+  zoomable = true,
 }: {
   images: string[]
   caption?: string
@@ -25,6 +26,7 @@ const ImageWall = ({
   stagger?: boolean
   style?: Partial<CSSProperties>
   imageStyle?: { [key: number]: Partial<CSSProperties> }
+  zoomable?: boolean
 }) => {
   return (
     <ContentFigure
@@ -48,6 +50,8 @@ const ImageWall = ({
               height="800"
               className="image-wall__image"
               style={imageStyle[index] || {}}
+              zoomable={zoomable}
+              allowScroll={false}
             />
           ) : (
             <div

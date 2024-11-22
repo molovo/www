@@ -3,7 +3,7 @@ import localFont from 'next/font/local'
 
 export const inter = Inter({
   subsets: ['latin'],
-  weight: '700',
+  weight: '400',
   display: 'swap',
 })
 
