@@ -1,0 +1,52 @@
+# Ensure correct domain is used
+https://molovo.netlify.com/*                            https://molovo.co/:splat                                    301!
+https://molovo.netlify.app/*                            https://molovo.co/:splat                                    301!
+
+# Ensure index.html is stripped from url
+/*/index.html                                           /:splat/                                                    301!
+
+# Point old contact page to footer
+/contact                                                /#contact                                                   301
+
+# Preserve blog links from old site
+/blog                                                   /writing                                                    301
+/blog/*                                                 /writing/:splat                                             301
+
+# Preserve case study links from old site
+/work                                                   /studies                                                    301
+/work/*                                                 /studies/:splat                                             301
+
+# Redirect broken articles
+/writing/development/things-about-css-that-make-me-want-to-put-my-face-in-a-blender  /writing/things-about-css-that-make-me-want-to-put-my-face-in-a-blender  301
+/writing/feels/confidence /writing/confidence 301
+
+# Redirect deleted articles to explanation page
+/writing/its-a-whole-new-world.html                     /writing/this-site-has-been-on-a-diet                       301
+/writing/youre-doing-it-wrong.html                      /writing/this-site-has-been-on-a-diet                       301
+/writing/comment-testing                                /writing/this-site-has-been-on-a-diet                       301
+/writing/dont-give-away-the-gold                        /writing/this-site-has-been-on-a-diet                       301
+/writing/its-a-whole-new-world                          /writing/this-site-has-been-on-a-diet                       301
+/writing/youve-got-a-friend-in-me.html                  /writing/this-site-has-been-on-a-diet                       301
+/writing/stroke-your-ego                                /writing/this-site-has-been-on-a-diet                       301
+/writing/taming-the-beast                               /writing/this-site-has-been-on-a-diet                       301
+/writing/me-and-my-bag                                  /writing/this-site-has-been-on-a-diet                       301
+/writing/taking-the-leap                                /writing/this-site-has-been-on-a-diet                       301
+/writing/thank-you-for-not-smoking                      /writing/this-site-has-been-on-a-diet                       301
+/writing/holding-back-the-years                         /writing/this-site-has-been-on-a-diet                       301
+
+# Redirect old browserwrapper page
+/labs/browserwrapper                                    https://browserwrapper.molovo.co                            301
+
+# Redirect old ZUnit docs pages
+/zunit                                                  https://zunit.xyz                                           301
+/zunit/*                                                https://zunit.xyz/:splat                                    301
+/zunit/docs/getting-started/installation                https://zunit.xyz/docs/getting-started/installation         301
+/zunit/docs/getting-started/project-setup               https://zunit.xyz/docs/getting-started/project-setup        301
+/zunit/docs/writing-tests/assertions                    https://zunit.xyz/docs/writing-tests/assertions             301
+/zunit/docs/writing-tests/setup-and-teardown            https://zunit.xyz/docs/writing-tests/setup-and-teardown     301
+/zunit/docs/command-line-usage/reporting                https://zunit.xyz/docs/usage/reporting                      301
+/zunit/docs/command-line-usage/running-tests            https://zunit.xyz/docs/usage/running-tests                  301
+
+# Connect to the Fediverse
+/.well-known/host-meta*                                 https://fed.brid.gy/.well-known/host-meta:splat             302
+/.well-known/webfinger*                                 https://fed.brid.gy/.well-known/webfinger:splat             302
