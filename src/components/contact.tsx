@@ -74,24 +74,25 @@ const Contact = () => {
     !opening && isOpen,
   )
 
+  const closeForm = (position?: number) => {
+    window.scrollTo({
+      top:
+        position !== undefined
+          ? position
+          : document.documentElement.scrollHeight -
+            window.innerHeight -
+            ref.current?.clientHeight,
+      behavior: 'smooth',
+    })
+    setTimeout(() => {
+      close()
+    }, 500)
+  }
+
   return (
     <section className="contact" ref={ref} aria-hidden={!isOpen}>
       <div className="contact__inner">
-        <button
-          className="script-arrow contact__close"
-          onClick={() => {
-            window.scrollTo({
-              top:
-                document.documentElement.scrollHeight -
-                window.innerHeight -
-                ref.current?.clientHeight,
-              behavior: 'smooth',
-            })
-            setTimeout(() => {
-              close()
-            }, 500)
-          }}
-        >
+        <button className="script-arrow contact__close" onClick={() => closeForm()}>
           <span className="screenreader-text">Close form</span>
         </button>
 
@@ -105,6 +106,23 @@ const Contact = () => {
             <button className="button button--alt" type="submit">
               Send message
             </button>
+          )}
+          renderSuccessMessage={() => (
+            <div className="success-message">
+              <h2 className="success-message__title">Thanks!</h2>
+              <p className="success-message__text">
+                Your message is on its way to me.
+                <br />
+                I'll get back to you as soon as I can.
+              </p>
+
+              <button
+                className="button button--alt"
+                onClick={() => closeForm(0)}
+              >
+                Back to site
+              </button>
+            </div>
           )}
         />
       </div>

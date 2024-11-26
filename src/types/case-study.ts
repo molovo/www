@@ -4,6 +4,7 @@ import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import { CSSProperties } from 'react'
 
 export interface CaseStudySectionType {
+  order: number
   slug: string
   name: string
   title: string
@@ -33,6 +34,7 @@ export default interface CaseStudyType {
   title: string
   description: string
   client: string
+  date: string
   thumbnail: string | StaticImport
   order?: number
   draft?: boolean

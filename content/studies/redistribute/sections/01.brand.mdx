@@ -47,7 +47,10 @@ At the heart of the branding package I created is the 'R', a strong, reversed le
 
 <ImageWall
   images={[
-    logoR
+    {
+      image: logoR,
+      alt: "The 'R', the logomark for Redistribute Magazine"
+    }
   ]}
   layout="contain"
   stagger={false}
@@ -66,8 +69,14 @@ With the 'R' in place, I was able to expand on this starting point and create a 
 
 <ImageWall
   images={[
-    logoRPlus,
-    logoRTV
+    {
+      image: logoRPlus,
+      alt: 'The logo for Redistribute Plus'
+    },
+    {
+      image: logoRTV,
+      alt: 'The logo for Redistribute TV'
+    }
   ]}
   layout="contain"
   stagger={false}
@@ -81,7 +90,7 @@ With the 'R' in place, I was able to expand on this starting point and create a 
 
 <ContentImage
   src={branding}
-  alt=""
+  alt="An image showing the different variations of the Redistribute logo"
   size="full-width"
   style={{
     marginBottom: 0

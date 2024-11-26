@@ -6,10 +6,12 @@ import Link from '@/components/link'
 import translations from 'content/translations'
 import Logo from './logo'
 import Social from './social'
+import useNavStateStore from '@/store/nav-state'
+import BSky from './images/icons/social/bsky.svg'
 
 const Footer = () => {
   const setRef = useHeaderStyle('white')
-  const { open } = useContactFormStateStore()
+  const { open: openContactForm } = useContactFormStateStore()
 
   return (
     <footer className="footer" ref={setRef}>
@@ -17,7 +19,7 @@ const Footer = () => {
         <h2 className="footer__title">
           {translations.contact.cta.title}
           <br />
-          <button className="footer__contact-trigger" onClick={open}>
+          <button className="footer__contact-trigger" onClick={openContactForm}>
             <translations.contact.cta.link />
           </button>
         </h2>
@@ -33,14 +35,14 @@ const Footer = () => {
           <Link href="/writing" className="footer__nav-link">
             Writing
           </Link>
-          <Link href="/projects" className="footer__nav-link">
-            Projects
+          <Link href="/#open-source" className="footer__nav-link">
+            Open Source
           </Link>
-          <Link href="/legal/terms" className="footer__nav-link">
-            Terms
-          </Link>
-          <Link href="/legal/privacy" className="footer__nav-link">
-            Privacy
+          <Link
+            href="https://bsky.app/profile/molovo.co"
+            className="footer__nav-link"
+          >
+            Follow me <BSky />
           </Link>
         </nav>
 

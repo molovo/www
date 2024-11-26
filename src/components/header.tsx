@@ -6,6 +6,8 @@ import useNavStateStore from '@/store/nav-state'
 import { useHideOnScroll } from '@superrb/react-addons/hooks'
 import useThemeStore from '@/store/theme'
 import useLoadingStore from '@/store/loading'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
   const { headerStyle, headerColor } = useThemeStore((state) => ({
@@ -13,8 +15,20 @@ const Header = () => {
     headerColor: state.headerColor,
   }))
   const isOpen = useNavStateStore((state) => state.isOpen)
-  const hidden = useHideOnScroll()
   const loading = useLoadingStore((state) => state.loading)
+
+  const [hidden, setHidden] = useState<boolean>(false)
+  const hideOnScroll = useHideOnScroll()
+
+  const pathname = usePathname()
+
+  useEffect(() => {
+    setHidden(hideOnScroll)
+  }, [hideOnScroll])
+
+  useEffect(() => {
+    setHidden(false)
+  }, [pathname])
 
   return (
     <header

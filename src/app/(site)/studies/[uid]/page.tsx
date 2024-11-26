@@ -2,6 +2,8 @@ import { glob } from 'glob'
 import CaseStudy from './case-study'
 import { notFound } from 'next/navigation'
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
+import { ReactNode } from 'react'
+import { Metadata } from 'next'
 
 export const getSections = async (
   slug: string,
@@ -22,12 +24,13 @@ export const getSections = async (
           content: <Content />,
           slug: sectionSlug,
           ...metadata,
-        } as CaseStudySectionType
-      })
-      .sort((a, b) => ((a.order || 99) > (b.order || 99) ? 1 : -1)),
+        } as CaseStudySectionType & { content: ReactNode }
+      }),
   )
 
-  return sections.filter((value) => value !== undefined)
+  return sections
+    .filter((value) => value !== undefined)
+    .sort((a, b) => ((a.order || 99) > (b.order || 99) ? 1 : -1))
 }
 
 export const getPost = async (slug: string): Promise<CaseStudyType> => {
@@ -48,12 +51,24 @@ export const generateMetadata = async ({
   params: { uid },
 }: {
   params: { uid: string }
-}) => {
+}): Promise<Metadata> => {
   const study = await getPost(uid)
+  const { title, description } = study
 
-  study.image = `/api/content/studies/${uid}/og-image`
-
-  return study
+  return {
+    title,
+    description,
+    openGraph: {
+      images: [
+        {
+          url: `/api/content/studies/${uid}/og-image.jpg`,
+        },
+      ],
+    },
+    twitter: {
+      images: `/api/content/studies/${uid}/og-image.jpg`,
+    },
+  }
 }
 
 const Page = async ({ params: { uid } }: { params: { uid: string } }) => {

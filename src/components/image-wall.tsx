@@ -4,6 +4,7 @@ import ContentFigure, {
   ContentFigureProps,
 } from './content-figure'
 import { CSSProperties } from 'react'
+import { Image as ImageType } from '@/types/image'
 
 const ImageWall = ({
   images,
@@ -17,7 +18,7 @@ const ImageWall = ({
   imageStyle = {},
   zoomable = true,
 }: {
-  images: string[]
+  images: ImageType[]
   caption?: string
   embedCaption?: boolean
   layout?: 'contain' | 'cover'
@@ -40,12 +41,12 @@ const ImageWall = ({
         }`}
         style={style}
       >
-        {images.map((image, index) =>
+        {images.map(({ image, alt }, index) =>
           image ? (
             <Image
               key={index}
               src={image}
-              alt=""
+              alt={alt}
               width="1200"
               height="800"
               className="image-wall__image"

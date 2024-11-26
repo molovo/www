@@ -55,9 +55,9 @@ const ContentVideo = ({
                 points="5 3 20 12 5 21 5 3"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></polygon>
             </svg>
           </button>

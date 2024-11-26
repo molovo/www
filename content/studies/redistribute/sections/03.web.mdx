@@ -50,8 +50,14 @@ Redistribute's biggest feature is its content. I designed an article layout whic
 
 <SyncedScroll
   images={[
-    articleTwo,
-    articleThree
+    {
+      image: articleTwo,
+      alt: 'A screenhot of an album review page from the Redistribute Magazine website'
+    },
+    {
+      image: articleThree,
+      alt: 'A screenshot of an interview page from the Redistribute Magazine website'
+    }
   ]}
   caption="Some examples of article templates used"
   size="container-width"
@@ -63,8 +69,14 @@ Second to the reading experience is discoverability, allowing repeat visitors to
 
 <SyncedScroll
   images={[
-    homepage,
-    listing
+    {
+      image: homepage,
+      alt: 'A screenshot of the homepage of the Redistribute Magazine website'
+    },
+    {
+      image: listing,
+      alt: 'A screenshot of the reviews listing page from the Redistribute Magazine website'
+    }
   ]}
   caption="The homepage and reviews listing page"
   size="container-width"
@@ -77,7 +89,8 @@ Second to the reading experience is discoverability, allowing repeat visitors to
 
 <ContentImage
   src={nav}
-  alt="The main navigation"
+  alt="A screenshot of the navigation menu from the Redistribute Magazine website"
+  caption="The main navigation"
 />
 
 ---
@@ -86,8 +99,14 @@ The site is full of hand-built custom components, used for featuring articles, d
 
 <ImageWall
   images={[
-    watermarkTwo,
-    watermarkOne
+    {
+      image: watermarkTwo,
+      alt: 'A screenshot of a featured article block from the Redistribute Magazine website'
+    },
+    {
+      image: watermarkOne,
+      alt: 'A screenshot of a video player from the Redistribute Magazine website'
+    }
   ]}
   stagger={false}
   layout="contain"
@@ -101,10 +120,10 @@ As an independent magazine who want to keep advertising to a minimum, premium co
 
 <ContentImage
   src={watermarkThree}
-  alt="Membership call to action component."
+  caption="Membership call to action component."
 />
 
 <ContentImage
   src={paywall}
-  alt="The paywall as it appears to non-members."
+  caption="The paywall as it appears to non-members."
 />

@@ -65,12 +65,23 @@
       color: $red3
 
     &-link
+      align-items: center
       color: rgba($white, .5)
+      display: inline-flex
+      gap: .5ch
       text-decoration: none
       transition: color .5s ease
 
       &:hover
         color: $white
+
+      svg
+        color: inherit
+        height: auto
+        width: 1em
+
+        path
+          fill: currentColor
 
   &__attribution
     opacity: .5
