@@ -1,8 +1,8 @@
 import Link from '@/components/link'
 import swash from '@/utils/swash'
-import { ForwardedRef, forwardRef, PropsWithChildren } from 'react'
+import { ForwardedRef, forwardRef, PropsWithChildren, ReactNode } from 'react'
 
-export type HomepageSectionLink = { label: string; url: string }
+export type HomepageSectionLink = { label: ReactNode; url: string }
 
 export type HomepageSectionProps = {
   title: string

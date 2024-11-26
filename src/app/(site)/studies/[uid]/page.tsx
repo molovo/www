@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
 import { ReactNode } from 'react'
 import { Metadata } from 'next'
+import { Article } from 'schema-dts'
+import Schema from '@/components/schema'
 
 export const getSections = async (
   slug: string,
@@ -24,7 +26,7 @@ export const getSections = async (
           content: <Content />,
           slug: sectionSlug,
           ...metadata,
-        } as CaseStudySectionType & { content: ReactNode }
+        } as CaseStudySectionType
       }),
   )
 
@@ -74,7 +76,34 @@ export const generateMetadata = async ({
 const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
   const study = await getPost(uid)
 
-  return <CaseStudy study={study} sections={study.sections} />
+  const jsonLd: Article = {
+    '@type': 'Article',
+    headline: study.title,
+    name: `${study.client} Case Study`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://molovo.co/studies/${uid}`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Molovo',
+      sameAs: 'https://molovo.co',
+    },
+    author: {
+      '@type': 'Person',
+      name: 'James Dinsdale',
+      sameAs: 'https://molovo.co',
+    },
+    url: `https://molovo.co/studies/${uid}`,
+    image: `https://molovo.co/api/content/studies/${uid}/og-image.jpg`,
+  }
+
+  return (
+    <>
+      <CaseStudy study={study} />
+      <Schema content={jsonLd} />
+    </>
+  )
 }
 
 export default Page

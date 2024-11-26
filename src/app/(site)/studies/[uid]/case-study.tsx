@@ -4,15 +4,9 @@ import useClientStore from '@/store/client'
 import CaseStudyType from '@/types/case-study'
 import { useEffect } from 'react'
 import CaseStudySection from './case-study-section'
-import Main from '@/components/main'
+import Link from '@/components/link'
 
-const CaseStudy = ({
-  study,
-  sections,
-}: {
-  study: CaseStudyType
-  sections: any[]
-}) => {
+const CaseStudy = ({ study }: { study: CaseStudyType }) => {
   const setClient = useClientStore((state) => state.setClient)
 
   useEffect(() => {
@@ -25,7 +19,7 @@ const CaseStudy = ({
 
   return (
     <article className={`case-study case-study--${study.slug}`}>
-      {sections.map((section, index) => (
+      {study.sections.map((section, index) => (
         <CaseStudySection
           index={index}
           key={section.slug}
@@ -34,6 +28,14 @@ const CaseStudy = ({
           study={study}
         />
       ))}
+
+      {study.url && (
+        <div className="case-study__visit">
+        <Link href={study.url} className="case-study__visit-link">
+          Visit {study.client}
+        </Link>
+        </div>
+      )}
     </article>
   )
 }

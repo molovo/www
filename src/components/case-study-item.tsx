@@ -5,6 +5,8 @@ import Logo from './logo'
 import Link from '@/components/link'
 import useNavStateStore from '@/store/nav-state'
 import { CSSProperties } from 'react'
+import { Article } from 'schema-dts'
+import Schema from './schema'
 
 type CaseStudy = { [key: string]: any }
 
@@ -29,6 +31,28 @@ const CaseStudyItem = ({
   visible?: boolean
 }) => {
   const { close } = useNavStateStore()
+
+  const jsonLd: Article = {
+    '@type': 'Article',
+    headline: title,
+    name: `${client} Case Study`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://molovo.co/studies/${slug}`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Molovo',
+      sameAs: 'https://molovo.co',
+    },
+    author: {
+      '@type': 'Person',
+      name: 'James Dinsdale',
+      sameAs: 'https://molovo.co',
+    },
+    url: `https://molovo.co/studies/${slug}`,
+    image: `https://molovo.co/api/content/studies/${slug}/og-image.jpg`,
+  }
 
   return (
     <li
@@ -90,6 +114,7 @@ const CaseStudyItem = ({
           </div>
         </div>
       </Link>
+      <Schema content={jsonLd} />
     </li>
   )
 }

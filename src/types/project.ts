@@ -4,6 +4,7 @@ export interface ProjectMetadataType {
   title: string
   description: string
   url: string
+  repo: string
   language: string
   tags?: string[]
   featured?: boolean

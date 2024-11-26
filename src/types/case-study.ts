@@ -1,7 +1,7 @@
 import { HeaderColor, HeaderStyle } from '@/store/header-style'
 import { Color } from '@/store/theme'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import { CSSProperties } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
 export interface CaseStudySectionType {
   order: number
@@ -9,6 +9,7 @@ export interface CaseStudySectionType {
   name: string
   title: string
   intro?: string
+  content: ReactNode
   color: Color
   backgroundColor: Color
   headerStyle?: HeaderStyle
@@ -34,6 +35,7 @@ export default interface CaseStudyType {
   title: string
   description: string
   client: string
+  url?: string
   date: string
   thumbnail: string | StaticImport
   order?: number
