@@ -6,7 +6,9 @@ import CreativePool from '@/components/images/icons/awards/creative-pool.svg'
 import CSSDesignAwards from '@/components/images/icons/awards/css-design-awards.svg'
 import Typewolf from '@/components/images/icons/awards/typewolf.svg'
 import useHeaderStyle from '@/hooks/use-header-style'
-import HomepageSection, { HomepageSectionLink } from './homepage-section'
+import HomepageSection, {
+  HomepageSectionLink,
+} from '@/components/homepage/section'
 import Link from '@/components/link'
 
 const Nominee = () => <span className="awards__nominee">Nominated for</span>

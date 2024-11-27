@@ -1,8 +1,8 @@
 import { content } from 'content/homepage'
-import Hero from './hero'
-import Awards from './awards'
-import OpenSource from './open-source'
-import Writing from './writing'
+import Hero from '@/components/homepage/hero'
+import Awards from '@/components/homepage/awards'
+import OpenSource from '@/components/homepage/open-source'
+import Writing from '@/components/homepage/writing'
 import { Organization, Person, WebSite } from 'schema-dts'
 import Schema from '@/components/schema'
 

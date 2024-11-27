@@ -285,3 +285,35 @@ code
     transform: translate(-50%, -50%) scale(.75)
     white-space: nowrap
     width: auto
+
+del
+  text-decoration: none
+  position: relative
+
+  &::after
+    font-family: $font-swash
+    color: $red
+    content: 'C'
+    font-size: 2em
+    left: 50%
+    position: absolute
+    top: 50%
+    transform: translate(-50%, -75%)
+
+ins
+  +script
+  color: $red
+  display: inline-block
+  font-size: 1.4em
+  margin-left: -.5ch
+  position: relative
+  text-decoration: none
+  transform: translate(-1rem, -100%) rotate(-2deg)
+  width: 0
+
+  &::after
+    content: '^'
+    font-size: 3em
+    position: absolute
+    left: .5rem
+    top: 300%

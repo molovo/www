@@ -1,8 +1,10 @@
 'use client'
 
-import Listing from './writing/listing'
+import Listing from '@/components/listing'
 import useHeaderStyle from '@/hooks/use-header-style'
-import HomepageSection, { HomepageSectionLink } from './homepage-section'
+import HomepageSection, {
+  HomepageSectionLink,
+} from '@/components/homepage/section'
 import ArticleType from '@/types/article'
 
 const Writing = ({

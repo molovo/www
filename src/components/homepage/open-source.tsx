@@ -2,17 +2,22 @@
 
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import useHeaderStyle from '@/hooks/use-header-style'
-import HomepageSection, { HomepageSectionLink } from './homepage-section'
-import ProjectType from '@/types/project'
-import JS from '@/components/images/icons/languages/js.svg'
 import { ReactNode } from 'react'
+import { SoftwareSourceCode } from 'schema-dts'
+
+import HomepageSection, {
+  HomepageSectionLink,
+} from '@/components/homepage/section'
+import ProjectType from '@/types/project'
+import Link from '@/components/link'
+import Schema from '@/components/schema'
+
+import useHeaderStyle from '@/hooks/use-header-style'
+
+import JS from '@/components/images/icons/languages/js.svg'
 import PHP from '@/components/images/icons/languages/php.svg'
 import ZSH from '@/components/images/icons/languages/zsh.svg'
 import TS from '@/components/images/icons/languages/ts.svg'
-import Link from '@/components/link'
-import Schema from '@/components/schema'
-import { SoftwareSourceCode } from 'schema-dts'
 
 const logoMap: { [key: string]: ReactNode } = {
   ZSH: <ZSH />,

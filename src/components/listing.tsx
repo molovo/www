@@ -79,13 +79,14 @@ const Listing = ({ posts }: Props) => {
                     {format(new Date(date), 'do MMMM yyyy')}
                   </time>
 
-                  <ul className="writing__post-tags">
-                    {tags?.map((tag: string) => (
-                      <li key={tag} className="writing__post-tag">
-                        <Link href={`/writing/tag/${tag}`}>{tag}</Link>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* <ul className="writing__post-tags"> */}
+                  {/*   {tags?.map((tag: string) => ( */}
+                  {/*     <li key={tag} className="writing__post-tag"> */}
+                  {/*       <Link href={`/writing/tag/${tag}`}>{tag}</Link> */}
+                  {/*     </li> */}
+                  {/*   ))} */}
+                  {/* </ul> */}
+
                 </div>
               </div>
 

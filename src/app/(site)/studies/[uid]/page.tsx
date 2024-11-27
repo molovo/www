@@ -2,7 +2,6 @@ import { glob } from 'glob'
 import CaseStudy from './case-study'
 import { notFound } from 'next/navigation'
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
-import { ReactNode } from 'react'
 import { Metadata } from 'next'
 import { Article } from 'schema-dts'
 import Schema from '@/components/schema'
@@ -40,12 +39,32 @@ export const getPost = async (slug: string): Promise<CaseStudyType> => {
 
   try {
     const { metadata } = await import(`content/studies/${slug}/index.mdx`)
+
     const sections = await getSections(slug)
 
-    return { ...metadata, slug: slug, sections }
+    let next
+    if (metadata.next) {
+      try {
+        const { metadata: nextMetadata } = await import(
+          `content/studies/${metadata.next}/index.mdx`
+        )
+        next = {
+          ...nextMetadata,
+          slug: metadata.next,
+          url: `/studies/${metadata.next}`,
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    return { ...metadata, slug: slug, sections, next }
   } catch (error) {
-    console.error(error)
-    notFound()
+    if ((error as Error).message.startsWith('Cannot find module')) {
+      notFound()
+    }
+
+    throw error
   }
 }
 
@@ -55,6 +74,7 @@ export const generateMetadata = async ({
   params: { uid: string }
 }): Promise<Metadata> => {
   const study = await getPost(uid)
+
   const { title, description } = study
 
   return {

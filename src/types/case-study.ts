@@ -36,6 +36,7 @@ export default interface CaseStudyType {
   description: string
   client: string
   url?: string
+  offline?: boolean
   date: string
   thumbnail: string | StaticImport
   order?: number
@@ -43,10 +44,14 @@ export default interface CaseStudyType {
   superrb?: boolean
   help?: string[]
 
+  next: CaseStudyType
+
   styles?: {
     thumbnail?: Partial<CSSProperties>
     thumbnailContent?: Partial<CSSProperties>
     thumbnailTitle?: Partial<CSSProperties>
+    visit?: Partial<CSSProperties>
+    visitButton?: Partial<CSSProperties>
   }
 
   sections: CaseStudySectionType[]

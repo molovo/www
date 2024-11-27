@@ -1,15 +1,25 @@
 import Schema from '@/components/schema'
 import Article from './article'
 import { Article as ArticleSchema } from 'schema-dts'
+import { notFound } from 'next/navigation'
+import ArticleType from '@/types/article'
 
-const getPost = async (slug: string) => {
+const getPost = async (slug: string): Promise<ArticleType> => {
   'use server'
 
-  const { metadata, default: Content } = await import(
-    `content/posts/${slug}.mdx`
-  )
+  try {
+    const { metadata, default: Content } = await import(
+      `content/posts/${slug}.mdx`
+    )
 
-  return { Content, slug, metadata }
+    return { Content, slug, metadata }
+  } catch (error) {
+    if ((error as Error).message.startsWith('Cannot find module')) {
+      notFound()
+    }
+
+    throw error
+  }
 }
 
 export const generateMetadata = async ({

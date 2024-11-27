@@ -56,15 +56,18 @@
     padding-top: $gutterMax
 
   &__nav
-    align-items: center
-    display: flex
-    gap: $baseline
-    justify-content: flex-start
+    &-list
+      align-items: center
+      display: flex
+      gap: $baseline
+      justify-content: flex-start
+      list-style: none
 
     &:hover > a:not(:hover)
       color: $red3
 
     &-link
+      +unbutton
       align-items: center
       color: rgba($white, .5)
       display: inline-flex
@@ -82,6 +85,23 @@
 
         path
           fill: currentColor
+
+    &-item
+      &:hover
+        .footer__nav-sublist
+          max-width: 20em
+
+    &-sublist
+      align-items: center
+      display: inline-flex
+      flex-wrap: nowrap
+      gap: ($baseline * .5)
+      justify-content: flex-start
+      margin: 0 0 0 ($baseline * .5)
+      max-width: 0
+      overflow: hidden
+      transition: max-width .5s ease
+      white-space: nowrap
 
   &__attribution
     opacity: .5

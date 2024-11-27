@@ -5,3 +5,7 @@
 [context.2017]
   publish = "_site"
   command = "gulp compile --env production"
+
+[context.2015]
+  publish = "_site"
+  command = "gulp build && bundle exec jekyll build"

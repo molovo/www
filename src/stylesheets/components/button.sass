@@ -21,7 +21,7 @@
   &::before
     +cover(-8px)
     background-color: transparent
-    border: 2px solid $black
+    border: 2px solid currentColor
     border-radius: inherit
     color: inherit
     content: ''
@@ -35,9 +35,9 @@
       border-color: $white
 
   &:hover
-    background: transparent
-    border-color: transparent
-    color: inherit
+    background: transparent !important
+    border-color: transparent !important
+    color: inherit !important
 
     &::before
       +cover(0)

@@ -35,11 +35,11 @@ const Slideshow = ({
       captionStyle={captionStyle}
     >
       <div className="slideshow" onScroll={handleScroll}>
-        {images.map((image, index) => (
+        {images.map(({ image, alt }, index) => (
           <Image
             key={index}
             src={image}
-            alt=""
+            alt={alt}
             className="slideshow__image"
             aria-current={index === current}
             style={imageStyle}

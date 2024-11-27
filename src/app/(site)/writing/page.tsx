@@ -1,6 +1,6 @@
 'use server'
 
-import Listing from './listing'
+import Listing from '@/components/listing'
 import { getPosts } from '@/data/posts'
 
 const Page = async () => {

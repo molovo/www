@@ -2,6 +2,7 @@ import { colors } from '../index.mdx'
 
 import ContentImage from '@/components/content-image'
 import SyncedScroll from '@/components/synced-scroll'
+import ImageWall from '@/components/image-wall'
 
 import backgroundImage from '@/images/studies/joonbyrd/thumbnail.svg'
 import webOne from '@/images/studies/joonbyrd/web1.png'
@@ -9,6 +10,9 @@ import webOne from '@/images/studies/joonbyrd/web1.png'
 import littleLove from '@/images/studies/joonbyrd/little-love.png'
 import daydreamer from '@/images/studies/joonbyrd/daydreamer.png'
 import violetHaze from '@/images/studies/joonbyrd/violet-haze.png'
+
+import minicart from '@/images/studies/joonbyrd/minicart.jpg'
+import giftGuide from '@/images/studies/joonbyrd/gift-guide.png'
 
 export const metadata = {
   title: 'Emotive & _Interactive_',
@@ -19,13 +23,13 @@ export const metadata = {
   accentColorTwo: colors.blue,
   titleSwashCharacter: 'A',
 
-  styles: {
-    title: {
-      color: colors.maroon,
-      marginTop: '1.5rem',
-      maxWidth: '2.6em',
-      transform: 'rotate(2deg)'
-    },
+styles: {
+title: {
+color: colors.maroon,
+marginTop: '1.5rem',
+maxWidth: '2.6em',
+transform: 'rotate(2deg)'
+},
 
     main: {
       backgroundColor: colors.lilac,
@@ -35,7 +39,8 @@ export const metadata = {
     titleSwash: {
       transform: 'rotate(-3deg)'
     }
-  }
+
+}
 }
 
 The homepage was all about setting the tone. Big, bold visuals and clean typography, but not too clinical or cold. It had to feel approachable and intriguing, like an invitation to explore.
@@ -48,25 +53,47 @@ The homepage was all about setting the tone. Big, bold visuals and clean typogra
 
 ---
 
-Each product in Joonbyrd's range has its own vibe, and so every product page a unique look, each with its own distinct colours and design details. Inspired by the product's ingredients or benefits, different colour palettes and imagery were chosen to match the mood and story of each product. It's subtle, but impactful, and the end result is an immersive, engaging experience that feels tailored to what you’re looking at.
+Each product in Joonbyrd's range has its own vibe, and so every product page a unique look, each with its own distinct design details. Inspired by the product's ingredients or benefits, different colour palettes and imagery were chosen to match the mood and story of each product. It's subtle, but impactful, and the end result is an immersive, engaging experience that feels tailored to the product.
 
 <SyncedScroll
   images={[
     {
       image: littleLove,
-      alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.'
+      alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.',
     },
     {
       image: daydreamer,
-      alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.'
+      alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.',
     },
     {
       image: violetHaze,
-      alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.'
-    }
+      alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.',
+    },
   ]}
   caption="Some examples of product page templates used on joonbyrd.com"
   size="container-width"
 />
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod     tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At     vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,     no sea takimata sanctus est Lorem ipsum dolor sit amet.
+---
+
+The site includes a number of bespoke features built on top of Shopify's core functionality, including:
+
+- Configurable functionality to allow free gifts to be automatically added to orders over a certain value.
+- Gift wrapping and hand-written gift message options in the cart.
+- A custom built upsell widget for Recharge subcriptions, seamlessly integrated into the cart.
+- Custom widgets for product pages and the cart, upselling accessories and other products.
+
+<ImageWall
+  images={[
+    {
+      image: minicart,
+      alt: 'A screenshot of the mini cart on the Joonbyrd website.',
+    },
+    {
+      image: giftGuide,
+      alt: 'A screenshot of the gift guide page on the Joonbyrd website.',
+    },
+  ]}
+  caption="Some of the custom components and pages built for the Joonbyrd website."
+  style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}
+/>

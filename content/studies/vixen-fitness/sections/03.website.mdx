@@ -30,10 +30,23 @@ export const metadata = {
 
 With training being a private activity for so many people, we wanted the website to speak directly to visitors. Copy was hugely important here, with friendly, informal prose guiding the user to individual service pages tailored to their situation.
 
-<ContentImage src={homepage} />
+<ContentImage src={homepage} alt="The homepage of vixenfitness.com" caption="The homepage of vixenfitness.com" />
 
 ---
 
 I built a page for each of Gemma’s services to match the set of postcards I’d designed previously, with each one being able to act as a landing page; both for the links on the postcards themselves, and for targeted online and social media advertising campaigns.
 
-<SyncedScroll images={[pageOne, pageTwo, pageThree]} />
+<SyncedScroll images={[
+  {
+    image: pageOne,
+    alt: 'A screenshot of the ante-natal training page on vixenfitness.com'
+  },
+  {
+    image: pageTwo,
+    alt: 'A screenshot of the post-natal training page on vixenfitness.com'
+  },
+  {
+    image: pageThree,
+    alt: 'A screenshot of the mobile personal training page on vixenfitness.com'
+  }
+]} />

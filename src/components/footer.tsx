@@ -32,18 +32,45 @@ const Footer = () => {
 
       <div className="footer__bottom">
         <nav className="footer__nav">
-          <Link href="/writing" className="footer__nav-link">
-            Writing
-          </Link>
-          <Link href="/#open-source" className="footer__nav-link">
-            Open Source
-          </Link>
-          <Link
-            href="https://bsky.app/profile/molovo.co"
-            className="footer__nav-link"
-          >
-            Follow me <BSky />
-          </Link>
+          <ul className="footer__nav-list">
+            <li className="footer__nav-item">
+              <Link href="/writing" className="footer__nav-link">
+                Writing
+              </Link>
+            </li>
+            <li className="footer__nav-item">
+              <Link href="/#open-source" className="footer__nav-link">
+                Open Source
+              </Link>
+            </li>
+            <li className="footer__nav-item">
+              <Link
+                href="https://bsky.app/profile/molovo.co"
+                className="footer__nav-link"
+              >
+                Follow me <BSky />
+              </Link>
+            </li>
+
+            <li className="footer__nav-item">
+              <Link className="footer__nav-link">Archive</Link>
+
+              <ul className="footer__nav-sublist">
+                {[2017, 2015].map((year) => (
+                  <li className="footer__nav-subitem" key={year}>
+                    <Link
+                      href={`https://${year}.molovo.co`}
+                      className="footer__nav-link"
+                      target="_blank"
+                      rel="nofollow noopener"
+                    >
+                      {year}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </ul>
         </nav>
 
         <span className="footer__attribution">
