@@ -8,4 +8,4 @@
 
 [context.2015]
   publish = "_site"
-  command = "gulp build && bundle exec jekyll build"
+  command = "gulp && bundle exec jekyll build"
