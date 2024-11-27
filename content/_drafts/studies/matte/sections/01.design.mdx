@@ -1,0 +1,66 @@
+import backgroundImage from '@/images/studies/matte/thumbnail.jpg'
+import vinyl from '@/images/studies/matte/vinyl.jpg'
+import { colors, sourceWords } from '../index.mdx'
+import ImageWall from '@/components/image-wall'
+import ContentImage from '@/components/content-image'
+import TypeSample from '@/components/type-sample'
+import { inter, nitti } from '@/fonts'
+
+import artworkOne from '@/images/studies/matte/albums/black.jpg'
+import artworkTwo from '@/images/studies/matte/albums/rouge.jpg'
+import artworkThree from '@/images/studies/matte/albums/rouge-remixed.jpg'
+import artworkFour from '@/images/studies/matte/albums/azure.jpg'
+import artworkFive from '@/images/studies/matte/albums/blood.jpg'
+import artworkSix from '@/images/studies/matte/albums/dust.jpg'
+import artworkSeven from '@/images/studies/matte/albums/rose.jpg'
+import artworkEight from '@/images/studies/matte/albums/aurora.jpg'
+import artworkNine from '@/images/studies/matte/albums/lagoon.jpg'
+
+export const metadata = {
+  name: 'Album artwork',
+  title: 'Play a little tune',
+  headerStyle: 'white',
+  backgroundImage,
+  accentColor: colors.red,
+  accentColorTwo: colors.white,
+
+  styles: {
+    main: {
+      backgroundColor: colors.black,
+      color: colors.white,
+    },
+    title: {
+      color: colors.white
+    },
+  }
+}
+
+Velit exercitation fugiat in officia irure. Ut consequat aliquip veniam enim sunt mollit minim deserunt officia elit exercitation irure sunt. Fugiat culpa Lorem laboris cupidatat cupidatat velit dolor nostrud quis aliquip. Proident magna ad eiusmod anim consectetur ullamco cupidatat ex incididunt tempor nulla in magna labore. Esse sunt cupidatat laborum ut elit culpa labore id Lorem voluptate amet fugiat anim. Aliquip qui nisi do irure labore in consequat occaecat eiusmod pariatur irure officia.
+
+Id qui aute elit et officia esse reprehenderit aute nostrud cillum qui nisi. Incididunt in reprehenderit ad non minim non velit mollit mollit cupidatat. Eu eiusmod do culpa consequat dolor ipsum sit cillum velit est. Nisi pariatur pariatur anim duis adipisicing.
+
+<ImageWall
+  images={[
+    artworkOne,
+    artworkTwo,
+    artworkThree,
+    artworkFour,
+    artworkFive,
+    artworkSix,
+    artworkSeven,
+    artworkEight,
+    artworkNine
+  ]}
+  style={{
+    gridTemplateColumns: typeof window !== 'undefined' && window.matchMedia('(min-width: 60em)').matches ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'
+  }}
+  stagger={false}
+  size="container-width"
+/>
+
+Eiusmod eiusmod excepteur reprehenderit adipisicing anim eu id eu. Labore cupidatat elit deserunt anim mollit aliquip dolore in irure commodo sint. Ullamco nostrud do cupidatat non. Non sit aliqua eiusmod commodo cupidatat amet. Ut aliquip velit reprehenderit duis ipsum consequat ullamco excepteur ex. Consectetur mollit laboris pariatur ad. Officia dolor nisi mollit elit dolore.
+
+<ContentImage size="full-width" src={vinyl} style={{ aspectRatio: '16/9', objectFit: 'cover' }} />
+
+<TypeSample fontName="Nitti Grotesk Light" fontClass={nitti.className} sourceWords={sourceWords} style={{ textTransform: 'uppercase', letterSpacing: '.2em' }} />
+<TypeSample fontName="Inter Black" fontClass={inter.className} sourceWords={sourceWords} style={{ textTransform: 'capitalize', fontWeight: 700, letterSpacing: '-.025em' }} />

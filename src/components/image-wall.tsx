@@ -18,7 +18,7 @@ const ImageWall = ({
   imageStyle = {},
   zoomable = true,
 }: {
-  images: ImageType[]
+  images: (ImageType & { allowScroll: boolean })[]
   caption?: string
   embedCaption?: boolean
   layout?: 'contain' | 'cover'
@@ -41,7 +41,7 @@ const ImageWall = ({
         }`}
         style={style}
       >
-        {images.map(({ image, alt }, index) =>
+        {images.map(({ image, alt, allowScroll = false }, index) =>
           image ? (
             <Image
               key={index}
@@ -52,7 +52,7 @@ const ImageWall = ({
               className="image-wall__image"
               style={imageStyle[index] || {}}
               zoomable={zoomable}
-              allowScroll={false}
+              allowScroll={allowScroll}
             />
           ) : (
             <div

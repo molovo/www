@@ -1,0 +1,35 @@
+import thumbnail from '@/images/studies/superrb/thumbnail.jpg'
+
+export const colors = {
+  black: '#1b1b1d',
+  white: '#ffffff',
+  pink: '#e06e6f',
+  gray: '#e8e5e5'
+}
+
+export const metadata = {
+  order: 3,
+  client: 'Superrb',
+  role: 'Full-stack development',
+  title: 'Making waves',
+  thumbnail,
+
+  styles: {
+    thumbnail: {
+      color: colors.black
+    },
+
+    thumbnailBackgroundImage: {
+      objectPosition: 'right center'
+    },
+
+    thumbnailContent: {
+      backgroundColor: colors.black,
+      color: colors.white
+    },
+
+    thumbnailTitle: {
+      color: colors.pink,
+    }
+  }
+}
