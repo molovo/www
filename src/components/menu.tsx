@@ -32,10 +32,10 @@ const navigationItems: NavigationItem[] = [
 ]
 
 const secondaryNavigationItems: NavigationItem[] = [
-  {
-    url: '/resume',
-    label: 'CV/Resume',
-  },
+  // {
+    // url: '/resume',
+    // label: 'CV/Resume',
+  // },
   {
     label: 'Contact',
     handler: () => {
