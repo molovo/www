@@ -34,9 +34,9 @@ const Awards = ({
     >
       <ol className="awards__items">
         <li className="awards__item">
-          <Link href="/studies/joonbyrd" className="awards__logo">
+          <div className="awards__logo">
             <ClientLogo client="joonbyrd" />
-          </Link>
+          </div>
 
           <div className="awards__group">
             <h4 className="awards__group-title">
@@ -50,9 +50,9 @@ const Awards = ({
           </div>
         </li>
         <li className="awards__item">
-          <Link href="/studies/octaevo" className="awards__logo">
+          <div className="awards__logo">
             <ClientLogo client="octaevo" />
-          </Link>
+          </div>
 
           <div className="awards__group">
             <h4 className="awards__group-title">
@@ -80,9 +80,9 @@ const Awards = ({
           </div>
         </li>
         <li className="awards__item">
-          <Link href="/studies/superrb" className="awards__logo">
+          <div className="awards__logo">
             <ClientLogo client="superrb" />
-          </Link>
+          </div>
 
           <div className="awards__group">
             <h4 className="awards__group-title">
