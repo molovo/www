@@ -56,7 +56,7 @@
     "@types/rss": "^0.0.32",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
-    "sharp": "^0.33.3",
+    "sharp": "^0.33.5",
     "typescript": "^5"
   }
 }

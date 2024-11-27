@@ -1,7 +1,7 @@
 'use server'
 
 import { getPosts } from '@/data/posts'
-import Listing from '../../listing'
+import Listing from '@/components/listing'
 
 const Page = async ({ params: { tag } }: { params: { tag: string } }) => {
   const posts = (await getPosts()).filter(({ metadata }) =>

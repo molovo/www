@@ -113,7 +113,7 @@ const Contact = () => {
               <p className="success-message__text">
                 Your message is on its way to me.
                 <br />
-                I'll get back to you as soon as I can.
+                I&apos;ll get back to you as soon as I can.
               </p>
 
               <button

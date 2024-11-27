@@ -1,5 +1,4 @@
-import { HeaderColor, HeaderStyle } from '@/store/header-style'
-import { Color } from '@/store/theme'
+import { Color, HeaderStyle } from '@/store/theme'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import { CSSProperties, ReactNode } from 'react'
 
@@ -13,7 +12,7 @@ export interface CaseStudySectionType {
   color: Color
   backgroundColor: Color
   headerStyle?: HeaderStyle
-  headerColor?: HeaderColor
+  headerColor?: Color
   backgroundImage: string | StaticImport
   accentColor?: CSSProperties['color']
   accentColorTwo?: CSSProperties['color']

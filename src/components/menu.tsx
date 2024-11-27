@@ -113,7 +113,7 @@ const Menu = ({ studies = [] }: { studies: CaseStudyType[] }) => {
             </button>
           </li>
 
-          {navigationItems.map(({ label, url, handler }) => {
+          {navigationItems.map(({ label, url, handler }: NavigationItem) => {
             if (handler) {
               return (
                 <li
@@ -132,7 +132,7 @@ const Menu = ({ studies = [] }: { studies: CaseStudyType[] }) => {
             }
 
             return (
-              <li className="menu__item menu__item" key={label}>
+              <li className="menu__item menu__item" key={url}>
                 <Link
                   className="menu__link"
                   href={url as string}

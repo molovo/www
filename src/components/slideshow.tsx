@@ -20,7 +20,7 @@ const Slideshow = ({
 }) => {
   const [current, setCurrent] = useState<number>(0, 'Current slide')
 
-  const handleScroll: GlobalEventHandlers['onscroll'] = (event) => {
+  const handleScroll: UIEventHandler<HTMLDivElement> = (event) => {
     const { scrollLeft, children } = event.target as HTMLElement
     const { clientWidth } = children[0]
     const index = Math.round(scrollLeft / clientWidth)

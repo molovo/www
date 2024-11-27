@@ -106,7 +106,7 @@ const Awards = ({
             </h4>
 
             <ul className="awards__list">
-              <li>2019 People's Choice Award</li>
+              <li>2019 People&apos;s Choice Award</li>
               <li>
                 <Nominee /> 2019 Annual Shortlist
               </li>

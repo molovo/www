@@ -4,15 +4,22 @@ import useHeaderStyle from '@/hooks/use-header-style'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import swash from '@/utils/swash'
-import { ReactFitty } from 'react-fitty'
 import SocialSharing from '@/components/social-sharing'
+import {ArticleMetadataType} from '@/types/article'
+import { ReactNode } from 'react'
 
 const Webmentions = dynamic(() => import('@/components/webmentions'), {
   ssr: true,
   loading: () => <p>Loading</p>,
 })
 
-const Article = ({ content, metadata, uid }) => {
+interface Props {
+  content: ReactNode
+  metadata: ArticleMetadataType
+  uid: string
+}
+
+const Article = ({ content, metadata, uid }: Props) => {
   const setRef = useHeaderStyle(
     metadata.headerStyle || 'red',
     metadata.headerColor,
@@ -34,23 +41,17 @@ const Article = ({ content, metadata, uid }) => {
               style={metadata.styles?.image}
             />
           )}
-          {metadata.fitTitle ? (
-            <h1 className="article__title" style={metadata.styles?.title}>
-              <ReactFitty>{metadata.title}</ReactFitty>
-            </h1>
-          ) : (
-            <h1
-              className="article__title"
-              style={metadata.styles?.title}
-              dangerouslySetInnerHTML={{
-                __html: swash(
-                  metadata.title,
-                  metadata.titleSwashCharacter,
-                  metadata.styles?.titleSwash,
-                ),
-              }}
-            />
-          )}
+          <h1
+            className="article__title"
+            style={metadata.styles?.title}
+            dangerouslySetInnerHTML={{
+              __html: swash(
+                metadata.title,
+                metadata.titleSwashCharacter,
+                metadata.styles?.titleSwash,
+              ),
+            }}
+          />
         </header>
 
         <div className="content">
