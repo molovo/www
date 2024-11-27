@@ -18,7 +18,7 @@ export const getSections = async (
       .map(async (matches) => {
         const [, order, sectionSlug] = matches || []
         const { metadata, default: Content } = await import(
-          `/content/studies/${slug}/sections/${order}.${sectionSlug}.mdx`
+          `content/studies/${slug}/sections/${order}.${sectionSlug}.mdx`
         )
         return {
           order,
@@ -95,6 +95,8 @@ export const generateMetadata = async ({
 
 const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
   const study = await getPost(uid)
+
+  console.log(study)
 
   const jsonLd: Article = {
     '@type': 'Article',
