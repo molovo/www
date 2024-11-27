@@ -2,7 +2,7 @@
 
 import useClientStore from '@/store/client'
 import CaseStudyType from '@/types/case-study'
-import { CSSProperties, useEffect } from 'react'
+import { useEffect } from 'react'
 import CaseStudySection from './case-study-section'
 import Link from '@/components/link'
 import Logo from '@/components/logo'
@@ -36,16 +36,18 @@ const CaseStudy = ({ study }: { study: CaseStudyType }) => {
         <div
           className="case-study__visit"
           style={{
-            ...lastSection.styles?.main,
+            ...lastSection?.styles?.main,
           }}
         >
           <div className="case-study__visit-inner" style={study.styles?.visit}>
             <div className="case-study__visit-content">
               <h2 className="case-study__visit-title">Thanks for reading</h2>
               <p className="case-study__visit-text">
-                {study.offline ? `
+                {study.offline
+                  ? `
                   Unfortunately, the ${study.client} website is now offline, but you can use the link below to view it in the Wayback Machine. Please be aware that some links may be broken.
-                ` : `
+                `
+                  : `
                   Please visit ${study.client} to see the full website in action.
                 `}
               </p>
@@ -54,7 +56,8 @@ const CaseStudy = ({ study }: { study: CaseStudyType }) => {
                 className="case-study__visit-link"
                 style={study.styles?.visitButton}
               >
-                {study.offline ? 'View' : 'Visit'} {study.client} {study.offline ? 'on Wayback Machine' : 'website'}
+                {study.offline ? 'View' : 'Visit'} {study.client}{' '}
+                {study.offline ? 'on Wayback Machine' : 'website'}
               </Link>
             </div>
 

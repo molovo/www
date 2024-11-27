@@ -1,12 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import { ReactNode, useEffect } from 'react'
+import { ReactNode } from 'react'
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
 import Logo from '@/components/logo'
 import useHeaderStyle from '@/hooks/use-header-style'
 import swash from '@/utils/swash'
-import SuperrbLink from '@/components/superrb-link'
 import useTheme from '@/hooks/use-theme'
 import SocialSharing from '@/components/social-sharing'
 import CaseStudyHelp from '@/components/case-study-help'
