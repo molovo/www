@@ -59,7 +59,7 @@ const Footer = () => {
                 {[2017, 2015].map((year) => (
                   <li className="footer__nav-subitem" key={year}>
                     <Link
-                      href={`https://${year}.molovo.co`}
+                      href={`https://${year}.archive.molovo.co`}
                       className="footer__nav-link"
                       target="_blank"
                       rel="nofollow noopener"
