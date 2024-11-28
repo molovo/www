@@ -1,3 +1,5 @@
+'use client'
+
 import Image from '@/components/image'
 import ContentFigure, {
   ContentFigureCaption,
@@ -5,6 +7,7 @@ import ContentFigure, {
 } from './content-figure'
 import { CSSProperties } from 'react'
 import { Image as ImageType } from '@/types/image'
+import ReactPlayer from 'react-player'
 
 const ImageWall = ({
   images,
@@ -18,7 +21,7 @@ const ImageWall = ({
   imageStyle = {},
   zoomable = true,
 }: {
-  images: (ImageType & { allowScroll: boolean })[]
+  images: (ImageType & { allowScroll: boolean; video?: string })[]
   caption?: string
   embedCaption?: boolean
   layout?: 'contain' | 'cover'
@@ -41,8 +44,21 @@ const ImageWall = ({
         }`}
         style={style}
       >
-        {images.map(({ image, alt, allowScroll = false }, index) =>
-          image ? (
+        {images.map(({ image, video, alt, allowScroll = false }, index) =>
+          video ? (
+            <ReactPlayer
+              key={index}
+              url={video}
+              width="100%"
+              height="auto"
+              controls={false}
+              playing={true}
+              muted={true}
+              loop={true}
+              className="image-wall__image"
+              style={imageStyle[index] || {}}
+            />
+          ) : image ? (
             <Image
               key={index}
               src={image}

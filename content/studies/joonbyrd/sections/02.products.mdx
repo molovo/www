@@ -12,7 +12,9 @@ import daydreamer from '@/images/studies/joonbyrd/daydreamer.png'
 import violetHaze from '@/images/studies/joonbyrd/violet-haze.png'
 
 import minicart from '@/images/studies/joonbyrd/minicart.jpg'
+import charms from '@/images/studies/joonbyrd/charms.jpg'
 import giftGuide from '@/images/studies/joonbyrd/gift-guide.png'
+import newsletter from '@/images/studies/joonbyrd/newsletter.jpg'
 import sciencePage from '@/images/studies/joonbyrd/science-page.png'
 
 export const metadata = {
@@ -83,4 +85,47 @@ The site includes a number of bespoke features built on top of Shopify's core fu
 - A custom built upsell widget for Recharge subcriptions, seamlessly integrated into the cart.
 - Custom widgets for product pages and the cart, upselling accessories and other products.
 
-
+<ImageWall
+  images={[
+    {
+      image: minicart,
+      alt: 'A screenshot of the mini cart on the Joonbyrd website.',
+    },
+    {
+      image: charms,
+      alt: 'A screenshot of the charms section on the Joonbyrd website.',
+    },
+    {
+      image: giftGuide,
+      alt: 'A screenshot of the gift guide page on the Joonbyrd website.',
+      allowScroll: true,
+    },
+    {
+      image: newsletter,
+      alt: 'A screenshot of the newsletter signup form on the Joonbyrd website.',
+    },
+    {
+      video: '/video/studies/joonbyrd/mood.mov',
+      alt: 'A video showing the mood selector on the Joonbyrd website.',
+    },
+  ]}
+  imageStyle={{
+    '0': {
+      gridRow: 'span 3',
+    },
+    '1': {
+      gridColumn: 'span 2',
+    },
+    '2': {
+      gridColumn: 'span 2',
+    },
+    '4': {
+      alignSelf: 'flex-start',
+      height: 'auto',
+    },
+  }}
+  allowScroll={true}
+  stagger={false}
+  caption="Some of the custom components built for the Joonbyrd website."
+  style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}
+/>
