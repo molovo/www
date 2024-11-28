@@ -27,9 +27,10 @@
 
   &__title
     color: $red
-    font-size: 6em
+    font-size: clamp(4em, 9vw, 6em)
     line-height: .9em
     margin: 0 0 .25em
+    text-wrap: balance
 
   .social-sharing
     --social-sharing-accent: #{$red}
