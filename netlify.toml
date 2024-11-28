@@ -2,6 +2,9 @@
 [build]
   command = "yarn build"
 
+[functions]
+  included_files = ["content/**/*"]
+
 [context.2017]
   publish = "_site"
   command = "gulp compile --env production"
