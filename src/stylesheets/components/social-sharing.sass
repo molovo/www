@@ -9,12 +9,14 @@ $size: 2.25em
   bottom: clamp($gutterMin, 6vw, $gutterMax)
   left: 0
   height: $size
-  margin-left: $baseline
-  margin-right: (($size * -1) - $baseline)
+  margin-right: ($size * -1)
   position: sticky
   transition: opacity .5s .5s ease
   width: $size
   z-index: 9
+
+  // @media (max-width: $breakpoint-desktop)
+  //   display: none
 
   &[aria-hidden="true"]
     opacity: 0
