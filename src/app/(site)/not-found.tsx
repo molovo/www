@@ -9,7 +9,7 @@ export const metadata = {
   description: 'Page not found',
 }
 
-const Page = () => {
+const NotFound = () => {
   const pathname = usePathname()
 
   return (
@@ -43,4 +43,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default NotFound
