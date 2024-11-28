@@ -155,6 +155,7 @@ const MenuCaseStudies = ({
         className="menu__studies-progress"
         ref={progress}
         role="none"
+        {...(!visible ? { tabIndex: -1 } : {})}
       />
     </>
   )
