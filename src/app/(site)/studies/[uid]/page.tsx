@@ -96,8 +96,6 @@ export const generateMetadata = async ({
 const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
   const study = await getPost(uid)
 
-  console.log(study)
-
   const jsonLd: Article = {
     '@type': 'Article',
     headline: study.title,
