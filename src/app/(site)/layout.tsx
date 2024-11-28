@@ -9,6 +9,11 @@ import WebmentionsHead from '@/components/webmentions-head'
 import Accounts from '@/components/accounts'
 import { getStudies } from '@/data/studies'
 import SkipTo from '@/components/skip-to'
+import {Metadata} from 'next'
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://molovo.co/'),
+}
 
 export default async function RootLayout({ children }: PropsWithChildren<{}>) {
   const studies = await getStudies([

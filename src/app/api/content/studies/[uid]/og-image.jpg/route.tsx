@@ -1,5 +1,3 @@
-import { unstable_cache } from 'next/cache'
-
 export const dynamic = 'error'
 export const dynamicParams = false
 
