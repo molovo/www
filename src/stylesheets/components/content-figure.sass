@@ -5,6 +5,7 @@
   gap: $baseline
   left: 50%
   margin: ($baseline * 2) 0
+  max-width: calc(100vw - var(--spacing))
   position: relative
   transform: translateX(-50%)
   width: 100%
@@ -17,6 +18,7 @@
       width: $containerWidth
 
   &--full-width
+    max-width: 100vw
     width: 100vw
 
     .content-figure__image
