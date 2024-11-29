@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 import CaseStudySection from './case-study-section'
 import Link from '@/components/link'
 import Logo from '@/components/logo'
+import Image from 'next/image'
+import CaseStudyKnowledge from '@/components/case-study-knowledge'
 
 const CaseStudy = ({ study }: { study: CaseStudyType }) => {
   const setClient = useClientStore((state) => state.setClient)
@@ -32,11 +34,21 @@ const CaseStudy = ({ study }: { study: CaseStudyType }) => {
         />
       ))}
 
+      {study.knowledge && (
+        <CaseStudyKnowledge
+          items={study.knowledge}
+          backgroundImage={study.knowledgeBackgroundImage}
+          styles={study.styles?.knowledge}
+          headerStyle={study.knowledgeHeaderStyle}
+          headerColor={study.knowledgeHeaderColor}
+        />
+      )}
+
       {study.url && (
         <div
           className="case-study__visit"
           style={{
-            ...lastSection?.styles?.main,
+            ...study.styles?.knowledge?.main,
           }}
         >
           <div className="case-study__visit-inner" style={study.styles?.visit}>

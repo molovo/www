@@ -94,7 +94,7 @@ small
   position: relative
 
   &::before
-    content: '›'
+    content: '›' / ''
     font-size: 3em
     font-weight: $weight-bold
     line-height: .5em
@@ -121,7 +121,7 @@ small
     text-align: right
 
     &::before
-      content: '—'
+      content: '—' / ''
       margin-right: .5ch
 
     .quote__tweet
@@ -139,7 +139,7 @@ small
 
   &::before
     color: $gray
-    content: "B"
+    content: 'B' / ''
     font-family: $font-swash
     font-size: 2.25em
     font-weight: $weight-normal
@@ -152,7 +152,7 @@ small
 
   &[data-character]
     &::before
-      content: attr(data-character)
+      content: attr(data-character) / ''
 
 .script
   font-family: $font-tertiary
@@ -210,11 +210,12 @@ blockquote
     color: $red
     // font-family: $font-secondary
     font-size: 3em
-    line-height: 1em
-    font-size: 8vw
+    line-height: .85em
+    font-size: clamp(3em, 8vw, 8em)
     margin: 0
     transform: rotate(-2.5deg)
     quotes: '“' '”'
+    text-wrap: balance
 
     &:first-of-type::before
       content: open-quote
@@ -293,7 +294,7 @@ del
   &::after
     font-family: $font-swash
     color: $red
-    content: 'C'
+    content: 'C' / ''
     font-size: 2em
     left: 50%
     position: absolute
@@ -309,13 +310,14 @@ ins
   margin-left: -.5ch
   position: relative
   text-decoration: none
-  transform: translate(-1rem, -100%) rotate(-2deg)
+  transform: translate(-1rem, -65%) rotate(-2deg)
   width: 0
 
   &::after
-    content: '^'
-    font-size: 3em
+    content: 'v' / ''
+    font-size: 1em
     position: absolute
-    left: .5rem
-    speak: none
-    top: 300%
+    left: 0.75rem
+    speak: never
+    top: 110%
+    transform: rotate(180deg)

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { ReactNode } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
 import Logo from '@/components/logo'
 import useHeaderStyle from '@/hooks/use-header-style'
@@ -15,12 +15,13 @@ const CaseStudySection = ({
   section,
   content,
   study,
-}: {
+  children,
+}: PropsWithChildren<{
   index: number
   section: CaseStudySectionType
   content: ReactNode
   study: CaseStudyType
-}) => {
+}>) => {
   const setHeaderStyleRef = useHeaderStyle(
     section.headerStyle,
     section.headerColor,
@@ -93,20 +94,24 @@ const CaseStudySection = ({
           </div>
         </div>
 
-        <div
-          className="case-study__section-content"
-          style={section.styles?.content}
-        >
-          <SocialSharing style={section.styles?.social} />
+        {content && (
+          <div
+            className="case-study__section-content"
+            style={section.styles?.content}
+          >
+            <SocialSharing style={section.styles?.social} />
 
-          <div className="case-study__section-content-inner content">
-            {study.help && index === 0 && (
-              <CaseStudyHelp helpers={study.help} />
-            )}
+            <div className="case-study__section-content-inner content">
+              {study.help && index === 0 && (
+                <CaseStudyHelp helpers={study.help} />
+              )}
 
-            {content}
+              {content}
+            </div>
           </div>
-        </div>
+        )}
+
+        {children}
       </section>
     </>
   )

@@ -6,6 +6,9 @@
   grid-template-columns: 100%
   width: 100%
 
+  @media (max-width: $breakpoint-tablet)
+    gap: ($baseline * .5)
+
   @media (min-width: $breakpoint-desktop)
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr))
 

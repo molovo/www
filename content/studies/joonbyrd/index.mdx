@@ -1,14 +1,17 @@
 import thumbnail from '@/images/studies/joonbyrd/thumbnail.svg'
+import knowledgeBackgroundImage from '@/images/studies/joonbyrd/background-yellow.svg'
 
 export const colors = {
   blue: '#333366',
   black: '#03043a',
+  green: '#eef3d1',
   lilac: '#efecfc',
   maroon: '#660033',
   pink: '#ffd6f7',
   purple: '#9a0070',
   white: '#fffbf1',
   yellow: '#fffaa5',
+  yellowTwo: '#fefbc5',
 }
 
 export const metadata = {
@@ -23,6 +26,16 @@ export const metadata = {
   thumbnail,
 
   next: 'redistribute',
+
+  knowledge: [
+    {
+      title: 'CSS variables are immensely powerful',
+      text: "Building this site wouldn't have been possible without the use of CSS variables. Thanks to them, I was able to create a consistent design system that was easy to maintain and update, allowing admins to completely change the feel of the page by specifying just two colours."
+    }
+  ],
+
+  knowledgeBackgroundImage,
+  knowledgeHeaderColor: colors.maroon,
 
   styles: {
     thumbnail: {
@@ -44,5 +57,16 @@ export const metadata = {
       backgroundColor: colors.white,
       color: colors.maroon,
     },
+
+    knowledge: {
+      main: {
+        backgroundColor: colors.yellowTwo,
+        color: colors.maroon,
+      },
+
+      quote: {
+        color: colors.blue,
+      }
+    }
   }
 }

@@ -4,6 +4,8 @@
 
 [functions]
   included_files = ["content/**/*"]
+  node_bundler = "esbuild"
+  external_node_modules = ["@sparticuz/chromium"]
 
 [context.2017]
   publish = "_site"

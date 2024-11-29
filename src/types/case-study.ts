@@ -45,7 +45,22 @@ export default interface CaseStudyType {
 
   next: CaseStudyType
 
+  knowledge: {
+    title: string
+    text: string
+  }[]
+
+  knowledgeBackgroundImage?: string | StaticImport
+  knowledgeHeaderStyle?: HeaderStyle
+  knowledgeHeaderColor?: Color
+
   styles?: {
+    knowledge?: {
+      image?: Partial<CSSProperties>
+      main?: Partial<CSSProperties>
+      title?: Partial<CSSProperties>
+      quote?: Partial<CSSProperties>
+    }
     thumbnail?: Partial<CSSProperties>
     thumbnailContent?: Partial<CSSProperties>
     thumbnailTitle?: Partial<CSSProperties>

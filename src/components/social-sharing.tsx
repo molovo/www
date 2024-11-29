@@ -10,7 +10,7 @@ import Reddit from '@/components/images/icons/social/reddit.svg'
 import Mail from '@/components/images/icons/social/mail.svg'
 import Flipboard from './images/icons/social/flipboard.svg'
 import { CSSProperties, MouseEventHandler, useEffect, useState } from 'react'
-import { useIsInViewport } from '@superrb/react-addons/hooks'
+import { useIsInViewport, useIsMobile } from '@superrb/react-addons/hooks'
 
 const openShareWindow = (href: string): void => {
   window.open(
@@ -62,6 +62,7 @@ const SocialSharing = ({
 }) => {
   const [ready, setReady] = useState<boolean>(false)
   const { isInViewport, setRef } = useIsInViewport(false)
+  const isMobile = useIsMobile(true, 'calc(9em + 52rem)')
 
   useEffect(() => {
     setReady(true)
@@ -77,7 +78,7 @@ const SocialSharing = ({
   return (
     <aside
       className="social-sharing"
-      aria-hidden={!isInViewport}
+      aria-hidden={!isInViewport && !isMobile}
       style={style}
       ref={setRef}
     >

@@ -60,10 +60,14 @@
       +gutters
       align-items: flex-end
       display: flex
+      flex-wrap: wrap
       justify-content: center
       padding-block: clamp($gutterMin, 1.5vw, $gutterMax * .5) clamp($gutterMin, 6vw, $gutterMax)
       position: relative
       z-index: 2
+
+      @media (min-width: $contentBreakpoint)
+        flex-wrap: nowrap
 
       &-inner
         margin: 0 auto
@@ -203,7 +207,7 @@
 
           &::before
             color: $black
-            content: '‘‘'
+            content: '‘‘' / open-quote
             font-family: 'Helvetica Neue', 'Arial', sans-serif
             font-size: 3em
             position: absolute
@@ -248,7 +252,7 @@
 
     &:is(ul)
       li::before
-        content: '*'
+        content: '*' / ''
         height: 0
         transform: translateY(.125em)
         width: .5em
@@ -267,6 +271,10 @@
       max-width: $contentWidth
       padding: $baseline
 
+      @media (max-width: $breakpoint-tablet)
+        align-items: flex-start
+        flex-direction: column
+
     &-content
       flex: 1 1
       text-wrap: balance
@@ -282,6 +290,9 @@
     &-link
       @extend .button
 
+      @media (max-width: $breakpoint-tablet)
+        width: 100%
+
     &-next
       color: inherit
       flex: 0 0 auto
@@ -291,10 +302,32 @@
       text-decoration: none
 
       &::after
-        content: '→'
+        content: '→' / ''
         margin-left: .5ch
 
       .logo
         margin: 0 0 .5em
         transform: scale(.75)
         transform-origin: top left
+
+  &__knowledge
+    .case-study__section-header-content
+      padding-top: 20vw
+
+    &-inner
+      +gutters
+
+    &-item
+      margin: 0 auto
+      max-width: $contentWidth
+      padding-bottom: var(--spacing)
+
+    &-title
+      @extend h1
+      margin: 0 0 .25em
+
+    &-quote
+      margin: 0 0 1em
+
+      p
+        font-size: clamp(5em, 9vw, 10em)

@@ -7,13 +7,26 @@ $size: 2.25em
   --social-sharing-accent-two: var(--social-sharing-background)
 
   bottom: clamp($gutterMin, 6vw, $gutterMax)
-  left: 0
+  flex: 0 0 100%
   height: $size
-  margin-right: ($size * -1)
-  position: sticky
+  left: 0
+  margin-block: $baseline
+  order: 9
+  position: static
   transition: opacity .5s .5s ease
   width: $size
   z-index: 9
+
+  @media (max-width: $contentBreakpoint)
+    .case-study__section-content:has(.content-figure--full-width:last-child) > &
+      display: none
+
+  @media (min-width: $contentBreakpoint)
+    flex: 0 0 auto
+    margin-block: 0
+    margin-right: ($size * -1)
+    order: unset
+    position: sticky
 
   // @media (max-width: $breakpoint-desktop)
   //   display: none
@@ -26,12 +39,19 @@ $size: 2.25em
     border-radius: 100vw
     bottom: 0
     color: var(--social-sharing-accent-two)
-    display: flex
-    flex-direction: column-reverse
+    display: inline-flex
+    flex-direction: row
+    height: $size
     left: 0
-    position: absolute
+    position: relative
     transition: color .5s ease, background .5s ease
-    width: $size
+    width: auto
+
+    @media (min-width: $contentBreakpoint)
+      flex-direction: column-reverse
+      height: auto
+      position: absolute
+      width: $size
 
     &::before
       +cover
@@ -50,29 +70,60 @@ $size: 2.25em
       content: ''
       display: block
       height: ($size * .75)
-      left: 50%
       opacity: 0
       position: absolute
-      top: ($baseline * .215)
-      transform: translate(-50%, 12em)
+      right: ($baseline * .215)
+      top: 50%
+      transform: translate(-12em, -50%)
       transition: opacity .25s ease-out, transform .25s .25s ease
       width: ($size * .75)
       z-index: 0
+
+      @media (min-width: $contentBreakpoint)
+        left: 50%
+        right: auto
+        top: ($baseline * .215)
+        transform: translate(-50%, 12em)
 
     @for $i from 1 through 10
       &:has(.social-sharing__item:nth-child(#{$i}):hover)
         &::after
           opacity: 1
-          transform: translate(-50%, (($i - 1) * ($size * .75)))
+          transform: translate((($i - 1) * ($size * -.75)), -50%)
           transition: opacity .25s .25s ease-in, transform .25s ease
 
-    &:hover
+          @media (min-width: $contentBreakpoint)
+            transform: translate(-50%, (($i - 1) * ($size * .75)))
+
+    @media (min-width: $contentBreakpoint)
+      &:hover
+        background: var(--social-sharing-background)
+        color: var(--social-sharing-color)
+
+        .social-sharing__items
+          max-height: 20em
+          padding: 0 ($baseline * .215)
+
+          @media (min-width: $contentBreakpoint)
+            padding: ($baseline * .215) 0
+
+        .social-sharing__item
+          opacity: 1
+
+        &::before,
+        .social-sharing__trigger::before
+          opacity: .2
+
+    @media (max-width: $contentBreakpoint)
       background: var(--social-sharing-background)
       color: var(--social-sharing-color)
 
       .social-sharing__items
         max-height: 20em
-        padding-block: ($baseline * .215)
+        padding: 0 ($baseline * .215)
+
+        @media (min-width: $contentBreakpoint)
+          padding: ($baseline * .215) 0
 
       .social-sharing__item
         opacity: 1
@@ -93,36 +144,51 @@ $size: 2.25em
 
     &::before
       background: var(--social-sharing-color)
-      bottom: 100%
+      bottom: 50%
       content: ''
       display: block
-      height: 1px
-      left: 50%
+      height: 1.5em
+      left: 100%
       opacity: 0
       position: absolute
-      transform: translateX(-50%)
+      transform: translateY(50%)
       transition: opacity .5s ease
-      width: 1.5em
+      width: 1px
+
+      @media (min-width: $contentBreakpoint)
+        bottom: 100%
+        height: 1px
+        left: 50%
+        transform: translateX(-50%)
+        width: 1.5em
 
   &__items
     align-items: center
     display: inline-flex
-    flex-direction: column
     flex: 0 0 auto
-    height: auto
-    justify-content: center
+    flex-direction: row-reverse
+    height: $size
+    justify-content: flex-start
     list-style: none
     margin: 0
     max-height: 0
     overflow: visible clip
-    transition: max-height .5s ease, padding .5s ease
-    width: $size
+    transition: max-height .5s ease, max-width .5s ease, padding .5s ease
+    width: auto
     z-index: 2
+
+    @media (min-width: $contentBreakpoint)
+      flex-direction: column
+      height: auto
+      justify-content: center
+      width: $size
 
   &__item
     flex: 0 0 auto
-    opacity: 0
-    transition: opacity .5s ease
+
+    @media (min-width: $contentBreakpoint)
+      opacity: 0
+      transition: opacity .5s ease
 
   &__button
     +unbutton
