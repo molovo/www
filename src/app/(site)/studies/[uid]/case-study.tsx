@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 import CaseStudySection from './case-study-section'
 import Link from '@/components/link'
 import Logo from '@/components/logo'
-import Image from 'next/image'
 import CaseStudyKnowledge from '@/components/case-study-knowledge'
 
 const CaseStudy = ({ study }: { study: CaseStudyType }) => {
@@ -19,8 +18,6 @@ const CaseStudy = ({ study }: { study: CaseStudyType }) => {
       setClient(undefined)
     }
   }, [study, setClient])
-
-  const lastSection = study.sections[study.sections.length - 1]
 
   return (
     <article className={`case-study case-study--${study.slug}`}>

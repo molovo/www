@@ -1,6 +1,5 @@
 import CaseStudyType from '@/types/case-study'
 import Logo from './logo'
-import swash from '@/utils/swash'
 import Image from 'next/image'
 import useHeaderStyle from '@/hooks/use-header-style'
 import useTheme from '@/hooks/use-theme'
@@ -22,8 +21,8 @@ const CaseStudyKnowledge = ({
   const setThemeRef = useTheme(
     styles?.main?.color,
     styles?.main?.backgroundColor,
-    styles?.accentColor,
-    styles?.accentColorTwo,
+    '#fff',
+    '#000'
   )
 
   return (

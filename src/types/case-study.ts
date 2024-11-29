@@ -45,16 +45,16 @@ export default interface CaseStudyType {
 
   next: CaseStudyType
 
-  knowledge: {
+  knowledge: Array<{
     title: string
     text: string
-  }[]
+  }>
 
   knowledgeBackgroundImage?: string | StaticImport
   knowledgeHeaderStyle?: HeaderStyle
   knowledgeHeaderColor?: Color
 
-  styles?: {
+  styles: {
     knowledge?: {
       image?: Partial<CSSProperties>
       main?: Partial<CSSProperties>
