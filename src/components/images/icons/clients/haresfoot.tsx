@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { SVGProps } from 'react'
 
-const HaresfootLogo = (): JSX.Element => (
+const HaresfootLogo = (props: SVGProps<SVGSVGElement>): JSX.Element => (
   <svg
     viewBox="0 0 159.000000 140.000000"
     className="study__icon study__icon--haresfoot"
+    {...props}
   >
     <g transform="translate(0.000000,140.000000) scale(0.100000,-0.100000)">
       <path

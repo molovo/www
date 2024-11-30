@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {SVGProps} from 'react'
 
-const You = (): JSX.Element => (
+const You = (props: SVGProps<SVGSVGElement>): JSX.Element => (
   <svg
     width="100%"
     height="100%"
     viewBox="0 0 250 150"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
+    {...props}
   >
     <g transform="matrix(5.02294,0,0,5.02294,-418.104,-182.978)">
       <g transform="matrix(50,0,0,50,86.1889,61.6599)">

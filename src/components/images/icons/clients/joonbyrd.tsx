@@ -1,12 +1,13 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, SVGProps } from 'react'
 
-const Joonbyrd = ({ style }: { style?: Partial<CSSProperties> }) => (
+const Joonbyrd = ({ style = {}, ...props}: SVGProps<SVGSVGElement>) => (
   <svg
     width="98"
     height="52"
     viewBox="0 0 98 52"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...props}
   >
     <g clipPath="url(#clip0_2984_9038)">
       <path

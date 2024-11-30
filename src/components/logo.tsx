@@ -62,6 +62,8 @@ const Logo = ({
           <div
             className="logo__image--mask"
             style={{ maskImage: 'url(/glasses-animated.png)' }}
+            role="img"
+            aria-label="molovo"
           />
         ) : (
           <LogoImage />
@@ -70,7 +72,7 @@ const Logo = ({
 
       {displayClient && !noClient && (
         <>
-          <span className="logo__separator" aria-hidden="true">
+          <span className="logo__separator" role="img" aria-label="+">
             +
           </span>
           <div className="logo__client">

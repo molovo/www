@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { SVGProps } from 'react'
 
-const EighteenFiftyFiveLogo = (): JSX.Element => (
+const EighteenFiftyFiveLogo = (props: SVGProps<SVGSVGElement>): JSX.Element => (
   <svg
     version="1.0"
     width="822.000000pt"
     height="384.000000pt"
     viewBox="0 0 822.000000 384.000000"
     preserveAspectRatio="xMidYMid meet"
+    {...props}
   >
     <g
       transform="translate(0.000000,384.000000) scale(0.100000,-0.100000)"

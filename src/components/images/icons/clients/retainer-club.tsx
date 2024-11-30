@@ -1,10 +1,13 @@
-const RetainerClubLogo = () => (
+import {SVGProps} from "react"
+
+const RetainerClubLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg
     id="logo-icon"
     viewBox="0 0 125 38"
     fill="#314e9b"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
+    {...props}
   >
     <g>
       <g>

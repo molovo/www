@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {SVGProps} from 'react'
 
-const VixenFitnessLogo = () => (
+const VixenFitnessLogo = ({ style = {}, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 84 70"
     style={{
@@ -8,7 +8,9 @@ const VixenFitnessLogo = () => (
       clipRule: 'evenodd',
       strokeLinejoin: 'round',
       strokeMiterlimit: 1.41421,
+      ...style,
     }}
+    {...props}
     className="study__icon study__icon--vixen-fitness"
   >
     <g transform="matrix(1,0,0,1,0,-175)">

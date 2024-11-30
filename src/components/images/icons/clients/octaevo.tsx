@@ -1,10 +1,13 @@
-const Octaevo = () => (
+import {SVGProps} from "react"
+
+const Octaevo = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="150 150 950 900"
     width="1200"
     height="1200"
     preserveAspectRatio="xMidYMid meet"
+    {...props}
   >
     <defs>
       <clipPath id="__lottie_element_13">
