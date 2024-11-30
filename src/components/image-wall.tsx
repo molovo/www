@@ -18,7 +18,6 @@ const ImageWall = ({
   withPadding = false,
   stagger = true,
   style = {},
-  imageStyle = {},
   zoomable = true,
 }: {
   images: (ZoomableImage & { video?: string })[]
@@ -29,7 +28,6 @@ const ImageWall = ({
   withPadding: ContentFigureProps['withPadding']
   stagger?: boolean
   style?: Partial<CSSProperties>
-  imageStyle?: { [key: number]: Partial<CSSProperties> }
   zoomable?: boolean
 }) => {
   return (
@@ -45,7 +43,7 @@ const ImageWall = ({
         style={style}
       >
         {images.map(
-          ({ image, video, alt, sizes, allowScroll = false }, index) =>
+          ({ image, video, alt, sizes, style, allowScroll = false }, index) =>
             video ? (
               <ReactPlayer
                 key={index}
@@ -54,10 +52,12 @@ const ImageWall = ({
                 height="auto"
                 controls={false}
                 playing={true}
+                autoplay={true}
+                playsinline={true}
                 muted={true}
                 loop={true}
                 className="image-wall__image"
-                style={imageStyle[index] || {}}
+                style={style}
               />
             ) : image ? (
               <Image
@@ -68,16 +68,12 @@ const ImageWall = ({
                 width="1200"
                 height="800"
                 className="image-wall__image"
-                style={imageStyle[index] || {}}
+                style={style}
                 zoomable={zoomable}
                 allowScroll={allowScroll}
               />
             ) : (
-              <div
-                className="image-wall__image"
-                key={index}
-                style={imageStyle[index] || {}}
-              />
+              <div className="image-wall__image" key={index} style={style} />
             ),
         )}
 

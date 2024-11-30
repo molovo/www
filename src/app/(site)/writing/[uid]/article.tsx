@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import swash from '@/utils/swash'
 import SocialSharing from '@/components/social-sharing'
-import {ArticleMetadataType} from '@/types/article'
-import { ReactNode } from 'react'
+import { ArticleMetadataType } from '@/types/article'
+import { CSSProperties, ReactNode } from 'react'
 
 const Webmentions = dynamic(() => import('@/components/webmentions'), {
   ssr: true,
@@ -36,9 +36,11 @@ const Article = ({ content, metadata, uid }: Props) => {
           {metadata.image && (
             <Image
               src={metadata.image}
-              alt={metadata.title}
+              alt={metadata.imageAlt as string}
+              sizes={metadata.imageSizes || '(min-width: 64em) 64em, 100vw'}
               className="article__image"
-              style={metadata.styles?.image}
+              style={metadata.styles?.image as Partial<CSSProperties>}
+              loading="eager"
             />
           )}
           <h1

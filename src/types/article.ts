@@ -9,6 +9,8 @@ export interface ArticleMetadataType {
   description: string
   date: string
   image?: string | StaticImport
+  imageAlt?: string
+  imageSizes?: string
   tags?: string[]
   featured?: boolean
 

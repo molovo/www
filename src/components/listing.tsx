@@ -53,8 +53,9 @@ const Listing = ({ posts }: Props) => {
                   <div className="writing__post-image">
                     <Image
                       src={image}
-                      width="144"
-                      height="96"
+                      width="124"
+                      height="82"
+                      sizes="6em"
                       alt={title}
                       className="writing__post-image-img"
                     />
@@ -86,7 +87,6 @@ const Listing = ({ posts }: Props) => {
                   {/*     </li> */}
                   {/*   ))} */}
                   {/* </ul> */}
-
                 </div>
               </div>
 
