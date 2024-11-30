@@ -1,6 +1,6 @@
 # Global settings applied to the whole site.
 [build]
-  command = "yarn build"
+  command = "yarn pre-build && yarn build"
 
 [functions]
   included_files = ["content/**/*"]
