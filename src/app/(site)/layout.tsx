@@ -9,7 +9,15 @@ import WebmentionsHead from '@/components/webmentions-head'
 import Accounts from '@/components/accounts'
 import { getStudies } from '@/data/studies'
 import SkipTo from '@/components/skip-to'
-import {Metadata} from 'next'
+import { Metadata } from 'next'
+
+import {
+  gauthier,
+  gtAmerica,
+  haveHeart,
+  haveHeartSwash,
+  gtAmericaMono,
+} from '@/fonts'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://molovo.co/'),
@@ -23,7 +31,10 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
   ])
 
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${gauthier.variable} ${gtAmerica.variable} ${haveHeart.variable} ${haveHeartSwash.variable} ${gtAmericaMono.variable}`}
+    >
       <head>
         <Accounts />
         <WebmentionsHead />
