@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Logo from './logo'
 import '@/stylesheets/main.sass'
 import CaseStudyType from '@/types/case-study'
+import { haveHeart } from '@/fonts'
 
 interface Props {
   study: CaseStudyType
@@ -15,7 +16,7 @@ const OgImage = ({ study }: Props) => (
       width: '1200px',
     }}
   >
-    <body className="og-image">
+    <body className={`og-image ${haveHeart.variable}`}>
       <div
         className="og-image__background"
         style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}

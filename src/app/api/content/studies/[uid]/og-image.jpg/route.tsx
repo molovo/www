@@ -1,5 +1,4 @@
-export const dynamic = 'error'
-export const dynamicParams = false
+import {getStudies} from '@/data/studies'
 
 const getScreenshot = async (uid: string) => {
   const puppeteer = await import('puppeteer')
@@ -18,6 +17,12 @@ const getScreenshot = async (uid: string) => {
   await browser.close()
 
   return image
+}
+
+export async function generateStaticParams() {
+  const studies = await getStudies()
+
+  return studies.map(({ slug }) => ({ uid: slug }))
 }
 
 export async function GET(
