@@ -11,6 +11,7 @@ import Mail from '@/components/images/icons/social/mail.svg'
 import Flipboard from './images/icons/social/flipboard.svg'
 import { CSSProperties, MouseEventHandler, useEffect, useState } from 'react'
 import { useIsInViewport, useIsMobile } from '@superrb/react-addons/hooks'
+import { usePathname } from 'next/navigation'
 
 const openShareWindow = (href: string): void => {
   window.open(
@@ -60,19 +61,11 @@ const SocialSharing = ({
   text?: string
   style?: Partial<CSSProperties>
 }) => {
-  const [ready, setReady] = useState<boolean>(false)
   const { isInViewport, setRef } = useIsInViewport(false)
   const isMobile = useIsMobile(true, 'calc(9em + 52rem)')
+  const pathname = usePathname()
 
-  useEffect(() => {
-    setReady(true)
-  }, [setReady])
-
-  if (!ready) {
-    return null
-  }
-
-  const url = window.location.href
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}${pathname}`
   const postText = text || `${title || document?.title} :: ${url}`
 
   return (
