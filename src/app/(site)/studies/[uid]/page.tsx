@@ -5,6 +5,7 @@ import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
 import { Metadata } from 'next'
 import { Article } from 'schema-dts'
 import Schema from '@/components/schema'
+import {getStudies} from '@/data/studies'
 
 export const getSections = async (
   slug: string,
@@ -91,6 +92,14 @@ export const generateMetadata = async ({
       images: `/api/content/studies/${uid}/og-image.jpg`,
     },
   }
+}
+
+export async function generateStaticParams() {
+  const studies = await getStudies()
+
+  return studies.map((study) => ({
+    uid: study.slug
+  }))
 }
 
 const Page = async ({ params: { uid } }: { params: { uid: string } }) => {

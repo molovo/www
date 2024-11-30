@@ -10,7 +10,7 @@ const Title = () => {
     'Document title',
   )
   useEffect(() => {
-    if (typeof document !== undefined) {
+    if (typeof document !== 'undefined') {
       setOriginalTitle(document.title)
     }
   }, [])

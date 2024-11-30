@@ -3,6 +3,7 @@ import Article from './article'
 import { Article as ArticleSchema } from 'schema-dts'
 import { notFound } from 'next/navigation'
 import ArticleType from '@/types/article'
+import { getPosts } from '@/data/posts'
 
 const getPost = async (slug: string): Promise<ArticleType> => {
   'use server'
@@ -30,6 +31,14 @@ export const generateMetadata = async ({
   const { metadata } = await getPost(uid)
 
   return metadata
+}
+
+export async function generateStaticParams() {
+  const posts = await getPosts()
+
+  return posts.map((study) => ({
+    uid: study.slug,
+  }))
 }
 
 const Page = async ({ params: { uid } }: { params: { uid: string } }) => {

@@ -66,7 +66,7 @@ const SocialSharing = ({
   const pathname = usePathname()
 
   const url = `${process.env.NEXT_PUBLIC_SITE_URL}${pathname}`
-  const postText = text || `${title || document?.title} :: ${url}`
+  const postText = text || `${title || (typeof document !== 'undefined' ? document?.title : '')} :: ${url}`
 
   return (
     <aside
