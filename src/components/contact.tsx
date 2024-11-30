@@ -92,7 +92,7 @@ const Contact = () => {
   return (
     <section className="contact" ref={ref} aria-hidden={!isOpen}>
       <div className="contact__inner">
-        <button className="script-arrow contact__close" onClick={() => closeForm()}>
+        <button className="script-arrow contact__close" onClick={() => closeForm()} {...(!isOpen ? { tabIndex: -1 } : {})}>
           <span className="screenreader-text">Close form</span>
         </button>
 
