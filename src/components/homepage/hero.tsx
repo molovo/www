@@ -109,7 +109,7 @@ const Hero = ({
       </div>
 
       <div className="hero__detail" ref={container}>
-        <div className="hero__studies">
+        <ul className="hero__studies">
           {studies.map((study, i) => (
             <CaseStudyItem
               key={study.client}
@@ -127,7 +127,7 @@ const Hero = ({
               !isMobile ? { transform: `translate3d(0, ${pos}em, 0)` } : {}
             }
           />
-        </div>
+        </ul>
       </div>
     </section>
   )
