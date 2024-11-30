@@ -1,5 +1,4 @@
 .menu-toggle
-  // +noise
   +unbutton
   color: inherit
   font-family: $font-tertiary
@@ -11,9 +10,11 @@
   transform: scaleX(1.5) translateY(.125em)
   transform-origin: left center
   transition: transform .5s ease
+  will-change: transform
 
   &__line
     transition: opacity .5s .25s ease
+    will-change: opacity
 
   &::before,
   &::after
@@ -25,6 +26,7 @@
     position: absolute
     top: 50%
     transition: color .5s ease, transform .5s ease
+    will-change: transform
 
   &::before
     transform: translate(calc(-50% + .025em), calc(-50% - .125em))
