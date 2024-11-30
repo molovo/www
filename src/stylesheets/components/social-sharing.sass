@@ -17,8 +17,10 @@ $size: 2.25em
   width: $size
   z-index: 9
 
-  @media (max-width: $contentBreakpoint)
-    .case-study__section-content:has(.content-figure--full-width:last-child) > &
+  .case-study__section-content:has(.content-figure--full-width:last-child) > &
+    margin-bottom: var(--spacing)
+
+    @media (max-width: $contentBreakpoint)
       display: none
 
   @media (min-width: $contentBreakpoint)
