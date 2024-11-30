@@ -39,10 +39,10 @@ const Awards = ({
           </div>
 
           <div className="awards__group">
-            <h4 className="awards__group-title">
+            <h3 className="awards__group-title">
               <span className="screenreader-text">Awwwards</span>
               <Awwwards />
-            </h4>
+            </h3>
 
             <ul className="awards__list">
               <li>Honorable Mention</li>
@@ -55,10 +55,10 @@ const Awards = ({
           </div>
 
           <div className="awards__group">
-            <h4 className="awards__group-title">
+            <h3 className="awards__group-title">
               <span className="screenreader-text">Awwwards</span>
               <Awwwards />
-            </h4>
+            </h3>
 
             <ul className="awards__list">
               <li>Honorable Mention</li>
@@ -69,10 +69,10 @@ const Awards = ({
           </div>
 
           <div className="awards__group">
-            <h4 className="awards__group-title">
+            <h3 className="awards__group-title">
               <span className="screenreader-text">Typewolf</span>
               <Typewolf />
-            </h4>
+            </h3>
 
             <ul className="awards__list">
               <li>Site of the Day</li>
@@ -85,10 +85,10 @@ const Awards = ({
           </div>
 
           <div className="awards__group">
-            <h4 className="awards__group-title">
+            <h3 className="awards__group-title">
               <span className="screenreader-text">Awwwards</span>
               <Awwwards />
-            </h4>
+            </h3>
 
             <ul className="awards__list">
               <li>Site of the Day</li>
@@ -100,10 +100,10 @@ const Awards = ({
           </div>
 
           <div className="awards__group">
-            <h4 className="awards__group-title">
+            <h3 className="awards__group-title">
               <span className="screenreader-text">Creative Pool</span>
               <CreativePool />
-            </h4>
+            </h3>
 
             <ul className="awards__list">
               <li>
@@ -113,10 +113,10 @@ const Awards = ({
           </div>
 
           <div className="awards__group">
-            <h4 className="awards__group-title">
+            <h3 className="awards__group-title">
               <span className="screenreader-text">CSS Design Awards</span>
               <CSSDesignAwards />
-            </h4>
+            </h3>
 
             <ul className="awards__list">
                 <li>Site of the Day</li>
