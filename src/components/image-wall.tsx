@@ -6,7 +6,7 @@ import ContentFigure, {
   ContentFigureProps,
 } from './content-figure'
 import { CSSProperties } from 'react'
-import { Image as ImageType } from '@/types/image'
+import { Image as ImageType, ZoomableImage } from '@/types/image'
 import ReactPlayer from 'react-player'
 
 const ImageWall = ({
@@ -21,7 +21,7 @@ const ImageWall = ({
   imageStyle = {},
   zoomable = true,
 }: {
-  images: (ImageType & { allowScroll: boolean; video?: string })[]
+  images: (ZoomableImage & { video?: string })[]
   caption?: string
   embedCaption?: boolean
   layout?: 'contain' | 'cover'
@@ -44,39 +44,41 @@ const ImageWall = ({
         }`}
         style={style}
       >
-        {images.map(({ image, video, alt, allowScroll = false }, index) =>
-          video ? (
-            <ReactPlayer
-              key={index}
-              url={video}
-              width="100%"
-              height="auto"
-              controls={false}
-              playing={true}
-              muted={true}
-              loop={true}
-              className="image-wall__image"
-              style={imageStyle[index] || {}}
-            />
-          ) : image ? (
-            <Image
-              key={index}
-              src={image}
-              alt={alt}
-              width="1200"
-              height="800"
-              className="image-wall__image"
-              style={imageStyle[index] || {}}
-              zoomable={zoomable}
-              allowScroll={allowScroll}
-            />
-          ) : (
-            <div
-              className="image-wall__image"
-              key={index}
-              style={imageStyle[index] || {}}
-            />
-          ),
+        {images.map(
+          ({ image, video, alt, sizes, allowScroll = false }, index) =>
+            video ? (
+              <ReactPlayer
+                key={index}
+                url={video}
+                width="100%"
+                height="auto"
+                controls={false}
+                playing={true}
+                muted={true}
+                loop={true}
+                className="image-wall__image"
+                style={imageStyle[index] || {}}
+              />
+            ) : image ? (
+              <Image
+                key={index}
+                src={image}
+                alt={alt}
+                sizes={sizes}
+                width="1200"
+                height="800"
+                className="image-wall__image"
+                style={imageStyle[index] || {}}
+                zoomable={zoomable}
+                allowScroll={allowScroll}
+              />
+            ) : (
+              <div
+                className="image-wall__image"
+                key={index}
+                style={imageStyle[index] || {}}
+              />
+            ),
         )}
 
         {caption && embedCaption && <ContentFigureCaption caption={caption} />}

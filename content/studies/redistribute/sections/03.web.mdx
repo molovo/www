@@ -52,11 +52,13 @@ Redistribute's biggest feature is its content. I designed an article layout whic
   images={[
     {
       image: articleTwo,
-      alt: 'A screenhot of an album review page from the Redistribute Magazine website'
+      alt: 'A screenhot of an album review page from the Redistribute Magazine website.',
+      sizes: '50vw'
     },
     {
       image: articleThree,
-      alt: 'A screenshot of an interview page from the Redistribute Magazine website'
+      alt: 'A screenshot of an interview page from the Redistribute Magazine website',
+      sizes: '50vw'
     }
   ]}
   caption="Some examples of article templates used"
@@ -71,11 +73,13 @@ Second to the reading experience is discoverability, allowing repeat visitors to
   images={[
     {
       image: homepage,
-      alt: 'A screenshot of the homepage of the Redistribute Magazine website'
+      alt: 'A screenshot of the homepage of the Redistribute Magazine website',
+      sizes: '50vw'
     },
     {
       image: listing,
-      alt: 'A screenshot of the reviews listing page from the Redistribute Magazine website'
+      alt: 'A screenshot of the reviews listing page from the Redistribute Magazine website',
+      sizes: '50vw'
     }
   ]}
   caption="The homepage and reviews listing page"
@@ -90,6 +94,7 @@ Second to the reading experience is discoverability, allowing repeat visitors to
 <ContentImage
   src={nav}
   alt="A screenshot of the navigation menu from the Redistribute Magazine website"
+  sizes="(min-width: 64em) 64em, 100vw"
   caption="The main navigation"
 />
 
@@ -101,11 +106,13 @@ The site is full of hand-built custom components, used for featuring articles, d
   images={[
     {
       image: watermarkTwo,
-      alt: 'A screenshot of a featured article block from the Redistribute Magazine website'
+      alt: 'A screenshot of a featured article block from the Redistribute Magazine website',
+      sizes: '(min-width: 64em) 64em, 100vw'
     },
     {
       image: watermarkOne,
-      alt: 'A screenshot of a video player from the Redistribute Magazine website'
+      alt: 'A screenshot of a video player from the Redistribute Magazine website',
+      sizes: '(min-width: 64em) 64em, 100vw'
     }
   ]}
   stagger={false}
@@ -120,10 +127,14 @@ As an independent magazine who want to keep advertising to a minimum, premium co
 
 <ContentImage
   src={watermarkThree}
+  alt="A screenshot of the membership call to action component from the Redistribute Magazine website"
+  sizes="(min-width: 64em) 64em, 100vw"
   caption="Membership call to action component."
 />
 
 <ContentImage
   src={paywall}
+  alt="A screenshot of the paywall from the Redistribute Magazine website"
+  sizes="(min-width: 64em) 64em, 100vw"
   caption="The paywall as it appears to non-members."
 />

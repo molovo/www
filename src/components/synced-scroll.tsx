@@ -4,7 +4,7 @@ import Image from '@/components/image'
 import ContentFigure, { ContentFigureProps } from './content-figure'
 import { CSSProperties, MutableRefObject, useCallback, useRef } from 'react'
 import { useEventListener } from '@superrb/react-addons/hooks'
-import { Image as ImageType } from '@/types/image'
+import { Image as ImageType, ZoomableImage } from '@/types/image'
 
 const getRelativeTransform = (el1: HTMLElement, el2: HTMLElement): number =>
   (1 - el1.clientHeight / el2.clientHeight) *
@@ -55,7 +55,7 @@ const SyncedScroll = ({
   size = 'standard',
   imageStyle = {},
 }: {
-  images: ImageType[]
+  images: ZoomableImage[]
   caption?: string
   size: ContentFigureProps['size']
   imageStyle?: { [key: number]: Partial<CSSProperties> }
@@ -103,7 +103,7 @@ const SyncedScroll = ({
   return (
     <ContentFigure size={size} caption={caption}>
       <div className="synced-scroll" ref={setElements}>
-        {images.map(({ image, alt }, index) =>
+        {images.map(({ image, alt, sizes, allowScroll = true }, index) =>
           image ? (
             <div
               className="synced-scroll__image"
@@ -113,6 +113,8 @@ const SyncedScroll = ({
               <Image
                 src={image}
                 alt={alt}
+                sizes={sizes}
+                allowScroll={allowScroll}
                 className="synced-scroll__image-inner"
               />
             </div>

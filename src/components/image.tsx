@@ -68,6 +68,7 @@ const Image = ({
   allowScroll = true,
   className = '',
   style = {},
+  sizes = '1vw',
   ...props
 }: Props) => {
   const ref = useRef<HTMLImageElement>() as MutableRefObject<HTMLImageElement>
@@ -163,6 +164,7 @@ const Image = ({
     <>
       <NextImage
         className={`image ${className}`}
+        sizes={sizes}
         {...props}
         {...(zoomable
           ? {
@@ -194,6 +196,7 @@ const Image = ({
 
             <NextImage
               className={`image ${className}`}
+              sizes="100vw"
               {...props}
               {...(zoomable ? { onClick: handleClick } : {})}
               style={imageStyle}
