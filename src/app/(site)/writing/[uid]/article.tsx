@@ -7,10 +7,18 @@ import swash from '@/utils/swash'
 import SocialSharing from '@/components/social-sharing'
 import { ArticleMetadataType } from '@/types/article'
 import { CSSProperties, ReactNode } from 'react'
+import LineBreak from '@/components/line-break'
 
 const Webmentions = dynamic(() => import('@/components/webmentions'), {
   ssr: true,
-  loading: () => <p>Loading</p>,
+  loading: () => (
+    <>
+    <LineBreak />
+    <aside className="mentions">
+      <p>Loading webmentions&hellip;</p>
+    </aside>
+    </>
+  ),
 })
 
 interface Props {

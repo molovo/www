@@ -80,20 +80,20 @@ const WebmentionItem = ({
 const Webmentions = async ({ slug }: { slug: string }) => {
   let webmentions
   try {
-  webmentions = (await getWebmentions(slug)).map((mention) => {
-    mention['wm-received'] = format(
-      new Date(mention['wm-received']),
-      'do MMMM yyyy',
-    )
-    if (mention['wm-source'].includes('medium.com')) {
-      return {
-        ...mention,
-        'wm-property': WebmentionType.medium,
+    webmentions = (await getWebmentions(slug)).map((mention) => {
+      mention['wm-received'] = format(
+        new Date(mention['wm-received']),
+        'do MMMM yyyy',
+      )
+      if (mention['wm-source'].includes('medium.com')) {
+        return {
+          ...mention,
+          'wm-property': WebmentionType.medium,
+        }
       }
-    }
 
-    return mention
-  })
+      return mention
+    })
   } catch (error) {
     return null
   }
