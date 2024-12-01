@@ -42,7 +42,7 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
         <Title />
 
         <Script
-          src="https://cloud.umami.is/script.js"
+          src="/umami.js"
           data-website-id="25028b38-846c-410b-8195-052b12d2e724"
         />
       </head>
