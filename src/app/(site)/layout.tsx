@@ -10,6 +10,7 @@ import Accounts from '@/components/accounts'
 import { getStudies } from '@/data/studies'
 import SkipTo from '@/components/skip-to'
 import { Metadata } from 'next'
+import Script from 'next/script'
 
 import {
   gauthier,
@@ -39,6 +40,11 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
         <Accounts />
         <WebmentionsHead />
         <Title />
+
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="25028b38-846c-410b-8195-052b12d2e724"
+        />
       </head>
       <body>
         <SkipTo />
