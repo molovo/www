@@ -1,8 +1,5 @@
-'use client'
-
 import Image from 'next/image'
 import mediumLogo from '@/images/icons/medium.jpg'
-import { ReactNode, useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import LineBreak from '@/components/line-break'
 
@@ -80,32 +77,24 @@ const WebmentionItem = ({
   </li>
 )
 
-const Webmentions = ({ slug }: { slug: string }) => {
-  const [webmentions, setWebmentions] = useState<Webmention[]>([])
+const Webmentions = async ({ slug }: { slug: string }) => {
+  let webmentions
+  try {
+  webmentions = (await getWebmentions(slug)).map((mention) => {
+    mention['wm-received'] = format(
+      new Date(mention['wm-received']),
+      'do MMMM yyyy',
+    )
+    if (mention['wm-source'].includes('medium.com')) {
+      return {
+        ...mention,
+        'wm-property': WebmentionType.medium,
+      }
+    }
 
-  useEffect(() => {
-    ;(async () => {
-      const mentions = await getWebmentions(slug)
-      setWebmentions(
-        mentions.map((mention) => {
-          mention['wm-received'] = format(
-            new Date(mention['wm-received']),
-            'do MMMM yyyy',
-          )
-          if (mention['wm-source'].includes('medium.com')) {
-            return {
-              ...mention,
-              'wm-property': WebmentionType.medium,
-            }
-          }
-
-          return mention
-        }),
-      )
-    })()
-  }, [setWebmentions, slug])
-
-  if (!webmentions.length) {
+    return mention
+  })
+  } catch (error) {
     return null
   }
 
