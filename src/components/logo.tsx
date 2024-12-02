@@ -1,5 +1,6 @@
 'use client'
 
+import glassesAnimated from '@/images/icons/glasses-animated.png'
 import LogoImage from '@/components/images/icons/logo'
 import ClientLogo, { ClientSlug } from './client-logo'
 import useClientStore from '@/store/client'
@@ -61,7 +62,7 @@ const Logo = ({
         {asLink && loading ? (
           <div
             className="logo__image--mask"
-            style={{ maskImage: 'url(/glasses-animated.png)' }}
+            style={{ maskImage: `url(${glassesAnimated.src})` }}
             role="img"
             aria-label="molovo"
           />

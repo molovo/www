@@ -6,8 +6,8 @@ import ContentFigure, {
   ContentFigureProps,
 } from './content-figure'
 import { CSSProperties } from 'react'
-import { Image as ImageType, ZoomableImage } from '@/types/image'
-import ReactPlayer from 'react-player'
+import { ZoomableImage } from '@/types/image'
+import ReactPlayer from 'react-player/lazy'
 
 const ImageWall = ({
   images,
@@ -52,7 +52,7 @@ const ImageWall = ({
                 height="auto"
                 controls={false}
                 playing={true}
-                autoplay={true}
+                autoPlay={true}
                 playsinline={true}
                 muted={true}
                 loop={true}

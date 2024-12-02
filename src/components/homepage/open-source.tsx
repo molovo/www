@@ -59,7 +59,8 @@ const OpenSource = ({
         {projects.map(
           ({
             code,
-            metadata: { slug, url, repo, title, description, language },
+            slug,
+            metadata: { url, repo, title, description, language },
           }) => {
             const jsonLd: SoftwareSourceCode = {
               '@type': 'SoftwareSourceCode',

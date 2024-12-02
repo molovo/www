@@ -7,8 +7,12 @@ import Logo from '@/components/logo'
 import useHeaderStyle from '@/hooks/use-header-style'
 import swash from '@/utils/swash'
 import useTheme from '@/hooks/use-theme'
-import SocialSharing from '@/components/social-sharing'
 import CaseStudyHelp from '@/components/case-study-help'
+import dynamic from 'next/dynamic'
+
+const SocialSharing = dynamic(() => import('@/components/social-sharing'), {
+  ssr: false,
+})
 
 const CaseStudySection = ({
   index,

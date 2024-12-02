@@ -6,8 +6,6 @@ import Writing from '@/components/homepage/writing'
 import { Organization, Person, WebSite } from 'schema-dts'
 import Schema from '@/components/schema'
 
-export const dynamic = 'force-static'
-
 export const metadata = {
   title: {
     absolute: 'molovo. Design, Development, Branding',
@@ -41,7 +39,13 @@ const jsonLdPerson: Person = {
   ],
 }
 
-export default async function Page() {
+export const generateStaticParams = async () => [{ lang: 'en' }]
+
+export default async function Page({
+  params: { lang },
+}: {
+  params: { lang: string }
+}) {
   return (
     <>
       <Hero {...content.hero} />

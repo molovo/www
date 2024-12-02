@@ -1,5 +1,5 @@
-import RootLayout from './(site)/layout'
-import NotFound from './(site)/not-found'
+import RootLayout from './[lang]/(site)/layout'
+import NotFound from './[lang]/(site)/not-found'
 
 const Page = () => (
   <RootLayout>

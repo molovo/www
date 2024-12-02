@@ -1,4 +1,5 @@
-import { create } from 'zustand'
+import { mountStoreDevtool } from 'simple-zustand-devtools'
+import { createWithEqualityFn as create } from 'zustand/traditional'
 
 const useContactFormStateStore = create<{
   isOpen: boolean
@@ -11,5 +12,9 @@ const useContactFormStateStore = create<{
   close: () => set({ isOpen: false }),
   toggle: () => set((state) => ({ isOpen: !state.isOpen })),
 }))
+
+if (process.env.NODE_ENV === 'development') {
+  mountStoreDevtool('Contact Form State', useContactFormStateStore)
+}
 
 export default useContactFormStateStore

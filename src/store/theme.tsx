@@ -1,7 +1,15 @@
+import { createWithEqualityFn as create } from 'zustand/traditional'
+import { mountStoreDevtool } from 'simple-zustand-devtools'
 import { CSSProperties } from 'react'
-import { create } from 'zustand'
 
-export type HeaderStyle = 'black' | 'white' | 'red' | 'white-black' | 'white-red' | undefined
+export type HeaderStyle =
+  | 'black'
+  | 'white'
+  | 'red'
+  | 'red-white'
+  | 'white-black'
+  | 'white-red'
+  | undefined
 export type Color = CSSProperties['color'] | undefined
 
 const useThemeStore = create<{
@@ -28,11 +36,15 @@ const useThemeStore = create<{
   accentColorTwo: undefined as Color,
   setAccentColorTwo: (color?: Color) =>
     set((state) => ({ accentColorTwo: color })),
-  headerStyle: 'red' as HeaderStyle,
+  headerStyle: 'white-red' as HeaderStyle,
   setHeaderStyle: (style?: HeaderStyle) =>
     set((state) => ({ headerStyle: style })),
   headerColor: undefined as Color,
   setHeaderColor: (color?: Color) => set((state) => ({ headerColor: color })),
 }))
+
+if (process.env.NODE_ENV === 'development') {
+  mountStoreDevtool('Theme', useThemeStore)
+}
 
 export default useThemeStore

@@ -20,15 +20,19 @@ const CaseStudyItem = ({
     thumbnail,
     thumbnailContentBackground,
     styles,
+    imageLoading = 'lazy',
   },
   className,
   style = {},
+  imageStyle = {},
   visible = true,
 }: {
   study: CaseStudy
   className?: string
   style?: Partial<CSSProperties>
+  imageStyle?: Partial<CSSProperties>
   visible?: boolean
+  imageLoading?: 'eager' | 'lazy'
 }) => {
   const { close } = useNavStateStore()
 
@@ -74,8 +78,12 @@ const CaseStudyItem = ({
               <Image
                 src={thumbnail}
                 alt={client as string}
-                style={styles?.thumbnailBackgroundImage}
+                style={{
+                  ...styles?.thumbnailBackgroundImage,
+                  ...imageStyle,
+                }}
                 sizes="56.25vh"
+                loading={imageLoading}
               />
             </figure>
           )}
@@ -95,6 +103,7 @@ const CaseStudyItem = ({
                   alt={client as string}
                   style={styles?.thumbnailContentBackgroundImage}
                   sizes="56.25vh"
+                  loading={imageLoading}
                 />
               </figure>
             )}

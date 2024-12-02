@@ -1,4 +1,4 @@
-import { getPost } from '@/app/(site)/studies/[uid]/page'
+import { getPost } from '@/app/[lang]/(site)/studies/[uid]/page'
 import OgImage from '@/components/og-image'
 
 export default async function Page({

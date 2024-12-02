@@ -11,6 +11,7 @@ import { getStudies } from '@/data/studies'
 import SkipTo from '@/components/skip-to'
 import { Metadata } from 'next'
 import Script from 'next/script'
+import { headers } from 'next/headers'
 
 import {
   gauthier,
@@ -31,6 +32,8 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
     'vixen-fitness',
   ])
 
+  const pathname = headers().get('x-pathname') || '/'
+
   return (
     <html
       lang="en"
@@ -48,13 +51,29 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
       </head>
       <body>
         <SkipTo />
-        <Header />
+        <Header defaultStyle={pathname === '/' ? 'white' : 'white'} />
         <Menu studies={studies} />
         <main id="content" className="main">
           {children}
         </main>
         <Footer />
         <Contact />
+
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: `
+          {
+            "prerender": [{
+              "where": {
+                "href_matches": "/*"
+              },
+              "eagerness": "moderate"
+            }]
+          }
+        `,
+          }}
+        />
       </body>
     </html>
   )

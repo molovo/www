@@ -4,12 +4,12 @@ import Logo from './logo'
 import MenuToggle from './menu-toggle'
 import useNavStateStore from '@/store/nav-state'
 import { useHideOnScroll } from '@superrb/react-addons/hooks'
-import useThemeStore from '@/store/theme'
+import useThemeStore, { HeaderStyle } from '@/store/theme'
 import useLoadingStore from '@/store/loading'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
-const Header = () => {
+const Header = ({ defaultStyle }: { defaultStyle: HeaderStyle }) => {
   const { headerStyle, headerColor } = useThemeStore((state) => ({
     headerStyle: state.headerStyle,
     headerColor: state.headerColor,
@@ -32,9 +32,9 @@ const Header = () => {
 
   return (
     <header
-      className={`header header--${isOpen ? 'white' : headerStyle || 'white'} ${
-        !isOpen && !loading && hidden ? 'header--hidden' : ''
-      }`}
+      className={`header header--${
+        isOpen ? 'white' : headerStyle || defaultStyle
+      } ${!isOpen && !loading && hidden ? 'header--hidden' : ''}`}
       {...(headerColor && !isOpen && { style: { color: headerColor } })}
     >
       <Logo asLink={true} />

@@ -4,7 +4,6 @@ import useHeaderStyle from '@/hooks/use-header-style'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import swash from '@/utils/swash'
-import SocialSharing from '@/components/social-sharing'
 import { ArticleMetadataType } from '@/types/article'
 import { CSSProperties, ReactNode } from 'react'
 import LineBreak from '@/components/line-break'
@@ -19,6 +18,10 @@ const Webmentions = dynamic(() => import('@/components/webmentions'), {
       </aside>
     </>
   ),
+})
+
+const SocialSharing = dynamic(() => import('@/components/social-sharing'), {
+  ssr: false,
 })
 
 interface Props {

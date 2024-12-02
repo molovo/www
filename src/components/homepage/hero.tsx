@@ -3,13 +3,7 @@
 import SuperrbLink from '@/components/superrb-link'
 import useHeaderStyle from '@/hooks/use-header-style'
 import CaseStudyItem from '@/components/case-study-item'
-import {
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import CaseStudyType from '@/types/case-study'
 import Hand from '@/components/images/icons/hand.svg'
 import {
@@ -119,6 +113,8 @@ const Hero = ({
                   ? { transform: `translate3d(0, ${pos}em, 0)` }
                   : {}
               }
+              imageStyle={{ transform: `translateY(4.51294%)` }}
+              imageLoading={isMobile ? 'lazy' : 'eager'}
             />
           ))}
 

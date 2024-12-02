@@ -9,6 +9,8 @@ export const metadata = {
   description: 'Page not found',
 }
 
+export const generateStaticParams = async () => [{ lang: 'en' }]
+
 const NotFound = () => {
   const pathname = usePathname()
 
