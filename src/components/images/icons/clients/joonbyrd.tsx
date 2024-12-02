@@ -1,6 +1,6 @@
 import { CSSProperties, SVGProps } from 'react'
 
-const Joonbyrd = ({ style = {}, ...props}: SVGProps<SVGSVGElement>) => (
+const Joonbyrd = ({ style = {}, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     width="98"
     height="52"

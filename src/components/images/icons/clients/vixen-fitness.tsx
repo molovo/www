@@ -1,6 +1,9 @@
-import React, {SVGProps} from 'react'
+import React, { SVGProps } from 'react'
 
-const VixenFitnessLogo = ({ style = {}, ...props }: SVGProps<SVGSVGElement>) => (
+const VixenFitnessLogo = ({
+  style = {},
+  ...props
+}: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 84 70"
     style={{

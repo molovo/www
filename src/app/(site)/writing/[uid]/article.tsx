@@ -13,10 +13,10 @@ const Webmentions = dynamic(() => import('@/components/webmentions'), {
   ssr: true,
   loading: () => (
     <>
-    <LineBreak />
-    <aside className="mentions">
-      <p>Loading webmentions&hellip;</p>
-    </aside>
+      <LineBreak />
+      <aside className="mentions">
+        <p>Loading webmentions&hellip;</p>
+      </aside>
     </>
   ),
 })

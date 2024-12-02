@@ -25,10 +25,10 @@ const nextConfig = {
     return [
       {
         source: '/umami.js',
-        destination: 'https://cloud.umami.is/script.js'
-      }
+        destination: 'https://cloud.umami.is/script.js',
+      },
     ]
-  }
+  },
 }
 
 const withMDX = createMDX({

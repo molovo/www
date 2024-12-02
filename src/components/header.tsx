@@ -32,9 +32,9 @@ const Header = () => {
 
   return (
     <header
-      className={`header header--${
-        isOpen ? 'white' : headerStyle || 'white'
-      } ${!isOpen && !loading && hidden ? 'header--hidden' : ''}`}
+      className={`header header--${isOpen ? 'white' : headerStyle || 'white'} ${
+        !isOpen && !loading && hidden ? 'header--hidden' : ''
+      }`}
       {...(headerColor && !isOpen && { style: { color: headerColor } })}
     >
       <Logo asLink={true} />

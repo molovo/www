@@ -48,6 +48,7 @@ export default async function Page() {
       <Awards {...content.awards} />
       <OpenSource {...content.projects} />
       <Writing {...content.writing} />
+
       <Schema content={jsonLdOrganization} />
       <Schema content={jsonLdWebsite} />
       <Schema content={jsonLdPerson} />

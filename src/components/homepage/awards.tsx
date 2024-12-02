@@ -119,10 +119,10 @@ const Awards = ({
             </h3>
 
             <ul className="awards__list">
-                <li>Site of the Day</li>
-                <li>Best Innovation</li>
-                <li>Best UI Design</li>
-                <li>Best UX Design</li>
+              <li>Site of the Day</li>
+              <li>Best Innovation</li>
+              <li>Best UI Design</li>
+              <li>Best UX Design</li>
             </ul>
           </div>
         </li>

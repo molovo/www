@@ -5,7 +5,7 @@ import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
 import { Metadata } from 'next'
 import { Article } from 'schema-dts'
 import Schema from '@/components/schema'
-import {getStudies} from '@/data/studies'
+import { getStudies } from '@/data/studies'
 
 export const getSections = async (
   slug: string,
@@ -98,7 +98,7 @@ export async function generateStaticParams() {
   const studies = await getStudies()
 
   return studies.map((study) => ({
-    uid: study.slug
+    uid: study.slug,
   }))
 }
 
