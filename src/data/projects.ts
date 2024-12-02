@@ -11,9 +11,7 @@ export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
         slugs ? `{${slugs.join(',')}}` : '*'
       }.mdx`,
     )
-  )
-    .map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
-    .filter((slug) => !slugs || (slug && slugs.includes(slug)))
+  ).map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
 
   const projects = await Promise.all(
     files.map(async (slug) => {
@@ -26,6 +24,11 @@ export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
       return { slug, metadata, code } as ProjectType
     }),
   )
+
+  if (slugs) {
+    return slugs.map((slug) => projects.find(({ slug: s }) => s === slug))
+      .filter((project) => project !== undefined) as ProjectType[]
+  }
 
   projects.sort((a, b) => a.metadata.order - b.metadata.order)
 

@@ -4,7 +4,7 @@ import CaseStudyType from '@/types/case-study'
 import { glob } from 'glob'
 
 export const getStudies = async (
-  clients: string[] = [],
+  clients?: string[],
 ): Promise<CaseStudyType[]> => {
   'use server'
 
@@ -18,10 +18,7 @@ export const getStudies = async (
     files
       .map((filename) => filename.match(/\/([^\/]+)\/index\.mdx$/)?.[1])
       .map(async (slug) => {
-        if (
-          !slug ||
-          (clients.length > 0 && !clients.includes(slug as string))
-        ) {
+        if (!slug) {
           return undefined
         }
 
@@ -32,10 +29,9 @@ export const getStudies = async (
       }) as Promise<CaseStudyType>[],
   )
 
-  if (clients.length > 0) {
-    return clients
-      .map((client) => items.find((item) => item?.slug === client))
-      .filter((i) => i !== undefined) as CaseStudyType[]
+  if (clients) {
+    return clients.map((slug) => items.find(({ slug: s }) => s === slug))
+      .filter((item) => item !== undefined) as CaseStudyType[]
   }
 
   return items.filter((item) => item !== undefined)

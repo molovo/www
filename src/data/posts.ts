@@ -10,9 +10,7 @@ export const getPosts = async (slugs?: string[]): Promise<ArticleType[]> => {
         slugs ? `{${slugs.join(',')}}` : '*'
       }.mdx`,
     )
-  )
-    .map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
-    .filter((slug) => !slugs || (slug && slugs.includes(slug)))
+  ).map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
 
   const posts = await Promise.all(
     files.map(async (slug) => {
@@ -21,6 +19,11 @@ export const getPosts = async (slugs?: string[]): Promise<ArticleType[]> => {
       return { slug, metadata } as ArticleType
     }),
   )
+
+  if (slugs) {
+    return slugs.map((slug) => posts.find(({ slug: s }) => s === slug))
+      .filter((post) => post !== undefined) as ArticleType[]
+  }
 
   posts.sort((a, b) => (a.metadata.date > b.metadata.date ? -1 : 1))
 

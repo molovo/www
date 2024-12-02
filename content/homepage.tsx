@@ -1,31 +1,7 @@
-import { getPosts as getAllPosts } from '@/data/posts'
-import { getStudies as getAllStudies } from '@/data/studies'
-import { getProjects as getAllProjects } from '@/data/projects'
+import { getPosts } from '@/data/posts'
+import { getStudies } from '@/data/studies'
+import { getProjects } from '@/data/projects'
 import Github from '@/components/images/icons/social/github.svg'
-import CaseStudyType from '@/types/case-study'
-import ArticleType from '@/types/article'
-import ProjectType from '@/types/project'
-
-const getProjects = async (slugs: string[] = []): Promise<ProjectType[]> => {
-  const allProjects = await getAllProjects(slugs)
-  return slugs
-    .map((slug) => allProjects.find(({ slug: s }) => s === slug))
-    .filter((project) => project !== undefined) as ProjectType[]
-}
-
-const getPosts = async (slugs: string[] = []): Promise<ArticleType[]> => {
-  const allPosts = await getAllPosts(slugs)
-  return slugs
-    .map((slug) => allPosts.find(({ slug: s }) => s === slug))
-    .filter((post) => post !== undefined) as ArticleType[]
-}
-
-const getStudies = async (slugs: string[] = []): Promise<CaseStudyType[]> => {
-  const allStudies = await getAllStudies(slugs)
-  return slugs
-    .map((slug) => allStudies.find(({ slug: s }) => s === slug))
-    .filter((study) => study !== undefined) as CaseStudyType[]
-}
 
 export const content = {
   hero: {
