@@ -1,9 +1,17 @@
+'use server'
+
 import ProjectType from '@/types/project'
 import { glob } from 'glob'
 import { readFile } from 'fs/promises'
 
 export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
-  const files = (await glob(`${process.cwd()}/content/projects/*.mdx`))
+  const files = (
+    await glob(
+      `${process.cwd()}/content/projects/${
+        slugs ? `{${slugs.join(',')}}` : '*'
+      }.mdx`,
+    )
+  )
     .map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
     .filter((slug) => !slugs || (slug && slugs.includes(slug)))
 

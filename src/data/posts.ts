@@ -1,8 +1,16 @@
+'use server'
+
 import ArticleType from '@/types/article'
 import { glob } from 'glob'
 
 export const getPosts = async (slugs?: string[]): Promise<ArticleType[]> => {
-  const files = (await glob(`${process.cwd()}/content/posts/*.mdx`))
+  const files = (
+    await glob(
+      `${process.cwd()}/content/posts/${
+        slugs ? `{${slugs.join(',')}}` : '*'
+      }.mdx`,
+    )
+  )
     .map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
     .filter((slug) => !slugs || (slug && slugs.includes(slug)))
 

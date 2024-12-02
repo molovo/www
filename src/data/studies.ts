@@ -1,10 +1,18 @@
+'use server'
+
 import CaseStudyType from '@/types/case-study'
 import { glob } from 'glob'
 
-export async function getStudies(
+export const getStudies = async (
   clients: string[] = [],
-): Promise<CaseStudyType[]> {
-  const files = await glob(`${process.cwd()}/content/studies/*/index.mdx`)
+): Promise<CaseStudyType[]> => {
+  'use server'
+
+  const files = await glob(
+    `${process.cwd()}/content/studies/${
+      clients ? `{${clients.join(',')}}` : '*'
+    }/index.mdx`,
+  )
 
   const items = await Promise.all(
     files
