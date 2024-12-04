@@ -20,13 +20,16 @@
   &--hidden:not(:focus-within)
     transform: translateY(-100%)
 
+  &--black
+    color: $black
+
+  &--red
+    color: $red
+
   &--white,
   &--white-black,
   &--white-red
     color: $white
-
-  &--black
-    color: $black
 
   &--white-black
     .menu-toggle
@@ -35,3 +38,7 @@
   &--white-red
     .menu-toggle
       color: $red
+
+  &[style^="color"]
+    .menu-toggle
+      color: inherit

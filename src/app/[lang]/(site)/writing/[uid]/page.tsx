@@ -3,34 +3,25 @@ import Article from './article'
 import { Article as ArticleSchema } from 'schema-dts'
 import { notFound } from 'next/navigation'
 import ArticleType from '@/types/article'
-import { getPosts } from '@/data/posts'
-
-const getPost = async (slug: string): Promise<ArticleType> => {
-  'use server'
-
-  try {
-    const { metadata, default: Content } = await import(
-      `content/posts/${slug}.mdx`
-    )
-
-    return { Content, slug, metadata }
-  } catch (error) {
-    if ((error as Error).message.startsWith('Cannot find module')) {
-      notFound()
-    }
-
-    throw error
-  }
-}
+import { getPost, getPosts } from '@/data/posts'
 
 export const generateMetadata = async ({
   params: { uid },
 }: {
   params: { uid: string }
 }) => {
-  const { metadata } = await getPost(uid)
+  const post = await getPost(uid)
 
-  return metadata
+  if (!post) {
+    notFound()
+  }
+
+  const { title, description } = post as ArticleType
+
+  return {
+    title,
+    description,
+  }
 }
 
 export async function generateStaticParams() {
@@ -43,13 +34,17 @@ export async function generateStaticParams() {
 }
 
 const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
-  const { Content, metadata }: { [key: string]: any } = await getPost(uid)
+  const post = await getPost(uid)
+
+  if (!post) {
+    notFound()
+  }
 
   const jsonLd: ArticleSchema = {
     '@type': 'Article',
-    headline: metadata.title,
-    name: metadata.title,
-    datePublished: new Date(metadata.date).toUTCString(),
+    headline: post.title,
+    name: post.title,
+    datePublished: new Date(post.date).toUTCString(),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://molovo.co/writing/${uid}`,
@@ -70,7 +65,7 @@ const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
 
   return (
     <>
-      <Article content={<Content />} metadata={metadata} uid={uid} />
+      <Article post={post} />
       <Schema content={jsonLd} />
     </>
   )

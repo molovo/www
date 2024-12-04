@@ -20,10 +20,10 @@ export async function GET() {
 
   posts.forEach((post) => {
     feed.item({
-      title: post.metadata.title,
-      description: post.metadata.description,
+      title: post.title,
+      description: post.description,
       url: `https://molovo.co/writing/${post.slug}`,
-      date: new Date(post.metadata.date).toUTCString(),
+      date: new Date(post.date).toUTCString(),
     })
   })
 

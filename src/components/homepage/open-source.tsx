@@ -1,6 +1,6 @@
 'use client'
 
-import SyntaxHighlighter from 'react-syntax-highlighter'
+// import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import { ReactNode } from 'react'
 import { SoftwareSourceCode } from 'schema-dts'
@@ -18,6 +18,7 @@ import JS from '@/components/images/icons/languages/js.svg'
 import PHP from '@/components/images/icons/languages/php.svg'
 import ZSH from '@/components/images/icons/languages/zsh.svg'
 import TS from '@/components/images/icons/languages/ts.svg'
+import dynamic from 'next/dynamic'
 
 const logoMap: { [key: string]: ReactNode } = {
   ZSH: <ZSH />,
@@ -32,6 +33,18 @@ const syntaxMap: { [key: string]: string } = {
   PHP: 'php',
   Typescript: 'typescript',
 }
+
+const SyntaxHighlighter = dynamic(
+  async () => {
+    const { LightAsync } = await import('react-syntax-highlighter')
+
+    return LightAsync
+  },
+  {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+  },
+)
 
 const OpenSource = ({
   title,

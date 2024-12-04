@@ -1,9 +1,6 @@
 import '@/stylesheets/main.sass'
 import { PropsWithChildren } from 'react'
 import Header from '@/components/header'
-import Footer from '@/components/footer'
-import Menu from '@/components/menu'
-import Contact from '@/components/contact'
 import Title from '@/components/title'
 import WebmentionsHead from '@/components/webmentions-head'
 import Accounts from '@/components/accounts'
@@ -13,6 +10,10 @@ import { Metadata } from 'next'
 import Script from 'next/script'
 import { headers } from 'next/headers'
 
+const Menu = dynamic(() => import('@/components/menu'), { ssr: false })
+const Footer = dynamic(() => import('@/components/footer'), { ssr: false })
+const Contact = dynamic(() => import('@/components/contact'), { ssr: false })
+
 import {
   gauthier,
   gtAmerica,
@@ -20,6 +21,8 @@ import {
   haveHeartSwash,
   gtAmericaMono,
 } from '@/fonts'
+import dynamic from 'next/dynamic'
+import getHeaderStyleForSSR from '@/utils/get-header-style-for-ssr'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://molovo.co/'),
@@ -33,6 +36,7 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
   ])
 
   const pathname = headers().get('x-pathname') || '/'
+  const { headerStyle, headerColor } = await getHeaderStyleForSSR(pathname)
 
   return (
     <html
@@ -45,13 +49,14 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
         <Title />
 
         <Script
+          strategy="afterInteractive"
           src="/umami.js"
           data-website-id="25028b38-846c-410b-8195-052b12d2e724"
         />
       </head>
       <body>
         <SkipTo />
-        <Header defaultStyle={pathname === '/' ? 'white' : 'white'} />
+        <Header defaultStyle={headerStyle} defaultColor={headerColor} />
         <Menu studies={studies} />
         <main id="content" className="main">
           {children}

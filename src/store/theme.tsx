@@ -36,7 +36,7 @@ const useThemeStore = create<{
   accentColorTwo: undefined as Color,
   setAccentColorTwo: (color?: Color) =>
     set((state) => ({ accentColorTwo: color })),
-  headerStyle: 'white-red' as HeaderStyle,
+  headerStyle: 'red' as HeaderStyle,
   setHeaderStyle: (style?: HeaderStyle) =>
     set((state) => ({ headerStyle: style })),
   headerColor: undefined as Color,

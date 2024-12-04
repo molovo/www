@@ -5,7 +5,11 @@
   .content
     align-items: flex-end
     display: flex
+    flex-wrap: wrap
     justify-content: center
+
+    @media (min-width: $contentBreakpoint)
+      flex-wrap: nowrap
 
     &__inner
       width: 100%

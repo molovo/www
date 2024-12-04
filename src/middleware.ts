@@ -6,33 +6,34 @@ export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl
 
-  if (pathname.startsWith('/api/') || pathname === '/umami.js') {
-    return NextResponse.next()
-  }
-
   const pathnameIsMissingLocale = locales.every(
     (locale) =>
       !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
   )
 
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-pathname', pathname)
+
+  const init = {
+    request: {
+      headers: requestHeaders,
+    },
+  }
+
   // Redirect to default locale if there is no supported locale prefix
   if (pathnameIsMissingLocale) {
     return NextResponse.rewrite(
       new URL(`/${defaultLocale}${pathname}`, request.url),
+      init,
     )
   }
 
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set('x-pathname', pathname)
-
-  return NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  })
+  return NextResponse.next(init)
 }
 
 export const config = {
   // Don’t change the URL of Next.js assets starting with _next
-  matcher: ['/((?!_next).*)'],
+  matcher: [
+    '/((?!api|_next/static|_next/image|umami.js|icon.png|icon.svg|favicon.ico|sitemap.xml|robots.txt).*)',
+  ],
 }

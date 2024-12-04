@@ -1,8 +1,8 @@
 import { Color, HeaderStyle } from '@/store/theme'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import { CSSProperties, FC } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
-export interface ArticleMetadataType {
+export default interface ArticleType {
   slug: string
   title: string
   titleSwashCharacter?: string
@@ -23,10 +23,6 @@ export interface ArticleMetadataType {
     titleSwash?: Partial<CSSProperties>
     image?: Partial<CSSProperties>
   }
-}
 
-export default interface ArticleType {
-  slug: string
-  metadata: ArticleMetadataType
-  Content: FC<ArticleMetadataType>
+  content?: ReactNode
 }

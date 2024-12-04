@@ -1,3 +1,5 @@
+import { getPost } from '@/data/posts'
+import { getStudy } from '@/data/studies'
 import useThemeStore, { HeaderStyle as Style, Color } from '@/store/theme'
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { MutableRefObject, useEffect, useRef } from 'react'

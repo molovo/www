@@ -69,6 +69,4 @@ export default interface CaseStudyType {
   }
 
   sections: CaseStudySectionType[]
-
-  Content: React.FC<CaseStudyType>
 }

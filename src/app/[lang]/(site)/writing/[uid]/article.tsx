@@ -4,12 +4,13 @@ import useHeaderStyle from '@/hooks/use-header-style'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import swash from '@/utils/swash'
-import { ArticleMetadataType } from '@/types/article'
-import { CSSProperties, ReactNode } from 'react'
+import ArticleType from '@/types/article'
+import { CSSProperties } from 'react'
 import LineBreak from '@/components/line-break'
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 
 const Webmentions = dynamic(() => import('@/components/webmentions'), {
-  ssr: true,
+  ssr: false,
   loading: () => (
     <>
       <LineBreak />
@@ -21,48 +22,53 @@ const Webmentions = dynamic(() => import('@/components/webmentions'), {
 })
 
 const SocialSharing = dynamic(() => import('@/components/social-sharing'), {
+  loading: () => null,
   ssr: false,
 })
 
 interface Props {
-  content: ReactNode
-  metadata: ArticleMetadataType
-  uid: string
+  post: ArticleType
 }
 
-const Article = ({ content, metadata, uid }: Props) => {
-  const setRef = useHeaderStyle(
-    metadata.headerStyle || 'red',
-    metadata.headerColor,
-  )
+const Article = ({
+  post: {
+    slug,
+    content,
+    title,
+    titleSwashCharacter,
+    image,
+    imageAlt,
+    imageSizes,
+    headerStyle,
+    headerColor,
+    styles,
+  },
+}: Props) => {
+  const setRef = useHeaderStyle(headerStyle || 'red', headerColor)
 
   return (
     <article
-      className={`article article--${uid}`}
+      className={`article article--${slug}`}
       ref={setRef}
-      style={metadata.styles?.main}
+      style={styles?.main}
     >
       <div className="article__content">
         <header className="article__header">
-          {metadata.image && (
+          {image && (
             <Image
-              src={metadata.image}
-              alt={metadata.imageAlt as string}
-              sizes={metadata.imageSizes || '(min-width: 64em) 64em, 100vw'}
+              src={image as string | StaticImport}
+              alt={imageAlt as string}
+              sizes={imageSizes || '(min-width: 64em) 64em, 100vw'}
               className="article__image"
-              style={metadata.styles?.image as Partial<CSSProperties>}
+              style={styles?.image as Partial<CSSProperties>}
               loading="eager"
             />
           )}
           <h1
             className="article__title"
-            style={metadata.styles?.title}
+            style={styles?.title}
             dangerouslySetInnerHTML={{
-              __html: swash(
-                metadata.title,
-                metadata.titleSwashCharacter,
-                metadata.styles?.titleSwash,
-              ),
+              __html: swash(title, titleSwashCharacter, styles?.titleSwash),
             }}
           />
         </header>
@@ -73,7 +79,7 @@ const Article = ({ content, metadata, uid }: Props) => {
         </div>
       </div>
 
-      <Webmentions slug={uid as string} />
+      <Webmentions slug={slug as string} />
     </article>
   )
 }
