@@ -1,6 +1,6 @@
 'use client'
 
-import glassesAnimated from '@/images/icons/glasses-animated.png'
+import glassesAnimated from '@/images/icons/glasses-animated.webp'
 import LogoImage from '@/components/images/icons/logo'
 import ClientLogo, { ClientSlug } from './client-logo'
 import useClientStore from '@/store/client'
