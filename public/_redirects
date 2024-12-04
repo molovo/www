@@ -2,9 +2,6 @@
 https://molovo.netlify.com/*                            https://molovo.co/:splat                                    301!
 https://molovo.netlify.app/*                            https://molovo.co/:splat                                    301!
 
-# Hide routes for default locale
-/en/*                                                   /:splat                                                     301!
-
 # Ensure index.html is stripped from url
 /*/index.html                                           /:splat/                                                    301!
 
