@@ -6,7 +6,6 @@ import Link from '@/components/link'
 import translations from 'content/translations'
 import Logo from './logo'
 import Social from './social'
-import useNavStateStore from '@/store/nav-state'
 import BSky from './images/icons/social/bsky.svg'
 
 const Footer = () => {

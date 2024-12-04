@@ -4,6 +4,7 @@ import { Article } from 'schema-dts'
 import Schema from '@/components/schema'
 import { getStudies, getStudy } from '@/data/studies'
 import { notFound } from 'next/navigation'
+import BreadcrumbSchema from '@/components/breadcrumb-schema'
 
 export const generateMetadata = async ({
   params: { uid },
@@ -16,10 +17,10 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const { title, description } = study
+  const { title, description, client } = study
 
   return {
-    title,
+    title: `${title}: Making ${client}`,
     description,
     openGraph: {
       images: [
@@ -30,6 +31,9 @@ export const generateMetadata = async ({
     },
     twitter: {
       images: `/api/content/studies/${uid}/og-image.jpg`,
+    },
+    alternates: {
+      canonical: `https://molovo.co/studies/${uid}`,
     },
   }
 }
@@ -50,6 +54,8 @@ const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
     notFound()
   }
 
+  const { title, client } = study
+
   const jsonLd: Article = {
     '@type': 'Article',
     headline: study.title,
@@ -69,13 +75,23 @@ const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
       sameAs: 'https://molovo.co',
     },
     url: `https://molovo.co/studies/${uid}`,
-    image: `https://molovo.co/api/content/studies/${uid}/og-image.jpg`,
+    image: {
+      '@type': 'ImageObject',
+      url: `https://molovo.co/api/content/studies/${uid}/og-image.jpg`,
+      height: '630px',
+      width: '1200px',
+      representativeOfPage: true,
+    },
   }
 
   return (
     <>
       <CaseStudy study={study} />
       <Schema content={jsonLd} />
+      <BreadcrumbSchema
+        title={`${title}: Making ${client}`}
+        url={`/studies/${uid}`}
+      />
     </>
   )
 }

@@ -40,12 +40,6 @@ const HomepageSection = (
         />
         <span className="homepage-section__subtitle">{subtitle}</span>
       </div>
-
-      {link && (
-        <Link href={link.url} className="button homepage-section__link">
-          {link.label}
-        </Link>
-      )}
     </header>
 
     {children}

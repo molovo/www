@@ -7,7 +7,7 @@ import swash from '@/utils/swash'
 import ArticleType from '@/types/article'
 import { CSSProperties } from 'react'
 import LineBreak from '@/components/line-break'
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 
 const Webmentions = dynamic(() => import('@/components/webmentions'), {
   ssr: false,
@@ -56,7 +56,7 @@ const Article = ({
         <header className="article__header">
           {image && (
             <Image
-              src={image as string | StaticImport}
+              src={image as string | StaticImageData}
               alt={imageAlt as string}
               sizes={imageSizes || '(min-width: 64em) 64em, 100vw'}
               className="article__image"
@@ -74,7 +74,7 @@ const Article = ({
         </header>
 
         <div className="content">
-          <SocialSharing />
+          <SocialSharing title={title.replace('_', '')} />
           <div className="content__inner">{content}</div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { Color, HeaderStyle } from '@/store/theme'
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 import { CSSProperties, ReactNode } from 'react'
 
 export interface CaseStudySectionType {
@@ -13,7 +13,7 @@ export interface CaseStudySectionType {
   backgroundColor: Color
   headerStyle?: HeaderStyle
   headerColor?: Color
-  backgroundImage: string | StaticImport
+  backgroundImage: string | StaticImageData
   accentColor?: CSSProperties['color']
   accentColorTwo?: CSSProperties['color']
   titleSwashCharacter?: string
@@ -37,7 +37,7 @@ export default interface CaseStudyType {
   url?: string
   offline?: boolean
   date: string
-  thumbnail: string | StaticImport
+  thumbnail: string | StaticImageData
   order?: number
   draft?: boolean
   superrb?: boolean
@@ -50,7 +50,7 @@ export default interface CaseStudyType {
     text: string
   }>
 
-  knowledgeBackgroundImage?: string | StaticImport
+  knowledgeBackgroundImage?: string | StaticImageData
   knowledgeHeaderStyle?: HeaderStyle
   knowledgeHeaderColor?: Color
 

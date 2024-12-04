@@ -25,7 +25,7 @@ const ContentVideo = ({
 
   return (
     <ContentFigure size={size} caption={caption} withPadding={withPadding}>
-      <div className="content-figure__video">
+      <div className="content-figure__video" suppressHydrationWarning>
         {ready && (
           <ReactPlayer
             url={url}

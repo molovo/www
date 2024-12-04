@@ -6,6 +6,7 @@ import HomepageSection, {
   HomepageSectionLink,
 } from '@/components/homepage/section'
 import ArticleType from '@/types/article'
+import Link from 'next/link'
 
 const Writing = ({
   title,
@@ -32,6 +33,14 @@ const Writing = ({
       <div className="writing__content">
         <Listing posts={posts} />
       </div>
+
+      {link && (
+        <div className="writing__footer">
+          <Link href={link.url} className="button writing__link">
+            {link.label}
+          </Link>
+        </div>
+      )}
     </HomepageSection>
   )
 }

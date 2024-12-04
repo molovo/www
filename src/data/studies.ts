@@ -45,7 +45,9 @@ export const getStudy = async (
   'use server'
 
   try {
-    const { metadata, default: Content } = await import(`/content/studies/${slug}/index.mdx`)
+    const { metadata, default: Content } = await import(
+      `/content/studies/${slug}/index.mdx`
+    )
 
     const sections = await getSections(slug)
 

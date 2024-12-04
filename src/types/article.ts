@@ -1,5 +1,5 @@
 import { Color, HeaderStyle } from '@/store/theme'
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 import { CSSProperties, ReactNode } from 'react'
 
 export default interface ArticleType {
@@ -8,7 +8,7 @@ export default interface ArticleType {
   titleSwashCharacter?: string
   description: string
   date: string
-  image?: string | StaticImport
+  image?: string | StaticImageData
   imageAlt?: string
   imageSizes?: string
   tags?: string[]

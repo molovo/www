@@ -47,6 +47,13 @@
     display: flex
     justify-content: center
 
+    a
+      color: inherit
+      transition: opacity .5s ease
+
+      &:hover
+        opacity: .5
+
     svg
       color: inherit
       height: auto
@@ -82,7 +89,7 @@
     margin: 0
 
   &__nominee
-    // color: $gray4
+    color: $gray3
     display: block
     font-family: $font-secondary
     font-style: italic

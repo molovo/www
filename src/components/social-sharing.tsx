@@ -78,6 +78,7 @@ const SocialSharing = ({
       aria-hidden={!isInViewport && !isMobile}
       style={style}
       ref={setRef}
+      suppressHydrationWarning
     >
       <div className="social-sharing__inner">
         <button className="social-sharing__trigger">

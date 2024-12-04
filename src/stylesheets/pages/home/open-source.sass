@@ -22,6 +22,15 @@ $code-string: #a3be8c
     transform: translateX(-50%)
     width: 100vw
 
+    &:has(.scrollbar:active)
+      .menu__studies-list
+        scroll-behavior: smooth
+        scroll-snap-type: none
+        transition: none
+
+  .loading-spinner
+    color: $code-comment
+
   &__project
     background: $code-background
     display: flex
@@ -68,3 +77,18 @@ $code-string: #a3be8c
     svg
       height: 100%
       width: 100%
+
+  &__footer
+    display: flex
+    flex-wrap: wrap
+    gap: var(--gutter)
+    padding-top: $baseline
+
+    @media (min-width: $breakpoint-tablet)
+      align-items: center
+      display: flex
+      flex-wrap: nowrap
+      justify-content: space-between
+
+  &__scrollbar
+    flex: 1 1

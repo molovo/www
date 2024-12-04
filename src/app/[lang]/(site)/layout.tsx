@@ -9,10 +9,7 @@ import SkipTo from '@/components/skip-to'
 import { Metadata } from 'next'
 import Script from 'next/script'
 import { headers } from 'next/headers'
-
-const Menu = dynamic(() => import('@/components/menu'), { ssr: false })
-const Footer = dynamic(() => import('@/components/footer'), { ssr: false })
-const Contact = dynamic(() => import('@/components/contact'), { ssr: false })
+import { ClientSlug } from '@/components/client-logo'
 
 import {
   gauthier,
@@ -21,11 +18,19 @@ import {
   haveHeartSwash,
   gtAmericaMono,
 } from '@/fonts'
-import dynamic from 'next/dynamic'
 import getHeaderStyleForSSR from '@/utils/get-header-style-for-ssr'
+import getClientForSSR from '@/utils/get-client-for-ssr'
+import Menu from '@/components/menu'
+import Footer from '@/components/footer'
+import Contact from '@/components/contact'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://molovo.co/'),
+  alternates: {
+    types: {
+      'application/rss+xml': '/feed.xml',
+    },
+  },
 }
 
 export default async function RootLayout({ children }: PropsWithChildren<{}>) {
@@ -37,6 +42,7 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
 
   const pathname = headers().get('x-pathname') || '/'
   const { headerStyle, headerColor } = await getHeaderStyleForSSR(pathname)
+  const client = await getClientForSSR(pathname)
 
   return (
     <html
@@ -52,11 +58,16 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
           strategy="afterInteractive"
           src="/umami.js"
           data-website-id="25028b38-846c-410b-8195-052b12d2e724"
+          data-domains="molovo.co"
         />
       </head>
       <body>
         <SkipTo />
-        <Header defaultStyle={headerStyle} defaultColor={headerColor} />
+        <Header
+          defaultStyle={headerStyle}
+          defaultColor={headerColor}
+          defaultClient={client as ClientSlug | undefined}
+        />
         <Menu studies={studies} />
         <main id="content" className="main">
           {children}
@@ -68,15 +79,15 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
           type="speculationrules"
           dangerouslySetInnerHTML={{
             __html: `
-          {
-            "prerender": [{
-              "where": {
-                "href_matches": "/*"
-              },
-              "eagerness": "moderate"
-            }]
-          }
-        `,
+              {
+                "prerender": [{
+                  "where": {
+                    "href_matches": "/*"
+                  },
+                  "eagerness": "moderate"
+                }]
+              }
+            `,
           }}
         />
       </body>

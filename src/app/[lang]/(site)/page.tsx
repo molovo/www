@@ -3,6 +3,9 @@ import Hero from '@/components/homepage/hero'
 import { Organization, Person, WebSite } from 'schema-dts'
 import Schema from '@/components/schema'
 import dynamic from 'next/dynamic'
+import Awards from '@/components/homepage/awards'
+import OpenSource from '@/components/homepage/open-source'
+import Writing from '@/components/homepage/writing'
 
 export const metadata = {
   title: {
@@ -40,10 +43,6 @@ const jsonLdPerson: Person = {
 }
 
 export const generateStaticParams = async () => [{ lang: 'en' }]
-
-const Awards = dynamic(() => import('@/components/homepage/awards'))
-const OpenSource = dynamic(() => import('@/components/homepage/open-source'))
-const Writing = dynamic(() => import('@/components/homepage/writing'))
 
 export default async function Page({
   params: { lang },

@@ -8,13 +8,16 @@ import useThemeStore, { Color, HeaderStyle } from '@/store/theme'
 import useLoadingStore from '@/store/loading'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { ClientSlug } from './client-logo'
 
 const Header = ({
   defaultStyle,
   defaultColor,
+  defaultClient,
 }: {
   defaultStyle?: HeaderStyle
   defaultColor?: Color
+  defaultClient?: ClientSlug
 }) => {
   const { headerStyle, headerColor } = useThemeStore((state) => ({
     headerStyle: state.headerStyle,
@@ -26,6 +29,9 @@ const Header = ({
   const [storedDefaultColor, setStoredDefaultColor] = useState<
     Color | undefined
   >(defaultColor)
+  const [storedDefaultClient, setStoredDefaultClient] = useState<
+    ClientSlug | undefined
+  >(defaultClient)
   const isOpen = useNavStateStore((state) => state.isOpen)
   const loading = useLoadingStore((state) => state.loading)
 
@@ -42,6 +48,7 @@ const Header = ({
     setHidden(false)
     setStoredDefaultStyle(() => undefined)
     setStoredDefaultColor(() => undefined)
+    setStoredDefaultClient(() => undefined)
   }, [pathname])
 
   return (
@@ -52,7 +59,7 @@ const Header = ({
       {...((headerColor || storedDefaultColor) &&
         !isOpen && { style: { color: headerColor || storedDefaultColor } })}
     >
-      <Logo asLink={true} />
+      <Logo asLink={true} client={storedDefaultClient} />
 
       <MenuToggle />
     </header>

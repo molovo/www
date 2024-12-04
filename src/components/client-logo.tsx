@@ -1,4 +1,4 @@
-import { CSSProperties, FC, ReactNode, SVGProps, createElement } from 'react'
+import { CSSProperties, FC, SVGProps, createElement } from 'react'
 import EighteenFiftyFiveLogo from '@/components/images/icons/clients/1855'
 import AnglepoiseLogo from '@/components/images/icons/clients/anglepoise'
 import HaresfootLogo from '@/components/images/icons/clients/haresfoot'
@@ -12,7 +12,7 @@ import Joonbyrd from '@/components/images/icons/clients/joonbyrd'
 import RetainerClubLogo from '@/components/images/icons/clients/retainer-club'
 
 export const logoMap: { [key: string]: FC<SVGProps<SVGSVGElement>> } = {
-  1855: EighteenFiftyFiveLogo,
+  '1855': EighteenFiftyFiveLogo,
   anglepoise: AnglepoiseLogo,
   haresfoot: HaresfootLogo,
   joonbyrd: Joonbyrd,
@@ -25,7 +25,7 @@ export const logoMap: { [key: string]: FC<SVGProps<SVGSVGElement>> } = {
   'vixen-fitness': VixenFitnessLogo,
 }
 export const clientNameMap: { [key: string]: string } = {
-  1855: '1855',
+  '1855': '1855',
   anglepoise: 'Anglepoise',
   haresfoot: 'Haresfoot Craft Beer',
   joonbyrd: 'Joonbyrd',
@@ -45,11 +45,16 @@ const ClientLogo = ({
 }: {
   client: ClientSlug
   style?: Partial<CSSProperties>
-}) =>
-  createElement<SVGProps<SVGSVGElement>>(logoMap[client], {
+}) => {
+  if (!client) {
+    return null
+  }
+
+  return createElement<SVGProps<SVGSVGElement>>(logoMap[client], {
     style,
     role: 'img',
     'aria-label': clientNameMap[client],
   })
+}
 
 export default ClientLogo

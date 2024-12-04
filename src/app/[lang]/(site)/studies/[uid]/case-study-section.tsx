@@ -103,7 +103,10 @@ const CaseStudySection = ({
             className="case-study__section-content"
             style={section.styles?.content}
           >
-            <SocialSharing style={section.styles?.social} />
+            <SocialSharing
+              style={section.styles?.social}
+              title={`${study.title.replace('_', '')}: Making ${study.client}`}
+            />
 
             <div className="case-study__section-content-inner content">
               {study.help && index === 0 && (

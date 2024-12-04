@@ -4,6 +4,8 @@ import { Article as ArticleSchema } from 'schema-dts'
 import { notFound } from 'next/navigation'
 import ArticleType from '@/types/article'
 import { getPost, getPosts } from '@/data/posts'
+import BreadcrumbSchema from '@/components/breadcrumb-schema'
+import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 
 export const generateMetadata = async ({
   params: { uid },
@@ -21,6 +23,9 @@ export const generateMetadata = async ({
   return {
     title,
     description,
+    alternates: {
+      canonical: `https://molovo.co/writing/${uid}`,
+    },
   }
 }
 
@@ -40,11 +45,13 @@ const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
     notFound()
   }
 
+  const { title, image, date } = post
+
   const jsonLd: ArticleSchema = {
     '@type': 'Article',
-    headline: post.title,
-    name: post.title,
-    datePublished: new Date(post.date).toUTCString(),
+    headline: title,
+    name: title,
+    datePublished: new Date(date).toUTCString(),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://molovo.co/writing/${uid}`,
@@ -59,14 +66,28 @@ const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
       name: 'James Dinsdale',
       sameAs: 'https://molovo.co',
     },
-    url: `https://molovo.co/studies/${uid}`,
-    image: `https://molovo.co/api/content/studies/${uid}/og-image.jpg`,
+    url: `https://molovo.co/writing/${uid}`,
+  }
+
+  if (image) {
+    jsonLd.image = {
+      '@type': 'ImageObject',
+      url: (image as StaticImageData)?.src,
+      height: `${(image as StaticImageData)?.height}px`,
+      width: `${(image as StaticImageData)?.width}px`,
+      representativeOfPage: true,
+    }
   }
 
   return (
     <>
       <Article post={post} />
       <Schema content={jsonLd} />
+      <BreadcrumbSchema
+        title={title}
+        url={`/writing/${post.slug}`}
+        parentTitle={'Writing'}
+      />
     </>
   )
 }

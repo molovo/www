@@ -41,6 +41,7 @@ const ImageWall = ({
           layout ? `image-wall--${layout}` : ''
         }`}
         style={style}
+        suppressHydrationWarning
       >
         {images.map(
           ({ image, video, alt, sizes, style, allowScroll = false }, index) =>

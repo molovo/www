@@ -8,11 +8,9 @@ import { useLockBodyScroll, useIsMobile } from '@superrb/react-addons/hooks'
 import { usePathname } from 'next/navigation'
 import MenuCaseStudies from './menu-case-studies'
 import CaseStudyType from '@/types/case-study'
-import Social from './social'
 import BSky from './images/icons/social/bsky.svg'
 import useContactFormStateStore from '@/store/contact-form-state'
 import useEscape from '@/hooks/use-escape'
-import { Mutable } from 'next/dist/client/components/router-reducer/router-reducer-types'
 
 interface NavigationItem {
   label: string | ReactNode
@@ -33,8 +31,8 @@ const navigationItems: NavigationItem[] = [
 
 const secondaryNavigationItems: NavigationItem[] = [
   // {
-    // url: '/resume',
-    // label: 'CV/Resume',
+  // url: '/resume',
+  // label: 'CV/Resume',
   // },
   {
     label: 'Contact',

@@ -1,0 +1,32 @@
+.scrollbar
+  appearance: none
+  background: 0
+  cursor: grab
+  font-size: 1em
+  height: 1.5em
+  transition: opacity .5s ease
+  width: calc(100% - (var(--gutter) * 2) - 12em)
+
+  &:active
+    cursor: grabbing
+
+  @each $suffix in -webkit-slider-track, -moz-range-track, -ms-track
+    &::#{$suffix}
+      appearance: none
+      background: rgba($white, .2)
+      border: 0
+      border-radius: 0
+      cursor: pointer
+      height: 3px
+      margin: 0
+      width: 100%
+
+  @each $suffix in -webkit-slider-thumb, -moz-range-thumb, -ms-thumb
+    &::#{$suffix}
+      appearance: none
+      background: $white
+      border: 0
+      border-radius: 0
+      height: 3px
+      margin: 0
+      width: 1em

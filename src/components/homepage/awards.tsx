@@ -28,14 +28,19 @@ const Awards = ({
     <HomepageSection
       title={title}
       subtitle={subtitle}
-      link={link}
       className="awards"
       ref={setRef}
     >
       <ol className="awards__items">
         <li className="awards__item">
           <div className="awards__logo">
-            <ClientLogo client="joonbyrd" />
+            <Link
+              href="https://www.joonbyrd.com"
+              target="_blank"
+              rel="noopener"
+            >
+              <ClientLogo client="joonbyrd" />
+            </Link>
           </div>
 
           <div className="awards__group">
@@ -51,7 +56,9 @@ const Awards = ({
         </li>
         <li className="awards__item">
           <div className="awards__logo">
-            <ClientLogo client="octaevo" />
+            <Link href="https://www.octaevo.com" target="_blank" rel="noopener">
+              <ClientLogo client="octaevo" />
+            </Link>
           </div>
 
           <div className="awards__group">
@@ -81,7 +88,9 @@ const Awards = ({
         </li>
         <li className="awards__item">
           <div className="awards__logo">
-            <ClientLogo client="superrb" />
+            <Link href="https://www.superrb.com" target="_blank" rel="noopener">
+              <ClientLogo client="superrb" />
+            </Link>
           </div>
 
           <div className="awards__group">

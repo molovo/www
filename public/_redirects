@@ -2,6 +2,9 @@
 https://molovo.netlify.com/*                            https://molovo.co/:splat                                    301!
 https://molovo.netlify.app/*                            https://molovo.co/:splat                                    301!
 
+# Hide routes for default locale
+/en/*                                                   /:splat                                                     301!
+
 # Ensure index.html is stripped from url
 /*/index.html                                           /:splat/                                                    301!
 
@@ -15,6 +18,9 @@ https://molovo.netlify.app/*                            https://molovo.co/:splat
 # Preserve case study links from old site
 /work                                                   /studies                                                    301
 /work/*                                                 /studies/:splat                                             301
+
+# Point old projects page to homepage
+/projects/*                                             /#open-source                                               301
 
 # Redirect broken articles
 /writing/development/things-about-css-that-make-me-want-to-put-my-face-in-a-blender  /writing/things-about-css-that-make-me-want-to-put-my-face-in-a-blender  301

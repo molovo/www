@@ -69,7 +69,7 @@ const Hero = ({
     'scroll',
     handleScroll,
     { passive: true },
-    typeof window !== 'undefined' ? window : undefined,
+    undefined,
     isInViewport && !isMobile,
   )
 

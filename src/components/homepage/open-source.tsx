@@ -2,7 +2,7 @@
 
 // import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import { ReactNode } from 'react'
+import { MutableRefObject, ReactNode, useEffect, useRef, useState } from 'react'
 import { SoftwareSourceCode } from 'schema-dts'
 
 import HomepageSection, {
@@ -19,6 +19,7 @@ import PHP from '@/components/images/icons/languages/php.svg'
 import ZSH from '@/components/images/icons/languages/zsh.svg'
 import TS from '@/components/images/icons/languages/ts.svg'
 import dynamic from 'next/dynamic'
+import CustomScrollbar from '../custom-scrollbar'
 
 const logoMap: { [key: string]: ReactNode } = {
   ZSH: <ZSH />,
@@ -34,6 +35,37 @@ const syntaxMap: { [key: string]: string } = {
   Typescript: 'typescript',
 }
 
+const dots = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
+
+const LoadingSpinner = () => {
+  const [index, setIndex] = useState<number>(0)
+  const interval = useRef<NodeJS.Timeout>()
+
+  const tick = () => {
+    setIndex((index) => {
+      const newIndex = index + 1
+
+      if (newIndex >= dots.length) {
+        return 0
+      }
+
+      return newIndex
+    })
+  }
+
+  useEffect(() => {
+    interval.current = setInterval(tick, 80)
+
+    return () => clearInterval(interval.current)
+  })
+
+  return (
+    <div className="loading-spinner">
+      <span>{dots[index]}</span>
+    </div>
+  )
+}
+
 const SyntaxHighlighter = dynamic(
   async () => {
     const { LightAsync } = await import('react-syntax-highlighter')
@@ -41,7 +73,7 @@ const SyntaxHighlighter = dynamic(
     return LightAsync
   },
   {
-    loading: () => <p>Loading...</p>,
+    loading: () => <LoadingSpinner />,
     ssr: false,
   },
 )
@@ -58,17 +90,22 @@ const OpenSource = ({
   projects: ProjectType[]
 }) => {
   const setRef = useHeaderStyle('white')
+  const projectsContainer =
+    useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
 
   return (
     <HomepageSection
       title={title}
       titleSwashCharacter="N"
       subtitle={subtitle}
-      link={link}
       className="open-source"
       ref={setRef}
     >
-      <div className="open-source__projects">
+      <div
+        className="open-source__projects"
+        ref={projectsContainer}
+        id="projects-list"
+      >
         {projects.map(
           ({
             code,
@@ -106,6 +143,17 @@ const OpenSource = ({
             )
           },
         )}
+      </div>
+
+      <div className="open-source__footer">
+        <Link className="button" href={link?.url}>
+          {link?.label}
+        </Link>
+
+        <CustomScrollbar
+          controls={projectsContainer}
+          className="open-source__scrollbar"
+        />
       </div>
     </HomepageSection>
   )
