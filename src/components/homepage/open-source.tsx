@@ -1,8 +1,12 @@
 'use client'
-
-// import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import { MutableRefObject, ReactNode, useEffect, useRef, useState } from 'react'
+import {
+  CSSProperties,
+  MutableRefObject,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { SoftwareSourceCode } from 'schema-dts'
 
 import HomepageSection, {
@@ -14,10 +18,13 @@ import Schema from '@/components/schema'
 
 import useHeaderStyle from '@/hooks/use-header-style'
 
-import JS from '@/components/images/icons/languages/js.svg'
-import PHP from '@/components/images/icons/languages/php.svg'
-import ZSH from '@/components/images/icons/languages/zsh.svg'
-import TS from '@/components/images/icons/languages/ts.svg'
+import JS from '@icons/languages/js.svg'
+import PHP from '@icons/languages/php.svg'
+import ZSH from '@icons/languages/zsh.svg'
+import TS from '@icons/languages/ts.svg'
+
+import ocean from 'react-syntax-highlighter/dist/esm/styles/hljs/ocean'
+
 import dynamic from 'next/dynamic'
 import CustomScrollbar from '../custom-scrollbar'
 import LinkIcon from '../images/icons/link'
@@ -69,9 +76,26 @@ const LoadingSpinner = () => {
 
 const SyntaxHighlighter = dynamic(
   async () => {
-    const { LightAsync } = await import('react-syntax-highlighter')
+    const { Light } = await import('react-syntax-highlighter')
+    const { default: bash } = await import(
+      'react-syntax-highlighter/dist/esm/languages/hljs/bash'
+    )
+    const { default: javascript } = await import(
+      'react-syntax-highlighter/dist/esm/languages/hljs/javascript'
+    )
+    const { default: php } = await import(
+      'react-syntax-highlighter/dist/esm/languages/hljs/php'
+    )
+    const { default: typescript } = await import(
+      'react-syntax-highlighter/dist/esm/languages/hljs/typescript'
+    )
 
-    return LightAsync
+    Light.registerLanguage('bash', bash)
+    Light.registerLanguage('javascript', javascript)
+    Light.registerLanguage('php', php)
+    Light.registerLanguage('typescript', typescript)
+
+    return Light
   },
   {
     loading: () => <LoadingSpinner />,
@@ -145,7 +169,10 @@ const OpenSource = ({
  * ${description.replace('\n', '\n * ')}
  */`}
                 </pre>
-                <SyntaxHighlighter language={syntaxMap[language]} style={ocean}>
+                <SyntaxHighlighter
+                  language={syntaxMap[language]}
+                  style={ocean}
+                >
                   {code}
                 </SyntaxHighlighter>
 

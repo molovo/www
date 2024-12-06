@@ -16,7 +16,6 @@
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.4",
-    "@sentry/nextjs": "^8",
     "@superrb/react-addons": "^3.0.0-20",
     "date-fns": "^3.6.0",
     "glob": "^10.3.10",
@@ -46,6 +45,8 @@
     "schema-dts": "^1.1.2",
     "simple-zustand-devtools": "^1.1.0",
     "use-sync-external-store": "^1.2.2",
+    "uuid": "^11.0.3",
+    "web-vitals": "^4.2.4",
     "yup": "^1.4.0",
     "zustand": "^5.0.1"
   },

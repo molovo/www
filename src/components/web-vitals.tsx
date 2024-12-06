@@ -1,20 +1,44 @@
 'use client'
 
-import useUmami from '@/hooks/use-umami'
+import { useEventListener } from '@superrb/react-addons/hooks'
+import { Metric } from 'web-vitals'
 import { useReportWebVitals } from 'next/web-vitals'
+import { v4 as uuidv4 } from 'uuid'
+
+const queue: Set<Metric> = new Set()
+
+const flushQueue = () => {
+  if (queue.size === 0) {
+    return
+  }
+
+  navigator.sendBeacon(
+    'http://localhost:3001/api/measure/deb3c781-f593-4caa-9149-f2eb9c73cdf0',
+    JSON.stringify([...queue]),
+  )
+
+  queue.clear()
+}
 
 const WebVitals = () => {
-  const umami = useUmami()
+  const id = uuidv4()
+
   useReportWebVitals((metric) => {
-    console.log(metric)
-    umami.track(`Web Vitals: ${metric.name}`, {
-      value: metric.value,
-    })
+    queue.add({ ...metric, id })
   })
+
+  useEventListener(
+    'visibilitychange',
+    () => {
+      if (document.visibilityState === 'hidden') {
+        flushQueue()
+      }
+    },
+    undefined,
+    typeof document !== 'undefined' ? document : undefined,
+  )
 
   return null
 }
 
 export default WebVitals
-
-
