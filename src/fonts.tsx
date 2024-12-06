@@ -62,27 +62,3 @@ export const gtAmerica = localFont({
   display: 'swap',
   variable: '--font-gt-america',
 })
-
-export const gtAmericaMono = localFont({
-  src: './fonts/GT-America-Mono-Regular.woff2',
-  display: 'swap',
-  variable: '--font-gt-america-mono',
-})
-
-// Fonts for case studies
-export const inter = Inter({
-  subsets: ['latin'],
-  weight: '400',
-  display: 'swap',
-})
-
-export const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: '700',
-  display: 'swap',
-})
-
-export const nitti = localFont({
-  src: './fonts/Nitti Grotesk Light.otf',
-  display: 'swap',
-})

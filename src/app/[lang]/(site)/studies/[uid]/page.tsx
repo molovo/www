@@ -34,6 +34,9 @@ export const generateMetadata = async ({
     },
     alternates: {
       canonical: `https://molovo.co/studies/${uid}`,
+      types: {
+        'application/rss+xml': '/feed.xml',
+      },
     },
   }
 }

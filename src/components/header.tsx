@@ -53,7 +53,7 @@ const Header = ({
 
   return (
     <header
-      className={`header header--${storedDefaultStyle} header--${
+      className={`header ${storedDefaultStyle ? `header--${storedDefaultStyle}` : ``} header--${
         isOpen ? 'white' : headerStyle
       } ${!isOpen && !loading && hidden ? 'header--hidden' : ''}`}
       {...((headerColor || storedDefaultColor) &&

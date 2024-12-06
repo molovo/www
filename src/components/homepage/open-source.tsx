@@ -20,6 +20,7 @@ import ZSH from '@/components/images/icons/languages/zsh.svg'
 import TS from '@/components/images/icons/languages/ts.svg'
 import dynamic from 'next/dynamic'
 import CustomScrollbar from '../custom-scrollbar'
+import LinkIcon from '../images/icons/link'
 
 const logoMap: { [key: string]: ReactNode } = {
   ZSH: <ZSH />,
@@ -93,6 +94,13 @@ const OpenSource = ({
   const projectsContainer =
     useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
 
+  useEffect(() => {
+    ;(async () => {
+      const { gtAmericaMono } = await import('@/fonts/homepage')
+      projectsContainer.current.classList.add(gtAmericaMono.variable)
+    })()
+  })
+
   return (
     <HomepageSection
       title={title}
@@ -128,7 +136,10 @@ const OpenSource = ({
                 <pre className="open-source__project-intro">
                   {`/**
  * `}
-                  <Link href={url}>{title}</Link>
+                  <Link href={url}>
+                    {title}
+                    <LinkIcon />
+                  </Link>
                   {`
  *
  * ${description.replace('\n', '\n * ')}

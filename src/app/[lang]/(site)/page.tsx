@@ -2,7 +2,6 @@ import { content } from 'content/homepage'
 import Hero from '@/components/homepage/hero'
 import { Organization, Person, WebSite } from 'schema-dts'
 import Schema from '@/components/schema'
-import dynamic from 'next/dynamic'
 import Awards from '@/components/homepage/awards'
 import OpenSource from '@/components/homepage/open-source'
 import Writing from '@/components/homepage/writing'
@@ -13,6 +12,12 @@ export const metadata = {
   },
   description:
     "James Dinsdale is a designer and developer from Poole UK. Building immersive, interactive experiences on the web. Let's build something together.",
+  alternates: {
+    canonical: 'https://molovo.co',
+    types: {
+      'application/rss+xml': '/feed.xml',
+    },
+  },
 }
 
 const jsonLdOrganization: Organization = {

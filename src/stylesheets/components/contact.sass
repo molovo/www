@@ -29,14 +29,18 @@
   &__form
     align-items: stretch
     display: grid
-    grid-template-columns: 1fr 9em
-    grid-template-rows: 1fr auto
+    grid-template-columns: 100%
+    grid-template-rows: 1fr auto auto
     gap: ($baseline / 2)
     height: 100%
     max-width: $contentWidth
     padding-top: $gutterMax
     transition: opacity .5s ease-out, transform .5s ease-out
     width: 100%
+
+    @media (min-width: $breakpoint-largeMobile)
+      grid-template-columns: 1fr 9em
+      grid-template-rows: 1fr auto
 
     &:valid
       .contact__submit
@@ -54,7 +58,8 @@
 
   .form__group
     &--message
-      grid-column: 1 / span 2
+      @media (min-width: $breakpoint-largeMobile)
+        grid-column: 1 / span 2
 
       .form__label
         align-items: stretch

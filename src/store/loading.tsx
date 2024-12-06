@@ -5,7 +5,7 @@ const useLoadingStore = create<{
   loading: boolean
   setLoading: (loading: boolean) => void
 }>((set) => ({
-  loading: true,
+  loading: false,
   setLoading: (loading: boolean) => set((state) => ({ loading })),
 }))
 
