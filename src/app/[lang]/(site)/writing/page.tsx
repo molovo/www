@@ -22,7 +22,7 @@ const Page = async () => {
   return (
     <>
       <Writing posts={posts} />
-      <BreadcrumbSchema title={'Writing'} url={'/writing'} />
+      <BreadcrumbSchema title={'Writing'} url={'https://molovo.co/writing'} />
     </>
   )
 }

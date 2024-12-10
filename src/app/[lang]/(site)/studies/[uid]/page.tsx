@@ -93,7 +93,7 @@ const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
       <Schema content={jsonLd} />
       <BreadcrumbSchema
         title={`${title}: Making ${client}`}
-        url={`/studies/${uid}`}
+        url={`https://molovo.co/studies/${uid}`}
       />
     </>
   )
