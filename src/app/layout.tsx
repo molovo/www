@@ -4,6 +4,7 @@ import Title from '@/components/title'
 import WebmentionsHead from '@/components/webmentions-head'
 import { Metadata } from 'next'
 import { gauthier, gtAmerica, haveHeart, haveHeartSwash } from '@/fonts'
+import WebVitals from '@/components/web-vitals'
 
 export const metadata: Metadata = {
   title: {
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Accounts />
         <WebmentionsHead />
         <Title />
+        <WebVitals />
       </head>
       <body>
         <SkipTo />
