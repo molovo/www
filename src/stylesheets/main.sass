@@ -32,6 +32,42 @@
 @import pages/article
 @import pages/projects
 @import pages/error
+@import pages/feed
 
 @import articles/the-view-from-above
 @import articles/sense-and-sensibility
+@import articles/the-world-is-broken
+
+.main
+  position: relative
+  // view-transition-name: main
+
+@view-transition
+  navigation: auto
+
+/* Create a custom animation */
+@keyframes move-out
+  from
+    opacity: 1
+    transform: translateY(0%)
+
+  to
+    opacity: 0
+    transform: translateY(-100%)
+
+@keyframes move-in
+  from
+    opacity: 0
+    transform: translateY(100%)
+
+  to
+    opacity: 1
+    transform: translateY(0%)
+
+/* Apply the custom animation to the old and new page states */
+#{'::view-transition-old(root)'}
+  animation: 0.5s ease-out both move-out
+
+#{'::view-transition-new(root)'}
+  animation: 0.5s ease-out both move-in
+

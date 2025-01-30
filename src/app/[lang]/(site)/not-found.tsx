@@ -1,6 +1,7 @@
 'use client'
 
-import image from '@/images/errors/404.gif'
+import useHeaderStyle from '@/hooks/use-header-style'
+import image from '@/images/errors/404.webp'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
@@ -13,9 +14,10 @@ export const generateStaticParams = async () => [{ lang: 'en' }]
 
 const NotFound = () => {
   const pathname = usePathname()
+  const setRef = useHeaderStyle('red')
 
   return (
-    <section className="error">
+    <section className="error" ref={setRef}>
       <div className="error__content">
         <h1 className="error__title">404</h1>
         <h2 className="error__subtitle">Oh! Are you lost?</h2>

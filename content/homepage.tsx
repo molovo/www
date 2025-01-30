@@ -21,6 +21,10 @@ export const content = {
     subtitle:
       'My work has been recognised by some of the industryʼs top players.',
   },
+  clients: {
+    title: 'I have friends in _high places_.',
+    subtitle: 'Iʼve had the pleasure of working with all of these fine folks.',
+  },
   projects: {
     title: 'Some things are _too good_ to keep to myself',
     subtitle:

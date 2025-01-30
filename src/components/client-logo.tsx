@@ -5,26 +5,16 @@ export const logoMap: {
   [key: string]: ComponentType<SVGProps<SVGSVGElement>>
 } = {
   '1855': dynamic(() => import('@icons/clients/1855')),
-  anglepoise: dynamic(
-    () => import('@icons/clients/anglepoise'),
-  ),
-  haresfoot: dynamic(
-    () => import('@icons/clients/haresfoot'),
-  ),
+  anglepoise: dynamic(() => import('@icons/clients/anglepoise')),
+  haresfoot: dynamic(() => import('@icons/clients/haresfoot')),
   joonbyrd: dynamic(() => import('@icons/clients/joonbyrd')),
   matte: dynamic(() => import('@icons/clients/matte')),
   octaevo: dynamic(() => import('@icons/clients/octaevo')),
-  redistribute: dynamic(
-    () => import('@icons/clients/redistribute'),
-  ),
-  'retainer-club': dynamic(
-    () => import('@icons/clients/retainer-club'),
-  ),
+  redistribute: dynamic(() => import('@icons/clients/redistribute')),
+  'retainer-club': dynamic(() => import('@icons/clients/retainer-club')),
   superrb: dynamic(() => import('@icons/clients/superrb')),
   you: dynamic(() => import('@icons/you')),
-  'vixen-fitness': dynamic(
-    () => import('@icons/clients/vixen-fitness'),
-  ),
+  'vixen-fitness': dynamic(() => import('@icons/clients/vixen-fitness')),
 }
 
 export const clientNameMap: { [key: string]: string } = {

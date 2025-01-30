@@ -1,33 +1,18 @@
-'use client'
-import {
-  CSSProperties,
-  MutableRefObject,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
 import { SoftwareSourceCode } from 'schema-dts'
 
-import HomepageSection, {
-  HomepageSectionLink,
-} from '@/components/homepage/section'
+import { HomepageSectionLink } from '@/components/homepage/section'
 import ProjectType from '@/types/project'
 import Link from '@/components/link'
 import Schema from '@/components/schema'
-
-import useHeaderStyle from '@/hooks/use-header-style'
 
 import JS from '@icons/languages/js.svg'
 import PHP from '@icons/languages/php.svg'
 import ZSH from '@icons/languages/zsh.svg'
 import TS from '@icons/languages/ts.svg'
-
-import ocean from 'react-syntax-highlighter/dist/esm/styles/hljs/ocean'
-
-import dynamic from 'next/dynamic'
-import CustomScrollbar from '../custom-scrollbar'
 import LinkIcon from '../images/icons/link'
+import CodeBlock from '../code-block'
+import { ReactNode } from 'react'
+import OpenSourceInner from './open-source-inner'
 
 const logoMap: { [key: string]: ReactNode } = {
   ZSH: <ZSH />,
@@ -43,66 +28,6 @@ const syntaxMap: { [key: string]: string } = {
   Typescript: 'typescript',
 }
 
-const dots = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
-
-const LoadingSpinner = () => {
-  const [index, setIndex] = useState<number>(0)
-  const interval = useRef<NodeJS.Timeout>()
-
-  const tick = () => {
-    setIndex((index) => {
-      const newIndex = index + 1
-
-      if (newIndex >= dots.length) {
-        return 0
-      }
-
-      return newIndex
-    })
-  }
-
-  useEffect(() => {
-    interval.current = setInterval(tick, 80)
-
-    return () => clearInterval(interval.current)
-  })
-
-  return (
-    <div className="loading-spinner">
-      <span>{dots[index]}</span>
-    </div>
-  )
-}
-
-const SyntaxHighlighter = dynamic(
-  async () => {
-    const { Light } = await import('react-syntax-highlighter')
-    const { default: bash } = await import(
-      'react-syntax-highlighter/dist/esm/languages/hljs/bash'
-    )
-    const { default: javascript } = await import(
-      'react-syntax-highlighter/dist/esm/languages/hljs/javascript'
-    )
-    const { default: php } = await import(
-      'react-syntax-highlighter/dist/esm/languages/hljs/php'
-    )
-    const { default: typescript } = await import(
-      'react-syntax-highlighter/dist/esm/languages/hljs/typescript'
-    )
-
-    Light.registerLanguage('bash', bash)
-    Light.registerLanguage('javascript', javascript)
-    Light.registerLanguage('php', php)
-    Light.registerLanguage('typescript', typescript)
-
-    return Light
-  },
-  {
-    loading: () => <LoadingSpinner />,
-    ssr: false,
-  },
-)
-
 const OpenSource = ({
   title,
   subtitle,
@@ -114,86 +39,54 @@ const OpenSource = ({
   link?: HomepageSectionLink
   projects: ProjectType[]
 }) => {
-  const setRef = useHeaderStyle('white')
-  const projectsContainer =
-    useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  const formattedProjects = projects.map((project) => ({
+    ...project,
+    output: (() => {
+      const jsonLd: SoftwareSourceCode = {
+        '@type': 'SoftwareSourceCode',
+        name: project.metadata.title,
+        description: project.metadata.description,
+        url: project.metadata.url,
+        codeRepository: project.metadata.repo,
+        programmingLanguage: project.metadata.language,
+      }
 
-  useEffect(() => {
-    ;(async () => {
-      const { gtAmericaMono } = await import('@/fonts/homepage')
-      projectsContainer.current.classList.add(gtAmericaMono.variable)
-    })()
-  })
+      return (
+        <div className="open-source__project" key={project.metadata.slug}>
+          <div className="open-source__logo">
+            {logoMap[project.metadata.language]}
+          </div>
+
+          <pre className="open-source__project-intro">
+            {`/**
+ * `}
+            <Link href={project.metadata.url}>
+              {project.metadata.title}
+              <LinkIcon />
+            </Link>
+            {`
+ *
+ * ${project.metadata.description.replace('\n', '\n * ')}
+ */`}
+          </pre>
+
+          <CodeBlock lang={syntaxMap[project.metadata.language]}>
+            {project.code}
+          </CodeBlock>
+
+          <Schema content={jsonLd} />
+        </div>
+      )
+    })() as ReactNode,
+  }))
 
   return (
-    <HomepageSection
+    <OpenSourceInner
       title={title}
-      titleSwashCharacter="N"
       subtitle={subtitle}
-      className="open-source"
-      ref={setRef}
-    >
-      <div
-        className="open-source__projects"
-        ref={projectsContainer}
-        id="projects-list"
-      >
-        {projects.map(
-          ({
-            code,
-            slug,
-            metadata: { url, repo, title, description, language },
-          }) => {
-            const jsonLd: SoftwareSourceCode = {
-              '@type': 'SoftwareSourceCode',
-              name: title,
-              description,
-              url,
-              codeRepository: repo,
-              programmingLanguage: language,
-            }
-
-            return (
-              <div className="open-source__project" key={slug}>
-                <div className="open-source__logo">{logoMap[language]}</div>
-
-                <pre className="open-source__project-intro">
-                  {`/**
- * `}
-                  <Link href={url}>
-                    {title}
-                    <LinkIcon />
-                  </Link>
-                  {`
- *
- * ${description.replace('\n', '\n * ')}
- */`}
-                </pre>
-                <SyntaxHighlighter
-                  language={syntaxMap[language]}
-                  style={ocean}
-                >
-                  {code}
-                </SyntaxHighlighter>
-
-                <Schema content={jsonLd} />
-              </div>
-            )
-          },
-        )}
-      </div>
-
-      <div className="open-source__footer">
-        <Link className="button" href={link?.url}>
-          {link?.label}
-        </Link>
-
-        <CustomScrollbar
-          controls={projectsContainer}
-          className="open-source__scrollbar"
-        />
-      </div>
-    </HomepageSection>
+      link={link}
+      projects={formattedProjects}
+    />
   )
 }
 

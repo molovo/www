@@ -36,6 +36,7 @@ $gutterMin: $baseline
 $gutterMid: $baseline * 2
 $gutterMax: $baseline * 3
 $gutterLimit: calc(50vw - #{$containerWidth / 2})
+$contentLimit: calc(50vw - ($contentWidth / 2))
 
 $breakpoint-largeMobile: 30rem
 $breakpoint-tablet: 42rem
@@ -45,6 +46,7 @@ $breakpoint-container: calc($containerWidth + ($gutterMax * 2))
 
 #{':root'}
   --gutter: #{$gutterMin}
+  --content-gutter: var(--gutter)
   --spacing: #{$gutterMid}
   --color: #{$black}
   --background: #{$white}
@@ -60,3 +62,6 @@ $breakpoint-container: calc($containerWidth + ($gutterMax * 2))
 
   @media (min-width: $breakpoint-container)
     --gutter: #{$gutterLimit}
+
+  @media (min-width: $contentBreakpoint)
+    --content-gutter: #{$contentLimit}

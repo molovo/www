@@ -98,6 +98,10 @@ const Webmentions = async ({ slug }: { slug: string }) => {
     return null
   }
 
+  if (webmentions.length === 0) {
+    return null
+  }
+
   const mediumPosts = webmentions.filter(
     (mention) => mention['wm-property'] === WebmentionType.medium,
   )

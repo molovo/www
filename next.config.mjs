@@ -32,6 +32,12 @@ const nextConfig = {
         port: '',
         pathname: '/avatar/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.bsky.app',
+        port: '',
+        pathname: '/img/feed_{thumbnail,fullsize}/**',
+      },
     ],
   },
 

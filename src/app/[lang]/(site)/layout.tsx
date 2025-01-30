@@ -9,6 +9,7 @@ import { ClientSlug } from '@/components/client-logo'
 
 import getHeaderStyleForSSR from '@/utils/get-header-style-for-ssr'
 import getClientForSSR from '@/utils/get-client-for-ssr'
+import Main from '@/components/main'
 import Menu from '@/components/menu'
 import Footer from '@/components/footer'
 import Contact from '@/components/contact'
@@ -52,9 +53,7 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
         defaultClient={client as ClientSlug | undefined}
       />
       <Menu studies={studies} />
-      <main id="content" className="main">
-        {children}
-      </main>
+      <Main>{children}</Main>
       <Footer />
       <Contact />
 

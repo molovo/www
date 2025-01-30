@@ -12,11 +12,12 @@
 
   &__content
     +gutters
-    padding-block: calc(var(--spacing) * 2) var(--spacing)
     align-items: flex-start
+    background: $gray
     display: flex
     flex-direction: column
     justify-content: center
+    padding-block: calc(var(--spacing) * 2) var(--spacing)
     text-align: left
 
     a
@@ -32,3 +33,11 @@
   &__title
     +scriptTitle
     color: $red
+    margin: 0
+
+    @media (min-width: 1px)
+      font-size: 24vw
+
+  &__subtitle
+    position: relative
+    z-index: 2

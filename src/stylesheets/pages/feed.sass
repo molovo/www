@@ -1,0 +1,113 @@
+.feed
+  +gutters
+  padding-top: $gutterMax
+
+  &__items
+    +spacing
+    display: flex
+    flex-direction: column
+    font-size: .875em
+    gap: $gutterMid
+    line-height: $baseline
+    margin: 0 auto
+    max-width: 32em
+
+  &__item
+    display: grid
+    gap: .5em
+    grid-template-columns: 1fr 1fr
+    list-style: none
+
+    .content-figure
+      margin: 0
+      width: 100%
+
+  &__text,
+  &__embed
+    grid-column: span 2
+
+  &__embed
+    &-image,
+    &-video,
+    &-link,
+    .content-figure
+      border-radius: 6px
+      overflow: hidden
+
+      img,
+      video
+        display: block
+        height: auto
+        width: 100%
+
+    &-link
+      align-items: center
+      background: $gray
+      color: $black
+      display: grid
+      gap: .75em
+      grid-template-columns: 6em 1fr
+      padding: .75em
+      text-decoration: none
+      transition: color .5s ease, background .5s ease
+
+      &:hover
+        background: $red
+        color: $white
+
+      &-image
+        display: block
+        margin: 0
+
+      &-content
+        margin: 0
+
+      &:not(:has(.feed__embed-link-image))
+        grid-template-columns: 100%
+
+      h5,
+      p
+        font-size: .875em
+        line-height: 1.25em
+        margin: 0
+        padding: 0 .5em
+
+      h5
+        font-weight: $weight-bold
+        letter-spacing: normal
+
+  &__text
+    margin: 0 0 .5em
+    white-space: pre-wrap
+
+    a
+      color: inherit
+      font-weight: 700
+
+  &__time,
+  &__author
+    align-items: center
+    display: flex
+    font-size: .875em
+    font-weight: bold
+    gap: .5em
+    line-height: $baseline
+    text-decoration: none
+
+    svg
+      flex: 0 0 auto
+      height: auto
+      margin: 2px 0 0
+      width: 1.25em
+
+      path
+        fill: $gray3
+
+  &__time
+    color: $gray3
+
+  &__author
+    color: $red
+    grid-column: 2 / span 1
+    justify-content: flex-end
+    text-align: right

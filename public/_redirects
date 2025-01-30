@@ -36,6 +36,8 @@ https://molovo.netlify.app/*                            https://molovo.co/:splat
 /writing/taking-the-leap                                /writing/this-site-has-been-on-a-diet                       301
 /writing/thank-you-for-not-smoking                      /writing/this-site-has-been-on-a-diet                       301
 /writing/holding-back-the-years                         /writing/this-site-has-been-on-a-diet                       301
+/writing/sincerly-yours-a-pissed-off-web-developer      /writing/this-site-has-been-on-a-diet                       301
+/writing/things-about-css-that-make-me-want-to-put-my-face-in-a-blender  /writing/this-site-has-been-on-a-diet      301
 
 # Redirect old browserwrapper page
 /labs/browserwrapper                                    https://browserwrapper.molovo.co                            301
