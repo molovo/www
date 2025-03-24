@@ -25,12 +25,12 @@ export const generateMetadata = async ({
     openGraph: {
       images: [
         {
-          url: `/api/content/studies/${uid}/og-image.jpg`,
+          url: `/images/studies/${uid}/og-image.jpg`,
         },
       ],
     },
     twitter: {
-      images: `/api/content/studies/${uid}/og-image.jpg`,
+      images: `/images/studies/${uid}/og-image.jpg`,
     },
     alternates: {
       canonical: `https://molovo.co/studies/${uid}`,
@@ -80,7 +80,7 @@ const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
     url: `https://molovo.co/studies/${uid}`,
     image: {
       '@type': 'ImageObject',
-      url: `https://molovo.co/api/content/studies/${uid}/og-image.jpg`,
+      url: `https://molovo.co/images/studies/${uid}/og-image.jpg`,
       height: '630px',
       width: '1200px',
       representativeOfPage: true,

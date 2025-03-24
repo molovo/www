@@ -12,18 +12,18 @@ const getScreenshot = async (uid: string) => {
       waitUntil: 'networkidle2',
     },
   )
-  const image = await page.screenshot()
+  const image = await page.screenshot({ type: 'jpeg' })
   await page.close()
   await browser.close()
 
   return image
 }
 
-export async function generateStaticParams() {
-  const studies = await getStudies()
+// export async function generateStaticParams() {
+//   const studies = await getStudies()
 
-  return studies.map(({ slug }) => ({ uid: slug }))
-}
+//   return studies.map(({ slug }) => ({ uid: slug }))
+// }
 
 export async function GET(
   request: Request,
