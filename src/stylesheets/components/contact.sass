@@ -29,9 +29,9 @@
   &__form
     align-items: stretch
     display: grid
+    gap: ($baseline / 2)
     grid-template-columns: 100%
     grid-template-rows: 1fr auto auto
-    gap: ($baseline / 2)
     height: 100%
     max-width: $contentWidth
     padding-top: $gutterMax
@@ -71,7 +71,7 @@
         +script
         display: block
         font-size: max(3.5em, 6vw)
-        margin: 0
+        margin: 0 0 1rem
         text-align: left
 
       .form__required-indicator
