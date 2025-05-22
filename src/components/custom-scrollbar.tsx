@@ -123,6 +123,7 @@ const CustomScrollbar = (
         // Required attributes are added on hydration
         // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
         role="scrollbar"
+        aria-label="Scrollbar"
         aria-controls={controls?.current?.id}
         aria-valuemin={0}
         aria-valuemax={100}
