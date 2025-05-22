@@ -176,6 +176,7 @@ const Image = ({
           : {})}
         ref={ref}
         style={{ ...style, ...(zoomable ? { cursor: 'zoom-in' } : {}) }}
+        aria-label={'Zoom image'}
         aria-expanded={zoomed}
       />
 
