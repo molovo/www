@@ -21,7 +21,7 @@ const TypeSample = ({
   return (
     <figure className={`type-sample ${fontClass}`}>
       <div className="type-sample__wrapper" style={style}>
-        <span className="type-sample__line">{getWords(sourceWords, 8)}</span>
+        <span className="type-sample__line" aria-hidden="true">{getWords(sourceWords, 8)}</span>
         <span
           className="type-sample__font-name"
           data-content-before={getWords(sourceWords, 4)}
@@ -29,7 +29,7 @@ const TypeSample = ({
         >
           {fontName}
         </span>
-        <span className="type-sample__line">{getWords(sourceWords, 8)}</span>
+        <span className="type-sample__line" aria-hidden="true">{getWords(sourceWords, 8)}</span>
       </div>
     </figure>
   )
