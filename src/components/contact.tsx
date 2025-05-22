@@ -2,7 +2,6 @@
 
 import { contactSubmit } from '@/actions'
 import useHeaderStyle from '@/hooks/use-header-style'
-import Send from '@/components/images/icons/send.svg'
 import useContactFormStateStore from '@/store/contact-form-state'
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { MutableRefObject, useEffect, useRef } from 'react'
