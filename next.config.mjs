@@ -28,9 +28,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'webmention.io',
+        hostname: 'avatars.webmention.io',
         port: '',
-        pathname: '/avatar/**',
+        pathname: '/**',
       },
       {
         protocol: 'https',
