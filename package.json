@@ -17,7 +17,7 @@
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.4",
-    "@superrb/react-addons": "^3.0.0-20",
+    "@superrb/react-addons": "^3.0.0-43",
     "date-fns": "^3.6.0",
     "glob": "^10.3.10",
     "javascript-time-ago": "^2.5.11",

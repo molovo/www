@@ -498,10 +498,10 @@
   resolved "https://registry.yarnpkg.com/@shikijs/vscode-textmate/-/vscode-textmate-10.0.1.tgz#d06d45b67ac5e9b0088e3f67ebd3f25c6c3d711a"
   integrity sha512-fTIQwLF+Qhuws31iw7Ncl1R3HUDtGwIipiJ9iU+UsDUwMhegFcQKQHd51nZjb7CArq0MvON8rbgCGQYWHUKAdg==
 
-"@superrb/react-addons@^3.0.0-20":
-  version "3.0.0-20"
-  resolved "https://registry.yarnpkg.com/@superrb/react-addons/-/react-addons-3.0.0-20.tgz#22874167df3f13acc1b2c9566916837b96fe3a07"
-  integrity sha512-qEXVlWpBGVSvFPcnP/I68+6yyiIDcRGO0sCPOJDSQUEz7Vl0C2UTRlKGy/gIOohe+0LpYAazOAAhBYbaf06rwg==
+"@superrb/react-addons@^3.0.0-43":
+  version "3.0.0-43"
+  resolved "https://registry.yarnpkg.com/@superrb/react-addons/-/react-addons-3.0.0-43.tgz#4fc33ddf6882a9b2118a6f417943c3c9d80a6d46"
+  integrity sha512-pijQD7xgdGT2uVv5fIuJuM3mhrJlF03sm3KIwuKpjltkcot3i0vZ6Dvxt9GXIPnEvOXd75l6FIeFb3sY7e+9Mg==
   dependencies:
     "@hookform/resolvers" "^3.3.1"
     change-case "^4.1.2"
@@ -510,6 +510,7 @@
     react-google-recaptcha-v3 "^1.10.1"
     react-hook-form "^7.46.1"
     react-use-draggable-scroll "^0.4.7"
+    simple-zustand-devtools "^1.1.0"
 
 "@swc/helpers@0.5.2":
   version "0.5.2"
