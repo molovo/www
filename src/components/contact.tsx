@@ -106,8 +106,9 @@ const Contact = () => {
           schema={schema}
           action={contactSubmit}
           useRecaptcha={false}
-          renderSubmit={() => (
-            <button className="button button--alt" type="submit">
+          disabled={!isOpen}
+          renderSubmit={(props) => (
+            <button className="button button--alt" type="submit" {...props}>
               Send message
             </button>
           )}
