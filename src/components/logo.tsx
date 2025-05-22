@@ -58,6 +58,7 @@ const Logo = ({
 
   const inner = (
     <>
+      <span className="screenreader-text">Molovo</span>
       <div className="logo__image">
         {asLink && loading ? (
           <div
