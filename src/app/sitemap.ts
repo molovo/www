@@ -1,7 +1,7 @@
 import { getPosts } from '@/data/posts'
 import { getStudies } from '@/data/studies'
 
-const ROOT = 'https://molovo.co'
+const ROOT = process.env.DEPLOY_PRIME_URL || 'https://molovo.co'
 
 export default async function sitemap() {
   return [
