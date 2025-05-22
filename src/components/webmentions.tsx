@@ -53,11 +53,13 @@ const WebmentionItem = ({
   name,
   text,
   additionalText,
+  imageAlt = name,
 }: {
   image: string | any
   text: string
   name?: string
   additionalText?: string
+  imageAlt?: string
 }) => (
   <li className="mentions__item">
     <Image
@@ -65,7 +67,7 @@ const WebmentionItem = ({
       src={image}
       width="100"
       height="100"
-      alt={name as string}
+      alt={imageAlt}
     />
     <p
       dangerouslySetInnerHTML={{
@@ -136,6 +138,7 @@ const Webmentions = async ({ slug }: { slug: string }) => {
             <WebmentionItem
               key={mention['wm-id']}
               image={mediumLogo}
+              imageAlt={'medium.com'}
               name={undefined}
               text={`<a href="${mention.url}" target="_blank" rel="noopener">Posted on medium.com</a> on ${mention['wm-received']}`}
             />
