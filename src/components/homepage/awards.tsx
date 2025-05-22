@@ -39,6 +39,7 @@ const Awards = ({
               target="_blank"
               rel="noopener"
             >
+              <span className="screenreader-text">Joonbyrd</span>
               <ClientLogo client="joonbyrd" />
             </Link>
           </div>
@@ -57,6 +58,7 @@ const Awards = ({
         <li className="awards__item">
           <div className="awards__logo">
             <Link href="https://www.octaevo.com" target="_blank" rel="noopener">
+              <span className="screenreader-text">Octaevo</span>
               <ClientLogo client="octaevo" />
             </Link>
           </div>
@@ -89,6 +91,7 @@ const Awards = ({
         <li className="awards__item">
           <div className="awards__logo">
             <Link href="https://www.superrb.com" target="_blank" rel="noopener">
+              <span className="screenreader-text">Superrb</span>
               <ClientLogo client="superrb" />
             </Link>
           </div>
