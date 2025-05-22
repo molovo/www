@@ -67,7 +67,7 @@ const WebmentionItem = ({
       src={image}
       width="100"
       height="100"
-      alt={imageAlt}
+      alt={imageAlt as string}
     />
     <p
       dangerouslySetInnerHTML={{
