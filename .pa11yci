@@ -1,6 +1,5 @@
 {
   "defaults": {
-    "concurrency": 4,
     "standard": "WCAG2AA"
   }
 }

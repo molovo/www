@@ -1,0 +1,66 @@
+name: pa11y trendsetters
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    name: Building site and running pa11y-ci tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: install
+
+      - name: Build Site
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: build
+
+      - name: Start server
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: start &
+
+      - name: Run pa11y-ci tests
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: run pa11y:local 2>&1 | tee pa11y_output.txt
+
+      - name: Read pa11y_output file.
+        id: pa11y_output
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./pa11y_output.txt
+
+      - name: Comment on pull request.
+        uses: thollander/actions-comment-pull-request@v2
+        if: github.actor != 'dependabot[bot]'
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: '<details><summary>Pa11y testing results</summary>
+
+
+```${{ steps.pa11y_output.outputs.content }}```
+
+</details>'
+
+      - name: Check for pa11y failures.
+        if: contains(steps.pa11y_output.outputs.content, 'errno 2')
+        run: |
+          echo "::error::The site is failing accessibility tests. Please review the comment in the pull request or the pa11y-ci step in the workflow for details."
+          exit 1
