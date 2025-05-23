@@ -34,7 +34,7 @@ jobs:
       - name: Start server
         uses: borales/actions-yarn@v5
         with:
-          cmd: start &
+          cmd: start . &
 
       - name: Run pa11y-ci tests
         uses: borales/actions-yarn@v5
