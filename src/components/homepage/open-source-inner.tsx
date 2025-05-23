@@ -7,8 +7,9 @@ import ProjectType from '@/types/project'
 import CustomScrollbar from '@/components/custom-scrollbar'
 import { MutableRefObject, ReactNode, useRef } from 'react'
 import useHeaderStyle from '@/hooks/use-header-style'
-import Link from '@/components/link'
-import {gtAmericaMono} from '@/fonts/homepage'
+import { gtAmericaMono } from '@/fonts/homepage'
+import Button from '../button'
+import Github from '../images/icons/social/github.svg'
 
 const OpenSourceInner = ({
   title,
@@ -43,9 +44,9 @@ const OpenSourceInner = ({
       </div>
 
       <div className="open-source__footer">
-        <Link className="button" href={link?.url}>
+        <Button icon={<Github />} href={link?.url}>
           {link?.label}
-        </Link>
+        </Button>
 
         <CustomScrollbar
           controls={projectsContainer}

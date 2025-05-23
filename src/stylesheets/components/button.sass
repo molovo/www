@@ -1,17 +1,19 @@
 .button
+  +unbutton
   align-items: center
-  background: $red
+  background: transparent
   border: 0
   border-radius: 6px
-  color: $white
+  color: inherit
   cursor: pointer
   display: inline-flex
-  gap: 1ch
   font-size: .875em
   font-weight: 700
+  gap: 0
   line-height: $baseline
   justify-content: center
-  padding: ($baseline * .5) ($baseline * .65)
+  overflow: hidden
+  padding: .25em 1.25em
   position: relative
   text-decoration: none
   // text-transform: uppercase
@@ -19,37 +21,66 @@
   white-space: nowrap
   z-index: 1
 
+  &:has(.button__icon--primary)
+    gap: .5em
+
   &::before
-    +cover(-8px)
-    background-color: transparent
-    border: 2px solid currentColor
-    border-radius: inherit
-    color: inherit
+    aspect-ratio: 1
+    background: $red
+    border-radius: 100vw
     content: ''
     display: block
-    opacity: 0
+    height: 2em
+    left: 0
     position: absolute
-    transition: opacity .5s ease, left .5s .5s ease, right .5s .5s ease, top .5s .5s ease, bottom .5s .5s ease
-
-  &--alt
-    &::before
-      border-color: $white
+    top: 0
+    width: 2em
+    transition: width .5s ease
+    z-index: -1
 
   &:hover
-    background: transparent !important
-    border-color: transparent !important
-    color: inherit !important
+    color: $white
 
     &::before
-      +cover(0)
+      width: 100%
+
+    .button__icon
       opacity: 1
-      transition: opacity .5s ease, left .5s ease, right .5s ease, top .5s ease, bottom .5s ease
+      transform: translateX(-.5em)
 
-  svg
-    color: inherit
+      &-line
+        transform: translateX(0)
+
+      &--primary
+        opacity: 0
+
+  &__icon
+    color: $white
     flex: 0 0 auto
-    height: 1em
-    width: 1em
+    height: 1.5em
+    width: 1.5em
+    transform: translateX(-1.25em)
+    transition: opacity .5s ease, transform .5s ease
+    z-index: 3
 
-    path
-      fill: currentColor
+    &-line,
+    &-arrow
+      stroke: currentColor
+      stroke-width: 7.5px
+      transition: transform .5s ease
+
+    &-line
+      transform: translateX(-30em)
+
+    &--primary
+      height: 1em
+      transform: translateX(-.75em)
+      width: 1em
+
+      path
+        fill: currentColor
+
+      & + .button__icon
+        opacity: 0
+        position: absolute
+        left: 1.25em

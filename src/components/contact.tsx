@@ -4,7 +4,12 @@ import { contactSubmit } from '@/actions'
 import useHeaderStyle from '@/hooks/use-header-style'
 import useContactFormStateStore from '@/store/contact-form-state'
 import { useEventListener } from '@superrb/react-addons/hooks'
-import { MutableRefObject, useEffect, useRef } from 'react'
+import {
+  ButtonHTMLAttributes,
+  MutableRefObject,
+  useEffect,
+  useRef,
+} from 'react'
 import { useState } from 'reinspect'
 import { Form } from '@superrb/react-addons/components'
 import * as Yup from 'yup'
@@ -106,8 +111,10 @@ const Contact = () => {
           action={contactSubmit}
           useRecaptcha={false}
           disabled={!isOpen}
-          renderSubmit={(props) => (
-            <button className="button button--alt" type="submit" {...props}>
+          renderSubmit={(
+            props: { label?: string } & ButtonHTMLAttributes<HTMLButtonElement>,
+          ) => (
+            <button className="contact__submit" type="submit" {...props}>
               Send message
             </button>
           )}
@@ -120,12 +127,7 @@ const Contact = () => {
                 I&apos;ll get back to you as soon as I can.
               </p>
 
-              <button
-                className="button button--alt"
-                onClick={() => closeForm(0)}
-              >
-                Back to site
-              </button>
+              <Button onClick={() => closeForm(0)}>Back to site</Button>
             </div>
           )}
         />
