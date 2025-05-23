@@ -7,6 +7,7 @@ import CaseStudySection from './case-study-section'
 import Link from '@/components/link'
 import Logo from '@/components/logo'
 import CaseStudyKnowledge from '@/components/case-study-knowledge'
+import Button from '@/components/button'
 
 const CaseStudy = ({ study }: { study: CaseStudyType }) => {
   const setClient = useClientStore((state) => state.setClient)
@@ -60,14 +61,14 @@ const CaseStudy = ({ study }: { study: CaseStudyType }) => {
                   Please visit ${study.client} to see the full website in action.
                 `}
               </p>
-              <Link
+              <Button
                 href={study.url}
                 className="case-study__visit-link"
                 style={study.styles?.visitButton}
               >
                 {study.offline ? 'View' : 'Visit'} {study.client}{' '}
                 {study.offline ? 'on Wayback Machine' : 'website'}
-              </Link>
+              </Button>
             </div>
 
             {study.next && (

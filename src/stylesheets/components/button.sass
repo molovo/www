@@ -1,10 +1,13 @@
 .button
+  --icon-background: $red
+  --icon-color: $white
+  --text-color: inherit
   +unbutton
   align-items: center
   background: transparent
   border: 0
   border-radius: 6px
-  color: inherit
+  color: var(--text-color)
   cursor: pointer
   display: inline-flex
   font-size: .875em
@@ -26,7 +29,7 @@
 
   &::before
     aspect-ratio: 1
-    background: $red
+    background: var(--icon-background)
     border-radius: 100vw
     content: ''
     display: block
@@ -39,7 +42,7 @@
     z-index: -1
 
   &:hover
-    color: $white
+    color: var(--icon-color)
 
     &::before
       width: 100%
@@ -55,7 +58,7 @@
         opacity: 0
 
   &__icon
-    color: $white
+    color: var(--icon-color)
     flex: 0 0 auto
     height: 1.5em
     width: 1.5em

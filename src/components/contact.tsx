@@ -13,6 +13,7 @@ import {
 import { useState } from 'reinspect'
 import { Form } from '@superrb/react-addons/components'
 import * as Yup from 'yup'
+import Button from './button'
 
 const schema = Yup.object().shape({
   message: Yup.string()
