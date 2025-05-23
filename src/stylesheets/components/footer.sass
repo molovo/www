@@ -1,6 +1,6 @@
 .footer
   +gutters
-  background: $red
+  background: $red2
   color: $white
   display: flex
   flex-wrap: wrap
@@ -70,14 +70,15 @@
     &-link
       +unbutton
       align-items: center
-      color: rgba($white, .5)
+      color: rgba($white, .75)
       display: inline-flex
       gap: .5ch
-      text-decoration: none
-      transition: color .5s ease
+      text-decoration: underline 1px solid transparent
+      transition: color .5s ease, text-decoration-color .5s ease
 
       &:hover
         color: $white
+        text-decoration-color: $white
 
       svg
         color: inherit
@@ -105,4 +106,4 @@
       white-space: nowrap
 
   &__attribution
-    opacity: .5
+    opacity: .75
