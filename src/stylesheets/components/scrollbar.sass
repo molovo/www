@@ -20,14 +20,26 @@
       cursor: pointer
       height: 3px
       margin: 0
+      transition: height .5s ease
       width: 100%
 
   @each $suffix in -webkit-slider-thumb, -moz-range-thumb, -ms-thumb
     &::#{$suffix}
       appearance: none
-      background: $white
+      background: $white url('') center / auto 50% no-repeat
       border: 0
       border-radius: 0
       height: 3px
       margin: 0
+      transition: height .5s ease, background .5s ease
       width: 1em
+
+  &:hover
+    @each $suffix in -webkit-slider-track, -moz-range-track, -ms-track
+      &::#{$suffix}
+        height: 10px
+
+    @each $suffix in -webkit-slider-thumb, -moz-range-thumb, -ms-thumb
+      &::#{$suffix}
+        background: $white url(../../images/icons/scrollbar-thumb.svg) center / auto 50% no-repeat
+        height: 10px
