@@ -3,10 +3,10 @@
 import Logo from './logo'
 import MenuToggle from './menu-toggle'
 import useNavStateStore from '@/store/nav-state'
-import { useHideOnScroll } from '@superrb/react-addons/hooks'
+import { useEventListener, useHideOnScroll } from '@superrb/react-addons/hooks'
 import useThemeStore, { Color, HeaderStyle } from '@/store/theme'
 import useLoadingStore from '@/store/loading'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { ClientSlug } from './client-logo'
 
@@ -36,26 +36,51 @@ const Header = ({
   const loading = useLoadingStore((state) => state.loading)
 
   const [hidden, setHidden] = useState<boolean>(false)
-  const hideOnScroll = useHideOnScroll()
 
   const pathname = usePathname()
 
-  useEffect(() => {
-    setHidden(hideOnScroll)
-  }, [hideOnScroll])
+  const handleScroll = useCallback(() => {
+    const previousY = window.scrollY
+    console.log(window.scrollY)
+
+    setTimeout(() => {
+      const y = window.scrollY
+
+      if (y <= 50) {
+        setHidden(false)
+        return
+      }
+
+      if (y > previousY + 10) {
+        setHidden(true)
+      }
+
+      if (y < previousY - 10) {
+        setHidden(false)
+      }
+    }, 100)
+  }, [setHidden])
 
   useEffect(() => {
-    setHidden(false)
+    handleScroll()
     setStoredDefaultStyle(() => undefined)
     setStoredDefaultColor(() => undefined)
     setStoredDefaultClient(() => undefined)
-  }, [pathname])
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [pathname, handleScroll])
 
   return (
     <header
-      className={`header ${storedDefaultStyle ? `header--${storedDefaultStyle}` : ``} header--${
-        isOpen ? 'white' : headerStyle
-      } ${!isOpen && !loading && hidden ? 'header--hidden' : ''}`}
+      className={`header ${
+        storedDefaultStyle ? `header--${storedDefaultStyle}` : ``
+      } header--${isOpen ? 'white' : headerStyle} ${
+        !isOpen && !loading && hidden ? 'header--hidden' : ''
+      }`}
       {...((headerColor || storedDefaultColor) &&
         !isOpen && { style: { color: headerColor || storedDefaultColor } })}
     >
