@@ -1,6 +1,6 @@
 .footer
   +gutters
-  background: $red2
+  background: $red
   color: $white
   display: flex
   flex-wrap: wrap
@@ -38,12 +38,18 @@
     text-align: left
     transition: color .5s ease
 
-    &:hover
-      color: $black
-
+    .cta-title
       .swash
         &::before
           color: $red2
+
+    &:hover
+      color: rgba($gray, .5)
+
+      .cta-title
+        .swash
+          &::before
+            color: $red3
 
   &__bottom
     align-items: center
@@ -64,21 +70,21 @@
       list-style: none
       margin: 0
 
-    &:hover > a:not(:hover)
-      color: $red3
+    &:hover > ul > li:not(:hover)
+      a, button
+        color: $red3
 
     &-link
       +unbutton
       align-items: center
-      color: rgba($white, .75)
+      color: rgba($gray, .79)
       display: inline-flex
       gap: .5ch
       text-decoration: underline 1px solid transparent
-      transition: color .5s ease, text-decoration-color .5s ease
+      transition: color .5s ease
 
       &:hover
         color: $white
-        text-decoration-color: $white
 
       svg
         color: inherit
