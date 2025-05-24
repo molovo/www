@@ -8,7 +8,7 @@ const swash = (
 ) =>
   text.replace(
     /_([^_]+)_/g,
-    `<span class="swash" style="${convertStyles(style)}" ${
+    `<span aria-hidden="true" class="swash" style="${convertStyles(style)}" ${
       character ? `data-character="${character}"` : ''
     }>$1</span>`,
   )
