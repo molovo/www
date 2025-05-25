@@ -6,8 +6,6 @@ import { MessageSendingResponse } from 'postmark/dist/client/models'
 export const contactSubmit = async (data: FormData) => {
   const client = new ServerClient(process.env.POSTMARK_API_KEY as string)
 
-  console.log(data.get('message'), data.get('email'))
-
   try {
     const response: MessageSendingResponse = await client.sendEmail({
       To: process.env.CONTACT_FORM_EMAIL_TO as string,

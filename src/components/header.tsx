@@ -41,7 +41,6 @@ const Header = ({
 
   const handleScroll = useCallback(() => {
     const previousY = window.scrollY
-    console.log(window.scrollY)
 
     setTimeout(() => {
       const y = window.scrollY
