@@ -14,8 +14,6 @@ export const metadata = {
   },
 }
 
-export const generateStaticParams = async () => [{ lang: 'en' }]
-
 const Page = async () => {
   let posts = await getPosts()
 

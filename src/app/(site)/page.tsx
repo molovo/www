@@ -47,13 +47,7 @@ const jsonLdPerson: Person = {
   ],
 }
 
-export const generateStaticParams = async () => [{ lang: 'en' }]
-
-export default async function Page({
-  params: { lang },
-}: {
-  params: { lang: string }
-}) {
+export default async function Page() {
   return (
     <>
       <Hero {...content.hero} />

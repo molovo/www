@@ -33,7 +33,6 @@ export async function generateStaticParams() {
   const posts = await getPosts()
 
   return posts.map((study) => ({
-    lang: 'en',
     uid: study.slug,
   }))
 }

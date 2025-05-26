@@ -45,7 +45,6 @@ export async function generateStaticParams() {
   const studies = await getStudies()
 
   return studies.map((study) => ({
-    lang: 'en',
     uid: study.slug,
   }))
 }
