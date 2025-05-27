@@ -9,22 +9,9 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 
   experimental: {
-    optimizePackageImports: [
-      '@superrb/react-addons/actions',
-      '@superrb/react-addons/components',
-      '@superrb/react-addons/context',
-      '@superrb/react-addons/hooks',
-      '@superrb/react-addons/storage',
-      '@superrb/react-addons/store',
-      '@superrb/react-addons/utils',
-      '@superrb/next-addons/components',
-      '@superrb/next-addons/context',
-      '@superrb/next-addons/server',
-    ],
-
     outputFileTracingIncludes: {
-      '/api/**': ['./content/**/*']
-    }
+      '/api/**': ['./content/**/*'],
+    },
   },
 
   // Optionally, add any other Next.js config below
