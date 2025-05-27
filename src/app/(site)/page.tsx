@@ -2,9 +2,10 @@ import { content } from 'content/homepage'
 import Hero from '@/components/homepage/hero'
 import { Organization, Person, WebSite } from 'schema-dts'
 import Schema from '@/components/schema'
-import Awards from '@/components/homepage/awards'
-import OpenSource from '@/components/homepage/open-source'
-import Writing from '@/components/homepage/writing'
+// import Awards from '@/components/homepage/awards'
+// import OpenSource from '@/components/homepage/open-source'
+// import Writing from '@/components/homepage/writing'
+import dynamic from 'next/dynamic'
 
 export const metadata = {
   title: {
@@ -46,6 +47,16 @@ const jsonLdPerson: Person = {
     'https://medium.com/@molovo',
   ],
 }
+
+const Awards = dynamic(() => import('@/components/homepage/awards'), {
+  ssr: true,
+})
+const OpenSource = dynamic(() => import('@/components/homepage/open-source'), {
+  ssr: true,
+})
+const Writing = dynamic(() => import('@/components/homepage/writing'), {
+  ssr: true,
+})
 
 export default async function Page() {
   return (
