@@ -21,6 +21,10 @@ const nextConfig = {
       '@superrb/next-addons/context',
       '@superrb/next-addons/server',
     ],
+
+    outputFileTracingIncludes: {
+      '/api/**': ['./content/**/*']
+    }
   },
 
   // Optionally, add any other Next.js config below
