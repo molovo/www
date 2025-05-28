@@ -2,7 +2,7 @@
   z-index: 9
 
   .case-study-item__inner-background,
-  .case-study-item__content
+  .case-study-item__title
     opacity: 1
 
 $padding: clamp($baseline * .5, 2vw, $baseline)
@@ -72,7 +72,7 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
     display: flex
     flex-direction: column
     justify-content: flex-end
-    opacity: 0
+    // opacity: 0
     padding: $padding
     transition: opacity .5s ease
 
@@ -87,8 +87,10 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
     +script
     font-size: calc(19vmin * var(--fontSizeMultiplier))
     margin: 0
+    opacity: 0
     text-wrap: balance
     transform: rotate(-5deg)
+    transition: opacity .5s ease, transform .5s ease
     z-index: 0
     width: 120%
 
