@@ -2,7 +2,7 @@
 
 import useClientStore from '@/store/client'
 import CaseStudyType from '@/types/case-study'
-import { useEffect } from 'react'
+import { CSSProperties, useEffect } from 'react'
 import CaseStudySection from './case-study-section'
 import Link from '@/components/link'
 import Logo from '@/components/logo'
@@ -46,10 +46,12 @@ const CaseStudy = ({ study }: { study: CaseStudyType }) => {
       {study.url && (
         <div
           className="case-study__footer"
-          style={{
-            ...study.styles?.knowledge?.main,
-            '--background': study.styles?.knowledge?.main?.backgroundColor,
-          }}
+          style={
+            {
+              ...study.styles?.knowledge?.main,
+              '--background': study.styles?.knowledge?.main?.backgroundColor,
+            } as CSSProperties
+          }
         >
           <LineBreak />
 
