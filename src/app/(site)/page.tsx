@@ -5,14 +5,16 @@ import Schema from '@/components/schema'
 // import Awards from '@/components/homepage/awards'
 // import OpenSource from '@/components/homepage/open-source'
 // import Writing from '@/components/homepage/writing'
-import dynamic from 'next/dynamic'
+import dynamicComponent from 'next/dynamic'
+
+export const dynamic = 'force-static'
 
 export const metadata = {
   title: {
     absolute: 'molovo. Design, Development, Branding',
   },
   description:
-    "James Dinsdale is a designer and developer from Poole UK. Building immersive, interactive experiences on the web. Let's build something together.",
+    "James Dinsdale is a designer and developer from Poole, UK; building immersive, interactive experiences on the web. Let's build something together.",
   alternates: {
     canonical: 'https://molovo.co',
     types: {
@@ -48,13 +50,13 @@ const jsonLdPerson: Person = {
   ],
 }
 
-const Awards = dynamic(() => import('@/components/homepage/awards'), {
+const Awards = dynamicComponent(() => import('@/components/homepage/awards'), {
   ssr: true,
 })
-const OpenSource = dynamic(() => import('@/components/homepage/open-source'), {
+const OpenSource = dynamicComponent(() => import('@/components/homepage/open-source'), {
   ssr: true,
 })
-const Writing = dynamic(() => import('@/components/homepage/writing'), {
+const Writing = dynamicComponent(() => import('@/components/homepage/writing'), {
   ssr: true,
 })
 

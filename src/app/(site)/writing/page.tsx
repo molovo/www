@@ -2,6 +2,8 @@ import { getPosts } from '@/data/posts'
 import Writing from './writing'
 import BreadcrumbSchema from '@/components/breadcrumb-schema'
 
+export const dynamic = 'force-static'
+
 export const metadata = {
   title: 'Writing',
   description:
