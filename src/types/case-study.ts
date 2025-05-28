@@ -43,6 +43,7 @@ export default interface CaseStudyType {
   superrb?: boolean
   help?: string[]
 
+  prev: CaseStudyType
   next: CaseStudyType
 
   knowledge: Array<{

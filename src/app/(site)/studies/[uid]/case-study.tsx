@@ -8,6 +8,7 @@ import Link from '@/components/link'
 import Logo from '@/components/logo'
 import CaseStudyKnowledge from '@/components/case-study-knowledge'
 import Button from '@/components/button'
+import LineBreak from '@/components/line-break'
 
 const CaseStudy = ({ study }: { study: CaseStudyType }) => {
   const setClient = useClientStore((state) => state.setClient)
@@ -44,40 +45,48 @@ const CaseStudy = ({ study }: { study: CaseStudyType }) => {
 
       {study.url && (
         <div
-          className="case-study__visit"
+          className="case-study__footer"
           style={{
             ...study.styles?.knowledge?.main,
+            '--background': study.styles?.knowledge?.main?.backgroundColor,
           }}
         >
-          <div className="case-study__visit-inner" style={study.styles?.visit}>
-            <div className="case-study__visit-content">
-              <h2 className="case-study__visit-title">Thanks for reading</h2>
-              <p className="case-study__visit-text">
-                {study.offline
-                  ? `
-                  Unfortunately, the ${study.client} website is now offline, but you can use the link below to view it in the Wayback Machine. Please be aware that some links may be broken.
-                `
-                  : `
-                  Please visit ${study.client} to see the full website in action.
-                `}
-              </p>
-              <Button
-                href={study.url}
-                className="case-study__visit-link"
-                style={study.styles?.visitButton}
-              >
-                {study.offline ? 'View' : 'Visit'} {study.client}{' '}
-                {study.offline ? 'on Wayback Machine' : 'website'}
-              </Button>
-            </div>
+          <LineBreak />
 
-            {study.next && (
-              <a href={study.next.url} className="case-study__visit-next">
-                <Logo client={study.next.slug} asLink={false} />
-                View next case study
-              </a>
-            )}
+          <div className="case-study__footer-inner">
+            <h2 className="case-study__footer-title">Thanks for reading</h2>
+            <p className="case-study__footer-text">
+              {study.offline
+                ? `
+                Unfortunately, the ${study.client} website is now offline, but you can use the link below to view it in the Wayback Machine. Please be aware that some links may be broken.
+              `
+                : `
+                Please visit ${study.client} to see the full website in action.
+              `}
+            </p>
+            <Button
+              href={study.url}
+              className="case-study__footer-link"
+              style={study.styles?.visitButton}
+            >
+              {study.offline ? 'View' : 'Visit'} {study.client}{' '}
+              {study.offline ? 'on Wayback Machine' : 'website'}
+            </Button>
           </div>
+
+          {study.next && (
+            <div className="case-study__navigation">
+              <Link
+                href={study.next.url}
+                className="case-study__navigation-link case-study__navigation-link--next"
+              >
+                <Logo client={study.next.slug} asLink={false} />
+                <span className="case-study__navigation-link-label">
+                  Next case study →
+                </span>
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </article>

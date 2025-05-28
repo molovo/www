@@ -86,9 +86,9 @@ const Listing = ({ posts }: Props) => {
               </div>
             </div>
 
-            {description && (
-              <p className="writing__post-excerpt content">{description}</p>
-            )}
+            {/* {description && ( */}
+            {/*   <p className="writing__post-excerpt content">{description}</p> */}
+            {/* )} */}
 
             <Schema content={jsonLd} />
           </li>

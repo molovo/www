@@ -51,9 +51,19 @@ export const getStudy = async (
 
     const sections = await getSections(slug)
 
-    let next
-    if (metadata.next) {
-      try {
+    let next, prev
+    try {
+      if (metadata.prev) {
+        const { metadata: prevMetadata } = await import(
+          `content/studies/${metadata.prev}/index.mdx`
+        )
+        prev = {
+          ...prevMetadata,
+          slug: metadata.prev,
+          url: `/studies/${metadata.prev}`,
+        }
+      }
+      if (metadata.next) {
         const { metadata: nextMetadata } = await import(
           `content/studies/${metadata.next}/index.mdx`
         )
@@ -62,12 +72,12 @@ export const getStudy = async (
           slug: metadata.next,
           url: `/studies/${metadata.next}`,
         }
-      } catch (error) {
-        console.error(error)
       }
+    } catch (error) {
+      console.error(error)
     }
 
-    return { ...metadata, slug, sections, next }
+    return { ...metadata, slug, sections, next, prev }
   } catch (error) {
     if ((error as Error).message.startsWith('Cannot find module')) {
       return
