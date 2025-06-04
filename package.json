@@ -5,7 +5,9 @@
   "type": "module",
   "sideEffects": false,
   "browserslist": [
-    "extends browserslist-config-baseline/2024"
+    "last 2 versions",
+"not dead",
+"not op_mini all"
   ],
   "scripts": {
     "dev": "next dev",
