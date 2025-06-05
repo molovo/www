@@ -65,12 +65,14 @@
 
     .sun
       animation: move-sun 7.5s linear infinite
+      width: clamp(6em, 25vw, 12em)
 
       @media (prefers-reduced-motion: reduce)
         offset-distance: 62.5%
 
     .moon
       animation: move-moon 7.5s linear infinite
+      width: clamp(3em, 12.5vw, 6em)
 
       @media (prefers-reduced-motion: reduce)
         offset-distance: 87.5%
@@ -80,6 +82,7 @@
     // image-rendering: pixelated
     margin: 10vw auto
     max-width: 24em
+    width: 50vw
 
   h2
     bottom: 10vw

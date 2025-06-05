@@ -5,7 +5,6 @@ import ContentImage from '@/components/content-image'
 import laptop from '@/images/articles/perpetually-online/laptop.png'
 import Sun from './icons/sun.svg'
 import Moon from './icons/moon.svg'
-import Lamp from './icons/lamp.svg'
 import useHeaderStyle from '@/hooks/use-header-style'
 
 const PerpetuallyOnlineHeading = () => {
@@ -22,6 +21,7 @@ const PerpetuallyOnlineHeading = () => {
         alt="Man sitting at a laptop"
         src={laptop}
         sizes="24em"
+        zoomable={false}
       />
       <h1 className={cinema.className}>Perpetually Online</h1>
     </div>
