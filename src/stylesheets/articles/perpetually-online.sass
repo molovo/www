@@ -1,0 +1,123 @@
+@keyframes rotate-globe
+  from
+    background-position: -300% 50%
+
+  to
+    background-position: 0 50%
+
+@keyframes move-sun
+  0%
+    offset-distance: 50%
+    opacity: 0
+
+  5%
+    opacity: 1
+
+  45%
+    opacity: 1
+
+  50%
+    opacity: 0
+
+  100%
+    offset-distance: 150%
+    opacity: 0
+
+@keyframes move-moon
+  0%
+    offset-distance: 0%
+    opacity: 0
+
+  50%
+    opacity: 0
+
+  55%
+    opacity: 1
+
+  95%
+    opacity: 1
+
+  100%
+    offset-distance: 100%
+    opacity: 0
+
+.article--perpetually-online
+  --color: #{#050d14}
+  --background: #ebe9d6
+  background: #ebe9d6
+  color: #050d14
+
+  // .article
+  //   &__title
+  //     -webkit-text-fill-color: transparent
+  //     // animation: rotate-globe 240s linear infinite
+  //     background: url(../../images/articles/perpetually-online/earth_1980.webp) left center / 100% auto repeat-x
+  //     background-clip: text
+  //     color: $red
+  //     filter: saturate(2) //contrast(1.5)
+  //     font-family: Shatterboxx
+  //     font-size: 18vw
+  //     font-weight: normal
+  //     left: 50%
+  //     letter-spacing: normal
+  //     padding-block: .125em
+  //     position: relative
+  //     text-align: center
+  //     text-transform: uppercase
+  //     transform: translateX(-50%)
+  //     width: 8em
+
+  //   &__section
+  //     &[aria-label="Perpetually Online"]
+  //       background: #ebe9d6
+  //       color: #050d14
+  //       left: 50%
+  //       margin-top: $gutterMax
+  //       padding-block: $gutterMax
+  //       padding-inline: var(--content-gutter)
+  //       position: relative
+  //       transform: translateX(-50%)
+  //       width: 100vw
+
+
+.perpetually-online-heading
+  margin-top: ($gutterMax * -1)
+  position: relative
+
+  &__animation
+    +cover
+
+    .sun,
+    .moon
+      offset-path: ellipse(80% 50% at center)
+      position: absolute
+
+    .sun
+      animation: move-sun 7.5s linear infinite
+
+      @media (prefers-reduced-motion: reduce)
+        offset-distance: 62.5%
+
+    .moon
+      animation: move-moon 7.5s linear infinite
+
+      @media (prefers-reduced-motion: reduce)
+        offset-distance: 87.5%
+
+  &__image
+    filter: contrast(65%)
+    // image-rendering: pixelated
+    margin: 10vw auto
+    max-width: 24em
+
+  h2
+    bottom: 10vw
+    color: $red
+    font-size: 6vw
+    font-weight: normal
+    left: 50%
+    letter-spacing: normal
+    position: absolute
+    text-align: center
+    text-transform: uppercase
+    transform: translate(-50%, 75%)
