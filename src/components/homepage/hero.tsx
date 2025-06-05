@@ -47,7 +47,7 @@ const Hero = ({
       const height = container.current.clientHeight
       const scrollHeight = window.innerHeight
 
-      setPos(Math.max(0, 6 - (y / scrollHeight) * 6))
+      setPos(Math.max(0, 6 - (y / (scrollHeight / 1.5)) * 6))
       setScrolled(y > 45)
 
       studiesElements?.forEach((item) => {

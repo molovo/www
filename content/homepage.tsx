@@ -51,9 +51,9 @@ export const content = {
     title: 'I _write_ about design, development, and the web.',
     subtitle: 'Here are a few of my favourite articles.',
     posts: await getPosts([
+      'perpetually-online',
       'the-view-from-above',
       'selling-yourself',
-      'getting-it-wrong',
     ]),
     link: {
       url: '/writing',

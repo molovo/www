@@ -18,7 +18,7 @@ const Listing = ({ posts }: Props) => {
 
   return (
     <ul className="writing__posts" ref={setRef}>
-      {posts.map(({ slug, title, image, date, description }) => {
+      {posts.map(({ slug, title, image, date, styles, description }) => {
         const jsonLd: ArticleSchema = {
           '@type': 'Article',
           headline: title,
@@ -43,7 +43,7 @@ const Listing = ({ posts }: Props) => {
         }
 
         return (
-          <li key={slug} className="writing__post">
+          <li key={slug} className={`writing__post writing__post--${slug}`}>
             <div className="writing__post-header">
               {image ? (
                 <div className="writing__post-image">
