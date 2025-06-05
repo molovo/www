@@ -39,6 +39,7 @@ const Article = ({
     image,
     imageAlt,
     imageSizes,
+    HeaderComponent,
     headerStyle,
     headerColor,
     styles,
@@ -54,23 +55,29 @@ const Article = ({
     >
       <div className="article__content">
         <header className="article__header">
-          {image && (
-            <Image
-              src={image as string | StaticImageData}
-              alt={imageAlt as string}
-              sizes={imageSizes || '(min-width: 64em) 64em, 100vw'}
-              className="article__image"
-              style={styles?.image as Partial<CSSProperties>}
-              loading="eager"
-            />
+          {HeaderComponent ? (
+            <HeaderComponent />
+          ) : (
+            <>
+              {image && (
+                <Image
+                  src={image as string | StaticImageData}
+                  alt={imageAlt as string}
+                  sizes={imageSizes || '(min-width: 64em) 64em, 100vw'}
+                  className="article__image"
+                  style={styles?.image as Partial<CSSProperties>}
+                  loading="eager"
+                />
+              )}
+              <h1
+                className="article__title"
+                style={styles?.title}
+                dangerouslySetInnerHTML={{
+                  __html: swash(title, titleSwashCharacter, styles?.titleSwash),
+                }}
+              />
+            </>
           )}
-          <h1
-            className="article__title"
-            style={styles?.title}
-            dangerouslySetInnerHTML={{
-              __html: swash(title, titleSwashCharacter, styles?.titleSwash),
-            }}
-          />
         </header>
 
         <div className="content">
