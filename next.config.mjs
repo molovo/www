@@ -29,6 +29,12 @@ const nextConfig = {
         port: '',
         pathname: '/img/feed_{thumbnail,fullsize}/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'media.giphy.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 
