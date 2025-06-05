@@ -73,7 +73,9 @@ const Footer = () => {
         </nav>
 
         <span className="footer__attribution">
-          &copy;{new Date().getFullYear()} molovo. All rights reserved.
+          Made with ♡ in Poole, UK.
+          <br />
+          &copy;{new Date().getFullYear()} James Dinsdale. All rights reserved.
         </span>
       </div>
     </footer>
