@@ -1,7 +1,7 @@
 import { CSSProperties, PropsWithChildren } from 'react'
 
 export interface ContentFigureProps {
-  size: 'standard' | 'container-width' | 'full-width'
+  size: 'standard' | 'container-width' | 'full-width' | 'text-width'
   withPadding?: boolean
   caption?: string
   style?: Partial<CSSProperties>
