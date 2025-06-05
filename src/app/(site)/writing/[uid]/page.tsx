@@ -6,6 +6,7 @@ import ArticleType from '@/types/article'
 import { getPost, getPosts } from '@/data/posts'
 import BreadcrumbSchema from '@/components/breadcrumb-schema'
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
+import { Metadata } from 'next'
 
 export const generateMetadata = async ({
   params: { uid },
@@ -18,15 +19,30 @@ export const generateMetadata = async ({
     notFound()
   }
 
-  const { title, description } = post as ArticleType
+  const { title, description, opengraphImage, opengraphImageAlt } =
+    post as ArticleType
 
-  return {
+  const metadata: Metadata = {
     title,
     description,
+
     alternates: {
       canonical: `https://molovo.co/writing/${uid}`,
     },
   }
+
+  if (opengraphImage) {
+    metadata.openGraph = {
+      images: [
+        {
+          url: typeof opengraphImage === 'string' ? opengraphImage : opengraphImage.src,
+          alt: opengraphImageAlt,
+        },
+      ],
+    }
+  }
+
+  return metadata
 }
 
 export async function generateStaticParams() {

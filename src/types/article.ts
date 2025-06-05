@@ -1,6 +1,6 @@
 import { Color, HeaderStyle } from '@/store/theme'
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
-import { Component, CSSProperties, ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
 export default interface ArticleType {
   slug: string
@@ -13,6 +13,9 @@ export default interface ArticleType {
   imageSizes?: string
   tags?: string[]
   featured?: boolean
+
+  opengraphImage?: string | StaticImageData
+  opengraphImageAlt?: string
 
   HeaderComponent?: (...args: any[]) => ReactNode
 
