@@ -27,8 +27,9 @@ const getScreenshot = async (uid: string) => {
 
 export async function GET(
   request: Request,
-  { params: { uid } }: { params: { uid: string } },
+  { params }: { params: Promise<{ uid: string }> },
 ) {
+  const { uid } = await params
   const screenshot = await getScreenshot(uid)
 
   return new Response(screenshot, {

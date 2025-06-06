@@ -4,13 +4,13 @@ import {
   ForwardedRef,
   forwardRef,
   InputHTMLAttributes,
-  MutableRefObject,
+  RefObject,
   useEffect,
   useRef,
   useState,
 } from 'react'
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  controls: MutableRefObject<HTMLElement>
+  controls: RefObject<HTMLElement | null>
   className?: string
   style?: Partial<CSSProperties>
 }
@@ -21,8 +21,7 @@ const CustomScrollbar = (
   { controls, className = '', style = {}, ...props }: Props,
   ref: ForwardedRef<HTMLInputElement | null>,
 ) => {
-  const progress =
-    useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
+  const progress = useRef<HTMLInputElement>(null)
 
   if (ref) {
     if ('current' in ref) {
@@ -42,6 +41,10 @@ const CustomScrollbar = (
   }
 
   const handleScroll = () => {
+    if (!controls.current) {
+      return
+    }
+
     if (!dragging) {
       const progressInput = progress.current
       if (progressInput) {
@@ -63,6 +66,10 @@ const CustomScrollbar = (
   })
 
   const handleInput = () => {
+    if (!controls.current || !progress.current) {
+      return
+    }
+
     const value = parseFloat(progress.current?.value)
     if (value) {
       controls.current.scrollTo({
@@ -77,10 +84,15 @@ const CustomScrollbar = (
   useEventListener('change', handleInput, undefined, progress.current)
   useEventListener('resize', handleScroll)
 
-  const updateSliderWidth = () =>
+  const updateSliderWidth = () => {
+    if (!controls.current) {
+      return
+    }
+
     setSliderWidth(
       (controls.current?.clientWidth / controls.current?.scrollWidth) * 100,
     )
+  }
 
   useEventListener('resize', updateSliderWidth)
   useEffect(() => {

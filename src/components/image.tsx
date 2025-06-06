@@ -5,7 +5,6 @@ import NextImage, { ImageProps as NextImageProps } from 'next/image'
 import {
   CSSProperties,
   KeyboardEventHandler,
-  MutableRefObject,
   useRef,
   useState,
 } from 'react'
@@ -71,8 +70,8 @@ const Image = ({
   sizes = '1vw',
   ...props
 }: Props) => {
-  const ref = useRef<HTMLImageElement>() as MutableRefObject<HTMLImageElement>
-  const portalRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  const ref = useRef<HTMLImageElement>(null)
+  const portalRef = useRef<HTMLDivElement>(null)
   const [zoomed, setZoomed] = useState<boolean>(false)
   const [transitioning, setTransitioning] = useState<boolean>(false)
   const [originalPosition, setOriginalPosition] = useState<
@@ -89,6 +88,10 @@ const Image = ({
   useLockBodyScroll(zoomed)
 
   const open = () => {
+    if (!ref.current) {
+      return
+    }
+
     const { bottom, left, right, top } = ref.current?.getBoundingClientRect()
     setOriginalPosition({
       bottom: window.innerHeight - bottom,

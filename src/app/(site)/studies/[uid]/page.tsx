@@ -7,10 +7,11 @@ import { notFound } from 'next/navigation'
 import BreadcrumbSchema from '@/components/breadcrumb-schema'
 
 export const generateMetadata = async ({
-  params: { uid },
+  params,
 }: {
-  params: { uid: string }
+  params: Promise<{ uid: string }>
 }): Promise<Metadata> => {
+  const { uid } = await params
   const study = await getStudy(uid)
 
   if (!study) {
@@ -49,7 +50,8 @@ export async function generateStaticParams() {
   }))
 }
 
-const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
+const Page = async ({ params }: { params: Promise<{ uid: string }> }) => {
+  const { uid } = await params
   const study = await getStudy(uid)
 
   if (!study) {

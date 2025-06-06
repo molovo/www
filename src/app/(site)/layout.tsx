@@ -34,7 +34,7 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
     'vixen-fitness',
   ])
 
-  const pathname = headers().get('x-pathname') || '/'
+  const pathname = (await headers()).get('x-pathname') || '/'
   const { headerStyle, headerColor } = await getHeaderStyleForSSR(pathname)
   const client = await getClientForSSR(pathname)
 

@@ -60,11 +60,9 @@ const SyncedScroll = ({
   size: ContentFigureProps['size']
   imageStyle?: { [key: number]: Partial<CSSProperties> }
 }) => {
-  const ref = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
-  const tallest = useRef<HTMLElement | undefined>() as MutableRefObject<
-    HTMLElement | undefined
-  >
-  const sorted = useRef<HTMLElement[]>([]) as MutableRefObject<HTMLElement[]>
+  const ref = useRef<HTMLDivElement>(null)
+  const tallest = useRef<HTMLElement>(null)
+  const sorted = useRef<HTMLElement[]>([])
 
   const setElements = useCallback((element: HTMLDivElement) => {
     if (!element) {
@@ -89,13 +87,13 @@ const SyncedScroll = ({
       })
 
     // Grab the tallest element
-    tallest.current = sorted.current.shift()
+    tallest.current = sorted.current.shift() || null
   }, [])
 
   useEventListener(
     'scroll',
     () => {
-      syncedParallax(sorted.current, tallest.current)
+      syncedParallax(sorted.current, tallest.current || undefined)
     },
     { passive: false },
   )

@@ -39,7 +39,7 @@ const OpenSource = ({
   link?: HomepageSectionLink
   projects: ProjectType[]
 }) => {
-  const formattedProjects = projects.map((project) => ({
+  const formattedProjects = projects.map((project, i) => ({
     ...project,
     output: (() => {
       const jsonLd: SoftwareSourceCode = {
@@ -52,7 +52,7 @@ const OpenSource = ({
       }
 
       return (
-        <div className="open-source__project" key={project.metadata.slug}>
+        <div className="open-source__project" key={i}>
           <div className="open-source__logo">
             {logoMap[project.metadata.language]}
           </div>

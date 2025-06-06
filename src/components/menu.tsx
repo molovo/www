@@ -53,7 +53,7 @@ const secondaryNavigationItems: NavigationItem[] = [
 ]
 
 const Menu = ({ studies = [] }: { studies: CaseStudyType[] }) => {
-  const nav = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
+  const nav = useRef<HTMLElement>(null)
   const isMobile = useIsMobile(true, '48em')
   const { isOpen, close } = useNavStateStore()
   const [caseStudiesVisible, setCaseStudiesVisible] = useState(
@@ -77,9 +77,9 @@ const Menu = ({ studies = [] }: { studies: CaseStudyType[] }) => {
   useLockBodyScroll(isOpen)
   useEscape(nav, close)
 
-  const blurTimer = useRef<NodeJS.Timeout | null>(
+  const blurTimer = useRef<NodeJS.Timeout>(
     null,
-  ) as MutableRefObject<NodeJS.Timeout | null>
+  )
 
   return (
     <nav

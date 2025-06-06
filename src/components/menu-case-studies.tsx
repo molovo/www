@@ -16,18 +16,19 @@ const MenuCaseStudies = ({
   studies: CaseStudyType[]
   visible: boolean
 }) => {
-  const container =
-    useRef<HTMLUListElement>() as MutableRefObject<HTMLUListElement>
-  const scrollTimer = useRef<NodeJS.Timeout>()
+  const container = useRef<HTMLUListElement>(null)
+  const scrollTimer = useRef<NodeJS.Timeout>(null)
   const [scrolling, setScrolling] = useState<boolean>(false, 'Scrolling')
 
   const studiesElements = useLiveNodeList(
     '.menu .case-study-item',
-    container.current,
+    container.current || undefined,
   )
 
   const handleScroll = useCallback(() => {
-    clearTimeout(scrollTimer.current)
+    if (scrollTimer.current) {
+      clearTimeout(scrollTimer.current)
+    }
 
     if (!container.current) {
       return

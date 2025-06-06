@@ -6,7 +6,7 @@ const dots = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '�
 
 export default function Loading() {
   const [index, setIndex] = useState<number>(0)
-  const interval = useRef<NodeJS.Timeout>()
+  const interval = useRef<NodeJS.Timeout>(null)
 
   const tick = () => {
     setIndex((index) => {
@@ -23,7 +23,11 @@ export default function Loading() {
   useEffect(() => {
     interval.current = setInterval(tick, 80)
 
-    return () => clearInterval(interval.current)
+    return () => {
+      if (interval.current) {
+        clearInterval(interval.current)
+      }
+    }
   })
 
   return (

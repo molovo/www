@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react'
 
-const EighteenFiftyFiveLogo = (props: SVGProps<SVGSVGElement>): JSX.Element => (
+const EighteenFiftyFiveLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg
     version="1.0"
     width="822.000000pt"

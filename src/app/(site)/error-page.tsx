@@ -1,5 +1,6 @@
 'use client'
 
+import Link from '@/components/link'
 import image from '@/images/errors/500.gif'
 import Image from 'next/image'
 
@@ -20,7 +21,7 @@ const ErrorPage = () => {
         </p>
 
         <p className="error__message">
-          For now, please try heading <a href="/">back to the homepage</a>.
+          For now, please try heading <Link href="/">back to the homepage</Link>.
         </p>
       </div>
 

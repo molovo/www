@@ -35,7 +35,7 @@ c-0.4,0.2-0.8,0.6-1.2,0.9c0.1,0.1,0.1,0.3,0.2,0.4c0.4-0.1,0.8-0.1,1.2-0.3c7.1-3.
 C252.1,331.7,252.3,331.3,252.7,331z M252,324.7c-0.1-0.2-0.2-0.4-0.4-0.6c-7.4,3.1-14.8,6.2-22.3,9.2c0,0.2,0.1,0.4,0.1,0.5
 c0.4-0.1,0.9,0,1.2-0.2c1.5-0.6,3.1-1.2,4.6-1.8c5-2,9.9-4,14.8-6.1C250.8,325.6,251.3,325.1,252,324.7z`
 
-const AnglepoiseLogo = (props: SVGProps<SVGSVGElement>): JSX.Element => (
+const AnglepoiseLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg version="1.1" viewBox="0 0 393.4 393.4" {...props}>
     <path fill="#dedfe0" d={path} />
   </svg>

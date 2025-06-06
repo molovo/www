@@ -69,7 +69,7 @@ const SocialSharing = ({
   const postText =
     text ||
     `${
-      title || (typeof document !== 'undefined' ? document?.title : '')
+      title
     } :: ${url}`
 
   return (

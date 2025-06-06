@@ -5,12 +5,13 @@ import Listing from '@/components/listing'
 
 export const generateStaticParams = async () => {
   const posts = await getPosts()
-  const tags = new Set(posts.flatMap(post => post.tags || []))
+  const tags = new Set(posts.flatMap((post) => post.tags || []))
 
-  return Array.from(tags).map(tag => ({ tag }))
+  return Array.from(tags).map((tag) => ({ tag }))
 }
 
-const Page = async ({ params: { tag } }: { params: { tag: string } }) => {
+const Page = async ({ params }: { params: Promise<{ tag: string }> }) => {
+  const { tag } = await params
   const posts = (await getPosts()).filter(({ tags }) => tags?.includes(tag))
 
   return (

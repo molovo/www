@@ -26,7 +26,7 @@ const OpenSourceInner = ({
 }) => {
   const setRef = useHeaderStyle('white')
   const projectsContainer =
-    useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+    useRef<HTMLDivElement>(null)
   return (
     <HomepageSection
       title={title}

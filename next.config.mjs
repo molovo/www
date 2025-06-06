@@ -8,11 +8,9 @@ const nextConfig = {
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 
-  experimental: {
     outputFileTracingIncludes: {
       '/api/**': ['./content/**/*'],
     },
-  },
 
   // Optionally, add any other Next.js config below
   images: {

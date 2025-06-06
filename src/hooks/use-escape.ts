@@ -1,6 +1,10 @@
 import { useEventListener } from '@superrb/react-addons/hooks'
+import { RefObject } from 'react'
 
-const useEscape = (ref: React.RefObject<HTMLElement>, callback: () => void) => {
+const useEscape = (
+  ref: RefObject<HTMLElement | null>,
+  callback: () => void,
+) => {
   useEventListener(
     'keydown',
     (event) => {
@@ -14,7 +18,7 @@ const useEscape = (ref: React.RefObject<HTMLElement>, callback: () => void) => {
     },
     {},
     typeof document !== 'undefined' ? document : undefined,
-    ref.current !== undefined && document !== undefined,
+    ref.current !== undefined && typeof document !== 'undefined',
   )
 }
 

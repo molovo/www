@@ -4,12 +4,7 @@ import { contactSubmit } from '@/actions'
 import useHeaderStyle from '@/hooks/use-header-style'
 import useContactFormStateStore from '@/store/contact-form-state'
 import { useEventListener } from '@superrb/react-addons/hooks'
-import {
-  ButtonHTMLAttributes,
-  MutableRefObject,
-  useEffect,
-  useRef,
-} from 'react'
+import { ButtonHTMLAttributes, useEffect, useRef } from 'react'
 import { useState } from 'reinspect'
 import { Form } from '@superrb/react-addons/components'
 import * as Yup from 'yup'
@@ -31,9 +26,8 @@ const Contact = () => {
     false,
     'Contact form opening animation',
   )
-  const ref = useRef<HTMLElement | null>() as MutableRefObject<HTMLElement>
-  const inputRef =
-    useRef<HTMLTextAreaElement>() as MutableRefObject<HTMLTextAreaElement>
+  const ref = useRef<HTMLElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
   const setRef = useHeaderStyle('white')
   const { isOpen, close } = useContactFormStateStore()
 
@@ -64,6 +58,10 @@ const Contact = () => {
   useEventListener(
     'scroll',
     () => {
+      if (!ref.current) {
+        return
+      }
+
       if (
         window.scrollY <
         document.documentElement.scrollHeight -
@@ -80,6 +78,10 @@ const Contact = () => {
   )
 
   const closeForm = (position?: number) => {
+    if (!ref.current) {
+      return
+    }
+
     window.scrollTo({
       top:
         position !== undefined

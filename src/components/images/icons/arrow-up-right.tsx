@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ArrowUpRight = (): JSX.Element => (
+const ArrowUpRight = () => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <g strokeLinecap="round" fill="none" strokeLinejoin="round">
       <g

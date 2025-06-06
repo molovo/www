@@ -5,29 +5,14 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import swash from '@/utils/swash'
 import ArticleType from '@/types/article'
-import { CSSProperties } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import LineBreak from '@/components/line-break'
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 
-const Webmentions = dynamic(() => import('@/components/webmentions'), {
-  ssr: false,
-  loading: () => (
-    <>
-      <LineBreak />
-      <aside className="mentions">
-        <p>Loading webmentions&hellip;</p>
-      </aside>
-    </>
-  ),
-})
-
-const SocialSharing = dynamic(() => import('@/components/social-sharing'), {
-  loading: () => null,
-  ssr: false,
-})
-
 interface Props {
   post: ArticleType
+  webmentions?: ReactNode
+  socialSharing?: ReactNode
 }
 
 const Article = ({
@@ -40,12 +25,14 @@ const Article = ({
     imageAlt,
     imageSizes,
     HeaderComponent,
-    headerStyle,
+    headerStyle = 'red',
     headerColor,
     styles,
   },
+  webmentions,
+  socialSharing,
 }: Props) => {
-  const setRef = useHeaderStyle(headerStyle || 'red', headerColor)
+  const setRef = useHeaderStyle(headerStyle, headerColor)
 
   return (
     <article
@@ -81,12 +68,12 @@ const Article = ({
         </header>
 
         <div className="content">
-          <SocialSharing title={title.replace('_', '')} />
+          {socialSharing}
           <div className="content__inner">{content}</div>
         </div>
       </div>
 
-      <Webmentions slug={slug as string} />
+      {webmentions}
     </article>
   )
 }

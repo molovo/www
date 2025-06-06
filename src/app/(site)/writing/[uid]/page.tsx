@@ -7,12 +7,32 @@ import { getPost, getPosts } from '@/data/posts'
 import BreadcrumbSchema from '@/components/breadcrumb-schema'
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
+import LineBreak from '@/components/line-break'
+
+const Webmentions = dynamic(() => import('@/components/webmentions'), {
+  ssr: true,
+  loading: () => (
+    <>
+      <LineBreak />
+      <aside className="mentions">
+        <p>Loading webmentions&hellip;</p>
+      </aside>
+    </>
+  ),
+})
+
+const SocialSharing = dynamic(() => import('@/components/social-sharing'), {
+  loading: () => null,
+  ssr: true,
+})
 
 export const generateMetadata = async ({
-  params: { uid },
+  params,
 }: {
-  params: { uid: string }
+  params: Promise<{ uid: string }>
 }) => {
+  const { uid } = await params
   const post = await getPost(uid)
 
   if (!post) {
@@ -35,7 +55,10 @@ export const generateMetadata = async ({
     metadata.openGraph = {
       images: [
         {
-          url: typeof opengraphImage === 'string' ? opengraphImage : opengraphImage.src,
+          url:
+            typeof opengraphImage === 'string'
+              ? opengraphImage
+              : opengraphImage.src,
           alt: opengraphImageAlt,
         },
       ],
@@ -53,14 +76,18 @@ export async function generateStaticParams() {
   }))
 }
 
-const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
+const Page = async ({ params }: { params: Promise<{ uid: string }> }) => {
+  const { uid } = await params
   const post = await getPost(uid)
 
   if (!post) {
     notFound()
   }
 
-  const { title, image, date } = post
+  const { slug, title, image, date } = post
+
+  const socialSharing = <SocialSharing title={title.replace('_', '')} />
+  const webmentions = <Webmentions slug={slug as string} />
 
   const jsonLd: ArticleSchema = {
     '@type': 'Article',
@@ -96,7 +123,11 @@ const Page = async ({ params: { uid } }: { params: { uid: string } }) => {
 
   return (
     <>
-      <Article post={post} />
+      <Article
+        post={post}
+        socialSharing={socialSharing}
+        webmentions={webmentions}
+      />
       <Schema content={jsonLd} />
       <BreadcrumbSchema
         title={title}

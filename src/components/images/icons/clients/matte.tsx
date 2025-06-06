@@ -3,7 +3,7 @@ import React, { SVGProps } from 'react'
 const MatteLogo = ({
   style = {},
   ...props
-}: SVGProps<SVGSVGElement>): JSX.Element => (
+}: SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"

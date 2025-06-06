@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react'
 
-const HaresfootLogo = (props: SVGProps<SVGSVGElement>): JSX.Element => (
+const HaresfootLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 159.000000 140.000000"
     className="study__icon study__icon--haresfoot"

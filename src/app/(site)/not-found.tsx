@@ -1,5 +1,6 @@
 'use client'
 
+import Link from '@/components/link'
 import useHeaderStyle from '@/hooks/use-header-style'
 import image from '@/images/errors/404.webp'
 import Image from 'next/image'
@@ -24,19 +25,19 @@ const NotFound = () => {
         <p className="error__message">
           This page doesn’t seem to exist any more. If you could please take a
           second to{' '}
-          <a
+          <Link
             href={`https://bsky.app/intent/compose?text=@molovo.co I just found a
             missing page on your site at this url :: https://molovo.co${pathname}`}
             target="_blank"
             rel="nofollow noopenner noreferrer"
           >
             let me know
-          </a>
+          </Link>
           , that would be a big help.
         </p>
 
         <p className="error__message">
-          For now, please try heading <a href="/">back to the homepage</a>.
+          For now, please try heading <Link href="/">back to the homepage</Link>.
         </p>
       </div>
 

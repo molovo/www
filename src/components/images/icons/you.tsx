@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react'
 
-const You = (props: SVGProps<SVGSVGElement>): JSX.Element => (
+const You = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"

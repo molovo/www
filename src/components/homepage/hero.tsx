@@ -28,7 +28,7 @@ const Hero = ({
     isMobile || scrolled ? 'white' : 'white-red',
   )
   const [pos, setPos] = useState<number>(6)
-  const container = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  const container = useRef<HTMLDivElement>(null)
   const { isInViewport, setRef: setIsInViewportRef } = useIsInViewport(false)
 
   const setRef = (ref: HTMLElement) => {
@@ -38,10 +38,14 @@ const Hero = ({
 
   const studiesElements = useLiveNodeList(
     '.hero .case-study-item',
-    container.current,
+    container.current || undefined,
   )
 
   const handleScroll = () => {
+    if (!container.current) {
+      return
+    }
+
     if (!isMobile) {
       const y = window.scrollY - container.current.offsetTop
       const height = container.current.clientHeight
