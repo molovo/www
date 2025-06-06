@@ -56,20 +56,28 @@
     display: flex
     flex: 0 0 100%
     flex-wrap: wrap
-    font-size: .75em
     gap: ($baseline * .5) ($baseline * 2)
     justify-content: space-between
     line-height: 1.5em
     padding-top: $gutterMax
 
+    @media (min-width: $breakpoint-desktop)
+      font-size: .75em
+
   &__nav
     &-list
-      align-items: center
+      align-items: flex-start
       display: flex
-      gap: $baseline
-      justify-content: flex-start
+      flex-direction: column
+      gap: .5em
       list-style: none
-      margin: 0
+
+      @media (min-width: $breakpoint-desktop)
+        align-items: center
+        gap: $baseline
+        flex-direction: row
+        justify-content: flex-start
+        margin: 0
 
     &:hover > ul > li:not(:hover)
       a, button
@@ -114,4 +122,10 @@
 
   &__attribution
     color: $gray
-    text-align: right
+
+    @media (min-width: $breakpoint-largeMobile)
+      text-align: right
+
+    br:nth-child(2)
+      @media (min-width: $breakpoint-largeMobile)
+        display: none
