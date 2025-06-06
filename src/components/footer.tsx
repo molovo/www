@@ -75,7 +75,8 @@ const Footer = () => {
         <span className="footer__attribution">
           Made with ♡ in Poole, UK.
           <br />
-          &copy;{new Date().getFullYear()} James Dinsdale. All rights reserved.
+          &copy;{new Date().getFullYear()} James Dinsdale.
+          <br /> All rights reserved.
         </span>
       </div>
     </footer>
