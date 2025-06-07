@@ -1,6 +1,5 @@
 'use client'
 
-import { contactSubmit } from '@/actions'
 import useHeaderStyle from '@/hooks/use-header-style'
 import useContactFormStateStore from '@/store/contact-form-state'
 import { useEventListener } from '@superrb/react-addons/hooks'
@@ -9,6 +8,7 @@ import { useState } from 'reinspect'
 import { Form } from '@superrb/react-addons/components'
 import * as Yup from 'yup'
 import Button from './button'
+import { FormRef } from '@superrb/react-addons/components/form'
 
 const schema = Yup.object().shape({
   message: Yup.string()
@@ -27,6 +27,8 @@ const Contact = () => {
     'Contact form opening animation',
   )
   const ref = useRef<HTMLElement>(null)
+  const formRef =
+    useRef<FormRef<typeof schema, Yup.InferType<typeof schema>>>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const setRef = useHeaderStyle('white')
   const { isOpen, close } = useContactFormStateStore()
@@ -111,9 +113,10 @@ const Contact = () => {
           name="contact"
           className="contact__form"
           schema={schema}
-          action={contactSubmit}
-          useRecaptcha={false}
+          action="/api/contact/submit"
+          useRecaptcha={true}
           disabled={!isOpen}
+          ref={formRef}
           renderSubmit={(
             props: { label?: string } & ButtonHTMLAttributes<HTMLButtonElement>,
           ) => (
