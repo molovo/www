@@ -6172,7 +6172,6 @@ __metadata:
     next: "npm:^15.3.3"
     next-view-transitions: "npm:^0.3.4"
     pa11y-ci: "npm:^3.1.0"
-    postmark: "npm:^4.0.2"
     puppeteer: "npm:^23.9.0"
     react: "npm:^19.1.0"
     react-children-utilities: "npm:^2.10.0"
@@ -6923,15 +6922,6 @@ __metadata:
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
   checksum: 10c0/748b82e6e5fc34034dcf2ae88ea3d11fd09f69b6c50ecdd3b4a875cfc7cdca435c958b211e2cb52355422ab6fccb7d8f2f2923161d7a1b281029e4a913d59acf
-  languageName: node
-  linkType: hard
-
-"postmark@npm:^4.0.2":
-  version: 4.0.5
-  resolution: "postmark@npm:4.0.5"
-  dependencies:
-    axios: "npm:^1.7.4"
-  checksum: 10c0/d8d7108e49919812d485306ede69c30b9532328d7a21f881e891c7c26f25395850b3291d688a9ad09d352daeb395eee2e45353d9174e15fb71d7d9bfaa2a5cd2
   languageName: node
   linkType: hard
 
