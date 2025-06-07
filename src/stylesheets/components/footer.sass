@@ -1,32 +1,33 @@
 .footer
   +gutters
+  align-items: flex-start
   background: $red
   color: $white
-  display: flex
-  flex-wrap: wrap
+  display: grid
+  gap: $baseline 0
+  grid-template-areas: "contact contact" "nav logo" "attribution attribution"
+  grid-template-columns: 1fr auto
   justify-content: space-between
   padding-bottom: $baseline
   padding-top: $gutterMax
   position: relative
   z-index: 2
 
+  @media (min-width: $breakpoint-tablet)
+    gap: $gutterMax
+    grid-template-areas: "contact logo" "nav attribution"
+
   .logo
     margin: 0 0 $baseline
 
-  &__left
-    flex: 0 0 100%
+  &__contact
+    grid-area: contact
 
-    @media (min-width: $breakpoint-desktop)
-      flex: 1 1
-
-  &__right
-    flex: 0 0 auto
+  &__logo
+    align-items: flex-end
     display: flex
     flex-direction: column
-    align-items: flex-start
-
-    @media (min-width: $breakpoint-desktop)
-      align-items: flex-end
+    grid-area: logo
 
   &__contact-trigger
     +unbutton
@@ -51,33 +52,34 @@
           &::before
             color: $red3
 
-  &__bottom
-    align-items: flex-end
-    display: flex
-    flex: 0 0 100%
-    flex-wrap: wrap
-    gap: ($baseline * .5) ($baseline * 2)
-    justify-content: space-between
+  &__nav,
+  &__attribution
     line-height: 1.5em
-    padding-top: $gutterMax
+
+    @media (min-width: $breakpoint-tablet)
+      align-self: flex-end
 
     @media (min-width: $breakpoint-desktop)
       font-size: .75em
 
   &__nav
+    grid-area: nav
     &-list
       align-items: flex-start
       display: flex
       flex-direction: column
       gap: .5em
       list-style: none
+      margin: 0 0 ($baseline * 2)
+
+      @media (min-width: $breakpoint-tablet)
+        margin: 0
 
       @media (min-width: $breakpoint-desktop)
         align-items: center
         gap: $baseline
         flex-direction: row
         justify-content: flex-start
-        margin: 0
 
     &:hover > ul > li:not(:hover)
       a, button
@@ -122,8 +124,9 @@
 
   &__attribution
     color: $gray
+    grid-area: attribution
 
-    @media (min-width: $breakpoint-largeMobile)
+    @media (min-width: $breakpoint-tablet)
       text-align: right
 
     br:nth-child(2)

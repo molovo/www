@@ -14,7 +14,7 @@ const Footer = () => {
 
   return (
     <footer className="footer" ref={setRef}>
-      <div className="footer__left">
+      <div className="footer__contact">
         <h2 className="footer__title">
           {translations.contact.cta.title}
           <br />
@@ -24,12 +24,11 @@ const Footer = () => {
         </h2>
       </div>
 
-      <div className="footer__right">
+      <div className="footer__logo">
         <Logo asLink={true} noClient={true} />
         <Social />
       </div>
 
-      <div className="footer__bottom">
         <nav className="footer__nav">
           <ul className="footer__nav-list">
             <li className="footer__nav-item">
@@ -78,7 +77,6 @@ const Footer = () => {
           &copy;{new Date().getFullYear()} James Dinsdale.
           <br /> All rights reserved.
         </span>
-      </div>
     </footer>
   )
 }
