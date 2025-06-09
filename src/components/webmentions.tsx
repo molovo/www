@@ -38,14 +38,21 @@ const getWebmentions = async (slug: string): Promise<Webmention[]> => {
     return []
   }
 
-  const url = `https://molovo.co/writing/${slug}/`
+  const url = `https://molovo.co/writing/${slug}`
 
-  const response = await fetch(
-    `https://webmention.io/api/mentions.jf2?https://molovo.co&target=${url}&token=CBAYi5A6v0quKomQOHrG_g`,
+  const children = await Promise.all(
+    [url, `${url}/`].map(async (url) => {
+      const response = await fetch(
+        `https://webmention.io/api/mentions.jf2?https://molovo.co&target=${url}&token=CBAYi5A6v0quKomQOHrG_g`,
+      )
+      const responseData = await response.json()
+      const { children } = responseData
+
+      return children
+    }),
   )
-  const { children } = await response.json()
 
-  return children
+  return children.flat()
 }
 
 const WebmentionItem = ({
@@ -80,7 +87,7 @@ const WebmentionItem = ({
 )
 
 const Webmentions = async ({ slug }: { slug: string }) => {
-  let webmentions
+  let webmentions = []
   try {
     webmentions = (await getWebmentions(slug)).map((mention) => {
       mention['wm-received'] = format(
@@ -97,6 +104,7 @@ const Webmentions = async ({ slug }: { slug: string }) => {
       return mention
     })
   } catch (error) {
+    console.error(error)
     return null
   }
 
