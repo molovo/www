@@ -5,6 +5,13 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@altcha/crypto@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@altcha/crypto@npm:0.0.1"
+  checksum: 10c0/686cfb4a2ab536bcc041cff0acaff97862f4bd27570f63306ad9c948ba8d579c76770088542b1056784b43e5daa9417ba2346ebece00f234cd6aade839e06fa9
+  languageName: node
+  linkType: hard
+
 "@atproto/api@npm:^0.13.24":
   version: 0.13.35
   resolution: "@atproto/api@npm:0.13.35"
@@ -1009,6 +1016,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/rollup-linux-x64-gnu@npm:4.18.0":
+  version: 4.18.0
+  resolution: "@rollup/rollup-linux-x64-gnu@npm:4.18.0"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
 "@rtsao/scc@npm:^1.1.0":
   version: 1.1.0
   resolution: "@rtsao/scc@npm:1.1.0"
@@ -1109,9 +1123,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@superrb/react-addons@npm:^4.0.0-1":
-  version: 4.0.0-1
-  resolution: "@superrb/react-addons@npm:4.0.0-1"
+"@superrb/react-addons@npm:^4.0.0-2":
+  version: 4.0.0-2
+  resolution: "@superrb/react-addons@npm:4.0.0-2"
   dependencies:
     "@hookform/resolvers": "npm:^3.3.1"
     change-case: "npm:^5.0.0"
@@ -1126,7 +1140,7 @@ __metadata:
     typescript: ^5.2.2
     yup: ^1.4.0
     zustand: ^4.4.7
-  checksum: 10c0/8d09881b83e800e4b20b857f9767b6aaab8d70cff05965b1dd6ea66de574347cf03c4a5f8a15fc4664703cc801b2d44717f29940f96ec28323a6aad26366ab66
+  checksum: 10c0/e86ed960c37a948ebc78b13f008ff9f931a53d72201e8bb3a3fa815d4fb28619710eee059adf30ae487c26403edaa472da3e881dc0f7480b3a0ab7f6329ffa52
   languageName: node
   linkType: hard
 
@@ -1242,12 +1256,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20":
-  version: 20.17.51
-  resolution: "@types/node@npm:20.17.51"
+"@types/node@npm:^22.15.30":
+  version: 22.15.30
+  resolution: "@types/node@npm:22.15.30"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10c0/c333b069ba3a97b4788379b457575a30995072afae397b1db044289210e9dcb06a6be8712992a0fe0864522320afaa164fcc7446d052e2a50ceea5affeb7c8d5
+    undici-types: "npm:~6.21.0"
+  checksum: 10c0/ca330ac0e7fd502686d6df115fcc606aba46fd334220f749bbba2f639accdadcb23f7900603ceccdc8240be736739cad5c0b87c0fa92c9255a4dff245f07d664
   languageName: node
   linkType: hard
 
@@ -1526,6 +1540,26 @@ __metadata:
     json-schema-traverse: "npm:^0.4.1"
     uri-js: "npm:^4.2.2"
   checksum: 10c0/41e23642cbe545889245b9d2a45854ebba51cda6c778ebced9649420d9205f2efb39cb43dbc41e358409223b1ea43303ae4839db682c848b891e4811da1a5a71
+  languageName: node
+  linkType: hard
+
+"altcha-lib@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "altcha-lib@npm:1.3.0"
+  checksum: 10c0/dccc8ea209600adc771bc850915c3344a2b6fbbc058564ae5ed3ee9627cfa4d1cd91e654f53adf3ebb16abf67ae6db734af6be476bb24787d7230453658f3018
+  languageName: node
+  linkType: hard
+
+"altcha@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "altcha@npm:2.0.3"
+  dependencies:
+    "@altcha/crypto": "npm:^0.0.1"
+    "@rollup/rollup-linux-x64-gnu": "npm:4.18.0"
+  dependenciesMeta:
+    "@rollup/rollup-linux-x64-gnu":
+      optional: true
+  checksum: 10c0/ea88302380896c12d87b3aa4ebbad0bdae4baead74ae8dd85037629ae55d8b3bd1cee83d2726f94a7b1e2e82a34c675e11d8afdf1c8c526dccb3e360ef412273
   languageName: node
   linkType: hard
 
@@ -3808,6 +3842,19 @@ __metadata:
     es-set-tostringtag: "npm:^2.1.0"
     mime-types: "npm:^2.1.12"
   checksum: 10c0/e534b0cf025c831a0929bf4b9bbe1a9a6b03e273a8161f9947286b9b13bf8fb279c6944aae0070c4c311100c6d6dbb815cd955dc217728caf73fad8dc5b8ee9c
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "form-data@npm:4.0.3"
+  dependencies:
+    asynckit: "npm:^0.4.0"
+    combined-stream: "npm:^1.0.8"
+    es-set-tostringtag: "npm:^2.1.0"
+    hasown: "npm:^2.0.2"
+    mime-types: "npm:^2.1.12"
+  checksum: 10c0/f0cf45873d600110b5fadf5804478377694f73a1ed97aaa370a74c90cebd7fe6e845a081171668a5476477d0d55a73a4e03d6682968fa8661eac2a81d651fcdb
   languageName: node
   linkType: hard
 
@@ -6150,19 +6197,22 @@ __metadata:
     "@next/bundle-analyzer": "npm:^15.3.3"
     "@next/mdx": "npm:^15.3.3"
     "@superrb/next-addons": "npm:^5.0.0-5"
-    "@superrb/react-addons": "npm:^4.0.0-1"
+    "@superrb/react-addons": "npm:^4.0.0-2"
     "@types/js-yaml": "npm:^4.0.9"
     "@types/mdx": "npm:^2.0.10"
-    "@types/node": "npm:^20"
+    "@types/node": "npm:^22.15.30"
     "@types/react": "npm:^19.1.0"
     "@types/react-dom": "npm:^19.1.0"
     "@types/react-syntax-highlighter": "npm:^15.5.13"
     "@types/react-transition-group": "npm:^4.4.10"
     "@types/rss": "npm:^0.0.32"
+    altcha: "npm:^2.0.3"
+    altcha-lib: "npm:^1.3.0"
     browserslist-config-baseline: "npm:^0.4.0"
     date-fns: "npm:^3.6.0"
     eslint: "npm:^8"
     eslint-config-next: "npm:^15.3.3"
+    form-data: "npm:^4.0.3"
     glob: "npm:^10.3.10"
     javascript-time-ago: "npm:^2.5.11"
     js-yaml: "npm:^4.1.0"
@@ -8850,13 +8900,6 @@ __metadata:
     buffer: "npm:^5.2.1"
     through: "npm:^2.3.8"
   checksum: 10c0/2ea2048f3c9db3499316ccc1d95ff757017ccb6f46c812d7c42466247e3b863fb178864267482f7f178254214247779daf68e85f50bd7736c3c97ba2d58b910a
-  languageName: node
-  linkType: hard
-
-"undici-types@npm:~6.19.2":
-  version: 6.19.8
-  resolution: "undici-types@npm:6.19.8"
-  checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
   languageName: node
   linkType: hard
 

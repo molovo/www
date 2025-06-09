@@ -35,6 +35,7 @@
     height: 100%
     max-width: $contentWidth
     padding-top: $gutterMax
+    position: relative
     transition: opacity .5s ease-out, transform .5s ease-out
     width: 100%
 
@@ -52,9 +53,13 @@
           background: $white
           color: $red
 
+    > .form__error.form__error
+      order: 999
+
   .form__error
     font-size: .75em
     font-weight: bold
+    position: static
 
   .form__group
     &--message
@@ -104,6 +109,12 @@
         position: absolute
         top: calc(100% + .5em)
 
+      &.form__group--error
+        margin-bottom: $baseline
+
+        & ~ .contact__submit
+          margin-bottom: $baseline
+
       .form__label-text
         left: 0
         position: absolute
@@ -113,6 +124,9 @@
         transition: transform .5s ease
 
       &:has(.form__control:focus),
+      &:has(.form__control:not(:placeholder-shown)),
+      &:has(.form__control:-webkit-autofill),
+      &:has(.form__control:autofill),
       &.form__group--filled
         .form__label-text
           transform: translateY(-2em) scale(0.75)
@@ -135,6 +149,27 @@
           outline: 0
           background-size: 100% 100%, 100% 100%
 
+    &--altcha-token
+      grid-column: 1 / span 2
+      grid-row: 3 / span 1
+
+      .form__label-text
+        @extend .screenreader-text
+
+      altcha-widget
+        .altcha
+          background: rgba($white, .1)
+          border: 0
+          font-size: .75em
+
+        &:has(.altcha:not([data-state="error"]))
+          @extend .screenreader-text
+
+        .altcha-error
+          color: inherit
+          font-weight: $weight-bold
+          white-space: nowrap
+
   .form__recaptcha-message
     color: rgba($white, .75)
     font-size: .75em
@@ -145,11 +180,15 @@
       color: $white
 
   &__submit
+    background: $red3
     border: 0
     color: $white
     font-size: .875em
     padding-block: 1em
     transition: background .5s ease, color .5s ease
+
+    &:disabled
+      opacity: .1
 
   &__close
     +unbutton

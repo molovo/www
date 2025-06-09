@@ -3,8 +3,7 @@
 import useHeaderStyle from '@/hooks/use-header-style'
 import useContactFormStateStore from '@/store/contact-form-state'
 import { useEventListener } from '@superrb/react-addons/hooks'
-import { ButtonHTMLAttributes, useEffect, useRef } from 'react'
-import { useState } from 'reinspect'
+import { ButtonHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { Form } from '@superrb/react-addons/components'
 import * as Yup from 'yup'
 import Button from './button'
@@ -13,19 +12,63 @@ import { FormRef } from '@superrb/react-addons/components/form'
 const schema = Yup.object().shape({
   message: Yup.string()
     .meta({ textarea: true, placeholder: "I'd like to hire you to…" })
-    .required('Please enter your message')
+    .required('⚠️ Please enter your message')
     .label('Dear James,'),
   email: Yup.string()
     .email()
-    .required('Please enter your email address')
+    .required('⚠️ Please enter your email address')
     .label('Your email address'),
+  altchaToken: Yup.string(),
 })
 
-const Contact = () => {
-  const [opening, setOpening] = useState<boolean>(
-    false,
-    'Contact form opening animation',
+const AltchaComponent = ({
+  name = 'altchaToken',
+  error,
+  onStateChange,
+}: {
+  name?: string
+  error?: { message: string }
+  onStateChange?: (payload: any) => void
+}) => {
+  const widgetRef = useRef<AltchaWidget & AltchaWidgetMethods & HTMLElement>(
+    null,
   )
+
+  useEffect(() => {
+    const handleStateChange = (event: Event | CustomEvent) => {
+      if ('detail' in event) {
+        onStateChange?.(event)
+      }
+    }
+
+    const { current } = widgetRef
+
+    if (current) {
+      current.addEventListener('statechange', handleStateChange)
+      return () => current.removeEventListener('statechange', handleStateChange)
+    }
+  }, [onStateChange])
+
+  useEffect(() => {
+    import('altcha')
+  }, [])
+
+  return (
+    <>
+      <altcha-widget
+        ref={widgetRef}
+        challengeurl="/api/contact/altcha/challenge"
+        auto="onfocus"
+        hidefooter
+        name={name}
+      ></altcha-widget>
+      {error && <span className="form__error">{error.message}</span>}
+    </>
+  )
+}
+
+const Contact = () => {
+  const [opening, setOpening] = useState<boolean>(false)
   const ref = useRef<HTMLElement>(null)
   const formRef =
     useRef<FormRef<typeof schema, Yup.InferType<typeof schema>>>(null)
@@ -40,7 +83,7 @@ const Contact = () => {
         top: document.documentElement.scrollHeight,
         behavior: 'smooth',
       })
-      inputRef.current?.focus()
+      formRef.current?.fields.message.focus()
 
       setTimeout(() => {
         setOpening(false)
@@ -114,7 +157,7 @@ const Contact = () => {
           className="contact__form"
           schema={schema}
           action="/api/contact/submit"
-          useRecaptcha={true}
+          useRecaptcha={false}
           disabled={!isOpen}
           ref={formRef}
           renderSubmit={(
@@ -136,6 +179,17 @@ const Contact = () => {
               <Button onClick={() => closeForm(0)}>Back to site</Button>
             </div>
           )}
+          renderers={{
+            altchaToken: (props: Record<string, any>, error, schema) => (
+              <AltchaComponent
+                name={props.name}
+                error={error as { message: string }}
+                onStateChange={(event) => {
+                  formRef.current?.setValue('altchaToken', event.detail.payload)
+                }}
+              />
+            ),
+          }}
         />
       </div>
     </section>
