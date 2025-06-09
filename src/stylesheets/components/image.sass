@@ -1,6 +1,12 @@
 @use '../setup/vars' as *
 @use '../setup/helpers' as *
 
+.image
+  transition: opacity .5s ease
+
+  &[aria-busy="true"]
+    opacity: 0
+
 .image-portal
   background: $gray
   overflow: hidden

@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import Image from '@/components/image'
 import { PropsWithChildren, ReactNode } from 'react'
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
 import Logo from '@/components/logo'
@@ -67,6 +67,8 @@ const CaseStudySection = ({
               className="case-study__section-background"
               style={section.styles?.image}
               sizes="100vw"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              zoomable={false}
             />
           )}
 

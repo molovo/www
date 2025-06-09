@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from '@/components/image'
 import mediumLogo from '@/images/icons/medium.jpg'
 import { format } from 'date-fns'
 import LineBreak from '@/components/line-break'
@@ -75,6 +75,8 @@ const WebmentionItem = ({
       width="100"
       height="100"
       alt={imageAlt as string}
+      sizes="5em"
+      zoomable={false}
     />
     <p
       dangerouslySetInnerHTML={{

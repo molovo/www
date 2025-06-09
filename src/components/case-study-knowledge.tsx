@@ -1,6 +1,6 @@
 import CaseStudyType from '@/types/case-study'
 import Logo from './logo'
-import Image from 'next/image'
+import Image from '@/components/image'
 import useHeaderStyle from '@/hooks/use-header-style'
 import useTheme from '@/hooks/use-theme'
 
@@ -22,7 +22,7 @@ const CaseStudyKnowledge = ({
     styles?.main?.color,
     styles?.main?.backgroundColor,
     '#fff',
-    '#000'
+    '#000',
   )
 
   return (
@@ -43,6 +43,7 @@ const CaseStudyKnowledge = ({
             className="case-study__section-background"
             style={styles?.image}
             sizes="100vw"
+            zoomable={false}
           />
         )}
 

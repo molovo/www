@@ -1,7 +1,7 @@
 'use client'
 
 import ContentFigure from './content-figure'
-import Image from 'next/image'
+import Image from '@/components/image'
 import { CSSProperties, UIEventHandler } from 'react'
 import { useState } from 'reinspect'
 
@@ -35,14 +35,16 @@ const Slideshow = ({
       captionStyle={captionStyle}
     >
       <div className="slideshow" onScroll={handleScroll}>
-        {images.map(({ image, alt }, index) => (
+        {images.map(({ image, alt, sizes }, index) => (
           <Image
             key={index}
             src={image}
             alt={alt}
+            sizes={sizes}
             className="slideshow__image"
             aria-current={index === current}
             style={imageStyle}
+            zoomable={true}
           />
         ))}
       </div>

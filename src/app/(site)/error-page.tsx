@@ -2,7 +2,7 @@
 
 import Link from '@/components/link'
 import image from '@/images/errors/500.gif'
-import Image from 'next/image'
+import Image from '@/components/image'
 
 export const metadata = {
   title: 'Server Error',
@@ -21,12 +21,13 @@ const ErrorPage = () => {
         </p>
 
         <p className="error__message">
-          For now, please try heading <Link href="/">back to the homepage</Link>.
+          For now, please try heading <Link href="/">back to the homepage</Link>
+          .
         </p>
       </div>
 
       <figure className="error__image">
-        <Image src={image} alt="500" />
+        <Image src={image} alt="500" loading="eager" zoomable={false} />
       </figure>
     </section>
   )

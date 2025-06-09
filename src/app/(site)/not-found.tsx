@@ -3,7 +3,7 @@
 import Link from '@/components/link'
 import useHeaderStyle from '@/hooks/use-header-style'
 import image from '@/images/errors/404.webp'
-import Image from 'next/image'
+import Image from '@/components/image'
 import { usePathname } from 'next/navigation'
 
 export const metadata = {
@@ -37,12 +37,13 @@ const NotFound = () => {
         </p>
 
         <p className="error__message">
-          For now, please try heading <Link href="/">back to the homepage</Link>.
+          For now, please try heading <Link href="/">back to the homepage</Link>
+          .
         </p>
       </div>
 
       <figure className="error__image">
-        <Image src={image} alt="404" />
+        <Image src={image} alt="404" loading="eager" zoomable={false} />
       </figure>
     </section>
   )

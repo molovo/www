@@ -1,8 +1,7 @@
 'use client'
 
 import useHeaderStyle from '@/hooks/use-header-style'
-import dynamic from 'next/dynamic'
-import Image from 'next/image'
+import Image from '@/components/image'
 import swash from '@/utils/swash'
 import ArticleType from '@/types/article'
 import { CSSProperties, ReactNode } from 'react'

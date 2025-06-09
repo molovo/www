@@ -3,9 +3,8 @@
 import SuperrbLink from '@/components/superrb-link'
 import useHeaderStyle from '@/hooks/use-header-style'
 import CaseStudyItem from '@/components/case-study-item'
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CaseStudyType from '@/types/case-study'
-// import Hand from '@/components/images/icons/hand.svg'
 import hand from '@/images/icons/hand.svg'
 import {
   useEventListener,
@@ -15,7 +14,7 @@ import {
 import CaseStudyCta from '@/components/case-study-cta'
 import swash from '@/utils/swash'
 import { useLiveNodeList } from 'live-node-list/hooks'
-import Image from 'next/image'
+import Image from '@/components/image'
 
 const Hero = ({
   title,
@@ -102,7 +101,14 @@ const Hero = ({
             <p>
               Iʼm currently leading the talented dev team at <SuperrbLink />{' '}
               where I build awesome websites and interactive experiences like
-              these <Image src={hand} alt="" />
+              these{' '}
+              <Image
+                src={hand}
+                alt=""
+                sizes="2.7em"
+                loading="eager"
+                zoomable={false}
+              />
             </p>
           </div>
         </div>
@@ -120,6 +126,7 @@ const Hero = ({
                   : {}
               }
               imageStyle={{ transform: `translateY(4.51294%)` }}
+              imageSizes="(min-width: 64em) 25vw, 50vw"
               imageLoading={isMobile ? 'lazy' : 'eager'}
             />
           ))}

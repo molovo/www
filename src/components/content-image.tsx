@@ -14,6 +14,7 @@ const ContentImage = ({
   caption,
   size = 'standard',
   withPadding = false,
+  zoomable = true,
   ...props
 }: Props) => {
   return (
@@ -22,6 +23,7 @@ const ContentImage = ({
         src={src}
         alt={alt as string}
         className="content-figure__image"
+        zoomable={zoomable}
         {...props}
       />
     </ContentFigure>

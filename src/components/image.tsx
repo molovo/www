@@ -2,12 +2,7 @@
 
 import { useLockBodyScroll } from '@superrb/react-addons/hooks'
 import NextImage, { ImageProps as NextImageProps } from 'next/image'
-import {
-  CSSProperties,
-  KeyboardEventHandler,
-  useRef,
-  useState,
-} from 'react'
+import { CSSProperties, KeyboardEventHandler, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Shrink from '@/components/images/icons/shrink.svg'
 
@@ -63,8 +58,8 @@ const scrollBlockedBaseImageStyle: Partial<CSSProperties> = {
 }
 
 const Image = ({
-  zoomable = true,
-  allowScroll = true,
+  zoomable = false,
+  allowScroll = false,
   className = '',
   style = {},
   sizes = '1vw',
@@ -72,6 +67,7 @@ const Image = ({
 }: Props) => {
   const ref = useRef<HTMLImageElement>(null)
   const portalRef = useRef<HTMLDivElement>(null)
+  const [loaded, setLoaded] = useState<boolean>(false)
   const [zoomed, setZoomed] = useState<boolean>(false)
   const [transitioning, setTransitioning] = useState<boolean>(false)
   const [originalPosition, setOriginalPosition] = useState<
@@ -175,12 +171,15 @@ const Image = ({
               onKeyDown: handleKeyDown,
               role: 'button',
               tabIndex: 0,
+              'aria-label': 'Zoom image',
+              'aria-expanded': zoomed,
             }
           : {})}
         ref={ref}
+        aria-busy={loaded === false}
         style={{ ...style, ...(zoomable ? { cursor: 'zoom-in' } : {}) }}
-        aria-label={'Zoom image'}
-        aria-expanded={zoomed}
+        onLoad={() => setLoaded(true)}
+        priority={props.loading === 'eager'}
       />
 
       {zoomed &&
@@ -205,6 +204,7 @@ const Image = ({
               {...(zoomable ? { onClick: handleClick } : {})}
               style={imageStyle}
               aria-expanded={zoomed}
+              priority={false}
             />
           </div>,
           document.body,

@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import Image from '@/components/image'
 import Logo from './logo'
 import Link from '@/components/link'
 import useNavStateStore from '@/store/nav-state'
@@ -25,12 +25,15 @@ const CaseStudyItem = ({
   className,
   style = {},
   imageStyle = {},
+  imageSizes = '56.25vh',
   visible = true,
 }: {
   study: CaseStudy
   className?: string
   style?: Partial<CSSProperties>
   imageStyle?: Partial<CSSProperties>
+  imageSizes?: string
+  imagePriority?: boolean
   visible?: boolean
   imageLoading?: 'eager' | 'lazy'
 }) => {
@@ -82,8 +85,9 @@ const CaseStudyItem = ({
                   ...styles?.thumbnailBackgroundImage,
                   ...imageStyle,
                 }}
-                sizes="56.25vh"
+                sizes={imageSizes}
                 loading={imageLoading}
+                zoomable={false}
               />
             </figure>
           )}
@@ -102,8 +106,9 @@ const CaseStudyItem = ({
                   src={thumbnailContentBackground}
                   alt={client as string}
                   style={styles?.thumbnailContentBackgroundImage}
-                  sizes="56.25vh"
+                  sizes={imageSizes}
                   loading={imageLoading}
+                  zoomable={false}
                 />
               </figure>
             )}

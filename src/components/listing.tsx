@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import Image from '@/components/image'
 import { format } from 'date-fns'
 import Link from '@/components/link'
 import useHeaderStyle from '@/hooks/use-header-style'

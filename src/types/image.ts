@@ -8,5 +8,6 @@ export interface Image {
 }
 
 export interface ZoomableImage extends Image {
+  zoomable: true,
   allowScroll?: boolean
 }
