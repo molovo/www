@@ -5,7 +5,8 @@ import useHeaderStyle from '@/hooks/use-header-style'
 import CaseStudyItem from '@/components/case-study-item'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import CaseStudyType from '@/types/case-study'
-import Hand from '@/components/images/icons/hand.svg'
+// import Hand from '@/components/images/icons/hand.svg'
+import hand from '@/images/icons/hand.svg'
 import {
   useEventListener,
   useIsInViewport,
@@ -14,6 +15,7 @@ import {
 import CaseStudyCta from '@/components/case-study-cta'
 import swash from '@/utils/swash'
 import { useLiveNodeList } from 'live-node-list/hooks'
+import Image from 'next/image'
 
 const Hero = ({
   title,
@@ -100,7 +102,7 @@ const Hero = ({
             <p>
               Iʼm currently leading the talented dev team at <SuperrbLink />{' '}
               where I build awesome websites and interactive experiences like
-              these <Hand />
+              these <Image src={hand} alt="" />
             </p>
           </div>
         </div>
