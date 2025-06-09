@@ -1123,9 +1123,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@superrb/react-addons@npm:^4.0.0-2":
-  version: 4.0.0-2
-  resolution: "@superrb/react-addons@npm:4.0.0-2"
+"@superrb/react-addons@npm:^4.0.0-4":
+  version: 4.0.0-4
+  resolution: "@superrb/react-addons@npm:4.0.0-4"
   dependencies:
     "@hookform/resolvers": "npm:^3.3.1"
     change-case: "npm:^5.0.0"
@@ -1140,7 +1140,7 @@ __metadata:
     typescript: ^5.2.2
     yup: ^1.4.0
     zustand: ^4.4.7
-  checksum: 10c0/e86ed960c37a948ebc78b13f008ff9f931a53d72201e8bb3a3fa815d4fb28619710eee059adf30ae487c26403edaa472da3e881dc0f7480b3a0ab7f6329ffa52
+  checksum: 10c0/189c3229526eb7f53559b4e9ad2ec3ed6a3c47e5efc9807cc244f8368e7d21fba92b954cd432778a1be89b2537819348661f01e0bbc8b21307bfa3e733680f05
   languageName: node
   linkType: hard
 
@@ -6197,7 +6197,7 @@ __metadata:
     "@next/bundle-analyzer": "npm:^15.3.3"
     "@next/mdx": "npm:^15.3.3"
     "@superrb/next-addons": "npm:^5.0.0-5"
-    "@superrb/react-addons": "npm:^4.0.0-2"
+    "@superrb/react-addons": "npm:^4.0.0-4"
     "@types/js-yaml": "npm:^4.0.9"
     "@types/mdx": "npm:^2.0.10"
     "@types/node": "npm:^22.15.30"
