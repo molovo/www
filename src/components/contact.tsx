@@ -83,7 +83,7 @@ const Contact = () => {
         top: document.documentElement.scrollHeight,
         behavior: 'smooth',
       })
-      formRef.current?.fields.message.focus()
+      formRef.current?.fields.message?.focus()
 
       setTimeout(() => {
         setOpening(false)
