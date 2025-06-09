@@ -1,3 +1,7 @@
+@use '../../setup/vars' as *
+@use '../../setup/helpers' as *
+@use '../../setup/typography' as *
+
 .hero
   align-items: stretch
   display: grid
@@ -53,15 +57,21 @@
     a
       color: inherit
 
-    svg
+    svg,
+    img
       color: inherit
       display: inline
       height: 1em
-      margin-bottom: -.125em
       width: auto
 
       path
         fill: currentColor
+
+    svg
+      margin-bottom: -.125em
+
+    img
+      margin-bottom: -.25em
 
   &__list
     align-items: flex-start
@@ -90,7 +100,7 @@
   &__studies
     display: grid
     gap: $baseline
-    grid-template-columns: repeat(2, calc(50% - #{$baseline / 2}))
+    grid-template-columns: repeat(2, calc(50% - #{$baseline * .5}))
     list-style: none
     margin: 0
     transition: opacity 1s ease

@@ -1,3 +1,10 @@
+@use 'sass:math'
+
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+@use '../setup/typography' as *
+@use './case-study-item' as *
+
 $transitionDuration: .75s
 $transitionDelay: .125s
 
@@ -70,10 +77,10 @@ $transitionDelay: .125s
       .menu__item
         @for $i from 1 through 3
           &:nth-child(#{$i})
-            transition-delay: (($transitionDuration / 10) * (4 - $i))
+            transition-delay: (math.div($transitionDuration, 10) * (4 - $i))
 
       .menu__secondary
-        transition-delay: (($transitionDuration / 10) * 0)
+        transition-delay: (math.div($transitionDuration, 10) * 0)
 
   &__items
     list-style: none
@@ -89,7 +96,7 @@ $transitionDelay: .125s
 
     @for $i from 1 through 3
       &:nth-child(#{$i})
-        transition-delay: $transitionDelay + (($transitionDuration / 10) * ($i - 1))
+        transition-delay: $transitionDelay + (math.div($transitionDuration, 10) * ($i - 1))
 
   &__link
     +unbutton
@@ -108,7 +115,7 @@ $transitionDelay: .125s
     list-style: none
     margin: 0
     transition: opacity ($transitionDuration * .75) ease, transform ($transitionDuration * .75) ease
-    transition-delay: $transitionDelay + (($transitionDuration / 10) * 4)
+    transition-delay: $transitionDelay + (math.div($transitionDuration, 10) * 4)
 
     &:hover
       .menu__secondary-link:not(:hover),

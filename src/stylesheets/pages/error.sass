@@ -1,3 +1,7 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+@use '../setup/typography' as *
+
 .error
   align-items: stretch
   display: flex
@@ -32,8 +36,10 @@
 
   &__title
     +scriptTitle
-    color: $red
-    margin: 0
+
+    &
+      color: $red
+      margin: 0
 
     @media (min-width: 1px)
       font-size: 24vw

@@ -1,10 +1,15 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+
 .slideshow
   +gutters
   +scrollGutters
   +slideshow
-  align-items: stretch
-  display: flex
-  gap: $baseline
+
+  &
+    align-items: stretch
+    display: flex
+    gap: $baseline
 
   &__image
     flex: 0 0 40em

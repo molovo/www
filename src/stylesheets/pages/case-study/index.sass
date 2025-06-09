@@ -1,3 +1,7 @@
+@use '../../setup/vars' as *
+@use '../../setup/helpers' as *
+@use '../../setup/typography' as *
+
 .case-study
   counter-reset: sections
 
@@ -49,9 +53,11 @@
 
     &-title
       +scriptTitle
-      color: var(--accent-color)
-      margin-bottom: 0
-      transition: color .5s ease
+
+      &
+        color: var(--accent-color)
+        margin-bottom: 0
+        transition: color .5s ease
 
       .swash::before
         color: var(--accent-color-two)

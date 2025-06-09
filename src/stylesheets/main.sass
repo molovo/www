@@ -1,42 +1,41 @@
-@import setup/vars
-@import setup/helpers
-@import setup/reset
-@import setup/typography
-@import setup/layout
-@import setup/a11y
+@forward 'setup/vars'
+@forward 'setup/helpers'
+@forward 'setup/reset'
+@forward 'setup/typography'
+@forward 'setup/layout'
+@forward 'setup/a11y'
 
-@import components/button
-@import components/image
-@import components/script-arrow
-@import components/logo
-@import components/header
-@import components/scrollbar
-@import components/case-study-item
-@import components/menu
-@import components/menu-toggle
-@import components/footer
-@import components/contact
-@import components/content-figure
-@import components/image-wall
-@import components/type-sample
-@import components/slideshow
-@import components/synced-scroll
-@import components/webmentions
-@import components/social
-@import components/social-sharing
-// @import components/cookie-banner
+@forward 'components/button'
+@forward 'components/image'
+@forward 'components/script-arrow'
+@forward 'components/logo'
+@forward 'components/header'
+@forward 'components/scrollbar'
+@forward 'components/case-study-item'
+@forward 'components/menu'
+@forward 'components/menu-toggle'
+@forward 'components/footer'
+@forward 'components/contact'
+@forward 'components/content-figure'
+@forward 'components/image-wall'
+@forward 'components/type-sample'
+@forward 'components/slideshow'
+@forward 'components/synced-scroll'
+@forward 'components/webmentions'
+@forward 'components/social'
+@forward 'components/social-sharing'
+// @forward 'components/cookie-banner'
 
-@import pages/home/index
-@import pages/case-study/index
-@import pages/writing
-@import pages/article
-@import pages/projects
-@import pages/error
-@import pages/feed
+@forward 'pages/home/index'
+@forward 'pages/case-study/index'
+@forward 'pages/writing'
+@forward 'pages/article'
+@forward 'pages/error'
+@forward 'pages/feed'
 
-@import articles/the-view-from-above
-@import articles/sense-and-sensibility
-@import articles/perpetually-online
+@forward 'articles/the-view-from-above'
+@forward 'articles/sense-and-sensibility'
+@forward 'articles/perpetually-online'
 
 .main
   position: relative

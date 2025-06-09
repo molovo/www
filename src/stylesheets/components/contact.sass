@@ -1,3 +1,8 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+@use '../setup/typography' as *
+@use './script-arrow' as *
+
 .contact
   +gutters
   background: $red2
@@ -29,7 +34,7 @@
   &__form
     align-items: stretch
     display: grid
-    gap: ($baseline / 2)
+    gap: ($baseline * .5)
     grid-template-columns: 100%
     grid-template-rows: 1fr auto auto
     height: 100%
@@ -203,8 +208,10 @@
   .success-message
     &__title
       +script
-      font-size: 8em
-      text-align: left
+
+      &
+        font-size: 8em
+        text-align: left
 
     &__text
       @extend %lead

@@ -1,3 +1,7 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+@use '../setup/typography' as *
+
 .writing
   +gutters
 
@@ -15,7 +19,9 @@
 
   &__title
     +scriptTitle
-    margin: 0 auto .5em
+
+    &
+      margin: 0 auto .5em
 
     @media (min-width: 1px)
       font-size: 12vw
@@ -104,7 +110,7 @@
       &:not(:last-child)
         &::after
           content: '|' / ''
-          margin: 0 ($baseline / 2)
+          margin: 0 ($baseline * .5)
 
       a
         +hoverUnderline($red)

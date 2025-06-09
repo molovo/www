@@ -1,3 +1,7 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+@use '../setup/typography' as *
+
 .article--the-view-from-above
   --color: #{$white}
   --background: #{$black}
@@ -44,4 +48,6 @@
 
     &__title
       +scriptTitle
-      color: $white
+
+      &
+        color: $white

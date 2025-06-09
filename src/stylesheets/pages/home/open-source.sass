@@ -1,3 +1,7 @@
+@use '../../setup/vars' as *
+@use '../../setup/helpers' as *
+@use '../../setup/typography' as *
+
 $code-background: rgb(40, 42, 54)
 $code-comment: #979cac
 $code-string: #e7ee98
@@ -10,14 +14,16 @@ $code-string: #e7ee98
     +gutters
     +scrollGutters
     +slideshow
-    align-items: stretch
-    display: flex
-    gap: $baseline
-    left: 50%
-    padding-top: $baseline
-    position: relative
-    transform: translateX(-50%)
-    width: 100vw
+
+    &
+      align-items: stretch
+      display: flex
+      gap: $baseline
+      left: 50%
+      padding-top: $baseline
+      position: relative
+      transform: translateX(-50%)
+      width: 100vw
 
     &:has(.scrollbar:active)
       .menu__studies-list

@@ -1,3 +1,8 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+@use '../setup/typography' as *
+@use './script-arrow' as *
+
 =case-study-item-hover
   z-index: 9
 
@@ -148,7 +153,7 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
       transition: opacity .5s ease, transform .5s ease
 
   &:hover
-    background: darken($red2, 3.5)
+    background: color-mix(in srgb, $red2, $black 3.5%)
     transform: scale(1.05)
 
     .case-study-cta__title

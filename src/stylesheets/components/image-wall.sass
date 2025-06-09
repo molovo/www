@@ -1,3 +1,6 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+
 .image-wall
   align-items: center
   display: grid
@@ -24,10 +27,10 @@
       object-fit: cover
 
   &:has(.image-wall__image:nth-child(5))
-    grid-template-columns: repeat(2, minmax(0, calc(50% - #{(1/2) * $baseline})))
+    grid-template-columns: repeat(2, minmax(0, calc(50% - #{.5 * $baseline})))
 
     @media (min-width: $breakpoint-desktop)
-      grid-template-columns: repeat(4, minmax(0, calc(25% - #{(3/4) * $baseline})))
+      grid-template-columns: repeat(4, minmax(0, calc(25% - #{.75 * $baseline})))
 
   &--stagger
     padding-bottom: ($gutterMax - $baseline)

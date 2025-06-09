@@ -1,3 +1,7 @@
+@use 'sass:math'
+
+@use '../setup/vars' as *
+
 .mentions
   margin: 0 auto
   max-width: 40em
@@ -31,7 +35,7 @@
 
     &:last-child:not(:only-of-type)
       flex: 0 0 100%
-      padding-left: (($baseline * 1.75) / $fontSize)
+      padding-left: math.div(($baseline * 1.75), $fontSize)
 
     a
       color: inherit
