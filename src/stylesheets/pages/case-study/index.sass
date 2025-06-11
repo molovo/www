@@ -2,6 +2,10 @@
 @use '../../setup/helpers' as *
 @use '../../setup/typography' as *
 
+#{':root'}
+  --superrb-callout-background: #{$red}
+  --superrb-callout-color: #{$white}
+
 .case-study
   counter-reset: sections
 
@@ -90,7 +94,9 @@
         //   margin-bottom: clamp(($gutterMax * -1), calc(6vw * -1), ($gutterMin * -1))
 
     &-superrb
-      color: inherit
+      background: var(--superrb-callout-background)
+      border-radius: 6px
+      color: var(--superrb-callout-color)
       display: inline-block
       margin: 0 auto ($baseline * 2)
       padding: ($baseline * .4) ($baseline * .5) ($baseline * .2)
@@ -108,24 +114,8 @@
         font-size: .875em
         gap: .5ch
 
-      &::before
-        +cover
-        border: 1px solid currentColor
-        border-radius: 6px
-        content: ''
-        display: block
-        opacity: .2
-        pointer-events: none
-        transition: background .5s ease, border-color .5s ease, opacity 1s ease
-        z-index: -1
-
       &:has(a:hover)
         color: $white
-
-        &::before
-          background: #1b1b1d
-          border-color: #1b1b1d
-          opacity: 1
 
         svg
           color: $white
