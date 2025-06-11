@@ -5,7 +5,6 @@ import Image from '@/components/image'
 import swash from '@/utils/swash'
 import ArticleType from '@/types/article'
 import { CSSProperties, ReactNode } from 'react'
-import LineBreak from '@/components/line-break'
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 
 interface Props {
@@ -26,12 +25,15 @@ const Article = ({
     HeaderComponent,
     headerStyle = 'red',
     headerColor,
+    contentHeaderStyle = headerStyle,
+    contentHeaderColor = headerColor,
     styles,
   },
   webmentions,
   socialSharing,
 }: Props) => {
   const setRef = useHeaderStyle(headerStyle, headerColor)
+  const setContentRef = useHeaderStyle(contentHeaderStyle, contentHeaderColor)
 
   return (
     <article
@@ -66,7 +68,7 @@ const Article = ({
           )}
         </header>
 
-        <div className="content">
+        <div className="content" ref={setContentRef}>
           {socialSharing}
           <div className="content__inner">{content}</div>
         </div>

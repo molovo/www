@@ -21,6 +21,8 @@ export default interface ArticleType {
 
   headerStyle?: HeaderStyle
   headerColor?: Color
+  contentHeaderStyle?: HeaderStyle
+  contentHeaderColor?: Color
 
   styles: {
     main?: Partial<CSSProperties>

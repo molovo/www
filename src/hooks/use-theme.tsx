@@ -3,10 +3,10 @@ import { useEventListener } from '@superrb/react-addons/hooks'
 import { useCallback, useEffect, useState } from 'react'
 
 const useTheme = (
-  color: Color,
-  background: Color,
-  accentColor: Color,
-  accentColorTwo: Color,
+  color?: Color,
+  background?: Color,
+  accentColor?: Color,
+  accentColorTwo?: Color,
 ) => {
   const [ref, setRef] = useState<HTMLElement | null>(null)
   const setColor = useThemeStore((state) => state.setColor)
