@@ -10,9 +10,9 @@ export const getStudies = async (
   'use server'
 
   const files = await glob(
-    `${process.cwd()}/content/studies/${
-      clients ? `{${clients.join(',')}}` : '*'
-    }/index.mdx`,
+    `${process.cwd()}/content/${
+      process.env.NODE_ENV === 'development' ? '{_drafts/,}' : ''
+    }studies/${clients ? `{${clients.join(',')}}` : '*'}/index.mdx`,
   )
 
   const items = await Promise.all(
@@ -45,9 +45,19 @@ export const getStudy = async (
   'use server'
 
   try {
-    const { metadata, default: Content } = await import(
-      `/content/studies/${slug}/index.mdx`
-    )
+    let study
+
+    try {
+      study = await import(`/content/studies/${slug}/index.mdx`)
+    } catch (error) {
+      if ((error as Error).message.startsWith('Cannot find module')) {
+        if (!study && process.env.NODE_ENV === 'development') {
+          study = await import(`/content/_drafts/studies/${slug}/index.mdx`)
+        }
+      }
+    }
+
+    const { metadata, default: Content } = study
 
     const sections = await getSections(slug)
 
@@ -91,7 +101,9 @@ export const getSections = async (
   slug: string,
 ): Promise<CaseStudySectionType[]> => {
   const files = await glob(
-    `${process.cwd()}/content/studies/${slug}/sections/*.mdx`,
+    `${process.cwd()}/content/${
+      process.env.NODE_ENV === 'development' ? '{_drafts/,}' : ''
+    }studies/${slug}/sections/*.mdx`,
   )
   const sections = await Promise.all(
     files

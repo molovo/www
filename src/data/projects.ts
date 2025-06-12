@@ -7,7 +7,7 @@ import { readFile } from 'fs/promises'
 export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
   const files = (
     await glob(
-      `${process.cwd()}/content/projects/${
+      `${process.cwd()}/content/${process.env.NODE_ENV === 'development' ? '_drafts/' : ''}projects/${
         slugs ? `{${slugs.join(',')}}` : '*'
       }.mdx`,
     )
