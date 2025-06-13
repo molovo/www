@@ -3,6 +3,7 @@
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
 import { glob } from 'glob'
 import React from 'react'
+import { importContent } from './helpers'
 
 export const getStudies = async (
   clients?: string[],
@@ -23,9 +24,10 @@ export const getStudies = async (
           return undefined
         }
 
-        const { metadata, default: Content } = await import(
-          `/content/studies/${slug}/index.mdx`
-        )
+        const study = await importContent(`studies/${slug}/index`)
+
+        const { metadata, default: Content } = study
+
         return { ...metadata, slug } as CaseStudyType
       }) as Promise<CaseStudyType>[],
   )
@@ -45,17 +47,7 @@ export const getStudy = async (
   'use server'
 
   try {
-    let study
-
-    try {
-      study = await import(`/content/studies/${slug}/index.mdx`)
-    } catch (error) {
-      if ((error as Error).message.startsWith('Cannot find module')) {
-        if (!study && process.env.NODE_ENV === 'development') {
-          study = await import(`/content/_drafts/studies/${slug}/index.mdx`)
-        }
-      }
-    }
+    const study = await importContent(`studies/${slug}/index`)
 
     const { metadata, default: Content } = study
 
@@ -64,8 +56,8 @@ export const getStudy = async (
     let next, prev
     try {
       if (metadata.prev) {
-        const { metadata: prevMetadata } = await import(
-          `content/studies/${metadata.prev}/index.mdx`
+        const { metadata: prevMetadata } = await importContent(
+          `studies/${metadata.prev}/index`,
         )
         prev = {
           ...prevMetadata,
@@ -74,8 +66,8 @@ export const getStudy = async (
         }
       }
       if (metadata.next) {
-        const { metadata: nextMetadata } = await import(
-          `content/studies/${metadata.next}/index.mdx`
+        const { metadata: nextMetadata } = await importContent(
+          `studies/${metadata.next}/index`,
         )
         next = {
           ...nextMetadata,
@@ -111,8 +103,8 @@ export const getSections = async (
       .map(async (matches) => {
         try {
           const [, order, sectionSlug] = matches || []
-          const { metadata, default: Content } = await import(
-            `content/studies/${slug}/sections/${order}.${sectionSlug}.mdx`
+          const { metadata, default: Content } = await importContent(
+            `studies/${slug}/sections/${order}.${sectionSlug}`,
           )
 
           return {

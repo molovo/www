@@ -3,6 +3,7 @@
 import ProjectType from '@/types/project'
 import { glob } from 'glob'
 import { readFile } from 'fs/promises'
+import {importContent} from './helpers'
 
 export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
   const files = (
@@ -15,7 +16,8 @@ export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
 
   const projects = await Promise.all(
     files.map(async (slug) => {
-      const { metadata } = await import(`content/projects/${slug}.mdx`)
+      const project = await importContent(`projects/${slug}`)
+      const { metadata } = project
       const code = await readFile(
         `${process.cwd()}/content/projects/${slug}.code`,
         'utf-8',

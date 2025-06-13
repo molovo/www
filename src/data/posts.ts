@@ -3,6 +3,7 @@
 import ArticleType from '@/types/article'
 import { glob } from 'glob'
 import React from 'react'
+import { importContent } from './helpers'
 
 export const getPosts = async (slugs?: string[]): Promise<ArticleType[]> => {
   const files = await glob(
@@ -13,23 +14,14 @@ export const getPosts = async (slugs?: string[]): Promise<ArticleType[]> => {
 
   const posts = await Promise.all(
     files
-    .map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
-    .map(async (slug) => {
-      let post
-      try {
-        post = await import(`/content/posts/${slug}.mdx`)
-      } catch (error) {
-        if ((error as Error).message.startsWith('Cannot find module')) {
-          if (process.env.NODE_ENV === 'development') {
-            post = await import(`/content/_drafts/posts/${slug}.mdx`)
-          }
-        }
-      }
+      .map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
+      .map(async (slug) => {
+        const post = await importContent(`posts/${slug}`)
 
-      const { metadata, default: Content } = post
+        const { metadata, default: Content } = post
 
-      return { slug, ...metadata } as ArticleType
-    }),
+        return { slug, ...metadata } as ArticleType
+      }),
   )
 
   if (slugs) {
@@ -47,16 +39,7 @@ export const getPost = async (
   slug: string,
 ): Promise<ArticleType | undefined> => {
   try {
-    let post
-    try {
-      post = await import(`/content/posts/${slug}.mdx`)
-    } catch (error) {
-      if ((error as Error).message.startsWith('Cannot find module')) {
-        if (process.env.NODE_ENV === 'development') {
-          post = await import(`/content/_drafts/posts/${slug}.mdx`)
-        }
-      }
-    }
+    const post = await importContent(`posts/${slug}`)
 
     const { metadata, default: Content } = post
 
