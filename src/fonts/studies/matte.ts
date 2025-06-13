@@ -8,6 +8,6 @@ export const inter = Inter({
 })
 
 export const nitti = localFont({
-  src: './fonts/Nitti Grotesk Light.otf',
+  src: '../../fonts/Nitti Grotesk Light.otf',
   display: 'swap',
 })
