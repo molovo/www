@@ -1,0 +1,76 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+@use '../setup/typography' as *
+
+.article--lost-at-sea
+  --background: #242e37
+  --color: white
+
+  .social-sharing
+    --social-sharing-accent: #427185
+    --social-sharing-color: white
+    --social-sharing-background: var(--background)
+
+  background: var(--background)
+  color: var(--color)
+  padding-top: 0
+
+  .content__inner
+    margin-top: -30vh
+
+    @media (min-width: 85vh)
+      margin-top: -15vh
+
+    @media (orientation: landscape)
+      margin-top: -10vh
+
+  .article
+    &__content
+      padding-top: 0
+
+    &__header
+      align-items: center
+      display: flex
+      flex-direction: column
+      justify-content: flex-start
+      left: 50%
+      height: 100svh
+      max-width: none
+      // padding-top: $gutterMax
+      position: relative
+      transform: translateX(-50%)
+      width: 100vw
+
+      &::after
+        +cover
+        background: linear-gradient(to bottom, rgba(var(--background), 0) 0%, rgba(var(--background), 1) 100%)
+        content: ''
+        display: block
+        z-index: 2
+
+      > *
+        position: relative
+        z-index: 3
+
+      ~ .content
+        margin-top: -30vh
+        padding-top: 30vh
+        position: relative
+        z-index: 4
+
+    &__image
+      height: 150svh
+      max-height: none
+
+    &__title
+      +scriptTitle
+
+      &
+        color: #427185
+        left: 50%
+        max-width: none
+        position: absolute
+        top: 30vh
+        transform: translateX(-50%)
+        width: 100%
+        z-index: 3
