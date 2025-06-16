@@ -8,7 +8,7 @@ import {importContent} from './helpers'
 export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
   const files = (
     await glob(
-      `${process.cwd()}/content/${process.env.NODE_ENV === 'development' ? '_drafts/' : ''}projects/${
+      `${process.cwd()}/content/${process.env.NODE_ENV === 'development' ? '{_drafts/,}' : ''}projects/${
         slugs ? `{${slugs.join(',')}}` : '*'
       }.mdx`,
     )
