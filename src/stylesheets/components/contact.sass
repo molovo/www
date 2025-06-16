@@ -36,7 +36,7 @@
     display: grid
     gap: ($baseline * .5)
     grid-template-columns: 100%
-    grid-template-rows: 1fr auto auto
+    grid-template-rows: 1fr auto auto auto
     height: 100%
     max-width: $contentWidth
     padding-top: $gutterMax
@@ -46,7 +46,7 @@
 
     @media (min-width: $breakpoint-largeMobile)
       grid-template-columns: 1fr 9em
-      grid-template-rows: 1fr auto
+      grid-template-rows: 1fr auto auto
 
     &:valid
       .contact__submit
@@ -155,8 +155,9 @@
           background-size: 100% 100%, 100% 100%
 
     &--altcha-token
-      grid-column: 1 / span 2
-      grid-row: 3 / span 1
+      @media (min-width: $breakpoint-largeMobile)
+        grid-column: 1 / span 2
+        grid-row: 3 / span 1
 
       .form__label-text
         @extend .screenreader-text
