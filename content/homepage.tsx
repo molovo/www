@@ -26,7 +26,7 @@ export const content = {
     subtitle: 'Iʼve had the pleasure of working with all of these fine folks.',
   },
   projects: {
-    title: 'Some things are _too good_ to keep to myself',
+    title: 'Some things are _too good_ to keep to myself.',
     subtitle:
       'I build open source tools, because good ideas are better when shared.',
     projects: await getProjects([
