@@ -8,9 +8,13 @@ const nextConfig = {
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 
-    outputFileTracingIncludes: {
-      '/api/**': ['./content/**/*'],
-    },
+  experimental: {
+    optimizePackageImports: ['@atproto/api'],
+  },
+
+  outputFileTracingIncludes: {
+    '/api/**': ['./content/**/*'],
+  },
 
   // Optionally, add any other Next.js config below
   images: {
@@ -32,7 +36,7 @@ const nextConfig = {
         hostname: 'media.giphy.com',
         port: '',
         pathname: '/**',
-      }
+      },
     ],
   },
 
