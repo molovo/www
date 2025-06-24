@@ -9,13 +9,41 @@ import {
   useRef,
   useState,
 } from 'react'
+/**
+ * Props for the CustomScrollbar component
+ * 
+ * @interface Props
+ * @extends {InputHTMLAttributes<HTMLInputElement>}
+ */
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  /** Reference to the element that this scrollbar controls */
   controls: RefObject<HTMLElement | null>
+  /** Additional CSS classes to apply to the scrollbar */
   className?: string
+  /** Inline styles to apply to the scrollbar */
   style?: Partial<CSSProperties>
 }
 
 export type { Props as CustomSrcollbarProps }
+
+/**
+ * CustomScrollbar - An accessible horizontal scrollbar component
+ * 
+ * This component creates a custom scrollbar that follows WAI-ARIA accessibility guidelines.
+ * It uses the slider role instead of scrollbar role to provide proper semantics for
+ * assistive technologies.
+ * 
+ * Key accessibility features:
+ * - Uses role="slider" for proper ARIA semantics
+ * - Provides aria-valuetext for meaningful value descriptions
+ * - Supports keyboard navigation (arrow keys, home, end)
+ * - Maintains proper aria-valuenow updates during scroll
+ * - Requires controlled element to have an ID for aria-controls
+ * 
+ * @param props - Component props
+ * @param ref - Forwarded ref to the input element
+ * @returns JSX.Element
+ */
 
 const CustomScrollbar = (
   { controls, className = '', style = {}, ...props }: Props,
@@ -48,13 +76,16 @@ const CustomScrollbar = (
     if (!dragging) {
       const progressInput = progress.current
       if (progressInput) {
-        const value = `${
+        const scrollPercentage = 
           (controls.current?.scrollLeft /
             (controls.current?.scrollWidth - controls.current?.clientWidth)) *
           100
-        }`
+        const value = `${scrollPercentage}`
+        const roundedValue = Math.round(scrollPercentage)
+        
         progressInput.value = value
         progressInput.setAttribute('aria-valuenow', value)
+        progressInput.setAttribute('aria-valuetext', `${roundedValue}% scrolled`)
       }
     }
   }
@@ -71,12 +102,17 @@ const CustomScrollbar = (
     }
 
     const value = parseFloat(progress.current?.value)
-    if (value) {
+    if (!isNaN(value)) {
       controls.current.scrollTo({
         left:
           (value / 100) *
           (controls.current?.scrollWidth - controls.current?.clientWidth),
+        behavior: 'smooth'
       })
+      
+      // Update aria-valuetext for screen readers
+      const roundedValue = Math.round(value)
+      progress.current.setAttribute('aria-valuetext', `${roundedValue}% scrolled`)
     }
   }
 
@@ -132,15 +168,14 @@ const CustomScrollbar = (
         type="range"
         className={`scrollbar ${className}`}
         ref={progress}
-        // Required attributes are added on hydration
-        // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
-        role="scrollbar"
-        aria-label="Scrollbar"
+        // Use slider role for proper accessibility semantics
+        role="slider"
+        aria-label="Horizontal scroll position"
         aria-controls={controls?.current?.id}
         aria-valuemin={0}
         aria-valuemax={100}
-        // @ts-ignore: 'aria-grabbed' is deprecated
-        aria-grabbed={dragging}
+        aria-valuetext={`${Math.round(parseFloat(progress.current?.value || '0'))}% scrolled`}
+        aria-orientation="horizontal"
         style={style}
         {...props}
       />
