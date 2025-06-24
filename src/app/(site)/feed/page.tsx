@@ -1,13 +1,12 @@
 'use client'
 
-import {
-  AppBskyEmbedExternal,
-  AppBskyEmbedImages,
-  RichText,
-} from '@atproto/api'
+import type { AppBskyEmbedExternal, AppBskyEmbedImages } from '@atproto/api'
+import { RichText } from '@atproto/api'
+import type { PostView } from '@atproto/api/dist/client/types/app/bsky/feed/defs'
+import type { Record } from '@atproto/api/dist/client/types/app/bsky/feed/post'
+
 import Image from '@/components/image'
 import ContentVideo from '@/components/content-video'
-import { PostView } from '@atproto/api/dist/client/types/app/bsky/feed/defs'
 import Repost from '@/components/images/icons/repost.svg'
 
 import TimeAgo from 'javascript-time-ago'
@@ -15,7 +14,6 @@ import en from 'javascript-time-ago/locale/en'
 import Link from '@/components/link'
 import { useIsInViewport } from '@superrb/react-addons/hooks'
 import { useEffect, useState } from 'react'
-import { Record } from '@atproto/api/dist/client/types/app/bsky/feed/post'
 
 TimeAgo.addDefaultLocale(en)
 const timeAgo = new TimeAgo('en-GB')
@@ -179,10 +177,12 @@ export default function Page() {
                           ?.external as AppBskyEmbedExternal.ViewExternal
                       )?.thumb && (
                         <Image
-                          src={(
-                        post.embed
-                          ?.external as AppBskyEmbedExternal.ViewExternal
-                      )?.thumb as string}
+                          src={
+                            (
+                              post.embed
+                                ?.external as AppBskyEmbedExternal.ViewExternal
+                            )?.thumb as string
+                          }
                           alt=""
                           width="1200"
                           height="630"
@@ -192,14 +192,22 @@ export default function Page() {
                         />
                       )}
                       <div className="feed__embed-link-content">
-                        <h5>{(
-                        post.embed
-                          ?.external as AppBskyEmbedExternal.ViewExternal
-                      )?.title}</h5>
-                        <p>{(
-                        post.embed
-                          ?.external as AppBskyEmbedExternal.ViewExternal
-                      )?.description}</p>
+                        <h5>
+                          {
+                            (
+                              post.embed
+                                ?.external as AppBskyEmbedExternal.ViewExternal
+                            )?.title
+                          }
+                        </h5>
+                        <p>
+                          {
+                            (
+                              post.embed
+                                ?.external as AppBskyEmbedExternal.ViewExternal
+                            )?.description
+                          }
+                        </p>
                       </div>
                     </a>
                   )}
