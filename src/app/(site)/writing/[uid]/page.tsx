@@ -84,7 +84,7 @@ const Page = async ({ params }: { params: Promise<{ uid: string }> }) => {
     notFound()
   }
 
-  const { slug, title, image, date } = post
+  const { slug, title, description, image, date } = post
 
   const socialSharing = <SocialSharing title={title.replace('_', '')} />
   const webmentions = <Webmentions slug={slug as string} />
@@ -93,6 +93,7 @@ const Page = async ({ params }: { params: Promise<{ uid: string }> }) => {
     '@type': 'Article',
     headline: title,
     name: title,
+    description,
     datePublished: new Date(date).toUTCString(),
     mainEntityOfPage: {
       '@type': 'WebPage',
