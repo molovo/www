@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({ children }: PropsWithChildren<{}>) {
+export default async function RootLayout({ children }: PropsWithChildren) {
   const studies = await getStudies([
     'joonbyrd',
     'redistribute',

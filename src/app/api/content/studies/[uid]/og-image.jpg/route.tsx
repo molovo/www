@@ -1,5 +1,3 @@
-import { getStudies } from '@/data/studies'
-
 const getScreenshot = async (uid: string) => {
   const puppeteer = await import('puppeteer')
 

@@ -2,6 +2,7 @@
 
 import ContentFigure from './content-figure'
 import Image from '@/components/image'
+import { Image as ImageType } from '@/types/image'
 import { CSSProperties, UIEventHandler } from 'react'
 import { useState } from 'reinspect'
 
@@ -12,7 +13,7 @@ const Slideshow = ({
   imageStyle = {},
   captionStyle = {},
 }: {
-  images: any[]
+  images: ImageType[]
   caption: string
   style: Partial<CSSProperties>
   imageStyle?: Partial<CSSProperties>

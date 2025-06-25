@@ -3,7 +3,6 @@
 import Logo from './logo'
 import MenuToggle from './menu-toggle'
 import useNavStateStore from '@/store/nav-state'
-import { useEventListener, useHideOnScroll } from '@superrb/react-addons/hooks'
 import useThemeStore, { Color, HeaderStyle } from '@/store/theme'
 import useLoadingStore from '@/store/loading'
 import { useCallback, useEffect, useState } from 'react'

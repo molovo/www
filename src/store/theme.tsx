@@ -27,20 +27,22 @@ const useThemeStore = create<{
   setHeaderColor: (color?: Color) => void
 }>((set) => ({
   color: undefined as Color,
-  setColor: (color?: Color) => set((state) => ({ color })),
+  setColor: (color?: Color) => set((state) => ({ ...state, color })),
   backgroundColor: undefined as Color,
   setBackgroundColor: (color?: Color) =>
-    set((state) => ({ backgroundColor: color })),
+    set((state) => ({ ...state, backgroundColor: color })),
   accentColor: undefined as Color,
-  setAccentColor: (color?: Color) => set((state) => ({ accentColor: color })),
+  setAccentColor: (color?: Color) =>
+    set((state) => ({ ...state, accentColor: color })),
   accentColorTwo: undefined as Color,
   setAccentColorTwo: (color?: Color) =>
-    set((state) => ({ accentColorTwo: color })),
+    set((state) => ({ ...state, accentColorTwo: color })),
   headerStyle: 'red' as HeaderStyle,
   setHeaderStyle: (style?: HeaderStyle) =>
-    set((state) => ({ headerStyle: style })),
+    set((state) => ({ ...state, headerStyle: style })),
   headerColor: undefined as Color,
-  setHeaderColor: (color?: Color) => set((state) => ({ headerColor: color })),
+  setHeaderColor: (color?: Color) =>
+    set((state) => ({ ...state, headerColor: color })),
 }))
 
 if (process.env.NODE_ENV === 'development') {

@@ -34,10 +34,12 @@ export default interface CaseStudyType {
   title: string
   description: string
   client: string
+  role?: string
   url?: string
   offline?: boolean
   date: string
   thumbnail: string | StaticImageData
+  thumbnailContentBackground?: string | StaticImageData
   order?: number
   draft?: boolean
   superrb?: boolean
@@ -63,7 +65,9 @@ export default interface CaseStudyType {
       quote?: Partial<CSSProperties>
     }
     thumbnail?: Partial<CSSProperties>
+    thumbnailBackgroundImage?: Partial<CSSProperties>
     thumbnailContent?: Partial<CSSProperties>
+    thumbnailContentBackgroundImage?: Partial<CSSProperties>
     thumbnailTitle?: Partial<CSSProperties>
     visit?: Partial<CSSProperties>
     visitButton?: Partial<CSSProperties>

@@ -1,17 +1,9 @@
 'use client'
 
 import useHeaderStyle from '@/hooks/use-header-style'
-import HomepageSection, { HomepageSectionLink } from './section'
+import HomepageSection from './section'
 
-const Clients = ({
-  title,
-  subtitle,
-  link,
-}: {
-  title: string
-  subtitle: string
-  link?: HomepageSectionLink
-}) => {
+const Clients = ({ title, subtitle }: { title: string; subtitle: string }) => {
   const setRef = useHeaderStyle('red')
 
   return (

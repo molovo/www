@@ -26,7 +26,7 @@ export const getStudies = async (
 
         const study = await importContent(`studies/${slug}/index`)
 
-        const { metadata, default: Content } = study
+        const { metadata } = study
 
         return { ...metadata, slug } as CaseStudyType
       }) as Promise<CaseStudyType>[],
@@ -49,7 +49,7 @@ export const getStudy = async (
   try {
     const study = await importContent(`studies/${slug}/index`)
 
-    const { metadata, default: Content } = study
+    const { metadata } = study
 
     const sections = await getSections(slug)
 

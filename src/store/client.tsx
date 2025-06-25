@@ -7,7 +7,7 @@ const useClientStore = create<{
   setClient: (client?: ClientSlug) => void
 }>((set) => ({
   client: undefined as ClientSlug | undefined,
-  setClient: (client?: ClientSlug) => set((state) => ({ client })),
+  setClient: (client?: ClientSlug) => set((state) => ({ ...state, client })),
 }))
 
 if (process.env.NODE_ENV === 'development') {

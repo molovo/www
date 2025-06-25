@@ -1,4 +1,4 @@
-import { CSSProperties, SVGProps } from 'react'
+import { SVGProps } from 'react'
 
 const Joonbyrd = ({ style = {}, ...props }: SVGProps<SVGSVGElement>) => (
   <svg

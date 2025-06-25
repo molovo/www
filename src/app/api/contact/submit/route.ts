@@ -18,6 +18,7 @@ export async function POST(request: NextRequest) {
   try {
     await verifySolution(altchaToken, process.env.ALTCHA_HMAC_KEY as string)
   } catch (error) {
+    console.error(error)
     return Response.json({
       success: false,
       error: 'Altcha challenge failed',
@@ -25,7 +26,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const response = await mg.messages.create('molovo.co', {
+    await mg.messages.create('molovo.co', {
       from: process.env.CONTACT_FORM_EMAIL_FROM as string,
       to: [process.env.CONTACT_FORM_EMAIL_TO as string],
       replyTo: email as string,

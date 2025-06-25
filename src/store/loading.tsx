@@ -6,7 +6,7 @@ const useLoadingStore = create<{
   setLoading: (loading: boolean) => void
 }>((set) => ({
   loading: false,
-  setLoading: (loading: boolean) => set((state) => ({ loading })),
+  setLoading: (loading: boolean) => set((state) => ({ ...state, loading })),
 }))
 
 if (process.env.NODE_ENV === 'development') {

@@ -6,22 +6,12 @@ import CreativePool from '@/components/images/icons/awards/creative-pool.svg'
 import CSSDesignAwards from '@/components/images/icons/awards/css-design-awards.svg'
 import Typewolf from '@/components/images/icons/awards/typewolf.svg'
 import useHeaderStyle from '@/hooks/use-header-style'
-import HomepageSection, {
-  HomepageSectionLink,
-} from '@/components/homepage/section'
+import HomepageSection from '@/components/homepage/section'
 import Link from '@/components/link'
 
 const Nominee = () => <span className="awards__nominee">Nominated for</span>
 
-const Awards = ({
-  title,
-  subtitle,
-  link,
-}: {
-  title: string
-  subtitle: string
-  link?: HomepageSectionLink
-}) => {
+const Awards = ({ title, subtitle }: { title: string; subtitle: string }) => {
   const setRef = useHeaderStyle('red')
 
   return (

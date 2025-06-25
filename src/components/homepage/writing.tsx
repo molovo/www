@@ -6,7 +6,6 @@ import HomepageSection, {
   HomepageSectionLink,
 } from '@/components/homepage/section'
 import ArticleType from '@/types/article'
-import Link from 'next/link'
 import Button from '../button'
 
 const Writing = ({
@@ -27,7 +26,6 @@ const Writing = ({
       title={title}
       titleSwashCharacter="F"
       subtitle={subtitle}
-      link={link}
       className="writing"
       ref={setRef}
     >

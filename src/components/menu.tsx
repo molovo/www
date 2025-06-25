@@ -3,7 +3,7 @@
 import Link from '@/components/link'
 import { useState } from 'reinspect'
 import useNavStateStore from '@/store/nav-state'
-import { MutableRefObject, ReactNode, useEffect, useRef } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { useLockBodyScroll, useIsMobile } from '@superrb/react-addons/hooks'
 import { usePathname } from 'next/navigation'
 import MenuCaseStudies from './menu-case-studies'
@@ -77,16 +77,14 @@ const Menu = ({ studies = [] }: { studies: CaseStudyType[] }) => {
   useLockBodyScroll(isOpen)
   useEscape(nav, close)
 
-  const blurTimer = useRef<NodeJS.Timeout>(
-    null,
-  )
+  const blurTimer = useRef<NodeJS.Timeout>(null)
 
   return (
     <nav
       className="menu"
       id="nav"
       aria-hidden={!isOpen}
-      onBlur={(event) => {
+      onBlur={() => {
         blurTimer.current = setTimeout(() => {
           close()
         }, 50)

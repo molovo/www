@@ -5,7 +5,7 @@ import HomepageSection, {
 } from '@/components/homepage/section'
 import ProjectType from '@/types/project'
 import CustomScrollbar from '@/components/custom-scrollbar'
-import { MutableRefObject, ReactNode, useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import useHeaderStyle from '@/hooks/use-header-style'
 import { gtAmericaMono } from '@/fonts/homepage'
 import Button from '../button'

@@ -4,7 +4,7 @@ import Image from '@/components/image'
 import ContentFigure, { ContentFigureProps } from './content-figure'
 import { CSSProperties, useCallback, useRef } from 'react'
 import { useEventListener } from '@superrb/react-addons/hooks'
-import { Image as ImageType, ZoomableImage } from '@/types/image'
+import { ZoomableImage } from '@/types/image'
 
 const getRelativeTransform = (el1: HTMLElement, el2: HTMLElement): number =>
   (1 - el1.clientHeight / el2.clientHeight) *

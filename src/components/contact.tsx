@@ -8,6 +8,7 @@ import { Form } from '@superrb/react-addons/components'
 import * as Yup from 'yup'
 import Button from './button'
 import { FormRef } from '@superrb/react-addons/components/form'
+import { FieldRenderer } from '@superrb/react-addons/components/form/types'
 
 const schema = Yup.object().shape({
   message: Yup.string()
@@ -28,7 +29,7 @@ const AltchaComponent = ({
 }: {
   name?: string
   error?: { message: string }
-  onStateChange?: (payload: any) => void
+  onStateChange?: (event: AltchaStateChangeEvent) => void
 }) => {
   const widgetRef = useRef<AltchaWidget & AltchaWidgetMethods & HTMLElement>(
     null,
@@ -72,7 +73,6 @@ const Contact = () => {
   const ref = useRef<HTMLElement>(null)
   const formRef =
     useRef<FormRef<typeof schema, Yup.InferType<typeof schema>>>(null)
-  const inputRef = useRef<HTMLTextAreaElement>(null)
   const setRef = useHeaderStyle('white')
   const { isOpen, close } = useContactFormStateStore()
 
@@ -180,7 +180,7 @@ const Contact = () => {
             </div>
           )}
           renderers={{
-            altchaToken: (props: Record<string, any>, error, schema) => (
+            altchaToken: ((props: Record<string, string>, error) => (
               <AltchaComponent
                 name={props.name}
                 error={error as { message: string }}
@@ -188,7 +188,7 @@ const Contact = () => {
                   formRef.current?.setValue('altchaToken', event.detail.payload)
                 }}
               />
-            ),
+            )) as FieldRenderer,
           }}
         />
       </div>

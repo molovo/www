@@ -1,5 +1,5 @@
 import { useEventListener } from '@superrb/react-addons/hooks'
-import { MutableRefObject, useState } from 'react'
+import { RefObject, useState } from 'react'
 
 type PositionData = {
   x: number
@@ -8,7 +8,7 @@ type PositionData = {
   scrollTop: number
 }
 
-export default function useDraggableScroll(ref: MutableRefObject<HTMLElement>) {
+export default function useDraggableScroll(ref: RefObject<HTMLElement>) {
   const [startPosition, setStartPosition] = useState<PositionData | undefined>(
     undefined,
   )
@@ -40,7 +40,7 @@ export default function useDraggableScroll(ref: MutableRefObject<HTMLElement>) {
     event.preventDefault()
   }
 
-  const handleMouseUp = (event: MouseEvent) => {
+  const handleMouseUp = () => {
     if (!startPosition) {
       return
     }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEventListener } from '@superrb/react-addons/hooks'
-import { MutableRefObject, useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useState } from 'reinspect'
 import { useLiveNodeList } from 'live-node-list/hooks'
 import CaseStudyCta from './case-study-cta'

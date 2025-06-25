@@ -3,7 +3,7 @@
 import { ViewTransitions } from 'next-view-transitions'
 import { PropsWithChildren } from 'react'
 
-const Main = ({ children }: PropsWithChildren<{}>) => (
+const Main = ({ children }: PropsWithChildren) => (
   <ViewTransitions>
     <main className="main" id="content">{children}</main>
   </ViewTransitions>
