@@ -18,7 +18,7 @@ export const getPosts = async (slugs?: string[]): Promise<ArticleType[]> => {
       .map(async (slug) => {
         const post = await importContent(`posts/${slug}`)
 
-        const { metadata} = post
+        const { metadata } = post
 
         return { slug, ...metadata } as ArticleType
       }),

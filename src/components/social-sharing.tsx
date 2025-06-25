@@ -9,7 +9,7 @@ import BSky from '@/components/images/icons/social/bsky.svg'
 import Reddit from '@/components/images/icons/social/reddit.svg'
 import Mail from '@/components/images/icons/social/mail.svg'
 import Flipboard from './images/icons/social/flipboard.svg'
-import { CSSProperties, MouseEventHandler} from 'react'
+import { CSSProperties, MouseEventHandler } from 'react'
 import { useIsInViewport, useIsMobile } from '@superrb/react-addons/hooks'
 import { usePathname } from 'next/navigation'
 
@@ -66,11 +66,7 @@ const SocialSharing = ({
   const pathname = usePathname()
 
   const url = `${process.env.NEXT_PUBLIC_SITE_URL}${pathname}`
-  const postText =
-    text ||
-    `${
-      title
-    } :: ${url}`
+  const postText = text || `${title} :: ${url}`
 
   return (
     <aside

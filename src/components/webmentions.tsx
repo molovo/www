@@ -2,7 +2,7 @@ import Image from '@/components/image'
 import mediumLogo from '@/images/icons/medium.jpg'
 import { format } from 'date-fns'
 import LineBreak from '@/components/line-break'
-import {StaticImageData} from 'next/image'
+import { StaticImageData } from 'next/image'
 
 interface Webmention {
   type: string

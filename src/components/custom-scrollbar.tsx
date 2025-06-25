@@ -11,7 +11,7 @@ import {
 } from 'react'
 /**
  * Props for the CustomScrollbar component
- * 
+ *
  * @interface Props
  * @extends {InputHTMLAttributes<HTMLInputElement>}
  */
@@ -28,18 +28,18 @@ export type { Props as CustomSrcollbarProps }
 
 /**
  * CustomScrollbar - An accessible horizontal scrollbar component
- * 
+ *
  * This component creates a custom scrollbar that follows WAI-ARIA accessibility guidelines.
  * It uses the slider role instead of scrollbar role to provide proper semantics for
  * assistive technologies.
- * 
+ *
  * Key accessibility features:
  * - Uses role="slider" for proper ARIA semantics
  * - Provides aria-valuetext for meaningful value descriptions
  * - Supports keyboard navigation (arrow keys, home, end)
  * - Maintains proper aria-valuenow updates during scroll
  * - Requires controlled element to have an ID for aria-controls
- * 
+ *
  * @param props - Component props
  * @param ref - Forwarded ref to the input element
  * @returns JSX.Element
@@ -76,16 +76,19 @@ const CustomScrollbar = (
     if (!dragging) {
       const progressInput = progress.current
       if (progressInput) {
-        const scrollPercentage = 
+        const scrollPercentage =
           (controls.current?.scrollLeft /
             (controls.current?.scrollWidth - controls.current?.clientWidth)) *
           100
         const value = `${scrollPercentage}`
         const roundedValue = Math.round(scrollPercentage)
-        
+
         progressInput.value = value
         progressInput.setAttribute('aria-valuenow', value)
-        progressInput.setAttribute('aria-valuetext', `${roundedValue}% scrolled`)
+        progressInput.setAttribute(
+          'aria-valuetext',
+          `${roundedValue}% scrolled`,
+        )
       }
     }
   }
@@ -107,12 +110,15 @@ const CustomScrollbar = (
         left:
           (value / 100) *
           (controls.current?.scrollWidth - controls.current?.clientWidth),
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
-      
+
       // Update aria-valuetext for screen readers
       const roundedValue = Math.round(value)
-      progress.current.setAttribute('aria-valuetext', `${roundedValue}% scrolled`)
+      progress.current.setAttribute(
+        'aria-valuetext',
+        `${roundedValue}% scrolled`,
+      )
     }
   }
 
@@ -174,7 +180,9 @@ const CustomScrollbar = (
         aria-controls={controls?.current?.id}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-valuetext={`${Math.round(parseFloat(progress.current?.value || '0'))}% scrolled`}
+        aria-valuetext={`${Math.round(
+          parseFloat(progress.current?.value || '0'),
+        )}% scrolled`}
         aria-orientation="horizontal"
         style={style}
         {...props}

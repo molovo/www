@@ -25,8 +25,7 @@ const OpenSourceInner = ({
   })[]
 }) => {
   const setRef = useHeaderStyle('white')
-  const projectsContainer =
-    useRef<HTMLDivElement>(null)
+  const projectsContainer = useRef<HTMLDivElement>(null)
   return (
     <HomepageSection
       title={title}
