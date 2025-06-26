@@ -5,7 +5,7 @@ import useHeaderStyle from '@/hooks/use-header-style'
 import CaseStudyItem from '@/components/case-study-item'
 import { useEffect, useRef, useState } from 'react'
 import CaseStudyType from '@/types/case-study'
-import hand from '@/images/icons/hand.svg'
+import hand from '@/images/icons/hand.png'
 import {
   useEventListener,
   useIsInViewport,
