@@ -3,6 +3,7 @@ https://molovo.netlify.com/*                            https://molovo.co/:splat
 https://molovo.netlify.app/*                            https://molovo.co/:splat                                    301!
 
 # Ensure index.html is stripped from url
+/index.html                                             /                                                           301!
 /*/index.html                                           /:splat/                                                    301!
 
 # Point old contact page to footer
