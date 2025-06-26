@@ -176,7 +176,7 @@ const Image = ({
             }
           : {})}
         ref={ref}
-        aria-busy={loaded === false}
+        aria-busy={props.loading === 'lazy' && loaded === false}
         style={{ ...style, ...(zoomable ? { cursor: 'zoom-in' } : {}) }}
         onLoad={() => setLoaded(true)}
         priority={props.loading === 'eager'}
