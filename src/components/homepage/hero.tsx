@@ -3,13 +3,12 @@
 import SuperrbLink from '@/components/superrb-link'
 import useHeaderStyle from '@/hooks/use-header-style'
 import CaseStudyItem from '@/components/case-study-item'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import CaseStudyType from '@/types/case-study'
 import hand from '@/images/icons/hand.png'
 import {
   useEventListener,
   useIsInViewport,
-  useIsMobile,
 } from '@superrb/react-addons/hooks'
 import CaseStudyCta from '@/components/case-study-cta'
 import swash from '@/utils/swash'
@@ -24,7 +23,8 @@ const Hero = ({
   studies: CaseStudyType[]
 }) => {
   const [scrolled, setScrolled] = useState<boolean>(false)
-  const isMobile = useIsMobile(false, '64em')
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+  const [isClient, setIsClient] = useState<boolean>(false)
   const setHeaderStyleRef = useHeaderStyle(
     isMobile || scrolled ? 'white' : 'white-red',
   )
@@ -42,7 +42,7 @@ const Hero = ({
     container.current || undefined,
   )
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (!container.current) {
       return
     }
@@ -68,7 +68,7 @@ const Hero = ({
         }
       })
     }
-  }
+  }, [isMobile, studiesElements])
 
   useEventListener(
     'scroll',
@@ -79,8 +79,23 @@ const Hero = ({
   )
 
   useEffect(() => {
-    handleScroll()
-  })
+    setIsClient(true)
+    const mediaQuery = window.matchMedia('(max-width: 64em)')
+    setIsMobile(mediaQuery.matches)
+
+    const handleResize = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleResize)
+    return () => mediaQuery.removeEventListener('change', handleResize)
+  }, [])
+
+  useEffect(() => {
+    if (isClient) {
+      handleScroll()
+    }
+  }, [isClient, handleScroll])
 
   if (!studies) {
     return null
