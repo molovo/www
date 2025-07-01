@@ -1,4 +1,4 @@
-import {SoftwareSourceCode} from "schema-dts"
+import { SoftwareSourceCode } from 'schema-dts'
 
 export interface ProjectMetadataType {
   order: number
