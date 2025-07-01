@@ -1,3 +1,5 @@
+'use cache'
+
 import { SoftwareSourceCode } from 'schema-dts'
 
 import { HomepageSectionLink } from '@/components/homepage/section'
@@ -28,7 +30,7 @@ const syntaxMap: { [key: string]: string } = {
   Typescript: 'typescript',
 }
 
-const OpenSource = ({
+const OpenSource = async ({
   title,
   subtitle,
   link,

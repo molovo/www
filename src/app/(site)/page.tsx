@@ -1,11 +1,10 @@
 import { content } from 'content/homepage'
 import Hero from '@/components/homepage/hero'
+import Awards from '@/components/homepage/awards'
+import OpenSource from '@/components/homepage/open-source'
+import Writing from '@/components/homepage/writing'
 import { Organization, Person, WebSite } from 'schema-dts'
 import Schema from '@/components/schema'
-// import Awards from '@/components/homepage/awards'
-// import OpenSource from '@/components/homepage/open-source'
-// import Writing from '@/components/homepage/writing'
-import dynamicComponent from 'next/dynamic'
 
 export const dynamic = 'force-static'
 
@@ -51,16 +50,6 @@ const consolidatedJsonLd = {
     } as Person,
   ],
 }
-
-const Awards = dynamicComponent(() => import('@/components/homepage/awards'), {
-  ssr: true,
-})
-const OpenSource = dynamicComponent(() => import('@/components/homepage/open-source'), {
-  ssr: true,
-})
-const Writing = dynamicComponent(() => import('@/components/homepage/writing'), {
-  ssr: true,
-})
 
 export default async function Page() {
   return (
