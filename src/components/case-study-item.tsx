@@ -100,6 +100,7 @@ const CaseStudyItem = ({
             style={styles?.thumbnailContent}
           >
             {thumbnailContentBackground && (
+              <>
               <figure className="case-study-item__content-background">
                 <Image
                   src={thumbnailContentBackground}
@@ -110,8 +111,9 @@ const CaseStudyItem = ({
                   zoomable={false}
                 />
               </figure>
-            )}
             <Logo client={slug} />
+              </>
+            )}
 
             <h2
               className="case-study-item__title"
