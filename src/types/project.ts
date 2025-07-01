@@ -1,3 +1,5 @@
+import {SoftwareSourceCode} from "schema-dts"
+
 export interface ProjectMetadataType {
   order: number
   slug: string
@@ -14,4 +16,5 @@ export default interface ProjectType {
   slug: string
   metadata: ProjectMetadataType
   code: string
+  jsonLd: SoftwareSourceCode
 }

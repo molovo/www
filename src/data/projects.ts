@@ -4,6 +4,7 @@ import ProjectType from '@/types/project'
 import { glob } from 'glob'
 import { readFile } from 'fs/promises'
 import {importContent} from './helpers'
+import { SoftwareSourceCode } from 'schema-dts'
 
 export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
   const files = (
@@ -23,7 +24,17 @@ export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
         'utf-8',
       )
 
-      return { slug, metadata, code } as ProjectType
+      // Pre-process JSON-LD schema at build time
+      const jsonLd: SoftwareSourceCode = {
+        '@type': 'SoftwareSourceCode',
+        name: metadata.title,
+        description: metadata.description,
+        url: metadata.url,
+        codeRepository: metadata.repo,
+        programmingLanguage: metadata.language,
+      }
+
+      return { slug, metadata, code, jsonLd } as ProjectType
     }),
   )
 

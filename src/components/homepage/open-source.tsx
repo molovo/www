@@ -39,18 +39,13 @@ const OpenSource = ({
   link?: HomepageSectionLink
   projects: ProjectType[]
 }) => {
+  const consolidatedJsonLd = {
+    '@graph': projects.map(({ jsonLd }) => jsonLd),
+  }
+
   const formattedProjects = projects.map((project, i) => ({
     ...project,
     output: (() => {
-      const jsonLd: SoftwareSourceCode = {
-        '@type': 'SoftwareSourceCode',
-        name: project.metadata.title,
-        description: project.metadata.description,
-        url: project.metadata.url,
-        codeRepository: project.metadata.repo,
-        programmingLanguage: project.metadata.language,
-      }
-
       return (
         <div className="open-source__project" key={i}>
           <div className="open-source__logo">
@@ -73,20 +68,21 @@ const OpenSource = ({
           <CodeBlock lang={syntaxMap[project.metadata.language]}>
             {project.code}
           </CodeBlock>
-
-          <Schema content={jsonLd} />
         </div>
       )
     })() as ReactNode,
   }))
 
   return (
-    <OpenSourceInner
-      title={title}
-      subtitle={subtitle}
-      link={link}
-      projects={formattedProjects}
-    />
+    <>
+      <OpenSourceInner
+        title={title}
+        subtitle={subtitle}
+        link={link}
+        projects={formattedProjects}
+      />
+      <Schema content={consolidatedJsonLd} />
+    </>
   )
 }
 
