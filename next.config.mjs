@@ -10,6 +10,7 @@ const nextConfig = {
 
   experimental: {
     optimizePackageImports: ['@atproto/api'],
+    useCache: true,
   },
 
   outputFileTracingIncludes: {
