@@ -1,14 +1,9 @@
-'use client'
-
-import { ViewTransitions } from 'next-view-transitions'
 import { PropsWithChildren } from 'react'
 
-const Main = ({ children }: PropsWithChildren) => (
-  <ViewTransitions>
-    <main className="main" id="content">
-      {children}
-    </main>
-  </ViewTransitions>
+const Main = async ({ children }: PropsWithChildren) => (
+  <main className="main" id="content">
+    {children}
+  </main>
 )
 
 export default Main
