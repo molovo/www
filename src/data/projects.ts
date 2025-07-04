@@ -3,15 +3,15 @@
 import ProjectType from '@/types/project'
 import { glob } from 'glob'
 import { readFile } from 'fs/promises'
-import {importContent} from './helpers'
+import { importContent } from './helpers'
 import { SoftwareSourceCode } from 'schema-dts'
 
 export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
   const files = (
     await glob(
-      `${process.cwd()}/content/${process.env.NODE_ENV === 'development' ? '{_drafts/,}' : ''}projects/${
-        slugs ? `{${slugs.join(',')}}` : '*'
-      }.mdx`,
+      `${process.cwd()}/content/${
+        process.env.NODE_ENV === 'development' ? '{_drafts/,}' : ''
+      }projects/${slugs ? `{${slugs.join(',')}}` : '*'}.mdx`,
     )
   ).map((filename: string) => filename.match(/\/([^\/]+)\.mdx$/)?.[1])
 
@@ -39,7 +39,8 @@ export const getProjects = async (slugs?: string[]): Promise<ProjectType[]> => {
   )
 
   if (slugs) {
-    return slugs.map((slug) => projects.find(({ slug: s }) => s === slug))
+    return slugs
+      .map((slug) => projects.find(({ slug: s }) => s === slug))
       .filter((project) => project !== undefined) as ProjectType[]
   }
 
