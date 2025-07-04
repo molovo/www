@@ -10,7 +10,15 @@ const nextConfig = {
 
   experimental: {
     optimizePackageImports: ['@atproto/api'],
-    useCache: true,
+    // useCache: true,
+    // dynamicIO: true,
+    // cacheLife: {
+    //   content: {
+    //     stale: 30, // 30 seconds
+    //     revalidate: 60, // 1 minute
+    //     expire: 3600, // 1 hour
+    //   },
+    // },
   },
 
   outputFileTracingIncludes: {
