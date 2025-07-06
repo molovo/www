@@ -1,5 +1,3 @@
-'use cache'
-
 import { HomepageSectionLink } from '@/components/homepage/section'
 import ProjectType from '@/types/project'
 import Link from '@/components/link'
