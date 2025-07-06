@@ -1,12 +1,19 @@
-import { content } from 'content/homepage'
 import Hero from '@/components/homepage/hero'
-import Awards from '@/components/homepage/awards'
-import OpenSource from '@/components/homepage/open-source'
-import Writing from '@/components/homepage/writing'
 import { Organization, Person, WebSite } from 'schema-dts'
 import Schema from '@/components/schema'
 
+import { getStudies } from '@/data/studies'
+import { getProjects } from '@/data/projects'
+import { getPosts } from '@/data/posts'
+import dynamicComponent from 'next/dynamic'
+
 export const dynamic = 'force-static'
+
+const Awards = dynamicComponent(() => import('@/components/homepage/awards'))
+const OpenSource = dynamicComponent(
+  () => import('@/components/homepage/open-source'),
+)
+const Writing = dynamicComponent(() => import('@/components/homepage/writing'))
 
 export const metadata = {
   title: {
@@ -52,13 +59,57 @@ const consolidatedJsonLd = {
 }
 
 export default async function Page() {
+  // Fetch all data in parallel for performance
+  const [studies, projects, posts] = await Promise.all([
+    getStudies(['joonbyrd', 'redistribute', 'vixen-fitness']),
+    getProjects([
+      'live-node-list',
+      'consumer',
+      'zunit',
+      'async',
+      'phillip',
+      'magic-roundabout',
+    ]),
+    getPosts(['lost-at-sea', 'perpetually-online', 'the-view-from-above']),
+  ])
+
+  const content = {
+    hero: {
+      title: 'Hi, I&apos;m James.<br />I make websites.',
+      studies,
+    },
+    awards: {
+      title: 'Turns out, the big names have _great taste_.',
+      subtitle:
+        'My work has been recognised by some of the industryʼs top players.',
+    },
+    projects: {
+      title: 'Some things are _too good_ to keep to myself.',
+      subtitle:
+        'I build open source tools, because good ideas are better when shared.',
+      projects,
+      link: {
+        url: 'https://github.com/molovo',
+        label: 'View more on Github',
+      },
+    },
+    writing: {
+      title: 'I _write_ about design, development, and the web.',
+      subtitle: 'Here are a few of my favourite articles.',
+      posts,
+      link: {
+        url: '/writing',
+        label: 'View all articles',
+      },
+    },
+  }
+
   return (
     <>
       <Hero {...content.hero} />
       <Awards {...content.awards} />
       <OpenSource {...content.projects} />
       <Writing {...content.writing} />
-
       <Schema content={consolidatedJsonLd} />
     </>
   )
