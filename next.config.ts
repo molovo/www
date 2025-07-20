@@ -2,23 +2,25 @@ import remarkGfm from 'remark-gfm'
 import remarkSmartypants from 'remark-smartypants'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import createMDX from '@next/mdx'
+import type { NextConfig } from 'next'
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 
   experimental: {
     optimizePackageImports: ['@atproto/api'],
-    // useCache: true,
+    useCache: true,
     // dynamicIO: true,
-    // cacheLife: {
-    //   content: {
-    //     stale: 30, // 30 seconds
-    //     revalidate: 60, // 1 minute
-    //     expire: 3600, // 1 hour
-    //   },
-    // },
+    cacheLife: {
+      content: {
+        stale: 30, // 30 seconds
+        revalidate: 60, // 1 minute
+        expire: 3600, // 1 hour
+      },
+    },
   },
 
   outputFileTracingIncludes: {
