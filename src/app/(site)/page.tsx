@@ -6,6 +6,7 @@ import { getStudies } from '@/data/studies'
 import { getProjects } from '@/data/projects'
 import { getPosts } from '@/data/posts'
 import dynamicComponent from 'next/dynamic'
+import { Metadata } from 'next'
 
 export const dynamic = 'force-static'
 
@@ -15,7 +16,7 @@ const OpenSource = dynamicComponent(
 )
 const Writing = dynamicComponent(() => import('@/components/homepage/writing'))
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     absolute: 'molovo. Design, Development, Branding',
   },
