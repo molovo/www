@@ -82,8 +82,5 @@
     "sharp": "^0.33.5",
     "typescript": "^5.8.3"
   },
-  "packageManager": "yarn@4.9.2",
-  "resolutions": {
-    "live-node-list": "portal:/Users/molovo/projects/live-node-list"
-  }
+  "packageManager": "yarn@4.9.2"
 }

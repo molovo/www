@@ -5347,16 +5347,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"live-node-list@portal:/Users/molovo/projects/live-node-list::locator=molovo.next%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "live-node-list@portal:/Users/molovo/projects/live-node-list::locator=molovo.next%40workspace%3A."
+"live-node-list@npm:^3.0.0-0":
+  version: 3.0.0-0
+  resolution: "live-node-list@npm:3.0.0-0"
   dependencies:
     decko: "npm:^1.2.0"
   peerDependencies:
     "@types/react": ^17.0.1
     react: ^17.0.1
+  checksum: 10c0/cc4971122d8d915e740c015e26f8d78158dffb66e637767af43ccfab461f133fa71679728c710b57057b222a6d5dc317b8ce4d4ce05cc0d8349cdd5c5acf4ec0
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "load-script@npm:^1.0.0":
   version: 1.0.0
