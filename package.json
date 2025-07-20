@@ -16,14 +16,15 @@
     "start": "next start",
     "lint": "next lint",
     "pa11y": "pa11y-ci --sitemap https://molovo.co/sitemap.xml",
-    "pa11y:local": "pa11y-ci --sitemap http://localhost:3000/sitemap.xml --sitemap-find https://molovo.co --sitemap-replace http://localhost:3000"
+    "pa11y:local": "pa11y-ci --sitemap http://localhost:3000/sitemap.xml --sitemap-find https://molovo.co --sitemap-replace http://localhost:3000",
+    "knip": "knip"
   },
   "dependencies": {
     "@atproto/api": "^0.13.24",
     "@babel/parser": "^7.23.6",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
-    "@next/mdx": "^15.3.4",
+    "@next/mdx": "^15.4.0-canary.116",
     "@superrb/next-addons": "^5.0.0-5",
     "@superrb/react-addons": "^4.0.0-4",
     "altcha": "^2.0.3",
@@ -36,7 +37,7 @@
     "live-node-list": "^3.0.0-0",
     "mailgun.js": "^12.0.2",
     "mime": "^4.0.3",
-    "next": "^15.3.4",
+    "next": "^15.4.0-canary.116",
     "next-view-transitions": "^0.3.4",
     "puppeteer": "^23.9.0",
     "react": "^19.1.0",
@@ -67,7 +68,7 @@
     "@next/bundle-analyzer": "^15.3.4",
     "@types/js-yaml": "^4.0.9",
     "@types/mdx": "^2.0.10",
-    "@types/node": "^22.15.30",
+    "@types/node": "^24.0.10",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@types/react-syntax-highlighter": "^15.5.13",
@@ -76,9 +77,13 @@
     "browserslist-config-baseline": "^0.4.0",
     "eslint": "^8",
     "eslint-config-next": "^15.3.3",
+    "knip": "^5.61.3",
     "pa11y-ci": "^3.1.0",
     "sharp": "^0.33.5",
-    "typescript": "^5"
+    "typescript": "^5.8.3"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.2",
+  "resolutions": {
+    "live-node-list": "portal:/Users/molovo/projects/live-node-list"
+  }
 }
