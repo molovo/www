@@ -34,7 +34,7 @@
     "glob": "^10.3.10",
     "javascript-time-ago": "^2.5.11",
     "js-yaml": "^4.1.0",
-    "live-node-list": "^3.0.0-0",
+    "live-node-list": "^3.0.0-2",
     "mailgun.js": "^12.0.2",
     "mime": "^4.0.3",
     "next": "^15.4.2",
