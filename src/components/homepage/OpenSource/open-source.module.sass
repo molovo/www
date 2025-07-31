@@ -1,12 +1,11 @@
-@use '../../setup/vars' as *
-@use '../../setup/helpers' as *
-@use '../../setup/typography' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
 
 $code-background: rgb(40, 42, 54)
 $code-comment: #979cac
 $code-string: #e7ee98
 
-.open-source
+.openSource
   background: $black
   color: $white
 
@@ -62,7 +61,7 @@ $code-string: #e7ee98
         color: $code-comment !important
         font-style: italic
 
-      &.open-source__project-intro
+      &.openSource__projectIntro
         color: $code-comment
         flex: 0 0 auto
         font-family: $font-mono

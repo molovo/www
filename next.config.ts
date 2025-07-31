@@ -11,16 +11,8 @@ const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 
   experimental: {
+    cssChunking: true,
     optimizePackageImports: ['@atproto/api'],
-    useCache: true,
-    // dynamicIO: true,
-    cacheLife: {
-      content: {
-        stale: 30, // 30 seconds
-        revalidate: 60, // 1 minute
-        expire: 3600, // 1 hour
-      },
-    },
   },
 
   outputFileTracingIncludes: {
@@ -49,6 +41,10 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+
+  sassOptions: {
+    includePaths: ['./src/stylesheets/'],
   },
 
   async rewrites() {

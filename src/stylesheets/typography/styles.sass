@@ -1,0 +1,25 @@
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+
+%lead
+  font-family: $font-secondary
+  font-size: 1.25em
+  line-height: 1.2em
+  margin: 0 0 1.2em
+
+%contentLink
+  +hoverUnderline($red)
+  background: none
+  border: 0
+  color: inherit
+  font-family: $font-primary
+  font-variant: small-caps
+  font-weight: $weight-medium
+  padding: 0
+  text-transform: lowercase
+
+%screenreader-text
+  position: absolute
+  top: -9999vh
+  left: 0
+

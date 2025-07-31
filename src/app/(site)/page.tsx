@@ -1,4 +1,4 @@
-import Hero from '@/components/homepage/hero'
+import Hero from '@/components/homepage/Hero'
 import { Organization, Person, WebSite } from 'schema-dts'
 import Schema from '@/components/schema'
 
@@ -10,11 +10,11 @@ import { Metadata } from 'next'
 
 export const dynamic = 'force-static'
 
-const Awards = dynamicComponent(() => import('@/components/homepage/awards'))
+const Awards = dynamicComponent(() => import('@/components/homepage/Awards'))
 const OpenSource = dynamicComponent(
-  () => import('@/components/homepage/open-source'),
+  () => import('@/components/homepage/OpenSource'),
 )
-const Writing = dynamicComponent(() => import('@/components/homepage/writing'))
+const Writing = dynamicComponent(() => import('@/components/homepage/Writing'))
 
 export const metadata: Metadata = {
   title: {

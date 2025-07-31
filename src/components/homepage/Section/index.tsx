@@ -1,6 +1,8 @@
 import swash from '@/utils/swash'
 import { ForwardedRef, forwardRef, PropsWithChildren, ReactNode } from 'react'
 
+import styles from './section.module.sass'
+
 export type HomepageSectionLink = { label: ReactNode; url: string }
 
 export type HomepageSectionProps = {
@@ -22,20 +24,20 @@ const HomepageSection = (
 ) => (
   <section
     id={className}
-    className={`homepage-section ${
-      className ? `homepage-section--${className} ${className}` : ''
+    className={`${styles.section} ${
+      className ? `${styles[`section--${className}`]} ${className}` : ''
     }`}
     ref={ref}
   >
-    <header className="homepage-section__header">
-      <div className="homepage-section__header-titles">
+    <header className={styles.section__header}>
+      <div className={styles.section__headerTitles}>
         <h2
-          className="homepage-section__title"
+          className={styles.section__title}
           dangerouslySetInnerHTML={{
             __html: swash(title, titleSwashCharacter),
           }}
         />
-        <span className="homepage-section__subtitle">{subtitle}</span>
+        <span className={styles.section__subtitle}>{subtitle}</span>
       </div>
     </header>
 

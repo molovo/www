@@ -1,0 +1,31 @@
+@use 'setup/vars' as *
+
+=script
+  // +noise
+  font-family: $font-tertiary
+  letter-spacing: normal
+  line-height: .75em
+  font-weight: $weight-normal
+  margin: 0 auto .125em
+
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-smooth: always
+
+  .swash,
+  em
+    &::before
+      font-size: 1.5em
+      transform: translate(-50%, -110%) rotate(2deg)
+
+=scriptTitle
+  +script
+  font-size: 24vw
+  max-width: 3em
+  position: relative
+  text-align: center
+  transform: rotate(-5deg)
+
+  @media (min-width: $breakpoint-tablet)
+    font-size: 18vw
+

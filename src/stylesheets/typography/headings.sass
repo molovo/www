@@ -1,0 +1,49 @@
+@use 'sass:math'
+@use 'setup/vars' as *
+
+%h1, %h2, %h3, %h4, %h5, %h6
+  display: block
+
+%h2
+  font-family: $font-secondary
+  font-size: 2.25em
+  font-weight: $weight-bold
+  letter-spacing: -.05em
+  line-height: math.div(1.125, 1.5) * $baseline
+  margin-bottom: math.div(.6666666666666667, 1.5) * $baseline
+
+%h1
+  @extend %h2
+
+  @media (min-width: $breakpoint-tablet)
+    font-size: 3em
+    line-height: math.div(1, 1.5) * $baseline
+    margin-bottom: math.div(.5, 1.5) * $baseline
+
+%h3
+  font-family: $font-secondary
+  font-size: 1.5em
+  font-weight: $weight-bold
+  letter-spacing: -.05em
+  line-height: math.div(1, 1.5) * $baseline
+  margin-bottom: math.div(1, 1.5) * $baseline
+
+%h4
+  font-size: 1em
+  font-weight: 900
+  line-height: $baseline
+  margin-bottom: $baseline
+
+%h5
+  font-size: .75em
+  font-weight: $weight-medium
+  letter-spacing: .05em
+  line-height: math.div($baseline, .875)
+  margin-bottom: math.div($baseline, .875)
+  text-transform: uppercase
+
+%h6
+  font-size: 1em
+  line-height: $baseline
+  margin-bottom: $baseline
+

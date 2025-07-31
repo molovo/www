@@ -2,18 +2,17 @@
 
 import SuperrbLink from '@/components/superrb-link'
 import useHeaderStyle from '@/hooks/use-header-style'
-import CaseStudyItem from '@/components/case-study-item'
+import CaseStudyItem from '@/components/CaseStudyItem'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import CaseStudyType from '@/types/case-study'
 import hand from '@/images/icons/hand.png'
-import {
-  useEventListener,
-  useIsInViewport,
-} from '@superrb/react-addons/hooks'
-import CaseStudyCta from '@/components/case-study-cta'
+import { useEventListener, useIsInViewport } from '@superrb/react-addons/hooks'
+import CaseStudyCta from '@/components/CaseStudyItem/cta'
 import swash from '@/utils/swash'
 import { useLiveNodeList } from 'live-node-list/hooks'
 import Image from '@/components/image'
+
+import styles from './hero.module.sass'
 
 const Hero = ({
   title,
@@ -102,17 +101,17 @@ const Hero = ({
   }
 
   return (
-    <section className="hero" ref={setRef}>
-      <div className="hero__content">
-        <div className="hero__content-inner">
+    <section className={styles.hero} ref={setRef}>
+      <div className={styles.hero__content}>
+        <div className={styles.hero__inner}>
           <h1
-            className="hero__title"
+            className={styles.hero__title}
             dangerouslySetInnerHTML={{
               __html: swash(title, 'M'),
             }}
           />
 
-          <div className="hero__text">
+          <div className={styles.hero__text}>
             <p>
               Iʼm currently leading the talented dev team at <SuperrbLink />{' '}
               where I build awesome websites and interactive experiences like
@@ -129,8 +128,8 @@ const Hero = ({
         </div>
       </div>
 
-      <div className="hero__detail" ref={container}>
-        <ul className="hero__studies">
+      <div className={styles.hero__detail} ref={container}>
+        <ul className={styles.hero__studies}>
           {studies.map((study, i) => (
             <CaseStudyItem
               key={study.client}

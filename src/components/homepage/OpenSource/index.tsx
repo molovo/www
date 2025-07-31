@@ -1,4 +1,4 @@
-import { HomepageSectionLink } from '@/components/homepage/section'
+import { HomepageSectionLink } from '@/components/homepage/Section'
 import ProjectType from '@/types/project'
 import Link from '@/components/link'
 import Schema from '@/components/schema'
@@ -7,10 +7,12 @@ import JS from '@icons/languages/js.svg'
 import PHP from '@icons/languages/php.svg'
 import ZSH from '@icons/languages/zsh.svg'
 import TS from '@icons/languages/ts.svg'
-import LinkIcon from '../images/icons/link'
-import CodeBlock from '../code-block'
+import LinkIcon from '@icons/link'
+import CodeBlock from '@/components/code-block'
 import { ReactNode } from 'react'
-import OpenSourceInner from './open-source-inner'
+import OpenSourceInner from './Inner'
+
+import styles from './open-source.module.sass'
 
 const logoMap: { [key: string]: ReactNode } = {
   ZSH: <ZSH />,
@@ -45,12 +47,12 @@ const OpenSource = async ({
     ...project,
     output: (() => {
       return (
-        <div className="open-source__project" key={i}>
-          <div className="open-source__logo">
+        <div className={styles.openSource__project} key={i}>
+          <div className={styles.openSource__logo}>
             {logoMap[project.metadata.language]}
           </div>
 
-          <pre className="open-source__project-intro">
+          <pre className={styles.openSource__projectIntro}>
             {`/**
  * `}
             <Link href={project.metadata.url}>

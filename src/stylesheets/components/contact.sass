@@ -1,6 +1,7 @@
-@use '../setup/vars' as *
-@use '../setup/helpers' as *
-@use '../setup/typography' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+@use 'typography/mixins' as *
+@use 'typography/styles' as *
 @use './script-arrow' as *
 
 .contact
@@ -160,7 +161,7 @@
         grid-row: 3 / span 1
 
       .form__label-text
-        @extend .screenreader-text
+        @extend %screenreader-text
 
       altcha-widget
         .altcha

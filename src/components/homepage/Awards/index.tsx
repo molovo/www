@@ -6,10 +6,13 @@ import CreativePool from '@/components/images/icons/awards/creative-pool.svg'
 import CSSDesignAwards from '@/components/images/icons/awards/css-design-awards.svg'
 import Typewolf from '@/components/images/icons/awards/typewolf.svg'
 import useHeaderStyle from '@/hooks/use-header-style'
-import HomepageSection from '@/components/homepage/section'
-import Link from '@/components/link'
+import HomepageSection from '@/components/homepage/Section'
 
-const Nominee = () => <span className="awards__nominee">Nominated for</span>
+import styles from './awards.module.sass'
+
+const Nominee = () => (
+  <span className={styles.awards__nominee}>Nominated for</span>
+)
 
 const Awards = ({ title, subtitle }: { title: string; subtitle: string }) => {
   const setRef = useHeaderStyle('red')
@@ -18,48 +21,44 @@ const Awards = ({ title, subtitle }: { title: string; subtitle: string }) => {
     <HomepageSection
       title={title}
       subtitle={subtitle}
-      className="awards"
+      className={styles.awards}
       ref={setRef}
     >
-      <ol className="awards__items">
-        <li className="awards__item">
-          <div className="awards__logo">
-            <Link
-              href="https://www.joonbyrd.com"
-              target="_blank"
-              rel="noopener"
-            >
+      <ol className={styles.awards__items}>
+        <li className={styles.awards__item}>
+          <div className={styles.awards__logo}>
+            <a href="https://www.joonbyrd.com" target="_blank" rel="noopener">
               <span className="screenreader-text">Joonbyrd</span>
               <ClientLogo client="joonbyrd" />
-            </Link>
+            </a>
           </div>
 
-          <div className="awards__group">
-            <h3 className="awards__group-title">
+          <div className={styles.awards__group}>
+            <h3 className={styles.awards__groupTitle}>
               <span className="screenreader-text">Awwwards</span>
               <Awwwards />
             </h3>
 
-            <ul className="awards__list">
+            <ul className={styles.awards__list}>
               <li>Honorable Mention</li>
             </ul>
           </div>
         </li>
-        <li className="awards__item">
-          <div className="awards__logo">
-            <Link href="https://www.octaevo.com" target="_blank" rel="noopener">
+        <li className={styles.awards__item}>
+          <div className={styles.awards__logo}>
+            <a href="https://www.octaevo.com" target="_blank" rel="noopener">
               <span className="screenreader-text">Octaevo</span>
               <ClientLogo client="octaevo" />
-            </Link>
+            </a>
           </div>
 
-          <div className="awards__group">
-            <h3 className="awards__group-title">
+          <div className={styles.awards__group}>
+            <h3 className={styles.awards__groupTitle}>
               <span className="screenreader-text">Awwwards</span>
               <Awwwards />
             </h3>
 
-            <ul className="awards__list">
+            <ul className={styles.awards__list}>
               <li>Honorable Mention</li>
               <li>
                 <Nominee /> 2022 E-commerce Site of the Year
@@ -67,32 +66,32 @@ const Awards = ({ title, subtitle }: { title: string; subtitle: string }) => {
             </ul>
           </div>
 
-          <div className="awards__group">
-            <h3 className="awards__group-title">
+          <div className={styles.awards__group}>
+            <h3 className={styles.awards__groupTitle}>
               <span className="screenreader-text">Typewolf</span>
               <Typewolf />
             </h3>
 
-            <ul className="awards__list">
+            <ul className={styles.awards__list}>
               <li>Site of the Day</li>
             </ul>
           </div>
         </li>
-        <li className="awards__item">
-          <div className="awards__logo">
-            <Link href="https://www.superrb.com" target="_blank" rel="noopener">
+        <li className={styles.awards__item}>
+          <div className={styles.awards__logo}>
+            <a href="https://www.superrb.com" target="_blank" rel="noopener">
               <span className="screenreader-text">Superrb</span>
               <ClientLogo client="superrb" />
-            </Link>
+            </a>
           </div>
 
-          <div className="awards__group">
-            <h3 className="awards__group-title">
+          <div className={styles.awards__group}>
+            <h3 className={styles.awards__groupTitle}>
               <span className="screenreader-text">Awwwards</span>
               <Awwwards />
             </h3>
 
-            <ul className="awards__list">
+            <ul className={styles.awards__list}>
               <li>Site of the Day</li>
               <li>Developer Award</li>
               <li>
@@ -101,26 +100,26 @@ const Awards = ({ title, subtitle }: { title: string; subtitle: string }) => {
             </ul>
           </div>
 
-          <div className="awards__group">
-            <h3 className="awards__group-title">
+          <div className={styles.awards__group}>
+            <h3 className={styles.awards__groupTitle}>
               <span className="screenreader-text">Creative Pool</span>
               <CreativePool />
             </h3>
 
-            <ul className="awards__list">
+            <ul className={styles.awards__list}>
               <li>
                 <Nominee /> 2019 Annual Web Shortlist
               </li>
             </ul>
           </div>
 
-          <div className="awards__group">
-            <h3 className="awards__group-title">
+          <div className={styles.awards__group}>
+            <h3 className={styles.awards__groupTitle}>
               <span className="screenreader-text">CSS Design Awards</span>
               <CSSDesignAwards />
             </h3>
 
-            <ul className="awards__list">
+            <ul className={styles.awards__list}>
               <li>Site of the Day</li>
               <li>Best Innovation</li>
               <li>Best UI Design</li>

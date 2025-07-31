@@ -1,8 +1,10 @@
-@use '../../setup/vars' as *
-@use '../../setup/helpers' as *
-@use '../../setup/typography' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+@use 'typography/headings' as *
+@use 'typography/mixins' as *
+@use 'typography/styles' as *
 
-.homepage-section
+.section
   +gutters
   +spacing
 
@@ -18,7 +20,7 @@
       flex-wrap: nowrap
 
   &__title
-    @extend h1
+    @extend %h1
     +script
     color: $red
     font-size: 4.5em
@@ -26,12 +28,13 @@
     max-width: 7em
     text-wrap: balance
 
-    .swash
+    span
       &::before
         color: $gray2
+        font-size: 1.5em
 
   &__subtitle
-    @extend h2
+    @extend %h2
     margin: 0 0 -.25em
     max-width: 24em
     text-wrap: balance

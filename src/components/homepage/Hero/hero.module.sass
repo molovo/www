@@ -1,6 +1,7 @@
-@use '../../setup/vars' as *
-@use '../../setup/helpers' as *
-@use '../../setup/typography' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+@use 'typography/mixins' as *
+@use 'typography/styles' as *
 
 .hero
   align-items: stretch
@@ -19,19 +20,19 @@
     background: $red
     color: $white
 
-    &-inner
-      +gutters
-      +spacing
-      align-items: stretch
-      display: flex
-      flex-direction: column
-      height: 100svh
-      justify-content: flex-end
-      position: sticky
-      top: 0
+  &__inner
+    +gutters
+    +spacing
+    align-items: stretch
+    display: flex
+    flex-direction: column
+    height: 100svh
+    justify-content: flex-end
+    position: sticky
+    top: 0
 
-      @media (min-width: $breakpoint-container)
-        padding-right: $gutterMax
+    @media (min-width: $breakpoint-container)
+      padding-right: $gutterMax
 
   &__title
     +script
@@ -114,21 +115,21 @@
     @media (max-width: $breakpoint-tablet)
       padding-bottom: ($baseline * 2)
 
-      .case-study-item__content,
-      .case-study-item__inner,
-      .case-study-cta
+      .caseStudyItem__content,
+      .caseStudyItem__inner,
+      .caseStudyCta
         padding: ($baseline * .5) !important
 
-      .case-study-item,
-      .case-study-cta
+      .caseStudyItem,
+      .caseStudyCta
         &:nth-child(2n)
           transform: translateY($baseline * 2)
 
     @media (max-width: $breakpoint-desktop)
       padding-bottom: ($baseline * 4)
 
-      .case-study-item,
-      .case-study-cta
+      .caseStudyItem,
+      .caseStudyCta
         &:nth-child(2n)
           transform: translateY($baseline * 4)
 
@@ -139,7 +140,7 @@
       @media (min-width: $breakpoint-largeMobile)
         transform: none
 
-    .case-study-item__title
+    .caseStudyItem__title
       font-size: calc(17vw * var(--fontSizeMultiplier))
 
       @media (min-width: $breakpoint-largeMobile)
@@ -148,13 +149,13 @@
       @media (min-width: $breakpoint-desktop)
         font-size: calc(11vw * var(--fontSizeMultiplier))
 
-    .case-study-item__meta
+    .caseStudyItem__meta
       font-size: .875em
 
       @media (min-width: $breakpoint-largeMobile)
         font-size: 1em
 
-    .case-study-cta__title
+    .caseStudyCta__title
       font-size: 1.4em
 
       @media (min-width: $breakpoint-largeMobile)

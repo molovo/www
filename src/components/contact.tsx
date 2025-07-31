@@ -6,7 +6,7 @@ import { useEventListener } from '@superrb/react-addons/hooks'
 import { ButtonHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { Form } from '@superrb/react-addons/components'
 import * as Yup from 'yup'
-import Button from './button'
+import Button from '@/components/Button'
 import { FormRef } from '@superrb/react-addons/components/form'
 import { FieldRenderer } from '@superrb/react-addons/components/form/types'
 

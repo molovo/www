@@ -2,14 +2,16 @@
 
 import HomepageSection, {
   HomepageSectionLink,
-} from '@/components/homepage/section'
+} from '@/components/homepage/Section'
 import ProjectType from '@/types/project'
 import CustomScrollbar from '@/components/custom-scrollbar'
 import { ReactNode, useRef } from 'react'
 import useHeaderStyle from '@/hooks/use-header-style'
 import { gtAmericaMono } from '@/fonts/homepage'
-import Button from '../button'
-import Github from '../images/icons/social/github.svg'
+import Button from '@/components/Button'
+import Github from '@icons/social/github.svg'
+
+import styles from './open-source.module.sass'
 
 const OpenSourceInner = ({
   title,
@@ -31,25 +33,25 @@ const OpenSourceInner = ({
       title={title}
       titleSwashCharacter="N"
       subtitle={subtitle}
-      className="open-source"
+      className={styles.openSource}
       ref={setRef}
     >
       <div
-        className={`open-source__projects ${gtAmericaMono.className}`}
+        className={`${styles.openSource__projects} ${gtAmericaMono.className}`}
         ref={projectsContainer}
         id="projects-list"
       >
         {projects.map((project) => project.output)}
       </div>
 
-      <div className="open-source__footer">
+      <div className={styles.openSource__footer}>
         <Button icon={<Github />} href={link?.url}>
           {link?.label}
         </Button>
 
         <CustomScrollbar
           controls={projectsContainer}
-          className="open-source__scrollbar"
+          className={styles.openSource__scrollbar}
         />
       </div>
     </HomepageSection>

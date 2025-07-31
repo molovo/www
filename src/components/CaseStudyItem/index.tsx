@@ -1,13 +1,15 @@
 'use client'
 
 import Image from '@/components/image'
-import Logo from './logo'
+import Logo from '@/components/logo'
 import Link from '@/components/link'
 import useNavStateStore from '@/store/nav-state'
 import { CSSProperties } from 'react'
 import { Article } from 'schema-dts'
-import Schema from './schema'
+import Schema from '@/components/schema'
 import CaseStudyType from '@/types/case-study'
+
+import styles from './case-study-item.module.sass'
 
 const CaseStudyItem = ({
   study: {
@@ -18,7 +20,7 @@ const CaseStudyItem = ({
     title,
     thumbnail,
     thumbnailContentBackground,
-    styles,
+    styles: styleOverrides,
   },
   className,
   style = {},
@@ -62,26 +64,26 @@ const CaseStudyItem = ({
 
   return (
     <li
-      className={`case-study-item ${
-        isDraft ? 'case-study-item--draft' : ''
+      className={`${styles.caseStudyItem} ${
+        isDraft ? styles['caseStudyItem--draft'] : ''
       } ${className}`}
       style={style}
     >
       <Link
         href={`/studies/${slug}`}
-        style={styles?.thumbnail}
+        style={styleOverrides?.thumbnail}
         onClick={close}
-        className="case-study-item__link"
+        className={styles.caseStudyItem__link}
         {...(!visible ? { tabIndex: -1 } : {})}
       >
-        <div className="case-study-item__background-wrapper">
+        <div className={styles.caseStudyItem__backgroundWrapper}>
           {thumbnail && (
-            <figure className="case-study-item__background">
+            <figure className={styles.caseStudyItem__background}>
               <Image
                 src={thumbnail}
                 alt={client as string}
                 style={{
-                  ...styles?.thumbnailBackgroundImage,
+                  ...styleOverrides?.thumbnailBackgroundImage,
                   ...imageStyle,
                 }}
                 sizes={imageSizes}
@@ -92,39 +94,39 @@ const CaseStudyItem = ({
           )}
         </div>
 
-        <div className="case-study-item__inner">
+        <div className={styles.caseStudyItem__inner}>
           <Logo client={slug} />
 
           <div
-            className="case-study-item__content"
-            style={styles?.thumbnailContent}
+            className={styles.caseStudyItem__content}
+            style={styleOverrides?.thumbnailContent}
           >
             {thumbnailContentBackground && (
               <>
-              <figure className="case-study-item__content-background">
-                <Image
-                  src={thumbnailContentBackground}
-                  alt={client as string}
-                  style={styles?.thumbnailContentBackgroundImage}
-                  sizes={imageSizes}
-                  loading={imageLoading}
-                  zoomable={false}
-                />
-              </figure>
-            <Logo client={slug} />
+                <figure className={styles.caseStudyItem__contentBackground}>
+                  <Image
+                    src={thumbnailContentBackground}
+                    alt={client as string}
+                    style={styleOverrides?.thumbnailContentBackgroundImage}
+                    sizes={imageSizes}
+                    loading={imageLoading}
+                    zoomable={false}
+                  />
+                </figure>
+                <Logo client={slug} />
               </>
             )}
 
             <h2
-              className="case-study-item__title"
-              style={styles?.thumbnailTitle}
+              className={styles.caseStudyItem__title}
+              style={styleOverrides?.thumbnailTitle}
             >
-              <span className="case-study-item__title-inner">{title}</span>
+              <span className={styles.caseStudyItem__titleInner}>{title}</span>
             </h2>
 
-            <div className="case-study-item__meta">
-              <span className="case-study-item__client">{client}</span>
-              <span className="case-study-item__role">{role}</span>
+            <div className={styles.caseStudyItem__meta}>
+              <span className={styles.caseStudyItem__client}>{client}</span>
+              <span className={styles.caseStudyItem__role}>{role}</span>
             </div>
           </div>
         </div>

@@ -1,6 +1,9 @@
 @use 'sass:math'
-@use './vars' as *
-@use './helpers' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+@use 'typography/headings' as *
+@use 'typography/mixins' as *
+@use 'typography/styles' as *
 
 html
   font: 300 100% #{'/'} $baseline $font-primary
@@ -15,51 +18,9 @@ body
   -moz-osx-font-smoothing: grayscale
   font-smooth: always
 
-h1, h2, h3, h4, h5, h6
-  display: block
-
-h2
-  font-family: $font-secondary
-  font-size: 2.25em
-  font-weight: $weight-bold
-  letter-spacing: -.05em
-  line-height: math.div(1.125, 1.5) * $baseline
-  margin-bottom: math.div(.6666666666666667, 1.5) * $baseline
-
-h1
-  @extend h2
-
-  @media (min-width: $breakpoint-tablet)
-    font-size: 3em
-    line-height: math.div(1, 1.5) * $baseline
-    margin-bottom: math.div(.5, 1.5) * $baseline
-
-h3
-  font-family: $font-secondary
-  font-size: 1.5em
-  font-weight: $weight-bold
-  letter-spacing: -.05em
-  line-height: math.div(1, 1.5) * $baseline
-  margin-bottom: math.div(1, 1.5) * $baseline
-
-h4
-  font-size: 1em
-  font-weight: 900
-  line-height: $baseline
-  margin-bottom: $baseline
-
-h5
-  font-size: .75em
-  font-weight: $weight-medium
-  letter-spacing: .05em
-  line-height: math.div($baseline, .875)
-  margin-bottom: math.div($baseline, .875)
-  text-transform: uppercase
-
-h6
-  font-size: 1em
-  line-height: $baseline
-  margin-bottom: $baseline
+@for $i from 1 through 6
+  h#{$i}
+    @extend %h#{$i}
 
 p, ul, ol, dl, blockquote
   margin-bottom: $baseline
@@ -132,9 +93,7 @@ small
       font-size: 1em
 
 .screenreader-text
-  position: absolute
-  top: -9999vh
-  left: 0
+  @extend %screenreader-text
 
 .swash
   display: inline-block
@@ -164,35 +123,6 @@ small
 :root
   --deckgo-highlight-code-font-family: $font-mono
   --deckgo-highlight-code-font-size: .875em
-
-=script
-  // +noise
-  font-family: $font-tertiary
-  letter-spacing: normal
-  line-height: .75em
-  font-weight: $weight-normal
-  margin: 0 auto .125em
-
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  font-smooth: always
-
-  .swash,
-  em
-    &::before
-      font-size: 1.5em
-      transform: translate(-50%, -110%) rotate(2deg)
-
-=scriptTitle
-  +script
-  font-size: 24vw
-  max-width: 3em
-  position: relative
-  text-align: center
-  transform: rotate(-5deg)
-
-  @media (min-width: $breakpoint-tablet)
-    font-size: 18vw
 
 blockquote
   align-items: center
@@ -238,23 +168,6 @@ blockquote
       margin-right: .5ch
       vertical-align: middle
       width: $baseline
-
-%lead
-  font-family: $font-secondary
-  font-size: 1.25em
-  line-height: 1.2em
-  margin: 0 0 1.2em
-
-%contentLink
-  +hoverUnderline($red)
-  background: none
-  border: 0
-  color: inherit
-  font-family: $font-primary
-  font-variant: small-caps
-  font-weight: $weight-medium
-  padding: 0
-  text-transform: lowercase
 
 .content
   a

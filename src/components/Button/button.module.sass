@@ -1,5 +1,5 @@
-@use '../setup/vars' as *
-@use '../setup/helpers' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
 
 .button
   --icon-background: #{$red}
@@ -22,12 +22,11 @@
   padding: .25em 1.25em
   position: relative
   text-decoration: none
-  // text-transform: uppercase
   transition: background .5s ease, border-color .5s ease, color .5s ease
   white-space: nowrap
   z-index: 1
 
-  &:has(.button__icon--primary)
+  &:has(.button__iconPrimary)
     gap: .5em
 
   &::before
@@ -54,10 +53,10 @@
       opacity: 1
       transform: translateX(-.5em)
 
-      &-line
+      &Line
         transform: translateX(0)
 
-      &--primary
+      &Primary
         opacity: 0
 
   &__icon
@@ -69,16 +68,16 @@
     transition: opacity .5s ease, transform .5s ease
     z-index: 3
 
-    &-line,
-    &-arrow
+    &Line,
+    &Arrow
       stroke: currentColor
       stroke-width: 7.5px
       transition: transform .5s ease
 
-    &-line
+    &Line
       transform: translateX(-30em)
 
-    &--primary
+    &Primary
       height: 1em
       transform: translateX(-.75em)
       width: 1em

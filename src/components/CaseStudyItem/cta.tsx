@@ -1,8 +1,10 @@
 import useContactFormStateStore from '@/store/contact-form-state'
 import useNavStateStore from '@/store/nav-state'
 import translations from 'content/translations'
-import Logo from './logo'
+import Logo from '../logo'
 import { CSSProperties } from 'react'
+
+import styles from './case-study-item.module.sass'
 
 const CaseStudyCta = ({
   className = '',
@@ -17,9 +19,9 @@ const CaseStudyCta = ({
   const { close: closeNav } = useNavStateStore()
 
   return (
-    <li className={`case-study-item ${className}`} style={style}>
+    <li className={`${styles.caseStudyItem} ${className}`} style={style}>
       <button
-        className="case-study-cta"
+        className={styles.caseStudyCta}
         onClick={() => {
           closeNav()
           openContactForm()
@@ -28,7 +30,7 @@ const CaseStudyCta = ({
       >
         <Logo client="you" />
 
-        <h2 className="case-study-cta__title">
+        <h2 className={styles.caseStudyCta__title}>
           {translations.contact.cta.title}
           <br />
           <translations.contact.cta.link />

@@ -7,7 +7,7 @@ import CaseStudySection from './case-study-section'
 import Link from '@/components/link'
 import Logo from '@/components/logo'
 import CaseStudyKnowledge from '@/components/case-study-knowledge'
-import Button from '@/components/button'
+import Button from '@/components/Button'
 import LineBreak from '@/components/line-break'
 
 const CaseStudy = ({ study }: { study: CaseStudyType }) => {

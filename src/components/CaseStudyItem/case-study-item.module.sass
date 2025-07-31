@@ -1,18 +1,19 @@
-@use '../setup/vars' as *
-@use '../setup/helpers' as *
-@use '../setup/typography' as *
-@use './script-arrow' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+@use 'typography/headings' as *
+@use 'typography/mixins' as *
+@use 'components/script-arrow' as *
 
 =case-study-item-hover
   z-index: 9
 
-  .case-study-item__inner-background,
-  .case-study-item__title
+  .caseStudyItem__innerBackground,
+  .caseStudyItem__title
     opacity: 1
 
 $padding: clamp($baseline * .5, 2vw, $baseline)
 
-.case-study-item
+.caseStudyItem
   --fontSizeMultiplier: 1
   aspect-ratio: .75
   color: $white
@@ -46,13 +47,13 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
     width: 120%
     z-index: 1
 
-    &-wrapper
+    &Wrapper
       +cover
       overflow: hidden
       z-index: 1
 
   &__background,
-  &__content-background
+  &__contentBackground
     img
       height: 100%
       object-fit: cover
@@ -65,7 +66,7 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
     position: relative
     z-index: 2
 
-    &-background
+    &Background
       +cover
       opacity: 0
       transition: opacity .5s ease
@@ -84,7 +85,7 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
     .logo
       margin-bottom: auto
 
-    &-background
+    &Background
       +cover
       z-index: -1
 
@@ -107,7 +108,7 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
     display: block
 
   &__client
-    @extend h3
+    @extend %h3
     margin: 0
 
   &__role
@@ -128,7 +129,7 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
       &::before
         color: $red2
 
-.case-study-cta
+.caseStudyCta
   +unbutton
   align-items: flex-start
   background: $red2
@@ -157,7 +158,7 @@ $padding: clamp($baseline * .5, 2vw, $baseline)
     background: color-mix(in srgb, $red2, $black 3.5%)
     transform: scale(1.05)
 
-    .case-study-cta__title
+    .caseStudyCta__title
       &::after
         opacity: 1
         transform: translate(.125em, .075em)

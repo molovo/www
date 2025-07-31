@@ -4,9 +4,9 @@ import Listing from '@/components/listing'
 import useHeaderStyle from '@/hooks/use-header-style'
 import HomepageSection, {
   HomepageSectionLink,
-} from '@/components/homepage/section'
+} from '@/components/homepage/Section'
 import ArticleType from '@/types/article'
-import Button from '../button'
+import Button from '@/components/Button'
 
 const Writing = ({
   title,

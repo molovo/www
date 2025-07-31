@@ -6,3 +6,43 @@
   overflow-x: clip
   position: relative
   z-index: 2
+
+:root
+  --gutter: #{$gutterMin}
+  --content-gutter: var(--gutter)
+  --spacing: #{$gutterMid}
+  --color: #{$black}
+  --background: #{$white}
+  --accent-color: #{$red}
+  --accent-color-two: #{$black}
+
+  @media (min-width: $breakpoint-largeMobile) and (min-height: 35em)
+    --gutter: #{$gutterMid}
+
+  @media (min-width: $breakpoint-largeDesktop) and (min-height: 60em)
+    --gutter: #{$gutterMax}
+    --spacing: #{$gutterMax}
+
+  @media (min-width: $breakpoint-container)
+    --gutter: #{$gutterLimit}
+
+  @media (min-width: $contentBreakpoint)
+    --content-gutter: #{$contentLimit}
+
+// @keyframes fadeIn
+//   from
+//     opacity: 0
+//     transform: translateY(50px)
+//   to
+//     opacity: 1
+//     transform: translateY(0)
+//
+// section
+//   > *
+//     animation: fadeIn forwards
+//     animation-range: entry 25%
+//     animation-timeline: --section
+//     view-timeline: --section block
+//
+//     @supports (animation-range: entry 10%)
+//       opacity: 0

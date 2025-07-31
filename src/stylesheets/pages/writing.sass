@@ -1,6 +1,7 @@
-@use '../setup/vars' as *
-@use '../setup/helpers' as *
-@use '../setup/typography' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+@use 'typography/headings' as *
+@use 'typography/mixins' as *
 
 .writing
   +gutters
@@ -48,7 +49,7 @@
       text-decoration: none
 
     &-title
-      @extend h1
+      @extend %h1
       color: $black
       margin: 0 0 -.2625em
       position: relative

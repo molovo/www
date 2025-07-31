@@ -42,25 +42,3 @@ $breakpoint-tablet: 42rem
 $breakpoint-desktop: 64rem
 $breakpoint-largeDesktop: 80rem
 $breakpoint-container: calc($containerWidth + ($gutterMax * 2))
-
-#{':root'}
-  --gutter: #{$gutterMin}
-  --content-gutter: var(--gutter)
-  --spacing: #{$gutterMid}
-  --color: #{$black}
-  --background: #{$white}
-  --accent-color: #{$red}
-  --accent-color-two: #{$black}
-
-  @media (min-width: $breakpoint-largeMobile) and (min-height: 35em)
-    --gutter: #{$gutterMid}
-
-  @media (min-width: $breakpoint-largeDesktop) and (min-height: 60em)
-    --gutter: #{$gutterMax}
-    --spacing: #{$gutterMax}
-
-  @media (min-width: $breakpoint-container)
-    --gutter: #{$gutterLimit}
-
-  @media (min-width: $contentBreakpoint)
-    --content-gutter: #{$contentLimit}

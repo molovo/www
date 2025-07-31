@@ -1,14 +1,18 @@
-@use '../../setup/vars' as *
-@use '../../setup/helpers' as *
-@use '../../setup/typography' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+@use 'typography/headings' as *
+@use 'typography/mixins' as *
 
 .awards
   background: $gray
   color: $black
 
-  .homepage-section
-    &__title
-      color: $red
+  h2
+    color: $red
+
+    span
+      &::before
+        color: $gray2
 
   &__items
     counter-reset: awards
@@ -68,8 +72,8 @@
         fill: currentColor
 
   &__group
-    &-title
-      @extend h4
+    &Title
+      @extend %h4
       align-items: center
       display: flex
       gap: 1ch

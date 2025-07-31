@@ -1,6 +1,7 @@
-@use '../../setup/vars' as *
-@use '../../setup/helpers' as *
-@use '../../setup/typography' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
+@use 'typography/headings' as *
+@use 'typography/mixins' as *
 
 #{':root'}
   --superrb-callout-background: #{$red}
@@ -177,7 +178,7 @@
               max-width: none
 
           &-title
-            @extend h3
+            @extend %h3
             color: var(--color)
             font-family: $font-primary
             font-size: 1em
@@ -196,7 +197,7 @@
         width: 100%
 
         p
-          @extend h2
+          @extend %h2
           color: var(--accent-color)
           margin: 0 0 .5em
           mask: none
@@ -309,7 +310,7 @@
       padding-bottom: var(--spacing)
 
     &-title
-      @extend h1
+      @extend %h1
       margin: 0 0 .25em
 
     &-quote
@@ -324,7 +325,7 @@
     text-align: center
 
     &-title
-      @extend h3
+      @extend %h3
       margin: 0 0 .5em
 
     &-text
@@ -352,5 +353,5 @@
         margin: 0 0 1em
 
       &-label
-        @extend h3
+        @extend %h3
         font-size: 1.25em
