@@ -20,7 +20,7 @@ export const generateMetadata = async ({
 
   const { title, description, client } = study
 
-  return {
+  const metadata: Metadata = {
     title: `${title}: Making ${client}`,
     description,
     openGraph: {
@@ -39,7 +39,13 @@ export const generateMetadata = async ({
         'application/rss+xml': '/feed.xml',
       },
     },
+    pagination: {
+      next: study.next.url,
+      previous: study.prev.url,
+    },
   }
+
+  return metadata
 }
 
 export async function generateStaticParams() {
