@@ -1,4 +1,8 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"],
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:react-you-might-not-need-an-effect/legacy-recommended"
+  ],
   "plugins": ["eslint-plugin-jsx-a11y"]
 }
