@@ -1,6 +1,8 @@
 import Image from '@/components/image'
 import { ComponentProps } from 'react'
-import ContentFigure, { ContentFigureProps } from './content-figure'
+import ContentFigure, { ContentFigureProps } from '@/components/Content/Figure'
+
+import styles from './content-figure.module.sass'
 
 interface Props extends ComponentProps<typeof Image> {
   caption?: ContentFigureProps['caption']
@@ -22,7 +24,7 @@ const ContentImage = ({
       <Image
         src={src}
         alt={alt as string}
-        className="content-figure__image"
+        className={styles.image}
         zoomable={zoomable}
         {...props}
       />

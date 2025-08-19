@@ -4,7 +4,7 @@ import useHeaderStyle from '@/hooks/use-header-style'
 import useContactFormStateStore from '@/store/contact-form-state'
 import Link from '@/components/link'
 import translations from 'content/translations'
-import Logo from './logo'
+import Logo from './Logo'
 import Social from './social'
 import BSky from './images/icons/social/bsky.svg'
 
@@ -29,54 +29,54 @@ const Footer = () => {
         <Social />
       </div>
 
-        <nav className="footer__nav">
-          <ul className="footer__nav-list">
-            <li className="footer__nav-item">
-              <Link href="/writing" className="footer__nav-link">
-                Writing
-              </Link>
-            </li>
-            <li className="footer__nav-item">
-              <Link href="/#open-source" className="footer__nav-link">
-                Open Source
-              </Link>
-            </li>
-            <li className="footer__nav-item">
-              <Link
-                href="https://bsky.app/profile/molovo.co"
-                className="footer__nav-link"
-              >
-                Follow me <BSky />
-              </Link>
-            </li>
+      <nav className="footer__nav">
+        <ul className="footer__nav-list">
+          <li className="footer__nav-item">
+            <Link href="/writing" className="footer__nav-link">
+              Writing
+            </Link>
+          </li>
+          <li className="footer__nav-item">
+            <Link href="/#open-source" className="footer__nav-link">
+              Open Source
+            </Link>
+          </li>
+          <li className="footer__nav-item">
+            <Link
+              href="https://bsky.app/profile/molovo.co"
+              className="footer__nav-link"
+            >
+              Follow me <BSky />
+            </Link>
+          </li>
 
-            <li className="footer__nav-item">
-              <Link className="footer__nav-link">Archive</Link>
+          <li className="footer__nav-item">
+            <Link className="footer__nav-link">Archive</Link>
 
-              <ul className="footer__nav-sublist">
-                {[2017, 2015].map((year) => (
-                  <li className="footer__nav-subitem" key={year}>
-                    <Link
-                      href={`https://${year}.archive.molovo.co`}
-                      className="footer__nav-link"
-                      target="_blank"
-                      rel="nofollow noopener"
-                    >
-                      {year}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
-        </nav>
+            <ul className="footer__nav-sublist">
+              {[2017, 2015].map((year) => (
+                <li className="footer__nav-subitem" key={year}>
+                  <Link
+                    href={`https://${year}.archive.molovo.co`}
+                    className="footer__nav-link"
+                    target="_blank"
+                    rel="nofollow noopener"
+                  >
+                    {year}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </li>
+        </ul>
+      </nav>
 
-        <span className="footer__attribution">
-          Made with ♡ in Poole, UK.
-          <br />
-          &copy;{new Date().getFullYear()} James Dinsdale.
-          <br /> All rights reserved.
-        </span>
+      <span className="footer__attribution">
+        Made with ♡ in Poole, UK.
+        <br />
+        &copy;{new Date().getFullYear()} James Dinsdale.
+        <br /> All rights reserved.
+      </span>
     </footer>
   )
 }

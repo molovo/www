@@ -1,6 +1,6 @@
 'use client'
 
-import ContentFigure from './content-figure'
+import ContentFigure from '@/components/Content/Figure'
 import Image from '@/components/image'
 import { Image as ImageType } from '@/types/image'
 import { CSSProperties, UIEventHandler } from 'react'

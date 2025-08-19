@@ -8,7 +8,7 @@ import BreadcrumbSchema from '@/components/breadcrumb-schema'
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
-import LineBreak from '@/components/line-break'
+import LineBreak from '@/components/LineBreak'
 
 const Webmentions = dynamic(() => import('@/components/webmentions'), {
   ssr: true,

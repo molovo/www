@@ -2,7 +2,7 @@
 
 import glassesAnimated from '@/images/icons/glasses-animated.webp'
 import LogoImage from '@/components/images/icons/logo'
-import ClientLogo, { ClientSlug } from './client-logo'
+import ClientLogo, { ClientSlug } from './ClientLogo'
 import useClientStore from '@/store/client'
 import useLoadingStore from '@/store/loading'
 import { CSSProperties, HTMLAttributes, useEffect } from 'react'
@@ -10,9 +10,13 @@ import Link from '@/components/link'
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { usePathname } from 'next/navigation'
 import useNavStateStore from '@/store/nav-state'
+import useThemeStore from '@/store/theme'
+
+import styles from './logo.module.sass'
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   client?: ClientSlug
+  className?: string
   noClient?: boolean
   asLink?: boolean
   style?: Partial<CSSProperties>
@@ -20,6 +24,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 const Logo = ({
   client,
+  className = '',
   noClient = false,
   asLink = false,
   style = {},
@@ -29,6 +34,7 @@ const Logo = ({
   const { client: storedClient } = useClientStore()
   const { loading, setLoading } = useLoadingStore()
   const pathname = usePathname()
+  const { headerStyle } = useThemeStore()
 
   const handleClick = (event: GlobalEventHandlersEventMap['click']) => {
     const target = event.target as HTMLElement
@@ -59,25 +65,29 @@ const Logo = ({
   const inner = (
     <>
       <span className="screenreader-text">Molovo</span>
-      <div className="logo__image">
+      <div className={styles.logo__image}>
         {asLink && loading ? (
           <div
-            className="logo__image--mask"
+            className={styles.logo__loading}
             style={{ maskImage: `url(${glassesAnimated.src})` }}
             role="img"
             aria-label="molovo"
           />
         ) : (
-          <LogoImage />
+          <LogoImage
+            frameClassName={styles.frame}
+            leftLensClassName={`${styles.lens} ${styles.lensLeft}`}
+            rightLensClassName={`${styles.lens} ${styles.lensRight}`}
+          />
         )}
       </div>
 
       {displayClient && !noClient && (
         <>
-          <span className="logo__separator" role="img" aria-label="+">
+          <span className={styles.logo__separator} role="img" aria-label="+">
             +
           </span>
-          <div className="logo__client">
+          <div className={styles.logo__client}>
             <ClientLogo client={displayClient} />
           </div>
         </>
@@ -87,14 +97,23 @@ const Logo = ({
 
   if (asLink) {
     return (
-      <Link href="/" className="logo" onClick={close} style={style}>
+      <Link
+        href="/"
+        className={`${styles.logo} ${className}`}
+        onClick={close}
+        style={style}
+      >
         {inner}
       </Link>
     )
   }
 
   return (
-    <div className="logo" style={style} {...props}>
+    <div
+      className={`${styles.logo} ${styles[`logo--${headerStyle?.split('-')[0]}`]} ${className}`}
+      style={style}
+      {...props}
+    >
       {inner}
     </div>
   )

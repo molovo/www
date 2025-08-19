@@ -1,5 +1,7 @@
 import { CSSProperties, PropsWithChildren } from 'react'
 
+import styles from './content-figure.module.sass'
+
 export interface ContentFigureProps {
   size: 'standard' | 'container-width' | 'full-width' | 'text-width'
   withPadding?: boolean
@@ -15,7 +17,7 @@ export const ContentFigureCaption = ({
   caption: string
   style?: Partial<CSSProperties>
 }) => (
-  <figcaption className="content-figure__caption" style={style}>
+  <figcaption className={styles.caption} style={style}>
     <span dangerouslySetInnerHTML={{ __html: caption }} />
   </figcaption>
 )
@@ -29,8 +31,8 @@ const ContentFigure = ({
   captionStyle = {},
 }: PropsWithChildren<ContentFigureProps>) => (
   <figure
-    className={`content-figure content-figure--${size} ${
-      withPadding ? 'content-figure--with-padding' : ''
+    className={`${styles.figure} ${styles[`figure--${size}`]} ${
+      withPadding ? styles[`figure--with-padding`] : ''
     }`}
     style={style}
   >

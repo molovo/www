@@ -3,11 +3,11 @@
 import Image from '@/components/image'
 import { PropsWithChildren, ReactNode } from 'react'
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
-import Logo from '@/components/logo'
+import Logo from '@/components/Logo'
 import useHeaderStyle from '@/hooks/use-header-style'
 import swash from '@/utils/swash'
 import useTheme from '@/hooks/use-theme'
-import CaseStudyHelp from '@/components/case-study-help'
+import CaseStudyHelp from '@/components/CaseStudyHelp'
 import dynamic from 'next/dynamic'
 
 const SocialSharing = dynamic(() => import('@/components/social-sharing'), {

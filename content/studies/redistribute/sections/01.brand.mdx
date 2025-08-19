@@ -1,6 +1,6 @@
 import { colors, sourceWords } from '../index.mdx'
 import { inter } from '@/fonts/studies/redistribute'
-import ContentImage from '@/components/content-image'
+import ContentImage from '@/components/Content/Image'
 import ImageWall from '@/components/image-wall'
 import TypeSample from '@/components/type-sample'
 
@@ -20,11 +20,11 @@ export const metadata = {
   headerStyle: 'black',
   headerColor: colors.black,
 
-  styles: {
-    main: {
-      backgroundColor: colors.yellow,
-      color: colors.black,
-    },
+styles: {
+main: {
+backgroundColor: colors.yellow,
+color: colors.black,
+},
 
     image: {
       mixBlendMode: 'multiply',
@@ -34,7 +34,8 @@ export const metadata = {
     title: {
       color: colors.purple,
     }
-  }
+
+}
 }
 
 Launched in 2020, Redistribute Magazine is an online music magazine focusing on the electronic music genre. Publishing music reviews, interviews, industry news and playlists, Redistribute set out to build a modern and inclusive home to share music and music culture.
@@ -47,8 +48,8 @@ At the heart of the branding package I created is the 'R', a strong, reversed le
   images={[
     {
       image: logoR,
-      alt: "The 'R', the logomark for Redistribute Magazine"
-    }
+      alt: "The 'R', the logomark for Redistribute Magazine",
+    },
   ]}
   layout="contain"
   stagger={false}
@@ -56,7 +57,7 @@ At the heart of the branding package I created is the 'R', a strong, reversed le
   style={{
     gridTemplateColumns: '100%',
     gridTemplateRows: '12em',
-    paddingLeft: 'var(--gutter)'
+    paddingLeft: 'var(--gutter)',
   }}
   zoomable={false}
 />
@@ -69,19 +70,19 @@ With the 'R' in place, I was able to expand on this starting point and create a 
   images={[
     {
       image: logoRPlus,
-      alt: 'The logo for Redistribute Plus'
+      alt: 'The logo for Redistribute Plus',
     },
     {
       image: logoRTV,
-      alt: 'The logo for Redistribute TV'
-    }
+      alt: 'The logo for Redistribute TV',
+    },
   ]}
   layout="contain"
   stagger={false}
   caption="The 'R' with embellishments for Redistribute's sister brands."
   style={{
     gridTemplateColumns: '45% 55%',
-    gridTemplateRows: '12em'
+    gridTemplateRows: '12em',
   }}
   zoomable={false}
 />
@@ -92,6 +93,6 @@ With the 'R' in place, I was able to expand on this starting point and create a 
   sizes="100vw"
   size="full-width"
   style={{
-    marginBottom: 0
+    marginBottom: 0,
   }}
 />

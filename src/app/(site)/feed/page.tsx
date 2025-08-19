@@ -6,7 +6,7 @@ import type { PostView } from '@atproto/api/dist/client/types/app/bsky/feed/defs
 import type { Record } from '@atproto/api/dist/client/types/app/bsky/feed/post'
 
 import Image from '@/components/image'
-import ContentVideo from '@/components/content-video'
+import ContentVideo from '@/components/Content/Video'
 import Repost from '@/components/images/icons/repost.svg'
 
 import TimeAgo from 'javascript-time-ago'

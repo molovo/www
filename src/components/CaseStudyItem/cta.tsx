@@ -1,7 +1,7 @@
 import useContactFormStateStore from '@/store/contact-form-state'
 import useNavStateStore from '@/store/nav-state'
 import translations from 'content/translations'
-import Logo from '../logo'
+import Logo from '@/components/Logo'
 import { CSSProperties } from 'react'
 
 import styles from './case-study-item.module.sass'
@@ -28,7 +28,7 @@ const CaseStudyCta = ({
         }}
         {...(!visible ? { tabIndex: -1 } : {})}
       >
-        <Logo client="you" />
+        <Logo className={styles.logo} client="you" />
 
         <h2 className={styles.caseStudyCta__title}>
           {translations.contact.cta.title}

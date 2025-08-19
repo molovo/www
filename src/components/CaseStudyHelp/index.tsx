@@ -1,14 +1,16 @@
 import { Fragment, ReactNode } from 'react'
-import SuperrbLink from './superrb-link'
+import SuperrbLink from '../superrb-link'
+
+import styles from './case-study-help.module.sass'
 
 const map: { [key: string]: ReactNode } = {
   superrb: <SuperrbLink />,
 }
 
 const CaseStudyHelp = ({ helpers = [] }: { helpers?: string[] }) => (
-  <span className="case-study__section-superrb">
-    <h3 className="case-study__section-superrb-title">I had some help</h3>
-    <span className="case-study__section-superrb-text">
+  <span className={styles.help}>
+    <h3 className={styles.help__title}>I had some help</h3>
+    <span className={styles.help__text}>
       Made with the team{helpers.length > 1 ? 's' : ''} at{' '}
       {helpers.map((helper, i) =>
         helper in map ? (

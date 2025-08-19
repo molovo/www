@@ -1,6 +1,6 @@
 'use client'
 
-import ClientLogo from '@/components/client-logo'
+import ClientLogo from '@/components/Logo/ClientLogo'
 import Awwwards from '@/components/images/icons/awards/awwwards.svg'
 import CreativePool from '@/components/images/icons/awards/creative-pool.svg'
 import CSSDesignAwards from '@/components/images/icons/awards/css-design-awards.svg'

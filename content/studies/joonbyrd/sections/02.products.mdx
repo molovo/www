@@ -1,6 +1,6 @@
 import { colors } from '../index.mdx'
 
-import ContentImage from '@/components/content-image'
+import ContentImage from '@/components/Content/Image'
 import SyncedScroll from '@/components/synced-scroll'
 import ImageWall from '@/components/image-wall'
 
@@ -26,13 +26,13 @@ export const metadata = {
   accentColorTwo: colors.blue,
   titleSwashCharacter: 'A',
 
-  styles: {
-    title: {
-      color: colors.maroon,
-      marginTop: '1.5rem',
-      maxWidth: '2.6em',
-      transform: 'rotate(2deg)'
-    },
+styles: {
+title: {
+color: colors.maroon,
+marginTop: '1.5rem',
+maxWidth: '2.6em',
+transform: 'rotate(2deg)'
+},
 
     main: {
       backgroundColor: colors.lilac,
@@ -42,7 +42,8 @@ export const metadata = {
     titleSwash: {
       transform: 'rotate(-3deg)'
     }
-  }
+
+}
 }
 
 The homepage was all about setting the tone. Big, bold visuals and clean typography, but not too clinical or cold. It had to feel approachable and intriguing, like an invitation to explore.
@@ -65,17 +66,17 @@ Each product in Joonbyrd's range has its own vibe, and so every product page a u
     {
       image: littleLove,
       alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.',
-      sizes: '(min-width: 64em) 15.5em, 33.3333vw'
+      sizes: '(min-width: 64em) 15.5em, 33.3333vw',
     },
     {
       image: daydreamer,
       alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.',
-      sizes: '(min-width: 64em) 15.5em, 33.3333vw'
+      sizes: '(min-width: 64em) 15.5em, 33.3333vw',
     },
     {
       image: violetHaze,
       alt: 'A screenshot of the product page for the "Little Love" product on the Joonbyrd website.',
-      sizes: '(min-width: 64em) 15.5em, 33.3333vw'
+      sizes: '(min-width: 64em) 15.5em, 33.3333vw',
     },
   ]}
   caption="Some examples of product page templates used on joonbyrd.com"
@@ -98,7 +99,7 @@ The site includes a number of bespoke features built on top of Shopify's core fu
       sizes: '(min-width: 64em) 15.5em, 33.3333vw',
       style: {
         gridRow: 'span 3',
-      }
+      },
     },
     {
       image: charms,
@@ -106,7 +107,7 @@ The site includes a number of bespoke features built on top of Shopify's core fu
       sizes: '(min-width: 64em) 32em, 66.6666vw',
       style: {
         gridColumn: 'span 2',
-      }
+      },
     },
     {
       image: giftGuide,
@@ -114,7 +115,7 @@ The site includes a number of bespoke features built on top of Shopify's core fu
       sizes: '(min-width: 64em) 32em, 66.6666vw',
       style: {
         gridColumn: 'span 2',
-      }
+      },
     },
     {
       image: newsletter,
@@ -128,7 +129,7 @@ The site includes a number of bespoke features built on top of Shopify's core fu
       style: {
         alignSelf: 'flex-start',
         height: 'auto',
-      }
+      },
     },
   ]}
   allowScroll={true}

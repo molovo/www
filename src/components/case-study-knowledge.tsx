@@ -1,5 +1,5 @@
 import CaseStudyType from '@/types/case-study'
-import Logo from './logo'
+import Logo from '@/components/Logo'
 import Image from '@/components/image'
 import useHeaderStyle from '@/hooks/use-header-style'
 import useTheme from '@/hooks/use-theme'

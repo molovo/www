@@ -2,7 +2,7 @@ import backgroundImage from '@/images/studies/matte/thumbnail.jpg'
 import vinyl from '@/images/studies/matte/vinyl.jpg'
 import { colors, sourceWords } from '../index.mdx'
 import ImageWall from '@/components/image-wall'
-import ContentImage from '@/components/content-image'
+import ContentImage from '@/components/Content/Image'
 import TypeSample from '@/components/type-sample'
 import { inter, nitti } from '@/fonts/studies/matte'
 
@@ -24,15 +24,15 @@ export const metadata = {
   accentColor: colors.red,
   accentColorTwo: colors.white,
 
-  styles: {
-    main: {
-      backgroundColor: colors.black,
-      color: colors.white,
-    },
-    title: {
-      color: colors.white
-    },
-  }
+styles: {
+main: {
+backgroundColor: colors.black,
+color: colors.white,
+},
+title: {
+color: colors.white
+},
+}
 }
 
 Velit exercitation fugiat in officia irure. Ut consequat aliquip veniam enim sunt mollit minim deserunt officia elit exercitation irure sunt. Fugiat culpa Lorem laboris cupidatat cupidatat velit dolor nostrud quis aliquip. Proident magna ad eiusmod anim consectetur ullamco cupidatat ex incididunt tempor nulla in magna labore. Esse sunt cupidatat laborum ut elit culpa labore id Lorem voluptate amet fugiat anim. Aliquip qui nisi do irure labore in consequat occaecat eiusmod pariatur irure officia.
@@ -49,10 +49,14 @@ Id qui aute elit et officia esse reprehenderit aute nostrud cillum qui nisi. Inc
     artworkSix,
     artworkSeven,
     artworkEight,
-    artworkNine
+    artworkNine,
   ]}
   style={{
-    gridTemplateColumns: typeof window !== 'undefined' && window.matchMedia('(min-width: 60em)').matches ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'
+    gridTemplateColumns:
+      typeof window !== 'undefined' &&
+      window.matchMedia('(min-width: 60em)').matches
+        ? 'repeat(2, 1fr)'
+        : 'repeat(3, 1fr)',
   }}
   stagger={false}
   size="container-width"
@@ -60,7 +64,25 @@ Id qui aute elit et officia esse reprehenderit aute nostrud cillum qui nisi. Inc
 
 Eiusmod eiusmod excepteur reprehenderit adipisicing anim eu id eu. Labore cupidatat elit deserunt anim mollit aliquip dolore in irure commodo sint. Ullamco nostrud do cupidatat non. Non sit aliqua eiusmod commodo cupidatat amet. Ut aliquip velit reprehenderit duis ipsum consequat ullamco excepteur ex. Consectetur mollit laboris pariatur ad. Officia dolor nisi mollit elit dolore.
 
-<ContentImage size="full-width" src={vinyl} style={{ aspectRatio: '16/9', objectFit: 'cover' }} />
+<ContentImage
+  size="full-width"
+  src={vinyl}
+  style={{ aspectRatio: '16/9', objectFit: 'cover' }}
+/>
 
-<TypeSample fontName="Nitti Grotesk Light" fontClass={nitti.className} sourceWords={sourceWords} style={{ textTransform: 'uppercase', letterSpacing: '.2em' }} />
-<TypeSample fontName="Inter Black" fontClass={inter.className} sourceWords={sourceWords} style={{ textTransform: 'capitalize', fontWeight: 700, letterSpacing: '-.025em' }} />
+<TypeSample
+  fontName="Nitti Grotesk Light"
+  fontClass={nitti.className}
+  sourceWords={sourceWords}
+  style={{ textTransform: 'uppercase', letterSpacing: '.2em' }}
+/>
+<TypeSample
+  fontName="Inter Black"
+  fontClass={inter.className}
+  sourceWords={sourceWords}
+  style={{
+    textTransform: 'capitalize',
+    fontWeight: 700,
+    letterSpacing: '-.025em',
+  }}
+/>

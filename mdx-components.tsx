@@ -1,4 +1,4 @@
-import LineBreak from '@/components/line-break'
+import LineBreak from '@/components/LineBreak'
 import type { MDXComponents } from 'mdx/types'
 import { ComponentProps, PropsWithChildren } from 'react'
 

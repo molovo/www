@@ -1,8 +1,7 @@
-@use '../setup/vars' as *
-@use '../setup/helpers' as *
-@use '../setup/typography' as *
+@use 'setup/vars' as *
+@use 'setup/helpers' as *
 
-.content-figure
+.figure
   align-items: flex-start
   display: flex
   flex-wrap: wrap
@@ -42,13 +41,13 @@
   &--with-padding
     +gutters
 
-  &__image,
-  &__video
+  .image,
+  .video
     flex: 1 1
     position: relative
     width: 100%
 
-  &__caption
+  .caption
     border-left: 2px solid transparent
     flex: 0 0 100%
     padding-left: ($baseline * .5)
@@ -76,7 +75,7 @@
       opacity: .2
       pointer-events: none
 
-  &__play-button
+  .playButton
     +cover
     +unbutton
     align-items: center

@@ -1,8 +1,8 @@
 import { colors } from '../index.mdx'
 
 import ImageWall from '@/components/image-wall'
-import ContentImage from '@/components/content-image'
-import ContentVideo from '@/components/content-video'
+import ContentImage from '@/components/Content/Image'
+import ContentVideo from '@/components/Content/Video'
 import SyncedScroll from '@/components/synced-scroll'
 
 import backgroundImage from '@/images/studies/redistribute/mask.png'
@@ -26,11 +26,11 @@ export const metadata = {
   headerStyle: 'black',
   headerColor: colors.black,
 
-  styles: {
-    main: {
-      backgroundColor: colors.gray,
-      color: colors.black
-    },
+styles: {
+main: {
+backgroundColor: colors.gray,
+color: colors.black
+},
 
     image: {
       mixBlendMode: 'multiply',
@@ -45,7 +45,8 @@ export const metadata = {
       '--social-sharing-accent': colors.purple,
       '--social-sharing-accent-two': colors.white
     }
-  }
+
+}
 }
 
 Redistribute's biggest feature is its content. I designed an article layout which puts it front and center, and added the ability for editors to add media and contextual asides right alongside the article.
@@ -55,13 +56,13 @@ Redistribute's biggest feature is its content. I designed an article layout whic
     {
       image: articleTwo,
       alt: 'A screenhot of an album review page from the Redistribute Magazine website.',
-      sizes: '50vw'
+      sizes: '50vw',
     },
     {
       image: articleThree,
       alt: 'A screenshot of an interview page from the Redistribute Magazine website',
-      sizes: '50vw'
-    }
+      sizes: '50vw',
+    },
   ]}
   caption="Some examples of article templates used"
   size="container-width"
@@ -76,13 +77,13 @@ Second to the reading experience is discoverability, allowing repeat visitors to
     {
       image: homepage,
       alt: 'A screenshot of the homepage of the Redistribute Magazine website',
-      sizes: '50vw'
+      sizes: '50vw',
     },
     {
       image: listing,
       alt: 'A screenshot of the reviews listing page from the Redistribute Magazine website',
-      sizes: '50vw'
-    }
+      sizes: '50vw',
+    },
   ]}
   caption="The homepage and reviews listing page"
   size="container-width"
@@ -110,13 +111,13 @@ The site is full of hand-built custom components, used for featuring articles, d
     {
       image: watermarkTwo,
       alt: 'A screenshot of a featured article block from the Redistribute Magazine website',
-      sizes: '(min-width: 64em) 64em, 100vw'
+      sizes: '(min-width: 64em) 64em, 100vw',
     },
     {
       image: watermarkOne,
       alt: 'A screenshot of a video player from the Redistribute Magazine website',
-      sizes: '(min-width: 64em) 64em, 100vw'
-    }
+      sizes: '(min-width: 64em) 64em, 100vw',
+    },
   ]}
   stagger={false}
   layout="contain"

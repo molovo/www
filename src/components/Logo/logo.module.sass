@@ -1,0 +1,65 @@
+@use 'setup/vars' as *
+
+.logo
+  align-items: center
+  color: inherit
+  display: flex
+  gap: ($baseline * .5)
+  text-decoration: none
+
+  &__image
+    width: ($baseline * 2)
+
+    img, svg
+      width: 100%
+
+    img
+      transform: scale(1.1)
+      transform-origin: top center
+
+    .frame
+      fill: currentColor
+
+    .lens
+      fill: transparent
+      transition: fill .5s ease
+    
+  &__mask
+    aspect-ratio: 12/6
+    background-color: currentColor
+    mask-position: bottom center
+    mask-repeat: no-repeat
+    mask-size: contain
+    mask-type: alpha
+    width: ($baseline * 2)
+
+  &__separator
+    font-family: $font-tertiary
+    font-size: 2em
+    line-height: 0
+    margin-top: .25em
+    transform: scale(1.75)
+    transform-origin: center
+
+  &__client
+    svg
+      height: 1.5em
+      max-width: 7em
+      width: auto
+
+      path,
+      rect
+        fill: currentColor
+
+  &--white:hover
+    .lens
+      &Left
+        fill: #990033
+
+      &Right
+        fill: #330099
+
+  &--black:hover,
+  &--red:hover
+    .lens
+      fill: rgba($black, .3)

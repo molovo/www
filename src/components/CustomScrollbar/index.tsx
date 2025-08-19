@@ -9,6 +9,9 @@ import {
   useRef,
   useState,
 } from 'react'
+
+import styles from './custom-scrollbar.module.sass'
+
 /**
  * Props for the CustomScrollbar component
  *
@@ -159,20 +162,20 @@ const CustomScrollbar = (
     <>
       <style>
         {`
-          .scrollbar::-webkit-slider-thumb {
+          .${styles.scrollbar}::-webkit-slider-thumb {
             width: ${sliderWidth}%;
           }
-          .scrollbar::-moz-range-thumb {
+          .${styles.scrollbar}::-moz-range-thumb {
             width: ${sliderWidth}%;
           }
-          .scrollbar::-ms-thumb{
+          .${styles.scrollbar}::-ms-thumb{
             width: ${sliderWidth}%;
           }
         `}
       </style>
       <input
         type="range"
-        className={`scrollbar ${className}`}
+        className={`${styles.scrollbar} ${className}`}
         ref={progress}
         // Use slider role for proper accessibility semantics
         role="slider"

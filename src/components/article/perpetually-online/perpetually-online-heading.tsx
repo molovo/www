@@ -1,7 +1,7 @@
 'use client'
 
 import { cinema } from '@/fonts/articles/perpetually-online'
-import ContentImage from '@/components/content-image'
+import ContentImage from '@/components/Content/Image'
 import laptop from '@/images/articles/perpetually-online/laptop.png'
 import Sun from './icons/sun.svg'
 import Moon from './icons/moon.svg'

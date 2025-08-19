@@ -4,7 +4,7 @@ import HomepageSection, {
   HomepageSectionLink,
 } from '@/components/homepage/Section'
 import ProjectType from '@/types/project'
-import CustomScrollbar from '@/components/custom-scrollbar'
+import CustomScrollbar from '@/components/CustomScrollbar'
 import { ReactNode, useRef } from 'react'
 import useHeaderStyle from '@/hooks/use-header-style'
 import { gtAmericaMono } from '@/fonts/homepage'

@@ -5,10 +5,10 @@ import CaseStudyType from '@/types/case-study'
 import { CSSProperties, useEffect } from 'react'
 import CaseStudySection from './case-study-section'
 import Link from '@/components/link'
-import Logo from '@/components/logo'
+import Logo from '@/components/Logo'
 import CaseStudyKnowledge from '@/components/case-study-knowledge'
 import Button from '@/components/Button'
-import LineBreak from '@/components/line-break'
+import LineBreak from '@/components/LineBreak'
 
 const CaseStudy = ({ study }: { study: CaseStudyType }) => {
   const setClient = useClientStore((state) => state.setClient)

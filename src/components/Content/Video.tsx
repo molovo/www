@@ -1,8 +1,10 @@
 'use client'
 
 import { ComponentProps, useEffect, useState } from 'react'
-import ContentFigure, { ContentFigureProps } from './content-figure'
+import ContentFigure, { ContentFigureProps } from '@/components/Content/Figure'
 import ReactPlayer from 'react-player/lazy'
+
+import styles from './content-figure.module.sass'
 
 interface Props extends ComponentProps<typeof ReactPlayer> {
   size?: ContentFigureProps['size']
@@ -25,11 +27,11 @@ const ContentVideo = ({
 
   return (
     <ContentFigure size={size} caption={caption} withPadding={withPadding}>
-      <div className="content-figure__video" suppressHydrationWarning>
+      <div className={styles.video} suppressHydrationWarning>
         {ready && (
           <ReactPlayer
             url={url}
-            className="content-figure__video-player"
+            className={styles.videoPlayer}
             height="auto"
             onEnded={() => setPlaying(false)}
             playing={playing}
@@ -40,7 +42,7 @@ const ContentVideo = ({
 
         {!playing && (
           <button
-            className="content-figure__play-button"
+            className={styles.playButton}
             aria-label="Play video"
             onClick={() => setPlaying(true)}
           >

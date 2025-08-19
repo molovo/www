@@ -1,7 +1,7 @@
 'use client'
 
 import Image from '@/components/image'
-import Logo from '@/components/logo'
+import Logo from '@/components/Logo'
 import Link from '@/components/link'
 import useNavStateStore from '@/store/nav-state'
 import { CSSProperties } from 'react'
@@ -95,7 +95,7 @@ const CaseStudyItem = ({
         </div>
 
         <div className={styles.caseStudyItem__inner}>
-          <Logo client={slug} />
+          <Logo client={slug} className={styles.logo} />
 
           <div
             className={styles.caseStudyItem__content}
@@ -113,7 +113,7 @@ const CaseStudyItem = ({
                     zoomable={false}
                   />
                 </figure>
-                <Logo client={slug} />
+                <Logo client={slug} className={styles.logo} />
               </>
             )}
 

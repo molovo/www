@@ -7,7 +7,7 @@ import { useLiveNodeList } from 'live-node-list/hooks'
 import CaseStudyCta from '@/components/CaseStudyItem/cta'
 import CaseStudyItem from '@/components/CaseStudyItem'
 import CaseStudyType from '@/types/case-study'
-import CustomScrollbar from './custom-scrollbar'
+import CustomScrollbar from '@/components/CustomScrollbar'
 
 const MenuCaseStudies = ({
   studies = [],

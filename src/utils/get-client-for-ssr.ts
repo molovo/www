@@ -1,4 +1,4 @@
-import { ClientSlug } from '@/components/client-logo'
+import { ClientSlug } from '@/components/Logo/ClientLogo'
 import { getStudy } from '@/data/studies'
 
 const getClientForSSR = async (

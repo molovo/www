@@ -3,10 +3,6 @@
 @use 'typography/headings' as *
 @use 'typography/mixins' as *
 
-#{':root'}
-  --superrb-callout-background: #{$red}
-  --superrb-callout-color: #{$white}
-
 .case-study
   counter-reset: sections
 
@@ -93,45 +89,6 @@
 
         // > .content-figure--full-width:last-child
         //   margin-bottom: clamp(($gutterMax * -1), calc(6vw * -1), ($gutterMin * -1))
-
-    &-superrb
-      background: var(--superrb-callout-background)
-      border-radius: 6px
-      color: var(--superrb-callout-color)
-      display: inline-block
-      margin: 0 auto ($baseline * 2)
-      padding: ($baseline * .4) ($baseline * .5) ($baseline * .2)
-      pointer-events: none
-      position: relative
-      transition: color .5s ease
-
-      &-title
-        font-size: 1em
-        margin: 0
-
-      span
-        align-items: center
-        display: flex
-        font-size: .875em
-        gap: .5ch
-
-      &:has(a:hover)
-        color: $white
-
-        svg
-          color: $white
-
-      a
-        pointer-events: all
-
-      svg
-        color: inherit
-        height: 1.2em
-        margin-bottom: .1em
-        width: auto
-
-        path
-          fill: currentColor
 
     &--testimonial
       padding-left: 40vw

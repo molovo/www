@@ -1,4 +1,4 @@
-import { ClientSlug } from '@/components/client-logo'
+import { ClientSlug } from '@/components/Logo/ClientLogo'
 import { mountStoreDevtool } from 'simple-zustand-devtools'
 import { createWithEqualityFn as create } from 'zustand/traditional'
 

@@ -7,7 +7,7 @@ import useThemeStore, { Color, HeaderStyle } from '@/store/theme'
 import useLoadingStore from '@/store/loading'
 import { useCallback, useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { ClientSlug } from './client-logo'
+import { ClientSlug } from '@/components/Logo/ClientLogo'
 
 const Header = ({
   defaultStyle,

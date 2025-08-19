@@ -5,7 +5,7 @@ import { getStudies } from '@/data/studies'
 import { Metadata } from 'next'
 import Script from 'next/script'
 import { headers } from 'next/headers'
-import { ClientSlug } from '@/components/client-logo'
+import { ClientSlug } from '@/components/Logo/ClientLogo'
 
 import getHeaderStyleForSSR from '@/utils/get-header-style-for-ssr'
 import getClientForSSR from '@/utils/get-client-for-ssr'

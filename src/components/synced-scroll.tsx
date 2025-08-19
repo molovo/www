@@ -1,7 +1,7 @@
 'use client'
 
 import Image from '@/components/image'
-import ContentFigure, { ContentFigureProps } from './content-figure'
+import ContentFigure, { ContentFigureProps } from '@/components/Content/Figure'
 import { CSSProperties, useCallback, useRef } from 'react'
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { ZoomableImage } from '@/types/image'
@@ -41,9 +41,8 @@ const syncedParallax = (
 
     requestAnimationFrame(() => {
       if (element.firstElementChild) {
-        ;(
-          element.firstElementChild as HTMLElement
-        ).style.transform = `translateY(${pct * 100}%)`
+        ;(element.firstElementChild as HTMLElement).style.transform =
+          `translateY(${pct * 100}%)`
       }
     })
   })
@@ -102,7 +101,10 @@ const SyncedScroll = ({
     <ContentFigure size={size} caption={caption}>
       <div className="synced-scroll" ref={setElements}>
         {images.map(
-          ({ image, alt, sizes, zoomable = true, allowScroll = true }, index) =>
+          (
+            { image, alt, sizes, zoomable = true, allowScroll = true },
+            index,
+          ) =>
             image ? (
               <div
                 className="synced-scroll__image"

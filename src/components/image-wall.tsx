@@ -4,7 +4,7 @@ import Image from '@/components/image'
 import ContentFigure, {
   ContentFigureCaption,
   ContentFigureProps,
-} from './content-figure'
+} from '@/components/Content/Figure'
 import { CSSProperties } from 'react'
 import { ZoomableImage } from '@/types/image'
 import ReactPlayer from 'react-player/lazy'
