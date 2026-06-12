@@ -40,12 +40,21 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src="/umami.js"
-        data-website-id="25028b38-846c-410b-8195-052b12d2e724"
-        data-domains="molovo.co"
-      />
+      {process.env.NODE_ENV === 'production' && (
+        <>
+          <Script
+            strategy="afterInteractive"
+            src="/umami.js"
+            data-website-id="25028b38-846c-410b-8195-052b12d2e724"
+            data-domains="molovo.co"
+          />
+          <Script
+            defer
+            src="https://ntgl.molovo.co/measure.js"
+            data-ntgl-id="1ee93938-466b-494b-a689-22c8b02c5f1a"
+          />
+        </>
+      )}
 
       <Header
         defaultStyle={headerStyle}
