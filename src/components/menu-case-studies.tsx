@@ -2,6 +2,7 @@
 
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { useCallback, useEffect, useRef } from 'react'
+import type { RefObject } from 'react'
 import { useState } from 'reinspect'
 import { useLiveNodeList } from 'live-node-list/hooks'
 import CaseStudyCta from './case-study-cta'
@@ -70,7 +71,12 @@ const MenuCaseStudies = ({
     handleScroll()
   }, [visible, handleScroll])
 
-  useEventListener('scroll', handleScroll, { passive: true }, container.current)
+  useEventListener(
+    'scroll',
+    handleScroll,
+    { passive: true },
+    container as RefObject<HTMLUListElement>,
+  )
 
   return (
     <>

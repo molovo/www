@@ -177,6 +177,10 @@ small
   -moz-osx-font-smoothing: grayscale
   font-smooth: always
 
+// Only valid on regular elements. Included inside `+scriptTitle` and at
+// call sites — never inside `&::before`/`&::after`, where it would emit
+// selectors like `::before .swash::before` that Lightning CSS rejects.
+=scriptSwash
   .swash,
   em
     &::before
@@ -185,6 +189,7 @@ small
 
 =scriptTitle
   +script
+  +scriptSwash
   font-size: 24vw
   max-width: 3em
   position: relative
@@ -211,6 +216,7 @@ blockquote
 
   p
     +script
+    +scriptSwash
     color: $red
     // font-family: $font-secondary
     font-size: 3em
@@ -308,6 +314,7 @@ del
 
 ins
   +script
+  +scriptSwash
   color: $red
   display: inline-block
   font-size: 1.4em

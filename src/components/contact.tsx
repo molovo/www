@@ -157,7 +157,6 @@ const Contact = () => {
           className="contact__form"
           schema={schema}
           action="/api/contact/submit"
-          useRecaptcha={false}
           disabled={!isOpen}
           ref={formRef}
           renderSubmit={(

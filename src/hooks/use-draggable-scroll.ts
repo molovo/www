@@ -1,5 +1,6 @@
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { RefObject, useState } from 'react'
+import useDocumentRef from './use-document-ref'
 
 type PositionData = {
   x: number
@@ -9,6 +10,7 @@ type PositionData = {
 }
 
 export default function useDraggableScroll(ref: RefObject<HTMLElement>) {
+  const documentRef = useDocumentRef()
   const [startPosition, setStartPosition] = useState<PositionData | undefined>(
     undefined,
   )
@@ -56,21 +58,21 @@ export default function useDraggableScroll(ref: RefObject<HTMLElement>) {
     'mousedown',
     handleMouseDown,
     undefined,
-    ref?.current,
+    ref,
     !!ref?.current,
   )
   useEventListener(
     'mousemove',
     handleMouseMove,
     undefined,
-    document,
+    documentRef,
     !!ref?.current,
   )
   useEventListener(
     'mouseup',
     handleMouseUp,
     undefined,
-    document,
+    documentRef,
     !!ref?.current,
   )
 }

@@ -2,9 +2,11 @@
 
 import { useEventListener } from '@superrb/react-addons/hooks'
 import { useEffect } from 'react'
+import useDocumentRef from '@/hooks/use-document-ref'
 import { useState } from 'reinspect'
 
 const Title = () => {
+  const documentRef = useDocumentRef()
   const [originalTitle, setOriginalTitle] = useState<string>(
     '',
     'Document title',
@@ -21,7 +23,7 @@ const Title = () => {
       document.title = document.hidden ? `I miss you ❤️` : `${originalTitle}`
     },
     undefined,
-    typeof document !== 'undefined' ? document : undefined,
+    documentRef,
   )
 
   return null

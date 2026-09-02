@@ -1,6 +1,3 @@
-import remarkGfm from 'remark-gfm'
-import remarkSmartypants from 'remark-smartypants'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import createMDX from '@next/mdx'
 import type { NextConfig } from 'next'
 
@@ -12,15 +9,6 @@ const nextConfig: NextConfig = {
 
   experimental: {
     optimizePackageImports: ['@atproto/api'],
-    useCache: true,
-    // dynamicIO: true,
-    cacheLife: {
-      content: {
-        stale: 30, // 30 seconds
-        revalidate: 60, // 1 minute
-        expire: 3600, // 1 hour
-      },
-    },
   },
 
   outputFileTracingIncludes: {
@@ -64,8 +52,10 @@ const nextConfig: NextConfig = {
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm, [remarkSmartypants, { dashes: 'oldschool' }]],
-    rehypePlugins: [rehypeAutolinkHeadings],
+    // Plugins are referenced by module name so loader options stay
+    // serializable for Turbopack (the loader resolves them at build time).
+    remarkPlugins: ['remark-gfm', ['remark-smartypants', { dashes: 'oldschool' }]],
+    rehypePlugins: ['rehype-autolink-headings'],
   },
 })
 

@@ -5,9 +5,11 @@ import { useReportWebVitals } from 'next/web-vitals'
 import { v4 as uuidv4 } from 'uuid'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import useDocumentRef from '@/hooks/use-document-ref'
 import { useEventListener } from '@superrb/react-addons/hooks'
 
 const queue = new Map<string, Metric>()
+
 
 const flushQueue = () => {
   if (queue.size === 0) {
@@ -27,6 +29,7 @@ const flushQueue = () => {
 }
 
 const WebVitals = () => {
+  const documentRef = useDocumentRef()
   const [id, setId] = useState<string>(uuidv4())
   const pathname = usePathname()
 
@@ -51,7 +54,7 @@ const WebVitals = () => {
       }
     },
     undefined,
-    typeof document !== 'undefined' ? document : undefined,
+    documentRef,
   )
 
   return null

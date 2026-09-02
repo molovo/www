@@ -93,7 +93,12 @@ const CustomScrollbar = (
     }
   }
 
-  useEventListener('scroll', handleScroll, { passive: true }, controls.current)
+  useEventListener(
+    'scroll',
+    handleScroll,
+    { passive: true },
+    controls as RefObject<HTMLElement>,
+  )
   useEventListener('resize', handleScroll)
   useEffect(() => {
     handleScroll()
@@ -122,8 +127,18 @@ const CustomScrollbar = (
     }
   }
 
-  useEventListener('input', handleInput, undefined, progress.current)
-  useEventListener('change', handleInput, undefined, progress.current)
+  useEventListener(
+    'input',
+    handleInput,
+    undefined,
+    progress as RefObject<HTMLInputElement>,
+  )
+  useEventListener(
+    'change',
+    handleInput,
+    undefined,
+    progress as RefObject<HTMLInputElement>,
+  )
   useEventListener('resize', handleScroll)
 
   const updateSliderWidth = () => {
@@ -145,14 +160,14 @@ const CustomScrollbar = (
     'pointerdown',
     () => setDragging(true),
     undefined,
-    progress.current,
+    progress as RefObject<HTMLInputElement>,
   )
 
   useEventListener(
     'pointerup',
     () => setDragging(false),
     undefined,
-    progress.current,
+    progress as RefObject<HTMLInputElement>,
   )
 
   return (

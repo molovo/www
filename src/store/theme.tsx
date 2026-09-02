@@ -1,5 +1,4 @@
 import { createWithEqualityFn as create } from 'zustand/traditional'
-import { mountStoreDevtool } from 'simple-zustand-devtools'
 import { CSSProperties } from 'react'
 
 export type HeaderStyle =
@@ -44,9 +43,5 @@ const useThemeStore = create<{
   setHeaderColor: (color?: Color) =>
     set((state) => ({ ...state, headerColor: color })),
 }))
-
-if (process.env.NODE_ENV === 'development') {
-  mountStoreDevtool('Theme', useThemeStore)
-}
 
 export default useThemeStore
