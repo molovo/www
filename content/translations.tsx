@@ -1,7 +1,7 @@
 const translations = {
   contact: {
     cta: {
-      title: 'Need help?',
+      title: 'Ready to get started?',
       link: () => (
         <span className="cta-title">
           {"Let's make something"}{' '}

@@ -179,7 +179,6 @@ $transitionDelay: .125s
 
         .menu__studies-scrollbar
           opacity: 1
-          pointer-events: all
 
     .menu &[aria-hidden="true"]
       .menu__studies-item
@@ -213,13 +212,12 @@ $transitionDelay: .125s
 
     &:has(.scrollbar:active)
       .menu__studies-list
-        scroll-behavior: smooth
+        scroll-behavior: auto
         scroll-snap-type: none
         transition: none
 
     &-scrollbar
       opacity: 0
-      pointer-events: none
       position: absolute
       right: var(--gutter)
       top: calc(100% - 1.4em)

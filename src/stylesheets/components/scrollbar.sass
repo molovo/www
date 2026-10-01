@@ -3,6 +3,7 @@
 .scrollbar
   appearance: none
   background: 0
+  color: inherit
   cursor: grab
   font-size: 1em
   height: 1.5em
@@ -13,10 +14,10 @@
   &:active
     cursor: grabbing
 
-  @each $suffix in -webkit-slider-track, -moz-range-track, -ms-track
+  @each $suffix in -webkit-slider-runnable-track, -moz-range-track, -ms-track
     &::#{$suffix}
       appearance: none
-      background: rgba($white, .2)
+      background: color-mix(in srgb, currentColor 20%, transparent)
       border: 0
       border-radius: 0
       cursor: pointer
@@ -28,7 +29,7 @@
   @each $suffix in -webkit-slider-thumb, -moz-range-thumb, -ms-thumb
     &::#{$suffix}
       appearance: none
-      background: $white center / auto 50% no-repeat
+      background: $white url(../../images/icons/scrollbar-thumb.svg) center / 0 0 no-repeat
       border: 0
       border-radius: 0
       height: 3px
@@ -37,11 +38,11 @@
       width: 1em
 
   &:hover
-    @each $suffix in -webkit-slider-track, -moz-range-track, -ms-track
+    @each $suffix in -webkit-slider-runnable-track, -moz-range-track, -ms-track
       &::#{$suffix}
         height: 10px
 
     @each $suffix in -webkit-slider-thumb, -moz-range-thumb, -ms-thumb
       &::#{$suffix}
-        background: $white url(../../images/icons/scrollbar-thumb.svg) center / auto 50% no-repeat
+        background-size: auto 50%
         height: 10px

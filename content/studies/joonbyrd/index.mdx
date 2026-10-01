@@ -26,24 +26,21 @@ export const metadata = {
   url: 'https://joonbyrd.com',
   thumbnail,
 
-  prev: 'vixen-fitness',
-  next: 'redistribute',
+knowledge: [
+{
+title: 'CSS variables are immensely powerful',
+text: "Building this site wouldn't have been possible without the use of CSS variables. Thanks to them, I was able to create a consistent design system that was easy to maintain and update, allowing admins to completely change the feel of the page by specifying just two colours."
+}
+],
 
-  knowledge: [
-    {
-      title: 'CSS variables are immensely powerful',
-      text: "Building this site wouldn't have been possible without the use of CSS variables. Thanks to them, I was able to create a consistent design system that was easy to maintain and update, allowing admins to completely change the feel of the page by specifying just two colours."
-    }
-  ],
+knowledgeBackgroundImage,
+knowledgeHeaderColor: colors.maroon,
 
-  knowledgeBackgroundImage,
-  knowledgeHeaderColor: colors.maroon,
-
-  styles: {
-    thumbnail: {
-      color: colors.blue,
-      backgroundColor: colors.lilac
-    },
+styles: {
+thumbnail: {
+color: colors.blue,
+backgroundColor: colors.lilac
+},
 
     thumbnailTitle: {
       color: colors.maroon,
@@ -71,5 +68,6 @@ export const metadata = {
         color: colors.blue,
       }
     }
-  }
+
+}
 }

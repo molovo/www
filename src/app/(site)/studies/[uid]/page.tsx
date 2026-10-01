@@ -13,6 +13,11 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { uid } = await params
   const study = await getStudy(uid)
+  const studies = await getStudies()
+
+  const index = studies.findIndex((s) => s.slug === uid)
+  const next = studies[index + 1] || studies[0]
+  const prev = studies[index - 1]
 
   if (!study) {
     notFound()
@@ -40,8 +45,8 @@ export const generateMetadata = async ({
       },
     },
     pagination: {
-      next: study.next.url,
-      previous: study.prev.url,
+      next: next?.url,
+      previous: prev?.url,
     },
   }
 
@@ -59,6 +64,10 @@ export async function generateStaticParams() {
 const Page = async ({ params }: { params: Promise<{ uid: string }> }) => {
   const { uid } = await params
   const study = await getStudy(uid)
+  const studies = await getStudies()
+
+  const index = studies.findIndex((s) => s.slug === uid)
+  const next = studies[index + 1] || studies[0]
 
   if (!study) {
     notFound()
@@ -96,7 +105,7 @@ const Page = async ({ params }: { params: Promise<{ uid: string }> }) => {
 
   return (
     <>
-      <CaseStudy study={study} />
+      <CaseStudy study={study} next={next} />
       <Schema content={jsonLd} />
       <BreadcrumbSchema
         title={`${title}: Making ${client}`}

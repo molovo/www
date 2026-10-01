@@ -10,7 +10,13 @@ import CaseStudyKnowledge from '@/components/case-study-knowledge'
 import Button from '@/components/button'
 import LineBreak from '@/components/line-break'
 
-const CaseStudy = ({ study }: { study: CaseStudyType }) => {
+const CaseStudy = ({
+  study,
+  next,
+}: {
+  study: CaseStudyType
+  next?: CaseStudyType
+}) => {
   const setClient = useClientStore((state) => state.setClient)
 
   useEffect(() => {
@@ -76,13 +82,13 @@ const CaseStudy = ({ study }: { study: CaseStudyType }) => {
             </Button>
           </div>
 
-          {study.next && (
+          {next && (
             <div className="case-study__navigation">
               <Link
-                href={study.next.url}
+                href={`/studies/${next.slug}`}
                 className="case-study__navigation-link case-study__navigation-link--next"
               >
-                <Logo client={study.next.slug} asLink={false} />
+                <Logo client={next.slug} asLink={false} />
                 <span className="case-study__navigation-link-label">
                   Next case study →
                 </span>

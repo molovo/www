@@ -115,7 +115,7 @@ const CustomScrollbar = (
         left:
           (value / 100) *
           (controls.current?.scrollWidth - controls.current?.clientWidth),
-        behavior: 'smooth',
+        behavior: 'auto',
       })
 
       // Update aria-valuetext for screen readers
@@ -154,7 +154,7 @@ const CustomScrollbar = (
   useEventListener('resize', updateSliderWidth)
   useEffect(() => {
     updateSliderWidth()
-  })
+  }, [])
 
   useEventListener(
     'pointerdown',

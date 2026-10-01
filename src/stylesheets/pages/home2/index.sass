@@ -1,0 +1,60 @@
+@use 'sass:math'
+@use '../../setup/vars' as *
+
+.home
+  background: $offWhite
+  position: relative
+
+  &__hero
+    padding: 25vh var(--content-gutter) var(--spacing)
+
+  &__case-studies
+    padding: 0 0 var(--spacing)
+    position: relative
+
+    &:has(.scrollbar:active)
+      .menu__studies-list
+        scroll-behavior: auto
+        scroll-snap-type: none
+        transition: none
+
+  .menu__studies-list
+    height: 35em
+    overflow-x: auto
+    width: 100vw
+
+  .menu__studies-scrollbar
+    opacity: 1
+    top: calc(100% - 3em)
+    width: calc(100% - (var(--gutter) * 2))
+
+    // @each $suffix in -webkit-slider-track, -moz-range-track, -ms-track
+    //   &::#{$suffix}
+    //     background: rgba($black, .1)
+    @each $suffix in -webkit-slider-thumb, -moz-range-thumb, -ms-thumb
+      &::#{$suffix}
+        background: $red url(../../../images/icons/scrollbar-thumb-white.svg) center / 0 0 no-repeat
+
+    &:hover
+      @each $suffix in -webkit-slider-thumb, -moz-range-thumb, -ms-thumb
+        &::#{$suffix}
+          background-size: auto 50%
+
+  &__awards
+    padding: var(--spacing) var(--content-gutter)
+
+    p
+      font-family: $font-secondary
+      font-size: 2em
+      letter-spacing: -.05em
+      line-height: math.div(1.125, 1.5) * $baseline
+      margin-bottom: math.div(.6666666666666667, 1.5) * $baseline
+
+      a
+        color: inherit
+        font-weight: $weight-bold
+        text-decoration-color: transparent
+        transition: text-decoration-color .5s ease
+
+        &:hover
+          text-decoration-color: $red

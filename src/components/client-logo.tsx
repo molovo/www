@@ -15,6 +15,7 @@ export const logoMap: {
   superrb: dynamic(() => import('@icons/clients/superrb')),
   you: dynamic(() => import('@icons/you')),
   'vixen-fitness': dynamic(() => import('@icons/clients/vixen-fitness')),
+  wildfarmed: dynamic(() => import('@icons/clients/wildfarmed')),
 }
 
 export const clientNameMap: { [key: string]: string } = {
@@ -29,6 +30,7 @@ export const clientNameMap: { [key: string]: string } = {
   superrb: 'Superrb',
   you: 'You',
   'vixen-fitness': 'Vixen Fitness',
+  wildfarmed: 'Wildfarmed',
 }
 export type ClientSlug = keyof typeof logoMap
 
