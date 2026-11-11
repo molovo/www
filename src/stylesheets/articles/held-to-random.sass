@@ -1,0 +1,281 @@
+@use '../setup/vars' as *
+@use '../setup/helpers' as *
+
+// Near-black "dead screen" background, a touch darker than $black so the
+// phosphor-white skull and the red cuttings have somewhere to glow.
+$htr-background: #0f1012
+$htr-color: $offWhite
+// $red brightened for contrast on the dark background:
+// 4.65:1 against $htr-background (AA for all text sizes).
+$htr-red: #ec3348
+$htr-newsprint: #efede6
+$htr-yellowed: #e2d6b8
+$htr-grey: #c9c6bd
+$htr-ink: #121212
+
+// Native pixel size of skull.png, so it can be scaled by whole multiples
+$skull-width: 197px
+$skull-height: 311px
+
+@keyframes htr-flicker
+  0%, 41%, 43%, 45%, 78%, 80%, 100%
+    opacity: 1
+
+  42%
+    opacity: .55
+
+  44%
+    opacity: .7
+
+  79%
+    opacity: .8
+
+@keyframes htr-ghost
+  0%, 40%, 47%, 77%, 82%, 100%
+    opacity: 0
+    transform: translateX(0)
+
+  42%
+    opacity: .9
+    transform: translateX(-3px)
+
+  44%
+    opacity: .6
+    transform: translateX(5px)
+
+  45%
+    opacity: .9
+    transform: translateX(-2px) skewX(-6deg)
+
+  79%
+    opacity: .7
+    transform: translateX(4px)
+
+  80%
+    opacity: .4
+    transform: translateX(-4px)
+
+// Each cutting is slapped down onto the page, slightly overshooting
+@keyframes htr-paste
+  0%
+    opacity: 0
+    transform: translateY(calc(var(--shift) - .4em)) rotate(calc(var(--rotate) * -2.5)) scale(calc(var(--scale) * 1.4))
+
+  60%
+    opacity: 1
+    transform: translateY(var(--shift)) rotate(calc(var(--rotate) * 1.2)) scale(calc(var(--scale) * .96))
+
+  100%
+    opacity: 1
+    transform: translateY(var(--shift)) rotate(var(--rotate)) scale(var(--scale))
+
+.article--held-to-random
+  --background: #{$htr-background}
+  --color: #{$htr-color}
+  --accent-color: #{$htr-red}
+  background: $htr-background
+  color: $htr-color
+  padding-top: 0
+
+  .social-sharing
+    --social-sharing-accent: #{$htr-red}
+    --social-sharing-accent-two: #{$htr-background}
+    --social-sharing-color: #{$htr-color}
+    --social-sharing-background: #{$htr-background}
+
+  // Body copy keeps the site's typography; only colours are adjusted so
+  // red elements stay legible on the dark background.
+  .content
+    a:hover
+      text-decoration-color: $htr-red
+
+    blockquote p
+      color: $htr-red
+
+  .article
+    &__content
+      padding-top: 0
+
+    &__header
+      left: 50%
+      max-width: none
+      position: relative
+      transform: translateX(-50%)
+      width: 100vw
+
+.writing__post--held-to-random
+  .writing__post-image
+    background: $htr-background
+
+.held-to-random-heading
+  align-items: center
+  background: $htr-background
+  display: flex
+  flex-direction: column
+  isolation: isolate
+  justify-content: center
+  margin-bottom: 0
+  overflow: hidden
+  padding: ($gutterMax * 2.5) var(--gutter) $gutterMid
+  position: relative
+
+  @media (min-width: $breakpoint-tablet)
+    margin-bottom: var(--spacing)
+    min-height: 100svh
+    padding-block: ($gutterMax * 2)
+
+  // CRT scanlines + grain over the screen
+  &::before
+    +cover
+    background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(#000, .5) 2px, rgba(#000, .5) 3px), url($noise)
+    background-size: auto, 250px
+    content: ''
+    mix-blend-mode: overlay
+    opacity: .5
+    pointer-events: none
+    z-index: 2
+
+  // Vignette, fading the header into the page
+  &::after
+    +cover
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba($htr-background, 0) 35%, rgba($htr-background, .9) 100%), linear-gradient(to bottom, rgba($htr-background, 0) 75%, $htr-background 100%)
+    content: ''
+    pointer-events: none
+    z-index: 2
+
+  &__skull
+    animation: htr-flicker 7s steps(1, end) infinite
+    aspect-ratio: #{$skull-width / $skull-height}
+    filter: drop-shadow(0 0 1.5rem rgba($htr-color, .12))
+    // Never wider than ~70% of the screen, never taller than ~55% of it,
+    // and capped at 2.5x the source pixels
+    height: min(55svh, calc(70vw * #{$skull-height / $skull-width}), #{$skull-height * 2.5})
+    position: relative
+    z-index: 1
+
+  &__skull-image
+    display: block
+    height: 100%
+    image-rendering: pixelated
+    width: 100%
+
+  // Red, slightly offset copy of the skull for the glitch
+  &__skull-ghost
+    +cover
+    animation: htr-ghost 7s steps(1, end) infinite
+    background: $htr-red
+    mask: var(--skull) center / 100% 100% no-repeat
+    mix-blend-mode: screen
+    opacity: 0
+
+  &__title
+    font-size: clamp(2.5rem, min(10.5vw, 8.5svh), 6.5rem)
+    font-weight: normal
+    letter-spacing: normal
+    line-height: 1
+    margin: -2em 0 0
+    position: relative
+    text-align: center
+    z-index: 3
+
+  &__label
+    clip-path: inset(50%)
+    height: 1px
+    overflow: hidden
+    position: absolute
+    white-space: nowrap
+    width: 1px
+
+  &__note
+    display: flex
+    filter: drop-shadow(.04em .06em 0 rgba(#000, .55)) drop-shadow(0 .15em .3em rgba(#000, .5))
+    flex-direction: column
+    align-items: center
+    gap: .08em
+
+  &__line
+    display: flex
+    flex-wrap: wrap
+    gap: .1em .8em
+    justify-content: center
+
+  &__word
+    display: flex
+    gap: .03em
+    white-space: nowrap
+
+  &__cutting
+    animation: htr-paste .45s var(--delay) cubic-bezier(.3, 1.4, .5, 1) both
+    display: inline-block
+    transform: translateY(var(--shift)) rotate(var(--rotate)) scale(var(--scale))
+
+  &__paper
+    background: $htr-newsprint
+    color: $htr-ink
+    display: inline-block
+    line-height: 1
+    min-width: .8em
+    padding: .14em .14em .1em
+
+    // Paper stock & ink
+    &[data-paper="newsprint"]
+      background: $htr-newsprint
+      color: $htr-ink
+
+    &[data-paper="newsprint-red"]
+      background: $htr-newsprint
+      color: $red
+
+    &[data-paper="yellowed"]
+      background: $htr-yellowed
+      color: $htr-ink
+
+    &[data-paper="grey"]
+      background: $htr-grey
+      color: $red3
+
+    &[data-paper="black-red"]
+      background: $htr-ink
+      color: $htr-red
+
+    &[data-paper="red-black"]
+      background: $htr-red
+      color: $htr-ink
+
+    &[data-paper="red-white"]
+      background: $red
+      color: $white
+
+    // Typefaces
+    &[data-font="extended-black"]
+      font-family: var(--font-htr-extended-black), $font-primary
+      font-weight: 900
+
+    &[data-font="gauthier-bold"]
+      font-family: $font-secondary
+      font-weight: $weight-bold
+
+    &[data-font="gauthier-italic"]
+      font-family: $font-secondary
+      font-style: italic
+      font-weight: 400
+
+    &[data-font="america-bold"]
+      font-family: $font-primary
+      font-weight: $weight-bold
+      text-transform: uppercase
+
+    &[data-font="america-extended"]
+      font-family: $font-primary
+      font-weight: $weight-medium
+
+    &[data-font="cinema"]
+      font-family: var(--font-htr-cinema), monospace
+      font-size: 1.1em
+      padding-inline: .2em
+
+  @media (prefers-reduced-motion: reduce)
+    &__skull,
+    &__skull-ghost,
+    &__cutting
+      animation: none

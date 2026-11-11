@@ -1,0 +1,97 @@
+import HeldToRandomHeading from '@/components/article/held-to-random/held-to-random-heading'
+import title from '@/components/article/held-to-random/title'
+import image from '@/images/articles/held-to-random/card.png'
+import opengraphImage from '@/images/articles/held-to-random/opengraph-image.jpg'
+
+export const metadata = {
+  title,
+  description: "How AI went from a Copilot magic trick to writing better code than me, and why I can't stop using it, even though it's burning me out.",
+  date: '2026-11-11',
+
+  image,
+  imageAlt: 'A pixelated, dithered skull glowing on a black screen.',
+
+  opengraphImage,
+  opengraphImageAlt: 'A pixelated skull glowing on a black screen above the words "Held to Random", spelt out in mismatched newspaper cuttings like a ransom note.',
+
+  headerStyle: 'white-red',
+  contentHeaderStyle: 'white-red',
+
+  HeaderComponent: HeldToRandomHeading,
+}
+
+The first time Copilot finished a line of code for me, it felt like magic.
+
+{/* TODO(James): roughly when was this, and what were you working on? One concrete detail (the file, the function, the time of night) would make this land. */}
+
+I'd typed half a function name and a grey ghost of the rest appeared in front of me, arguments and all. I pressed tab, and it was right. Not roughly right, either. It was what I was about to write, and it had got there before I had.
+
+Like any good magic trick, my first instinct was to work out how it was done so I could stop being impressed by it.
+
+---
+
+I didn't trust it. Not even slightly. I'd spent the best part of a decade obsessing over the interface of my code, building [my own tools](/writing/i-build-my-own-tools-and-you-should-too) and taking pride in every abstraction, and I wasn't about to hand any of that over to a glorified autocomplete that had learnt to program by reading everybody else's mistakes. I read every suggestion twice. I rejected most of them out of principle. For a good while, it was a party trick I'd show to colleagues and then quietly ignore.
+
+But it's hard to stay a sceptic when something keeps saving you time on the jobs you hate.
+
+It started with the grunt work. A spreadsheet that needed to become JSON. A JSON blob that needed to become a set of types. The kind of work nobody puts on their CV, and which I'd always done by hand with a mixture of find-and-replace, regular expressions and quiet resentment. Handing that over felt like being let off detention.
+
+Then it became the thing I asked when I was stuck. It's a lot easier to paste a stack trace into a chat window than to admit to a colleague that you've been staring at it for an hour. Then it was the occasional refactor; a messy component tidied up, or a function I'd been meaning to split in two for months.
+
+None of it felt like a decision. There was no moment where I sat down and chose to change the way I work. It was a small change here and a small change there, each one too sensible to argue with.
+
+---
+
+I'd like to tell you I held out longer than I did.
+
+{/* TODO(James): when did you notice the code was better than yours? Was there a specific PR or moment where you realised it? */}
+
+At some point, and I couldn't tell you exactly when, the code it wrote got better than mine. It was more consistent. It caught edge cases I'd have caught in review, or not at all. It named things more sensibly than I do at the end of a long day, and it never got bored halfway through writing the tests.
+
+That stung more than I expected it to. When I stopped calling myself a designer, writing good code became the thing I hung my sense of worth on. It was the craft I'd taught myself, out of necessity, and grown to love. Now I was being outperformed at it by something that doesn't know what a deadline is.
+
+So I did what any sensible developer would do, and leaned in. The autocomplete became an assistant, and the assistant became a pipeline. Tickets went in. Code came out. Another model reviewed it, left comments, fixed its own comments and handed it back to me for a final look.
+
+{/* TODO(James): what does your setup actually look like now? Name the tools if you're happy to, and describe a typical day from ticket to merge. */}
+
+My job, increasingly, was to say yes.
+
+---
+
+The increase in productivity was, and I don't use the word lightly, cataclysmic.
+
+{/* TODO(James): give a real comparison here. How much were you shipping before versus at the peak (PRs a week, projects at once, a job that used to take a fortnight and now takes an afternoon)? */}
+
+For a while it was brilliant. Things that had been rotting in the backlog got done. I said yes to things I'd have turned down. Every idea I'd shelved for lack of time suddenly had no excuse. I felt like I'd been handed a cheat code, and I used it.
+
+What I hadn't noticed is that when the machine stops being the bottleneck, you become the bottleneck. The code doesn't get tired, so the only thing slowing anything down is me, and my frankly embarrassing reading speed. Every minute I wasn't feeding it something felt like a minute wasted. More tickets. More pull requests. More context to load into my head and throw away again. More code I had approved but hadn't really written.
+
+And reviewing code you didn't write, all day, is a very particular kind of tiring. You're responsible for all of it, but you made none of it. There's no flow, just a constant stream of small judgements, each one a bet that you've spotted the thing that matters.
+
+---
+
+I can't concentrate any more.
+
+I don't mean that I'm a bit distracted. I mean I sit down to do one thing and find myself, ten minutes later, doing something else entirely, with nothing finished.
+
+{/* TODO(James): what does this look like day to day? Something specific you used to be able to do (read a book, write a song, sit through a film) that you now can't. */}
+
+It hasn't stayed at work, either. I find myself reaching for a prompt to solve problems that aren't problems. The bit of my brain that used to switch off at the end of the day now just idles, waiting for the next thing to approve.
+
+{/* TODO(James): how has this shown up at home, with your family or your music? Only include what you're comfortable sharing. */}
+
+We spent years telling ourselves that the boring parts were the problem. Converting data, writing boilerplate, renaming things, chasing down typos. I believed it as much as anyone, and I was first in the queue to hand them over. It turns out the boring parts were where I rested. They were the slow, mindless stretches where my head could wander off and come back with an idea. We automated them away, and filled the space with more of the hard part.
+
+---
+
+I've thought about stepping back. Switching it all off for a month and writing every line by hand again, slowly, the way I used to. It's a nice thought. It lasts about as long as it takes to look at my to-do list.
+
+The work I shipped at the peak quietly became the baseline. That's the pace people expect now, from me and from everyone else who does what I do, and nobody is going to lower it because I'm tired. In this industry, a developer who chooses to go slower is just a more expensive developer.
+
+{/* TODO(James): has anyone (an employer, a client, a colleague) made the new pace explicit, or is it unspoken? A real moment here would help, if you have one. */}
+
+And we did this to ourselves. Every one of us who shipped a little faster nudged the bar up for everyone else. I nudged it as hard as anyone, and I was pleased with myself while I did it.
+
+So I keep paying. I open the laptop, feed it another ticket, approve another pull request, and promise myself I'll ease off once things calm down. Things don't calm down. That was never really the deal.
+
+It still feels like magic. I just can't remember the last time it felt like fun.
