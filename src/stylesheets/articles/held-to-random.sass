@@ -1,3 +1,4 @@
+@use 'sass:math'
 @use '../setup/vars' as *
 @use '../setup/helpers' as *
 
@@ -145,11 +146,11 @@ $skull-height: 311px
 
   &__skull
     animation: htr-flicker 7s steps(1, end) infinite
-    aspect-ratio: #{$skull-width / $skull-height}
+    aspect-ratio: #{math.div($skull-width, $skull-height)}
     filter: drop-shadow(0 0 1.5rem rgba($htr-color, .12))
     // Never wider than ~70% of the screen, never taller than ~55% of it,
     // and capped at 2.5x the source pixels
-    height: min(55svh, calc(70vw * #{$skull-height / $skull-width}), #{$skull-height * 2.5})
+    height: min(55svh, calc(70vw * #{math.div($skull-height, $skull-width)}), #{$skull-height * 2.5})
     position: relative
     z-index: 1
 
