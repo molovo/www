@@ -69,6 +69,7 @@ const CaseStudyItem = ({
     >
       <Link
         href={`/studies/${slug}`}
+        prefetch={true}
         style={styles?.thumbnail}
         onClick={close}
         className="case-study-item__link"

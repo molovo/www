@@ -62,7 +62,11 @@ const Listing = ({ posts }: Props) => {
                   data-title={title.replace('_', '')}
                 />
               )}
-              <Link href={`/writing/${slug}`} className="writing__post-link">
+              <Link
+                href={`/writing/${slug}`}
+                prefetch={true}
+                className="writing__post-link"
+              >
                 <h2
                   className="writing__post-title"
                   dangerouslySetInnerHTML={{

@@ -69,7 +69,8 @@ const AltchaComponent = ({
 }
 
 const Contact = () => {
-  const [opening, setOpening] = useState<boolean>(false)
+  // Ignore scroll events from our own scroll-to-form until it finishes
+  const opening = useRef(false)
   const ref = useRef<HTMLElement>(null)
   const formRef =
     useRef<FormRef<typeof schema, Yup.InferType<typeof schema>>>(null)
@@ -77,18 +78,23 @@ const Contact = () => {
   const { isOpen, close } = useContactFormStateStore()
 
   useEffect(() => {
-    if (isOpen) {
-      setOpening(true)
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      })
-      formRef.current?.fields.message?.focus()
-
-      setTimeout(() => {
-        setOpening(false)
-      }, 500)
+    if (!isOpen) {
+      return
     }
+
+    opening.current = true
+    // Fallback for when the scroll never reaches the bottom (e.g. interrupted)
+    const timeout = setTimeout(() => {
+      opening.current = false
+    }, 1500)
+
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    })
+    formRef.current?.fields.message?.focus({ preventScroll: true })
+
+    return () => clearTimeout(timeout)
   }, [isOpen])
 
   useEffect(() => {
@@ -107,6 +113,12 @@ const Contact = () => {
         return
       }
 
+      if (opening.current) {
+        const { scrollHeight } = document.documentElement
+        opening.current = window.scrollY < scrollHeight - window.innerHeight - 2
+        return
+      }
+
       if (
         window.scrollY <
         document.documentElement.scrollHeight -
@@ -119,7 +131,7 @@ const Contact = () => {
     },
     { passive: true },
     undefined,
-    !opening && isOpen,
+    isOpen,
   )
 
   const closeForm = (position?: number) => {

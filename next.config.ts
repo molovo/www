@@ -3,12 +3,17 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  cacheComponents: true,
+  partialPrefetching: true,
+  reactCompiler: true,
 
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 
   experimental: {
     optimizePackageImports: ['@atproto/api'],
+    turbopackRustReactCompiler: true,
+    exposeTestingApiInProductionBuild: process.env.EXPOSE_TESTING_API === '1',
   },
 
   outputFileTracingIncludes: {
@@ -28,7 +33,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdn.bsky.app',
         port: '',
-        pathname: '/img/feed_{thumbnail,fullsize}/**',
+        pathname: '/img/{avatar,feed_{thumbnail,fullsize}}/**',
       },
       {
         protocol: 'https',
@@ -54,7 +59,10 @@ const withMDX = createMDX({
   options: {
     // Plugins are referenced by module name so loader options stay
     // serializable for Turbopack (the loader resolves them at build time).
-    remarkPlugins: ['remark-gfm', ['remark-smartypants', { dashes: 'oldschool' }]],
+    remarkPlugins: [
+      'remark-gfm',
+      ['remark-smartypants', { dashes: 'oldschool' }],
+    ],
     rehypePlugins: ['rehype-autolink-headings'],
   },
 })

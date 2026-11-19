@@ -13,17 +13,12 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { uid } = await params
   const study = await getStudy(uid)
-  const studies = await getStudies()
-
-  const index = studies.findIndex((s) => s.slug === uid)
-  const next = studies[index + 1] || studies[0]
-  const prev = studies[index - 1]
 
   if (!study) {
     notFound()
   }
 
-  const { title, description, client } = study
+  const { title, description, client, next, prev } = study
 
   const metadata: Metadata = {
     title: `${title}: Making ${client}`,
@@ -64,16 +59,12 @@ export async function generateStaticParams() {
 const Page = async ({ params }: { params: Promise<{ uid: string }> }) => {
   const { uid } = await params
   const study = await getStudy(uid)
-  const studies = await getStudies()
-
-  const index = studies.findIndex((s) => s.slug === uid)
-  const next = studies[index + 1] || studies[0]
 
   if (!study) {
     notFound()
   }
 
-  const { title, client } = study
+  const { title, client, next } = study
 
   const jsonLd: Article = {
     '@type': 'Article',

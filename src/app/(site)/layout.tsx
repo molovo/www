@@ -4,15 +4,20 @@ import Header from '@/components/header'
 import { getStudies } from '@/data/studies'
 import { Metadata } from 'next'
 import Script from 'next/script'
-import { headers } from 'next/headers'
-import { ClientSlug } from '@/components/client-logo'
-
-import getHeaderStyleForSSR from '@/utils/get-header-style-for-ssr'
-import getClientForSSR from '@/utils/get-client-for-ssr'
+import { cacheLife } from 'next/cache'
 import Main from '@/components/main'
 import Menu from '@/components/menu'
 import Footer from '@/components/footer'
 import Contact from '@/components/contact'
+
+export const ensureStatic = 'navigation'
+
+const getYear = async () => {
+  'use cache'
+  cacheLife('max')
+
+  return new Date().getFullYear()
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://molovo.co/'),
@@ -34,10 +39,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     'vixen-fitness',
   ])
 
-  const pathname = (await headers()).get('x-pathname') || '/'
-  const { headerStyle, headerColor } = await getHeaderStyleForSSR(pathname)
-  const client = await getClientForSSR(pathname)
-
   return (
     <>
       {process.env.NODE_ENV === 'production' && (
@@ -56,31 +57,11 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         </>
       )}
 
-      <Header
-        defaultStyle={headerStyle}
-        defaultColor={headerColor}
-        defaultClient={client as ClientSlug | undefined}
-      />
+      <Header />
       <Menu studies={studies} />
       <Main>{children}</Main>
-      <Footer />
+      <Footer year={await getYear()} />
       <Contact />
-
-      <script
-        type="speculationrules"
-        dangerouslySetInnerHTML={{
-          __html: `
-              {
-                "prerender": [{
-                  "where": {
-                    "href_matches": "/*"
-                  },
-                  "eagerness": "moderate"
-                }]
-              }
-            `,
-        }}
-      />
     </>
   )
 }

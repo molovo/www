@@ -1,3 +1,4 @@
+import { cacheLife } from 'next/cache'
 import { CSSProperties } from 'react'
 
 const getWords = (sourceWords: string[], count: number) => {
@@ -7,7 +8,8 @@ const getWords = (sourceWords: string[], count: number) => {
     .join(' ')
 }
 
-const TypeSample = ({
+// Cached so the shuffle runs once at build time
+const TypeSample = async ({
   fontName,
   fontClass,
   sourceWords = [],
@@ -18,6 +20,9 @@ const TypeSample = ({
   sourceWords: string[]
   style: Partial<CSSProperties>
 }) => {
+  'use cache'
+  cacheLife('max')
+
   return (
     <figure className={`type-sample ${fontClass}`}>
       <div className="type-sample__wrapper" style={style}>

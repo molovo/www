@@ -1,8 +1,12 @@
+import { cacheLife } from 'next/cache'
 import { getPosts } from '@/data/posts'
 import { getStudies } from '@/data/studies'
 import RSS from 'rss'
 
-export async function GET() {
+const getFeedXml = async () => {
+  'use cache'
+  cacheLife('hours')
+
   const feed = new RSS({
     title: 'molovo.co',
     description: 'I make websites.',
@@ -38,7 +42,11 @@ export async function GET() {
     })
   })
 
-  return new Response(feed.xml(), {
+  return feed.xml()
+}
+
+export async function GET() {
+  return new Response(await getFeedXml(), {
     headers: {
       'Content-Type': 'application/xml',
     },

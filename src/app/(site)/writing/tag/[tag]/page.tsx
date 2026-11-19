@@ -1,5 +1,3 @@
-'use server'
-
 import { getPosts } from '@/data/posts'
 import Listing from '@/components/listing'
 

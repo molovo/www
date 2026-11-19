@@ -132,6 +132,7 @@ const Menu = ({ studies = [] }: { studies: CaseStudyType[] }) => {
                 <Link
                   className="menu__link"
                   href={url as string}
+                  prefetch={true}
                   target={
                     (url as string).startsWith('/') ? undefined : '_blank'
                   }

@@ -14,10 +14,11 @@ type Props = PropsWithChildren<
   | NextLinkProps
 > & {
   href?: string
+  prefetch?: NextLinkProps['prefetch']
 }
 
 const Link = (
-  { href, children, ...props }: Props,
+  { href, children, prefetch, ...props }: Props,
   ref: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>,
 ) => {
   if (!href) {
@@ -51,6 +52,7 @@ const Link = (
     <NextLink
       ref={ref as ForwardedRef<HTMLAnchorElement>}
       href={href}
+      prefetch={prefetch}
       {...(props as Omit<NextLinkProps, 'href'>)}
     >
       {children}

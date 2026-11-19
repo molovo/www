@@ -1,129 +1,62 @@
-'use server'
-
 import CaseStudyType, { CaseStudySectionType } from '@/types/case-study'
-import { glob } from 'glob'
 import React from 'react'
+import { getContentIndex, pick, StudyIndexEntry } from './content'
 import { importContent } from './helpers'
+
+const withoutLinks = ({
+  prevSlug: _prev,
+  nextSlug: _next,
+  sectionFiles: _sections,
+  ...study
+}: StudyIndexEntry) => study as CaseStudyType
 
 export const getStudies = async (
   clients?: string[],
-): Promise<CaseStudyType[]> => {
-  'use server'
-
-  const files = await glob(
-    `${process.cwd()}/content/${
-      process.env.NODE_ENV === 'development' ? '{_drafts/,}' : ''
-    }studies/${clients ? `{${clients.join(',')}}` : '*'}/index.mdx`,
-  )
-
-  const items = await Promise.all(
-    files
-      .map((filename) => filename.match(/\/([^\/]+)\/index\.mdx$/)?.[1])
-      .map(async (slug) => {
-        if (!slug) {
-          return undefined
-        }
-
-        const study = await importContent(`studies/${slug}/index`)
-
-        const { metadata } = study
-
-        return { ...metadata, slug } as CaseStudyType
-      }) as Promise<CaseStudyType>[],
-  )
-
-  if (clients) {
-    return clients
-      .map((slug) => items.find(({ slug: s }) => s === slug))
-      .filter((item) => item !== undefined) as CaseStudyType[]
-  }
-
-  return items.filter((item) => item !== undefined)
-}
+): Promise<CaseStudyType[]> =>
+  pick((await getContentIndex()).studies, clients).map(withoutLinks)
 
 export const getStudy = async (
   slug: string,
 ): Promise<CaseStudyType | undefined> => {
-  'use server'
+  const { studies } = await getContentIndex()
+  const study = studies.find((s) => s.slug === slug)
 
-  try {
-    const study = await importContent(`studies/${slug}/index`)
-
-    const { metadata } = study
-
-    const sections = await getSections(slug)
-
-    let next, prev
-    try {
-      if (metadata.prev) {
-        const { metadata: prevMetadata } = await importContent(
-          `studies/${metadata.prev}/index`,
-        )
-        prev = {
-          ...prevMetadata,
-          slug: metadata.prev,
-          url: `/studies/${metadata.prev}`,
-        }
-      }
-      if (metadata.next) {
-        const { metadata: nextMetadata } = await importContent(
-          `studies/${metadata.next}/index`,
-        )
-        next = {
-          ...nextMetadata,
-          slug: metadata.next,
-          url: `/studies/${metadata.next}`,
-        }
-      }
-    } catch (error) {
-      console.error(error)
-    }
-
-    return { ...metadata, slug, sections, next, prev }
-  } catch (error) {
-    if ((error as Error).message.startsWith('Cannot find module')) {
-      return
-    }
-
-    throw error
+  if (!study) {
+    return
   }
+
+  const link = (linked?: string) => {
+    const entry = studies.find((s) => s.slug === linked)
+    return entry && { ...withoutLinks(entry), url: `/studies/${entry.slug}` }
+  }
+
+  return {
+    ...withoutLinks(study),
+    sections: await getSections(slug, study.sectionFiles),
+    prev: link(study.prevSlug),
+    next: link(study.nextSlug),
+  } as CaseStudyType
 }
 
-export const getSections = async (
+const getSections = async (
   slug: string,
+  files: string[],
 ): Promise<CaseStudySectionType[]> => {
-  const files = await glob(
-    `${process.cwd()}/content/${
-      process.env.NODE_ENV === 'development' ? '{_drafts/,}' : ''
-    }studies/${slug}/sections/*.mdx`,
-  )
   const sections = await Promise.all(
-    files
-      .map((filename) => filename.match(/([0-9]+)\.([^\/]+)\.mdx$/))
-      .map(async (matches) => {
-        try {
-          const [, order, sectionSlug] = matches || []
-          const { metadata, default: Content } = await importContent(
-            `studies/${slug}/sections/${order}.${sectionSlug}`,
-          )
+    files.map(async (file) => {
+      const [order, sectionSlug] = file.split('.')
+      const { metadata, default: Content } = await importContent(
+        `studies/${slug}/sections/${file}`,
+      )
 
-          return {
-            order,
-            content: React.createElement(Content),
-            slug: sectionSlug,
-            ...metadata,
-          } as CaseStudySectionType
-        } catch (error) {
-          if ((error as Error).message.startsWith('Cannot find module')) {
-            return
-          }
-
-          throw error
-        }
-      }),
+      return {
+        order,
+        content: React.createElement(Content),
+        slug: sectionSlug,
+        ...metadata,
+      } as CaseStudySectionType
+    }),
   )
 
-  return (
-    sections.filter((value) => value !== undefined) as CaseStudySectionType[]
-  ).sort((a, b) => ((a.order || 99) > (b.order || 99) ? 1 : -1))
+  return sections.sort((a, b) => ((a.order || 99) > (b.order || 99) ? 1 : -1))
 }
