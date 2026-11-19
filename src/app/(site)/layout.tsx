@@ -51,8 +51,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           />
           <Script
             defer
-            src="https://ntgl.molovo.co/measure.js"
-            data-ntgl-id="1ee93938-466b-494b-a689-22c8b02c5f1a"
+            src="https://usenightingale.dev/measure.js"
+            data-ntgl-id="9ec30ca3-9a19-478f-b21f-5102c0f5f8d2"
           />
         </>
       )}
