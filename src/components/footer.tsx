@@ -8,7 +8,7 @@ import Logo from './logo'
 import Social from './social'
 import BSky from './images/icons/social/bsky.svg'
 
-const Footer = () => {
+const Footer = ({ year }: { year: number }) => {
   const setRef = useHeaderStyle('white')
   const { open: openContactForm } = useContactFormStateStore()
 
@@ -74,7 +74,7 @@ const Footer = () => {
         <span className="footer__attribution">
           Made with ♡ in Poole, UK.
           <br />
-          &copy;{new Date().getFullYear()} James Dinsdale.
+          &copy;{year} James Dinsdale.
           <br /> All rights reserved.
         </span>
     </footer>

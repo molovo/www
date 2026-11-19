@@ -3,34 +3,16 @@
 import Logo from './logo'
 import MenuToggle from './menu-toggle'
 import useNavStateStore from '@/store/nav-state'
-import useThemeStore, { Color, HeaderStyle } from '@/store/theme'
+import useThemeStore from '@/store/theme'
 import useLoadingStore from '@/store/loading'
 import { useCallback, useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { ClientSlug } from './client-logo'
 
-const Header = ({
-  defaultStyle,
-  defaultColor,
-  defaultClient,
-}: {
-  defaultStyle?: HeaderStyle
-  defaultColor?: Color
-  defaultClient?: ClientSlug
-}) => {
+const Header = () => {
   const { headerStyle, headerColor } = useThemeStore((state) => ({
     headerStyle: state.headerStyle,
     headerColor: state.headerColor,
   }))
-  const [storedDefaultStyle, setStoredDefaultStyle] = useState<
-    HeaderStyle | undefined
-  >(defaultStyle)
-  const [storedDefaultColor, setStoredDefaultColor] = useState<
-    Color | undefined
-  >(defaultColor)
-  const [storedDefaultClient, setStoredDefaultClient] = useState<
-    ClientSlug | undefined
-  >(defaultClient)
   const isOpen = useNavStateStore((state) => state.isOpen)
   const loading = useLoadingStore((state) => state.loading)
 
@@ -61,9 +43,6 @@ const Header = ({
 
   useEffect(() => {
     handleScroll()
-    setStoredDefaultStyle(() => undefined)
-    setStoredDefaultColor(() => undefined)
-    setStoredDefaultClient(() => undefined)
 
     window.addEventListener('scroll', handleScroll, { passive: true })
 
@@ -74,15 +53,12 @@ const Header = ({
 
   return (
     <header
-      className={`header ${
-        storedDefaultStyle ? `header--${storedDefaultStyle}` : ``
-      } header--${isOpen ? 'white' : headerStyle} ${
+      className={`header header--${isOpen ? 'white' : headerStyle} ${
         !isOpen && !loading && hidden ? 'header--hidden' : ''
       }`}
-      {...((headerColor || storedDefaultColor) &&
-        !isOpen && { style: { color: headerColor || storedDefaultColor } })}
+      {...(headerColor && !isOpen && { style: { color: headerColor } })}
     >
-      <Logo asLink={true} client={storedDefaultClient} />
+      <Logo asLink={true} />
 
       <MenuToggle />
     </header>

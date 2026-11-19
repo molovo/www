@@ -8,8 +8,6 @@ import { getPosts } from '@/data/posts'
 import dynamicComponent from 'next/dynamic'
 import { Metadata } from 'next'
 
-export const dynamic = 'force-static'
-
 const Awards = dynamicComponent(() => import('@/components/homepage/awards'))
 const OpenSource = dynamicComponent(
   () => import('@/components/homepage/open-source'),

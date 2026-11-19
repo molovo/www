@@ -9,18 +9,17 @@ import { StaticImageData } from 'next/dist/shared/lib/get-img-props'
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import LineBreak from '@/components/line-break'
+import Webmentions from '@/components/webmentions'
+import { Suspense } from 'react'
 
-const Webmentions = dynamic(() => import('@/components/webmentions'), {
-  ssr: true,
-  loading: () => (
-    <>
-      <LineBreak />
-      <aside className="mentions">
-        <p>Loading webmentions&hellip;</p>
-      </aside>
-    </>
-  ),
-})
+const WebmentionsLoading = () => (
+  <>
+    <LineBreak />
+    <aside className="mentions">
+      <p>Loading webmentions&hellip;</p>
+    </aside>
+  </>
+)
 
 const SocialSharing = dynamic(() => import('@/components/social-sharing'), {
   loading: () => null,
@@ -87,7 +86,11 @@ const Page = async ({ params }: { params: Promise<{ uid: string }> }) => {
   const { slug, title, description, image, date } = post
 
   const socialSharing = <SocialSharing title={title.replace('_', '')} />
-  const webmentions = <Webmentions slug={slug as string} />
+  const webmentions = (
+    <Suspense fallback={<WebmentionsLoading />}>
+      <Webmentions slug={slug as string} />
+    </Suspense>
+  )
 
   const jsonLd: ArticleSchema = {
     '@type': 'Article',

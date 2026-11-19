@@ -3,6 +3,9 @@ import mediumLogo from '@/images/icons/medium.jpg'
 import { format } from 'date-fns'
 import LineBreak from '@/components/line-break'
 import { StaticImageData } from 'next/image'
+import { cacheLife } from 'next/cache'
+// Next's generated cache-life.d.ts augmentation hides this re-export from 'next/cache'
+import { navigation } from 'next/dist/server/request/cache-stages'
 
 interface Webmention {
   type: string
@@ -35,6 +38,9 @@ enum WebmentionType {
 }
 
 const getWebmentions = async (slug: string): Promise<Webmention[]> => {
+  'use cache'
+  cacheLife('hours')
+
   if (!slug) {
     return []
   }
@@ -90,6 +96,8 @@ const WebmentionItem = ({
 )
 
 const Webmentions = async ({ slug }: { slug: string }) => {
+  await navigation()
+
   let webmentions = []
   try {
     webmentions = (await getWebmentions(slug)).map((mention) => {

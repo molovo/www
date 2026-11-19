@@ -4,25 +4,19 @@ import { getStudies } from '@/data/studies'
 const ROOT = 'https://molovo.co'
 
 export default async function sitemap() {
+  const [posts, studies] = await Promise.all([getPosts(), getStudies()])
+  const latest = posts[0]?.date
+
   return [
-    {
-      url: `${ROOT}/`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${ROOT}/writing`,
-      lastModified: new Date(),
-    },
-
-    ...(await getPosts()).map((post) => ({
+    { url: `${ROOT}/`, lastModified: latest },
+    { url: `${ROOT}/writing`, lastModified: latest },
+    ...posts.map((post) => ({
       url: `${ROOT}/writing/${post.slug}`,
-      lastModified: new Date(),
+      lastModified: post.date,
     })),
-
-    ...(await getStudies()).map((study) => ({
+    ...studies.map((study) => ({
       url: `${ROOT}/studies/${study.slug}`,
-      lastModified: new Date(),
+      lastModified: study.date,
     })),
   ]
 }

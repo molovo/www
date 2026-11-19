@@ -1,6 +1,9 @@
 import OgImage from '@/components/og-image'
-import { getStudy } from '@/data/studies'
+import { getStudies, getStudy } from '@/data/studies'
 import { notFound } from 'next/navigation'
+
+export const generateStaticParams = async () =>
+  (await getStudies()).map(({ slug }) => ({ uid: slug }))
 
 export default async function Page({
   params,

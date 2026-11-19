@@ -6,13 +6,6 @@ import image from '@/images/errors/404.webp'
 import Image from '@/components/image'
 import { usePathname } from 'next/navigation'
 
-export const metadata = {
-  title: 'Not Found',
-  description: 'Page not found',
-}
-
-export const generateStaticParams = async () => [{ lang: 'en' }]
-
 const NotFound = () => {
   const pathname = usePathname()
   const setRef = useHeaderStyle('red')
