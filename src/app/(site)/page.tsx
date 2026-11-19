@@ -5,14 +5,11 @@ import Schema from '@/components/schema'
 import { getStudies } from '@/data/studies'
 import { getProjects } from '@/data/projects'
 import { getPosts } from '@/data/posts'
-import dynamicComponent from 'next/dynamic'
 import { Metadata } from 'next'
 
-const Awards = dynamicComponent(() => import('@/components/homepage/awards'))
-const OpenSource = dynamicComponent(
-  () => import('@/components/homepage/open-source'),
-)
-const Writing = dynamicComponent(() => import('@/components/homepage/writing'))
+import Awards from '@/components/homepage/awards'
+import OpenSource from '@/components/homepage/open-source'
+import Writing from '@/components/homepage/writing'
 
 export const metadata: Metadata = {
   title: {

@@ -7,7 +7,6 @@ import ContentFigure, {
 } from './content-figure'
 import { CSSProperties } from 'react'
 import { ZoomableImage } from '@/types/image'
-import ReactPlayer from 'react-player/lazy'
 
 const ImageWall = ({
   images,
@@ -46,17 +45,14 @@ const ImageWall = ({
         {images.map(
           ({ image, video, alt, sizes, style, allowScroll = false }, index) =>
             video ? (
-              <ReactPlayer
+              <video
                 key={index}
-                url={video}
+                src={video}
                 width="100%"
-                height="auto"
-                controls={false}
-                playing={true}
-                autoPlay={true}
-                playsinline={true}
-                muted={true}
-                loop={true}
+                autoPlay
+                playsInline
+                muted
+                loop
                 className="image-wall__image"
                 style={style}
               />

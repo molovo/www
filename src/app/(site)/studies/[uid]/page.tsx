@@ -1,3 +1,4 @@
+import '@/components/mdx-client-components'
 import CaseStudy from './case-study'
 import { Metadata } from 'next'
 import { Article } from 'schema-dts'
@@ -47,6 +48,10 @@ export const generateMetadata = async ({
 
   return metadata
 }
+
+// Every param is prerendered via generateStaticParams, so awaiting params
+// outside Suspense is fine. This only opts out of the dev-time instant check.
+export const instant = false
 
 export async function generateStaticParams() {
   const studies = await getStudies()

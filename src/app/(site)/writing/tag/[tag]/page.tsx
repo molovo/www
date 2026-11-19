@@ -1,6 +1,9 @@
 import { getPosts } from '@/data/posts'
 import Listing from '@/components/listing'
 
+// Every tag is prerendered, so this only opts out of the dev-time instant check
+export const instant = false
+
 export const generateStaticParams = async () => {
   const posts = await getPosts()
   const tags = new Set(posts.flatMap((post) => post.tags || []))

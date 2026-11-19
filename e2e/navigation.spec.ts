@@ -14,7 +14,12 @@ for (const [path, text] of [
 
     expect(html).not.toContain('$RX(')
     expect(html).not.toContain('loading-spinner')
-    expect(html.replace(/&#x27;|&apos;/g, "'")).toContain(text)
+
+    // Content must be inline, not streamed into a hidden block after the footer
+    const decoded = html.replace(/&#x27;|&apos;/g, "'")
+    const contentAt = decoded.indexOf(text)
+    expect(contentAt).toBeGreaterThan(-1)
+    expect(contentAt).toBeLessThan(decoded.indexOf('class="footer'))
   })
 }
 

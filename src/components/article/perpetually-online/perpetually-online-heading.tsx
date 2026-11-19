@@ -21,6 +21,7 @@ const PerpetuallyOnlineHeading = () => {
         alt="Man sitting at a laptop"
         src={laptop}
         sizes="24em"
+        loading="eager"
         zoomable={false}
       />
       <h1 className={cinema.className}>Perpetually Online</h1>

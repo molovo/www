@@ -2,6 +2,9 @@ import OgImage from '@/components/og-image'
 import { getStudies, getStudy } from '@/data/studies'
 import { notFound } from 'next/navigation'
 
+// Only ever loaded directly by the OG image generator, never navigated to
+export const instant = false
+
 export const generateStaticParams = async () =>
   (await getStudies()).map(({ slug }) => ({ uid: slug }))
 

@@ -36,7 +36,13 @@ const NotFound = () => {
       </div>
 
       <figure className="error__image">
-        <Image src={image} alt="404" loading="eager" zoomable={false} />
+        <Image
+          src={image}
+          alt="404"
+          loading="eager"
+          unoptimized
+          zoomable={false}
+        />
       </figure>
     </section>
   )

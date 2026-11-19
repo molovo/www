@@ -66,6 +66,12 @@ const Image = ({
   ...props
 }: Props) => {
   const ref = useRef<HTMLImageElement>(null)
+  // Next can't optimise animated images, and warns if asked to
+  const srcPath =
+    typeof props.src === 'string'
+      ? props.src
+      : (props.src as { src?: string }).src
+  const unoptimized = props.unoptimized ?? /\.gif($|\?)/.test(srcPath ?? '')
   const portalRef = useRef<HTMLDivElement>(null)
   const [loaded, setLoaded] = useState<boolean>(false)
   const [zoomed, setZoomed] = useState<boolean>(false)
@@ -165,6 +171,7 @@ const Image = ({
         className={`image ${className}`}
         sizes={sizes}
         {...props}
+        unoptimized={unoptimized}
         {...(zoomable
           ? {
               onClick: handleClick,
@@ -201,6 +208,7 @@ const Image = ({
               className={`image ${className}`}
               sizes="100vw"
               {...props}
+              unoptimized={unoptimized}
               {...(zoomable ? { onClick: handleClick } : {})}
               style={imageStyle}
               aria-expanded={zoomed}
